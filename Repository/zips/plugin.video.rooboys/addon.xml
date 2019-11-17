@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.rooboys" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B]" provider-name="G.A">
+   <requires>
+        <import addon="xbmc.python" version="2.19.0" />
+        <import addon="script.module.rooboys" />
+        <import addon="script.rooboys.artwork" />
+        <import addon="script.rooboys.metadata" />
+        <import addon="script.module.resolveurl" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.metahandler" />
+		<import addon="script.module.openscrapers" version="0.0.1.82" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="rooboys.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<menu>
+				<label>[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B]</label>
+				<item library="context_toggle.py">
+					<label>Preferred toggle</label>
+					<visible>!System.HasAddon(context.rooboys) + !Skin.HasSetting(Toggling)</visible>
+				</item>
+				<item library="context_movie.py">
+					<label>$ADDON[plugin.video.rooboys 30602]</label>
+					<visible>StringCompare(ListItem.dbtype,movie) + SubString(ListItem.Path, plugin.video.rooboys)</visible>
+				</item>
+				<item library="context_tvshow.py">
+					<label>$ADDON[plugin.video.rooboys 30602]</label>
+					<visible>StringCompare(ListItem.dbtype,tvshow) + SubString(ListItem.Path, plugin.video.rooboys)</visible>
+				</item>
+			</menu>
+		</menu>
+	</extension>	
+    <extension point="xbmc.addon.metadata">
+		<summary lang="en">Join In The Chorus.</summary>
+		<disclaimer lang="en">The authors of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+		<description lang="en">Join In The Chorus.</description>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+    <assets>
+        <icon>icon.gif</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+    <news></news>
+    </extension>
+</addon>

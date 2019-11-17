@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.rooboys.metadata" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Metadata" provider-name="G.A">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0"/>
+    </requires>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.addon.metadata">
+		<summary>Metadata for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Addon</summary>
+		<description>Metadata for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] are maintained separately to make distribution of the the addon itself easier/faster.</description>
+        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
+The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
+This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart></fanart>
+        <screenshot></screenshot>
+        <screenshot></screenshot>
+        <screenshot></screenshot>
+    </assets>
+    <news></news>
+    </extension>
+</addon>
