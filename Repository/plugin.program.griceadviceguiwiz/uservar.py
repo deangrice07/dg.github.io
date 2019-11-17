@@ -12,7 +12,7 @@ ADDONTITLE     = '[COLOR ghostwhite]Grice Advice GUI Wizard[/COLOR]'
 BUILDERNAME    = 'Grice Advice'
 #########################Make sure to change the repo to yours!!!!
 EXCLUDES       = [ADDON_ID, 'repository.griceadvicekodi', 'roms', 'My_Builds', 'backupdir']
-BUILDFILE      = 'https://griceadvice.github.io/wiz/builds.txt'
+BUILDFILE      = 'https://dg.github.io/wiz/builds.txt'
 UPDATECHECK    = 0
 APKFILE        = 'http://'
 YOUTUBETITLE   = '' 
@@ -98,9 +98,9 @@ THEME6         = '[COLOR '+COLOR3+'][B]%s[/B][/COLOR]'
 # Example:  ICONMAINT     = os.path.join(ART, 'mainticon.png')
 #           ICONSETTINGS  = 'http://aftermathwizard.net/repo/wizard/settings.png'
 # Leave as http:// for default icon
-ICONBUILDS     = 'https://griceadvice.github.io/icons/builds.png'
-ICONMAINT      = 'https://griceadvice.github.io/icons/maint.png'
-ICONAPK        = 'https://griceadvice.github.io/icons/apk.png'
+ICONBUILDS     = 'https://dg.github.io/icons/builds.png'
+ICONMAINT      = 'https://dg.github.io/icons/maint.png'
+ICONAPK        = 'https://dg.github.io/icons/apk.png'
 ICONADDONS     = 'http://'
 ICONYOUTUBE    = 'http://'
 ICONSAVE       = 'http://'
@@ -108,7 +108,7 @@ ICONTRAKT      = 'http://'
 ICONREAL       = 'http://'
 ICONLOGIN      = 'http://'
 ICONCONTACT    = 'http://'
-ICONSETTINGS   = 'https://griceadvice.github.io/icons/settings.png'
+ICONSETTINGS   = 'https://dg.github.io/icons/settings.png'
 # Hide the ====== seperators 'Yes' or 'No'
 HIDESPACERS    = 'No'
 # Character used in seperator
@@ -152,7 +152,7 @@ REPOZIPURL     =  'http://'
 # Enable Notification screen Yes or No
 ENABLE         = 'Yes'
 # Url to notification file
-NOTIFICATION   = 'https://griceadvice.github.io/wiz/notifications.txt'
+NOTIFICATION   = 'https://dg.github.io/wiz/notifications.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE     = 'Text'
 # Font size of header
@@ -163,5 +163,5 @@ HEADERIMAGE    = ''
 # Font for Notification Window
 FONTSETTINGS   = 'Font30'
 # Background for Notification Window
-BACKGROUND     = 'https://griceadvice.github.io/icons/ContentPanel.png'
+BACKGROUND     = 'https://dg.github.io/icons/ContentPanel.png'
 ############################    #############################
