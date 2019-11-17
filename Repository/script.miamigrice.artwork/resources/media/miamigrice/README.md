@@ -1,2 +1,0 @@
-# IT Theme
-Theme

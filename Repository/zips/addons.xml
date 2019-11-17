@@ -1,122 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.rooboys.artwork" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Artwork" provider-name="G.A">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-		<summary>Themes for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Addon</summary>
-		<description>Artwork Module for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Addon</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
-</addon>
-
-<addon id="script.miamigrice.metadata" version="1.0.0" name="[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] Metadata" provider-name="GA">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] is a free portal for the best kodi stuff.</summary>
-    <description lang="en">This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.The author does not host any of the content in this addon and takes no responsibility for content found.</description>
-    <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon. The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation. This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.gif</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
-</addon>
-
-<addon id="plugin.video.rooboys" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B]" provider-name="G.A">
-   <requires>
-        <import addon="xbmc.python" version="2.19.0" />
-        <import addon="script.module.rooboys" />
-        <import addon="script.rooboys.artwork" />
-        <import addon="script.rooboys.metadata" />
-        <import addon="script.module.resolveurl" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.metahandler" />
-		<import addon="script.module.openscrapers" version="0.0.1.82" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="rooboys.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="kodi.context.item">
-		<menu id="kodi.core.main">
-			<menu>
-				<label>[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B]</label>
-				<item library="context_toggle.py">
-					<label>Preferred toggle</label>
-					<visible>!System.HasAddon(context.rooboys) + !Skin.HasSetting(Toggling)</visible>
-				</item>
-				<item library="context_movie.py">
-					<label>$ADDON[plugin.video.rooboys 30602]</label>
-					<visible>StringCompare(ListItem.dbtype,movie) + SubString(ListItem.Path, plugin.video.rooboys)</visible>
-				</item>
-				<item library="context_tvshow.py">
-					<label>$ADDON[plugin.video.rooboys 30602]</label>
-					<visible>StringCompare(ListItem.dbtype,tvshow) + SubString(ListItem.Path, plugin.video.rooboys)</visible>
-				</item>
-			</menu>
-		</menu>
+<addon id="script.module.dg" name="DG Module" version="1.0.0" provider-name="DG">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">DG Module</summary>
+		<assets>
+	      <icon>icon.png</icon>
+		</assets>
+	<reuselanguageinvoker>false</reuselanguageinvoker>
 	</extension>
-    <extension point="xbmc.addon.metadata">
-		<summary lang="en">Join In The Chorus.</summary>
-		<disclaimer lang="en">The authors of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<description lang="en">Join In The Chorus.</description>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.gif</icon>
-        <fanart>fanart.jpg</fanart>
-    </assets>
-    <news></news>
-    </extension>
 </addon>
 
-<addon id="script.miamigrice.artwork" version="1.0.1" name="[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] Artwork" provider-name="GA">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] Artwork is a free portal for the best kodi stuff.</summary>
-    <description lang="en">This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.The author does not host any of the content in this addon and takes no responsibility for content found.</description>
-    <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon. The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation. This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.gif</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
+<addon id="script.dg.artwork" version="1.0.0" name="DG Artwork" provider-name="DG">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>DG Artwork</summary>
+		<description>Themes for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+        <assets>
+	      <icon>icon.png</icon>
+		</assets>
+	</extension>
 </addon>
 
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.4" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.5" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -147,28 +61,19 @@ This is a Non-profit resource, organized solely for educational purposes which i
         </extension>
 </addon>
 
-<addon id="script.rooboys.metadata" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Metadata" provider-name="G.A">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-		<summary>Metadata for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Addon</summary>
-		<description>Metadata for the [B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] are maintained separately to make distribution of the the addon itself easier/faster.</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
+<addon id="script.dg.metadata" version="1.0.0" name="DG Metadata" provider-name="DG">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>DG Metadata</summary>
+		<description>Metadata for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+        <assets>
+	      <icon>icon.png</icon>
+		</assets>
+	</extension>
 </addon>
 
 <addon id="plugin.program.griceadviceguiwiz" name="[COLOR ghostwhite]Grice Advice GUI Wizard[/COLOR]" version="1.0.0" provider-name="[COLOR ghostwhite]Grice Advice[/COLOR]">
@@ -186,87 +91,37 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
-<addon id="plugin.video.miamigrice" version="1.0.0" name="[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR]" provider-name="GA">
-   <requires>
-        <import addon="xbmc.python" version="2.19.0" />
-        <import addon="script.module.miamigrice" />
-        <import addon="script.miamigrice.artwork" />
-        <import addon="script.miamigrice.metadata" />
-        <import addon="script.module.resolveurl" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.metahandler" />
-        <import addon="plugin.video.youtube" />
-		<import addon="script.module.openscrapers"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="miamigrice.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py" start="startup" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] is a free portal for Kodi Stuff.</summary>
-        <description lang="en">This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.The author does not host any of the content in this addon and takes no responsibility for content found.
-		This is a fork of the 13clowns addon but with parts removed and fixed so credits must go to the 13clowns addon dev.</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon. The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation. This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.gif</icon>
-        <fanart>fanart.jpg</fanart>
-    </assets>
-    <news></news>
-    </extension>
-</addon>
-
-<addon id="script.module.rooboys" version="1.0.0" name="[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Module" provider-name="G.A">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" />
-        <import addon="script.module.beautifulsoup4"/>
-        <import addon="script.module.simplejson"/>
-        <import addon="script.module.python.koding.aio" version="0.9.6.6" />
-        <import addon="script.module.requests" version="2.9.1" />
-        <import addon="script.module.xmltodict" version="0.9.0" />
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">[B][COLORroyalblue]R[/COLOR][/B][B][COLORwhite]o[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]b[/COLOR][/B][B][COLORroyalblue]o[/COLOR][/B][B][COLORwhite]y[/COLOR][/B][B][COLORroyalblue]s[/COLOR][/B] Module</summary>
-    <description lang="en">This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.The author does not host any of the content in this addon and takes no responsibility for content found.</description>
-    <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon. The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation. This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
-</addon>
-
-<addon id="script.module.miamigrice" version="1.0.0" name="[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] Module" provider-name="GA">
-    <requires>
-        <import addon="xbmc.python" version="2.19.0" />
-        <import addon="script.module.beautifulsoup4" />
-        <import addon="script.module.dateutil" />
-        <import addon="script.module.futures" />
-        <import addon="script.module.requests" />
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-    <summary lang="en">[COLORcyan]M[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]A[/COLOR][COLORfuchsia]M[/COLOR][COLORcyan]I[/COLOR] [COLORfuchsia]G[/COLOR][COLORcyan]R[/COLOR][COLORfuchsia]I[/COLOR][COLORcyan]C[/COLOR][COLORfuchsia]E[/COLOR] Module is a free portal for all the best kodi stuff.</summary>
-    <description lang="en">This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.The author does not host any of the content in this addon and takes no responsibility for content found.</description>
-    <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon. The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation. This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.gif</icon>
-        <fanart></fanart>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-        <screenshot></screenshot>
-    </assets>
-    <news></news>
-    </extension>
+<addon id="plugin.video.dg" version="1.0.0" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="script.module.dg" />
+		<import addon="script.dg.artwork" />
+		<import addon="script.dg.metadata" />
+		<import addon="script.module.resolveurl" />
+		<import addon="script.module.requests" />
+		<import addon="script.module.metahandler" />
+		<import addon="plugin.video.youtube" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="dg.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Movies and TV Shows</summary>
+		<description>Please remember that DG is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider. Updated and refactored by someone. Originally created by others.</disclaimer>
+		<platform>all</platform>
+		<license></license>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/media/screenshot-01.jpg</screenshot>
+			<screenshot>resources/media/screenshot-02.jpg</screenshot>
+			<screenshot>resources/media/screenshot-03.jpg</screenshot>
+		</assets>
+		<news>V2.0.2.3
+- The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</news>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+	</extension>
 </addon>
 </addons>
