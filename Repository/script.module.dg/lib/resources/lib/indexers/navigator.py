@@ -949,28 +949,28 @@ class navigator:
         self.endDirectory()
 
     def system(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Accounts[/COLOR][/B]', 'accountsrd', 'icon2.png', 'DefaultMovies.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Settings[/COLOR][/B]', 'allsettingsNavigator', 'icon2.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'icon2.png', 'DefaulTVShows.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Accounts[/COLOR][/B]', 'accountsrd', 'tools.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Settings[/COLOR][/B]', 'allsettingsNavigator', 'tools.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'tools.png', 'DefaulTVShows.png')        
 
         self.endDirectory()
         
     def allsettings(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Resolver Settings[/COLOR][/B]', 'ResolveurlRDTorrent', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]RD Providers[/COLOR][/B]', 'openSettings&query=4.1', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Providers[/COLOR][/B]', 'openSettings&query=3.0', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]General[/COLOR][/B]', 'openSettings&query=0.0', 'icon2.png', 'DefaultAddonProgram.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Resolver Settings[/COLOR][/B]', 'ResolveurlRDTorrent', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]RD Providers[/COLOR][/B]', 'openSettings&query=4.1', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Providers[/COLOR][/B]', 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]General[/COLOR][/B]', 'openSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')        
 
         self.endDirectory()
         
     def alltools(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Library[/COLOR][/B]', 'libraryNavigator', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Viewtypes[/COLOR][/B]', 'viewsNavigator', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear cache...[/COLOR][/B]', 'clearCache', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear providers...[/COLOR][/B]', 'clearSources', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear search history...[/COLOR][/B]', 'clearCacheSearch', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear Meta cache...[/COLOR][/B]', 'clearMetaCache', 'icon2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear all cache[/COLOR][/B]', 'clearAllCache', 'icon2.png', 'DefaultAddonProgram.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Library[/COLOR][/B]', 'libraryNavigator', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Viewtypes[/COLOR][/B]', 'viewsNavigator', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear cache...[/COLOR][/B]', 'clearCache', 'toolls.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear providers...[/COLOR][/B]', 'clearSources', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear search history...[/COLOR][/B]', 'clearCacheSearch', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear Meta cache...[/COLOR][/B]', 'clearMetaCache', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear all cache[/COLOR][/B]', 'clearAllCache', 'tools.png', 'DefaultAddonProgram.png')        
 
         self.endDirectory()                                               
             
