@@ -114,7 +114,7 @@
 		<license></license>
 		<assets>
 			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
+			<fanart>fanart.png</fanart>
 			<screenshot>resources/media/screenshot-01.jpg</screenshot>
 			<screenshot>resources/media/screenshot-02.jpg</screenshot>
 			<screenshot>resources/media/screenshot-03.jpg</screenshot>
