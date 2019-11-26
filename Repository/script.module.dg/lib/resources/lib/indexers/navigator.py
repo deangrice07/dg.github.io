@@ -52,15 +52,15 @@ queueMenu = control.lang(32065).encode('utf-8')
 class navigator:
     def root(self):
         self.addDirectoryItem(70003,  'ShowChangelog',  'icon.png',  'DefaultFolder.png')
-        self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32002, 'tvNavigator', 'tvshows.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32001, 'movieNavigator', 'home_movies.png', 'DefaultMovies.png')
+        self.addDirectoryItem(32002, 'tvNavigator', 'home_tvshows.png', 'DefaultTVShows.png')
         if not control.setting('lists.widget') == '0':
-            self.addDirectoryItem(70004, 'kidzoneNavigator', 'kids.png', 'DefaultTVShows.png')
-            self.addDirectoryItem(32711, 'collectionsNavigator', 'collections.png', 'DefaultMovies.png')
-            self.addDirectoryItem(32708, 'tvNetworks', 'networks.png', 'DefaultTVShows.png')
-            self.addDirectoryItem(32709, 'boxsetKingsNavigator', 'boxsets.png', 'DefaultMovies.png')
-            self.addDirectoryItem(32700, 'docuHeaven', 'documentaries.png', 'DefaultMovies.png')
-            self.addDirectoryItem(32713, 'twentyfoursevenNavigator', '247.png', 'DefaultMovies.png')
+            self.addDirectoryItem(70004, 'kidzoneNavigator', 'home_kids.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32711, 'collectionsNavigator', 'home_collections.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32708, 'tvNetworks', 'home_networks.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32709, 'boxsetKingsNavigator', 'home_boxsets.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32700, 'docuHeaven', 'home_documentaries.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32713, 'twentyfoursevenNavigator', 'home_247.png', 'DefaultMovies.png')
             self.addDirectoryItem(32008, 'systemNavigator', 'tools.png', 'DefaultTVShows.png')
 
         #self.addDirectoryItem(32008, 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
@@ -69,7 +69,7 @@ class navigator:
         if downloads == True:
             self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 
-        self.addDirectoryItem(32010, 'searchNavigator', 'search.png', 'DefaultFolder.png')        
+        self.addDirectoryItem(32010, 'searchNavigator', 'search3.png', 'DefaultFolder.png')        
 
         self.endDirectory()
 
@@ -88,10 +88,10 @@ class navigator:
         self.addDirectoryItem(32018, 'movies&url=popular', 'most-popular.png', 'DefaultMovies.png')
         self.addDirectoryItem(32716, 'movies&url=romance', 'romance.png', 'DefaultMovies.png')  
         self.addDirectoryItem(32717, 'movies&url=marvel', 'marvel_studios.png', 'DefaultMovies.png') 
-        self.addDirectoryItem(32718, 'movies&url=dcmovies', 'dc.png', 'DefaultMovies.png')
+        self.addDirectoryItem(32718, 'movies&url=dcmovies', 'dc2.png', 'DefaultMovies.png')
         self.addDirectoryItem(32719, 'movies&url=dcanimate', 'dc.png', 'DefaultMovies.png')
         self.addDirectoryItem(32720, 'movies&url=tophorr', 'horror.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32721, 'movies&url=horror', 'horror.png', 'DefaultMovies.png')
+        self.addDirectoryItem(32721, 'movies&url=horror', 'horror2.png', 'DefaultMovies.png')
         self.addDirectoryItem(32722, 'movies&url=standup', 'standup.png', 'DefaultMovies.png')       
         self.addDirectoryItem(32019, 'movies&url=views', 'most-voted.png', 'DefaultMovies.png')
         self.addDirectoryItem(32020, 'movies&url=boxoffice', 'box-office.png', 'DefaultMovies.png')
@@ -147,26 +147,26 @@ class navigator:
         self.addDirectoryItem(32723, 'eimportalshows', 'portal_tv.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32724, 'tvshows&url=top250tv', 'imdb250.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32725, 'tvshows&url=advancedsearchnetflixshows', 'netflix.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32701, 'tvGenres', 'genres.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32702, 'tvLanguages', 'international.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32701, 'tvGenres', 'genres2.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32702, 'tvLanguages', 'international2.png', 'DefaultTVShows.png')
         #self.addDirectoryItem(32703, 'tvCertificates', 'certificates2.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32704, 'tvshows&url=trending', 'people-watching.png', 'DefaultRecentlyAddedEpisodes.png')
-        self.addDirectoryItem(32705, 'tvshows&url=popular', 'most-popular.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32704, 'tvshows&url=trending', 'people-watching2.png', 'DefaultRecentlyAddedEpisodes.png')
+        self.addDirectoryItem(32705, 'tvshows&url=popular', 'most-popular2.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32710, 'tvshows&url=marveltv', 'marvel_tv.png', 'DefaultMovies.png')
         self.addDirectoryItem(32023, 'tvshows&url=rating', 'highly-rated.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32706, 'tvshows&url=views', 'most-voted.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32706, 'tvshows&url=views', 'most-voted2.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32024, 'tvshows&url=airing', 'airing-today.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32025, 'tvshows&url=active', 'returning-tvshows.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32026, 'tvshows&url=premiere', 'new-tvshows.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32006, 'calendar&url=added', 'latest-episodes.png', 'DefaultRecentlyAddedEpisodes.png', queue=True)
-        self.addDirectoryItem(32027, 'calendars', 'calendar.png', 'DefaultRecentlyAddedEpisodes.png')
+        self.addDirectoryItem(32027, 'calendars', 'calendar2.png', 'DefaultRecentlyAddedEpisodes.png')
 
         if lite == False:
             if not control.setting('lists.widget') == '0':
                 self.addDirectoryItem(32004, 'mytvliteNavigator', 'mytvshows.png', 'DefaultVideoPlaylists.png')
 
-            self.addDirectoryItem(32712, 'tvPerson', 'people-search.png', 'DefaultTVShows.png')
-            self.addDirectoryItem(32010, 'tvSearch', 'search.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32712, 'tvPerson', 'people-search2.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32010, 'tvSearch', 'search2.png', 'DefaultTVShows.png')
 
         self.endDirectory()
 
@@ -205,8 +205,8 @@ class navigator:
 
         if lite == False:
             self.addDirectoryItem(32031, 'tvliteNavigator', 'tvshows.png', 'DefaultTVShows.png')
-            self.addDirectoryItem(32028, 'tvPerson', 'people-search.png', 'DefaultTVShows.png')
-            self.addDirectoryItem(32010, 'tvSearch', 'search.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32028, 'tvPerson', 'people-search2.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32010, 'tvSearch', 'search2.png', 'DefaultTVShows.png')
 
         self.endDirectory()
 
@@ -260,9 +260,9 @@ class navigator:
 
     def search(self):
         self.addDirectoryItem(32001, 'movieSearch', 'search.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32002, 'tvSearch', 'search.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32002, 'tvSearch', 'search2.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32029, 'moviePerson', 'people-search.png', 'DefaultMovies.png')
-        self.addDirectoryItem(32030, 'tvPerson', 'people-search.png', 'DefaultTVShows.png')
+        self.addDirectoryItem(32030, 'tvPerson', 'people-search2.png', 'DefaultTVShows.png')
 
         self.endDirectory()
 
@@ -949,28 +949,28 @@ class navigator:
         self.endDirectory()
 
     def system(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Accounts[/COLOR][/B]', 'accountsrd', 'tools.png', 'DefaultMovies.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Settings[/COLOR][/B]', 'allsettingsNavigator', 'tools.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'tools.png', 'DefaulTVShows.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Accounts[/COLOR][/B]', 'accountsrd', 'icon2.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Settings[/COLOR][/B]', 'allsettingsNavigator', 'icon2.png', 'DefaultTVShows.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'icon2.png', 'DefaulTVShows.png')        
 
         self.endDirectory()
         
     def allsettings(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Resolver Settings[/COLOR][/B]', 'ResolveurlRDTorrent', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]RD Providers[/COLOR][/B]', 'openSettings&query=4.1', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Providers[/COLOR][/B]', 'openSettings&query=3.0', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]General[/COLOR][/B]', 'openSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Resolver Settings[/COLOR][/B]', 'ResolveurlRDTorrent', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]RD Providers[/COLOR][/B]', 'openSettings&query=4.1', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Providers[/COLOR][/B]', 'openSettings&query=3.0', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]General[/COLOR][/B]', 'openSettings&query=0.0', 'icon2.png', 'DefaultAddonProgram.png')        
 
         self.endDirectory()
         
     def alltools(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Library[/COLOR][/B]', 'libraryNavigator', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Viewtypes[/COLOR][/B]', 'viewsNavigator', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear cache...[/COLOR][/B]', 'clearCache', 'toolls.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear providers...[/COLOR][/B]', 'clearSources', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear search history...[/COLOR][/B]', 'clearCacheSearch', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear Meta cache...[/COLOR][/B]', 'clearMetaCache', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear all cache[/COLOR][/B]', 'clearAllCache', 'tools.png', 'DefaultAddonProgram.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Library[/COLOR][/B]', 'libraryNavigator', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Viewtypes[/COLOR][/B]', 'viewsNavigator', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear cache...[/COLOR][/B]', 'clearCache', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear providers...[/COLOR][/B]', 'clearSources', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear search history...[/COLOR][/B]', 'clearCacheSearch', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear Meta cache...[/COLOR][/B]', 'clearMetaCache', 'icon2.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Clear all cache[/COLOR][/B]', 'clearAllCache', 'icon2.png', 'DefaultAddonProgram.png')        
 
         self.endDirectory()                                               
             
