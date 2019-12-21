@@ -32,11 +32,11 @@ import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs,time
 from HTMLParser import HTMLParser
 import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib,urllib2,json,resolveurl,ssl,zipfile,urlparse
 
-AddonTitle     = "[COLOR white]DG[/COLOR]"
+AddonTitle     = "[COLOR white]NuMb3r5[/COLOR]"
 dialog         = xbmcgui.Dialog()
-addon_id       = 'plugin.video.dg'
+addon_id       = 'plugin.video.numbersbynumbers'
 fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.gif'))
 s              = requests.session()
 User_Agent     = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
     
@@ -53,7 +53,7 @@ def TextBoxes(announce):
             xbmc.sleep(500) # give window time to initialize
             self.setControls()
         def setControls(self):
-            self.win.getControl(self.CONTROL_LABEL).setLabel('dg') # set heading
+            self.win.getControl(self.CONTROL_LABEL).setLabel('NuMb3r5') # set heading
             try: f=open(announce); text=f.read()
             except: text=announce
             self.win.getControl(self.CONTROL_TEXTBOX).setText(str(text))

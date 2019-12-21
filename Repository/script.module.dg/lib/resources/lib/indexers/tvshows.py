@@ -95,6 +95,7 @@ class tvshows:
         self.trending_link = 'http://api.trakt.tv/shows/trending?limit=40&page=1'
         self.advancedsearchfamily_link = 'https://www.imdb.com/search/title?title_type=tv_series&release_date=2016-01-01,&genres=family'
         self.advancedsearchcartoons_link = 'https://www.imdb.com/search/title?title_type=tv_series,mini_series&genres=animation&num_votes=100,&release_date=,date[0]&genres=animation&sort=moviemeter,asc&count=40&start=1'
+        self.advancedsearchclassiccartoons_link = 'https://www.imdb.com/list/ls052624514/?sort=alpha,asc&st_dt=&mode=detail&page=1'
         self.advancedsearchmarveltv_link  = 'https://www.imdb.com/list/ls026566277/?view=detail&sort=alpha,asc&title_type=tvSeries,miniSeries&start=1'
         self.advancedsearchhighly_link = 'https://www.imdb.com/search/title?title_type=tv_series&num_votes=15000,&genres=family&sort=user_rating,desc&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=186d3818-4564-4c2a-a20e-9054a8648eca&pf_rd_r=0JBMXKVJDMSKNGJKAZTV&pf_rd_s=center-22&pf_rd_t=60601&pf_rd_i=family-entertainment-guide&ref_=fea_fam_fam_ats_rank_fam_tv_sm'
         self.advancedsearchlegotv_link = 'https://www.imdb.com/search/title/?title=lego&title_type=tv_series&count=100'
@@ -337,17 +338,22 @@ class tvshows:
 
     def person(self):
         try:
+            control.idle()
+
             t = control.lang(32010).encode('utf-8')
             k = control.keyboard('', t)
             k.doModal()
             q = k.getText() if k.isConfirmed() else None
-						
 
-            if (q is None or q == ''):
+            if (q == None or q == ''):
                 return
 
             url = self.persons_link + urllib.quote_plus(q)
-            self.persons(url)
+            if int(control.getKodiVersion()) >= 18:
+                self.persons(url)
+            else:
+                url = '%s?action=tvPersons&url=%s' % (sys.argv[0], urllib.quote_plus(url))
+                control.execute('Container.Update(%s)' % url)
         except Exception:
             return
 
