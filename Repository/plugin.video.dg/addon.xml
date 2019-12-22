@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.dg" version="1.0.3" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+<addon id="plugin.video.dg" version="1.0.4" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.dg" />
@@ -16,7 +16,7 @@
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Movies/TV Shows/Music/Documentaries</summary>
-		<description>Please remember that NuMb3r5 is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<description>Please remember that DG is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider. Updated and refactored by someone. Originally created by others.</disclaimer>
 		<platform>all</platform>
 		<license></license>

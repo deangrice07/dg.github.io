@@ -282,15 +282,15 @@ def _find_cache_version():
             f.close()
     except Exception:
         import xbmc
-        print 'NuMb3r5 Addon Data Path Does not Exist. Creating Folder....'
-        ad_folder = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.numbersbynumbers')
+        print 'DG Addon Data Path Does not Exist. Creating Folder....'
+        ad_folder = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dg')
         os.makedirs(ad_folder)
 
     try:
         with open(versionFile, 'rb') as fh: oldVersion = fh.read()
     except: oldVersion = '0'
     try:
-        curVersion = control.addon('script.module.numbersbynumbers').getAddonInfo('version')
+        curVersion = control.addon('script.module.dg').getAddonInfo('version')
         if oldVersion != curVersion:
             with open(versionFile, 'wb') as fh: fh.write(curVersion)
             return True
