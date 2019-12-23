@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.dg.metadata" version="1.0.3" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
+<addon id="script.dg.metadata" version="1.0.4" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -9,7 +9,7 @@
 		<description>Metadata for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
 		<platform>all</platform>
         <assets>
-	      <icon>icon.png</icon>
+	      <icon>icon.gif</icon>
 		</assets>		
 	</extension>
 </addon>

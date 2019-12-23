@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.dg" name="[COLOR white]DG Module[/COLOR]" version="1.0.3" provider-name="DG">
+<addon id="script.module.dg" name="[COLOR white]DG Module[/COLOR]" version="1.0.4" provider-name="DG">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
         <import addon="script.module.beautifulsoup4"/>
@@ -10,12 +10,12 @@
         <platform>all</platform>
         <summary lang="en">DG Module</summary>
         <assets>
-          <icon>icon.png</icon>
+          <icon>icon.gif</icon>
         </assets>
     </extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.4" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
+<addon id="script.dg.artwork" version="1.0.5" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -25,7 +25,7 @@
 		<description>Themes for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
 		<platform>all</platform>
         <assets>
-	      <icon>icon.png</icon>
+	      <icon>icon.gif</icon>
 		</assets>
 	</extension>
 </addon>
@@ -61,7 +61,7 @@
         </extension>
 </addon>
 
-<addon id="script.dg.metadata" version="1.0.3" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
+<addon id="script.dg.metadata" version="1.0.4" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -71,7 +71,7 @@
 		<description>Metadata for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
 		<platform>all</platform>
         <assets>
-	      <icon>icon.png</icon>
+	      <icon>icon.gif</icon>
 		</assets>
 	</extension>
 </addon>
@@ -91,7 +91,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dg" version="1.0.4" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+<addon id="plugin.video.dg" version="1.0.5" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.dg" />
@@ -113,7 +113,7 @@
 		<platform>all</platform>
 		<license></license>
 		<assets>
-			<icon>icon.png</icon>
+			<icon>icon.gif</icon>
 			<fanart>fanart.jpg</fanart>
 			<screenshot>resources/media/screenshot-01.jpg</screenshot>
 			<screenshot>resources/media/screenshot-02.jpg</screenshot>
