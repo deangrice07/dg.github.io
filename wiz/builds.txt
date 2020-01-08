@@ -273,6 +273,21 @@ adult="no"
 info="https://"
 description="Grice Advice Custom Kodi Build - SeaLife Build"
 
+name="Grice Advice Gaming"
+version="1.0"
+url="https://archive.org/download/griceadvicegaming/griceadvicegaming.zip"
+minor="https://"
+gui="http://"
+kodi="18.5"
+theme="http://"
+icon="https://i.postimg.cc/tCwQ48ZD/splash.png"
+fanart="https://i.postimg.cc/FR7wvZrw/n64111.png"
+preview="http://"
+adult="no"
+info="https://"
+description="Grice Advice Custom Kodi Build - Gaming Build"
+
+
 
 
 
