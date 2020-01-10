@@ -1,3 +1,0 @@
-source env/bin/activate
-
-googlesamples-assistant-hotword --project-id assistant-d4716 --device-model-id assistant-d4716-assistant-cb049t

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="General">
+        <setting label="Providers Choice:" type="lsep" />
+        <setting id="module.provider" label="[COLOR=yellow]Multi-Choose: [/COLOR]" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=ModuleChoice)" default="Deejmodule" option="close" />
+        <setting label="Enable/Disable All" type="lsep" />
+        <setting label="Enable All Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=all&amp;setting=true&amp;open_id=0.1)" option="close" />
+        <setting label="Disable All Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=all&amp;setting=false&amp;open_id=0.2)" option="close" />
+        <setting label="Enable/Disable Host" type="lsep" />
+        <setting label="Enable All Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en&amp;setting=true&amp;open_id=2.2)" option="close" />
+        <setting label="Disable All Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en&amp;setting=false&amp;open_id=2.3)" option="close" />
+        <setting label="Clear Settings" type="lsep" />
+        <setting label="Clear Settings" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=clearSettings)" option="close" />
+    </category>
+     <category label="Manuel">
+	<setting label="Manuel settings" type="lsep" />
+	<setting label="All Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=all&amp;open_id=1.1)" option="close" />
+	<setting label="Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en&amp;open_id=1.2)" option="close" />
+	<setting label="Debrid Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en_DebridOnly&amp;open_id=1.4)" option="close" />
+        <setting label="Torrent Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en_Torrent&amp;open_id=1.5)" option="close" />
+	<setting label="Foreighn Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=foreighn&amp;open_id=0.6)" option="close" />
+    </category>
+    <category label="Host Providers">
+	<setting label="Manual Settings" type="lsep" />
+        <setting label="Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en&amp;open_id=2.1)" option="close" />	
+        <setting type="sep" />
+        <setting label="Auto Settings" type="lsep" />
+        <setting label="Enable All Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en&amp;setting=true&amp;open_id=2.2)" option="close" />
+        <setting label="Disable All Host Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en&amp;setting=false&amp;open_id=2.3)" option="close" />
+    </category>
+    <category label="Debrid Providers">
+	<setting label="Manual Settings" type="lsep" />
+        <setting label="Debrid Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en_DebridOnly&amp;open_id=4.1)" option="close" />	
+        <setting type="sep" />
+        <setting label="Auto Settings" type="lsep" />
+        <setting label="Enable All Debrid Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en_DebridOnly&amp;setting=true&amp;open_id=4.2)" option="close" />
+        <setting label="Disable All Debrid Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en_DebridOnly&amp;setting=false&amp;open_id=4.3)" option="close" />
+    </category>
+    <category label="Torrent Providers">
+	<setting label="Manual Settings" type="lsep" />
+        <setting label="Torrent Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=en_Torrent&amp;open_id=5.1)" option="close" />
+        <setting id="torrent.enabled" type="bool" label="Enable Torrent Scrapers" Host="true" visible = "false" />
+        <setting id="torrent.min.seeders" type="slider" label="Minimum Seeders" Host="1" range="1,100" option="int"/>	
+        <setting type="sep" />
+        <setting label="Auto Settings" type="lsep" />
+        <setting label="Enable All Torrent Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en_Torrent&amp;setting=true&amp;open_id=5.2)" option="close" />
+        <setting label="Disable All Torrent Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=en_Torrent&amp;setting=false&amp;open_id=5.3)" option="close" />
+    </category>
+    <category label="Foreign Providers">
+	<setting label="Manual Settings" type="lsep" />
+        <setting label="Foreighn Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=enableDisableScrapers&amp;folder=foreighn&amp;open_id=6.1)" option="close" />	
+        <setting type="sep" />
+        <setting label="Auto Settings" type="lsep" />
+        <setting label="Enable All Foreighn Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=foreighn&amp;setting=true&amp;open_id=6.2)" option="close" />
+        <setting label="Disable All Foreighn Providers" type="action" action="RunPlugin(plugin://script.module.deejscrapers/?mode=toggleAll&amp;folder=foreighn&amp;setting=false&amp;open_id=6.3)" option="close" />	
+    </category>
+    <category label="Settings">
+	<setting label="Settings" type="lsep" />
+        <setting id="RealDebridResolver_auth" type="action" label="(RealDebrid)Authorize My Account" action="RunPlugin(plugin://script.module.resolveurl/?mode=auth_rd)"/>
+        <setting id="AllDebridResolver_auth" type="action" label="(AllDebrid)Authorize My Account" action="RunPlugin(plugin://script.module.resolveurl/?mode=auth_ad)"/>
+        <setting id="PremiumizeMeResolver_auth" type="action" label="(PremiumizeMe)Authorize My Account" action="RunPlugin(plugin://script.module.resolveurl/?mode=auth_pm)"/>
+        <setting label="Accounts" type="lsep" />
+	<setting id="external_amble" label="Ororo" type="text" Host="" enable="false" />
+        <setting id="ororo.user" type="text" label="User" Host="" />
+        <setting id="ororo.pass" type="text" option="hidden" label="Password" Host="" />
+    </category>
+    <category label="About">
+        <setting label="About" type="lsep" />
+	<setting id="external_amble1" label="Fork of Tiki Scrapers" type="text" Host="" enable="false" />
+        <setting id="external_amble2" label="I use my own resources and I repair them if necessary" type="text" Host="" enable="false" />
+        <setting id="external_amble3" label="Every last week of the month I check these sources and" type="text" Host="" enable="false" />
+        <setting id="external_amble4" label="there will be a new update." type="text" Host="" enable="false" />
+        <setting label="Contact" type="lsep" />
+        <setting id="external_amble5" label="Github: https://cy4root2.github.io/zip" type="text" Host="" enable="false" />
+        <setting id="external_amble6" label="cy4root@gmail.com" type="text" Host="" enable="false" />
+        <setting id="external_amble7" label="please contact me whenever you want" type="text" Host="" enable="false" /> 
+    </category>
+</settings>
