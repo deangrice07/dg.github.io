@@ -58,7 +58,7 @@ class seasons:
         self.unairedcolor = self.getUnairedColor(self.unairedcolor)
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours=5))
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
-        self.tvdb_key = 'RDgyRTY0MTE3MzdFRDA3MA=='
+        self.tvdb_key = 'MTc5QzY1NjhFNzM4OUE3RQ=='
 
         self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (
             self.tvdb_key.decode('base64'), '%s', '%s')

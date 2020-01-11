@@ -1,7 +1,0 @@
-CURRENT STATUS: [COLOR springgreen]Good[/COLOR]
-
-[B][COLOR orange]Successor to DG[/COLOR]
-
-
-[COLOR green]The latest repository update is version 1.0.8
-If you do not have this, remove the old and install the master repo back for the update[/COLOR]
