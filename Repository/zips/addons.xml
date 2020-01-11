@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.dg" name="[COLOR white]DG Module[/COLOR]" version="1.0.4" provider-name="DG">
+<addon id="script.module.dg" name="[COLOR white]DG Module[/COLOR]" version="1.0.5" provider-name="DG">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
         <import addon="script.module.beautifulsoup4"/>
@@ -116,7 +116,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dg" version="1.0.5" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+<addon id="plugin.video.dg" version="1.0.6" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.dg" />
