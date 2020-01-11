@@ -58,7 +58,7 @@ class seasons:
         self.unairedcolor = self.getUnairedColor(self.unairedcolor)
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours=5))
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
-        self.tvdb_key = 'MTc5QzY1NjhFNzM4OUE3RQ=='
+        self.tvdb_key = 'RDgyRTY0MTE3MzdFRDA3MA=='
 
         self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/all/%s.zip' % (
             self.tvdb_key.decode('base64'), '%s', '%s')
@@ -168,7 +168,7 @@ class seasons:
             data = urllib2.urlopen(url, timeout=30).read()
 
             zip = zipfile.ZipFile(StringIO.StringIO(data))
-            result = zip.read('%s.xml' % 'en')
+            result = zip.read('%s.zip.xml' % 'en')
             artwork = zip.read('banners.xml')
             zip.close()
 
@@ -182,7 +182,7 @@ class seasons:
                 data = urllib2.urlopen(url, timeout=30).read()
 
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result = zip.read('%s.xml' % 'en')
+                result = zip.read('%s.zip.xml' % 'en')
                 artwork = zip.read('banners.xml')
                 zip.close()
 
@@ -191,7 +191,7 @@ class seasons:
                 data = urllib2.urlopen(url, timeout=30).read()
 
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result2 = zip.read('%s.xml' % lang)
+                result2 = zip.read('%s.zip.xml' % lang)
                 zip.close()
             else:
                 result2 = result
@@ -1101,7 +1101,7 @@ class episodes:
                 data = urllib2.urlopen(url, timeout=10).read()
 
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result = zip.read('%s.xml' % lang)
+                result = zip.read('%s.zip.xml' % lang)
                 zip.close()
 
                 result = result.split('<Episode>')
@@ -1377,7 +1377,7 @@ class episodes:
                 data = urllib2.urlopen(url, timeout=10).read()
 
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result = zip.read('%s.xml' % lang)
+                result = zip.read('%s.zip.xml' % lang)
                 zip.close()
 
                 result = result.split('<Episode>')
