@@ -282,7 +282,7 @@ def _find_cache_version():
             f.close()
     except Exception:
         import xbmc
-        print 'DG Addon Data Path Does not Exist. Creating Folder....'
+        print 'NuMb3r5 Addon Data Path Does not Exist. Creating Folder....'
         ad_folder = xbmc.translatePath('special://home/userdata/addon_data/plugin.video.dg')
         os.makedirs(ad_folder)
 

@@ -61,7 +61,7 @@ class tvshows:
         self.trakt_link = 'http://api.trakt.tv'
         self.tvmaze_link = 'http://www.tvmaze.com'
         self.logo_link = 'https://i.imgur.com/'
-        self.tvdb_key = 'MUQ2MkYyRjkwMDMwQzQ0NA=='
+        self.tvdb_key = 'RDgyRTY0MTE3MzdFRDA3MA=='
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours=5))
         self.trakt_user = control.setting('trakt.user').strip()
         self.imdb_user = control.setting('imdb.user').replace('ur', '')

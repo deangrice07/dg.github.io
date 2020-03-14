@@ -32,12 +32,12 @@ def main():
     xbmcgui.Dialog().notification(addon_name, 'Setting up Free Providers', addon_icon)
     settings_xml_path = os.path.join(addon_path, 'resources/settings.xml')
     scraper_path = os.path.join(module_path, 'lib/resources/lib/sources/en')
-    log('NuMb3r5 Scraper Path: %s' % (str(scraper_path)), LOGINFO)
+    log('DG Scraper Path: %s' % (str(scraper_path)), LOGINFO)
     try:
         xml = openfile(settings_xml_path)
     except Exception:
         failure = traceback.format_exc()
-        log('NuMb3r5 Service - Exception: \n %s' % (str(failure)), LOGINFO)
+        log('DG Service - Exception: \n %s' % (str(failure)), LOGINFO)
         return
 
     new_settings = []
@@ -65,7 +65,7 @@ def main():
         xml = openfile(settings_xml_path)
     except Exception:
         failure = traceback.format_exc()
-        log('DG Service - Exception: \n %s' % (str(failure)), LOGINFO)
+        log('NuMb3r5 Service - Exception: \n %s' % (str(failure)), LOGINFO)
         return
 
     new_settings = []

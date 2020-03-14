@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.dg" name="[COLOR white]DG Module[/COLOR]" version="1.0.5" provider-name="DG">
+<addon id="script.module.dg" name="[COLOR white][B]DG Module[/B][/COLOR]" version="1.0.6" provider-name="DG">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
         <import addon="script.module.beautifulsoup4"/>
@@ -10,12 +10,28 @@
         <platform>all</platform>
         <summary lang="en">DG Module</summary>
         <assets>
-          <icon>icon.gif</icon>
+          <icon>icon.png</icon>
         </assets>
     </extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.5" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
+<addon id="script.module.unidecode" name="unidecode" version="1.1.1" provider-name="Tomaz Solc (Tomaz.solc@tablix.org)">
+	<requires>
+		<import addon="xbmc.python" version="2.14.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">ASCII transliterations of Unicode text by Sean M. Burke and Tomaz Solc</summary>
+		<description lang="en">ASCII transliterations of Unicode text by Sean M. Burke and Tomaz Solc</description>
+		<disclaimer lang="en">Code taken from https://pypi.org/project/Unidecode</disclaimer>
+		<license>GPL-2.0-or-later</license>
+		<website>https://pypi.org/project/Unidecode</website>
+		<source>https://pypi.org/project/Unidecode</source>
+	</extension>
+</addon>
+
+<addon id="script.dg.artwork" version="1.0.6" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -61,7 +77,7 @@
         </extension>
 </addon>
 
-<addon id="script.dg.metadata" version="1.0.4" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
+<addon id="script.dg.metadata" version="1.0.5" name="[COLOR white]DG Metadata[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -116,12 +132,15 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dg" version="1.0.6" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+<addon id="plugin.video.dg" version="2.0.2.7" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR lime][B]DG[/B][/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.dg" />
 		<import addon="script.dg.artwork" />
 		<import addon="script.dg.metadata" />
+		<import addon="script.dg.jen" />
+		<import addon="script.speedtestnet" />
+		<import addon="script.module.unidecode" />
 		<import addon="script.module.resolveurl" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.metahandler" />
@@ -133,18 +152,18 @@
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Movies/TV Shows/Music/Documentaries</summary>
-		<description>Please remember that DG is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<description>Please remember that dg is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider. Updated and refactored by someone. Originally created by others.</disclaimer>
 		<platform>all</platform>
 		<license></license>
 		<assets>
-			<icon>icon.gif</icon>
+			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
 			<screenshot>resources/media/screenshot-01.jpg</screenshot>
 			<screenshot>resources/media/screenshot-02.jpg</screenshot>
 			<screenshot>resources/media/screenshot-03.jpg</screenshot>
 		</assets>
-		<news>V2.0.2.5
+		<news>V2.0.2.7
 - The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</news>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
 	</extension>

@@ -713,7 +713,7 @@ class sources:
             except Exception:
                 pass
         
-        if control.addonInfo('id') == 'plugin.video.numbersbynumbers':
+        if control.addonInfo('id') == 'plugin.video.dg':
             try:
                 if progressDialog: progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
 
@@ -732,11 +732,11 @@ class sources:
                     return u
                 else:
                     meta = '{"title": "%s", "year": "%s", "imdb": "%s"}' % (title, year, imdb)
-                    control.window.clearProperty("plugin.video.numbersbynumbers.container.items")
-                    control.window.setProperty("plugin.video.numbersbynumbers.container.items", json.dumps(items))
+                    control.window.clearProperty("plugin.video.dg.container.items")
+                    control.window.setProperty("plugin.video.dg.container.items", json.dumps(items))
 
-                    control.window.clearProperty("plugin.video.numbersbynumbers.container.meta")
-                    control.window.setProperty("plugin.video.numbersbynumbers.container.meta", meta)
+                    control.window.clearProperty("plugin.video.dg.container.meta")
+                    control.window.setProperty("plugin.video.dg.container.meta", meta)
                     control.window.clearProperty(self.itemProperty)
                     control.window.setProperty(self.itemProperty, json.dumps(items))
 

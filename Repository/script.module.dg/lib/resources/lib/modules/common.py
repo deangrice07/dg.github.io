@@ -32,9 +32,9 @@ import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs,time
 from HTMLParser import HTMLParser
 import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib,urllib2,json,resolveurl,ssl,zipfile,urlparse
 
-AddonTitle     = "[COLOR white]DG[/COLOR]"
+AddonTitle     = "[COLOR white]NuMb3r5[/COLOR]"
 dialog         = xbmcgui.Dialog()
-addon_id       = 'plugin.video.dg'
+addon_id       = 'plugin.video.numbersbynumbers'
 fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.gif'))
 s              = requests.session()
