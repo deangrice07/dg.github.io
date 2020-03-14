@@ -132,14 +132,12 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dg" version="2.0.2.7" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR lime][B]DG[/B][/COLOR]">
+<addon id="plugin.video.dg" version="1.0.8" name="[COLOR white][B]DG[/B][/COLOR]" provider-name="[COLOR ghostwhite][B]DG[/B][/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.dg" />
 		<import addon="script.dg.artwork" />
 		<import addon="script.dg.metadata" />
-		<import addon="script.dg.jen" />
-		<import addon="script.speedtestnet" />
 		<import addon="script.module.unidecode" />
 		<import addon="script.module.resolveurl" />
 		<import addon="script.module.requests" />
