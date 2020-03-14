@@ -71,20 +71,8 @@ class navigator:
             self.addDirectoryItem(32700, 'docuMainNavigator', 'documentaries.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.247') == True:         
             self.addDirectoryItem(32713, '247', '247.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.music') == True: 
-            self.addDirectoryItem(32727, 'musicMainNavigator', 'music.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.fitness') == True: 
-            self.addDirectoryItem(32728, 'athleanx', 'fitness.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.screensaver') == True:     
-            self.addDirectoryItem(32729, 'screensaver', 'home_screensaver.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.knowledge') == True:     
-            self.addDirectoryItem(32730, 'knowledge', 'home_learning.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.ufc') == True:     
-            self.addDirectoryItem(32731, 'ufc', 'sports.png', 'DefaultMovies.png')    
-        if self.getMenuEnabled('navi.jens') == True:     
-            self.addDirectoryItem(32734, 'jens', 'home_jen.png', 'DefaultMovies.png')
-        if self.getMenuEnabled('navi.personal.list') == True:
-            self.addDirectoryItem(90009, 'jenlist1', 'userlists.png', 'userlists.png')    
+            self.addDirectoryItem(32730, 'knowledge', 'home_learning.png', 'DefaultMovies.png')    
         if self.getMenuEnabled('navi.system') == True:     
             self.addDirectoryItem(32008, 'systemNavigator', 'tools.png', 'DefaultTVShows.png')        
 
@@ -1099,18 +1087,14 @@ class navigator:
         self.endDirectory()
 
     def system(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Information[/COLOR][/B]', 'newsNavigator', 'icon.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Changelog[/COLOR][/B]', 'ShowChangelog', 'changelog.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Accounts[/COLOR][/B]', 'accountsrd', 'tools2.png', 'DefaultMovies.png')
         self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Settings[/COLOR][/B]', 'allsettingsNavigator', 'tools2.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'tools2.png', 'DefaulTVShows.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]KODI Builds[/COLOR][/B]', 'builds', 'kodi.png', 'DefaultMovies.png')        
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Tools[/COLOR][/B]', 'alltoolsNavigator', 'tools2.png', 'DefaulTVShows.png')      
 
         self.endDirectory()
         
     def allsettings(self, lite=False):
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]NuMb3r5 Settings[/COLOR][/B]', 'openSettings&query=0.0', 'tools2.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]JEN Settings[/COLOR][/B]', 'jentools', 'tools2.png', 'DefaultMovies.png')
+        self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]DG Settings[/COLOR][/B]', 'openSettings&query=0.0', 'tools2.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]ResolverURL[/COLOR][/B]', 'ResolveurlRDTorrent', 'tools2.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Debrid Providers[/COLOR][/B]', 'openSettings&query=4.1', 'tools2.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem('[B][COLOR black]• [/COLOR][/B][B][COLOR ghostwhite]Providers[/COLOR][/B]', 'openSettings&query=3.0', 'tools2.png', 'DefaultAddonProgram.png')        
