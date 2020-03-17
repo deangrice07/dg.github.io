@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.dg" name="[COLOR white][B]DG Module[/B][/COLOR]" version="1.0.6" provider-name="DG">
+<addon id="script.module.dg" name="[COLOR white][B]DG Module[/B][/COLOR]" version="1.0.7" provider-name="DG">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
         <import addon="script.module.beautifulsoup4"/>
@@ -31,7 +31,7 @@
 	</extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.6" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
+<addon id="script.dg.artwork" version="1.0.7" name="[COLOR white]DG Artwork[/COLOR]" provider-name="DG">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
