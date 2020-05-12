@@ -190,7 +190,7 @@ info="https://"
 description="Grice Advice Custom Kodi Build - Circus Build"
 
 name="Grice Advice Formula 1"
-version="1.0"
+version="1.1"
 url="https://archive.org/download/griceadviceFormula1/griceadviceFormula1.zip"
 minor="https://"
 gui="http://"
