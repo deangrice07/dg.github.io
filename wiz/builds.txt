@@ -287,7 +287,18 @@ adult="no"
 info="https://"
 description="Grice Advice Custom Kodi Build - Gaming Build"
 
-
-
+name="Grice Advice Street Fighter"
+version="1.0"
+url="https://archive.org/download/griceadvicestreetfighter/griceadvicestreetfighter.zip"
+minor="https://"
+gui="http://"
+kodi="18.5"
+theme="http://"
+icon="https://i.postimg.cc/jjR8wbSH/Screen-Shot-2020-05-14-at-12-11-45.png"
+fanart="https://i.postimg.cc/sfHbkvDt/splash.jpg"
+preview="http://"
+adult="no"
+info="https://"
+description="Grice Advice Custom Kodi Build - Street Fighter Build"
 
 
