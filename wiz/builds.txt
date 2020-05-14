@@ -274,7 +274,7 @@ info="https://"
 description="Grice Advice Custom Kodi Build - SeaLife Build"
 
 name="Grice Advice Gaming"
-version="1.0"
+version="1.1"
 url="https://archive.org/download/griceadvicegaming/griceadvicegaming.zip"
 minor="https://"
 gui="http://"
