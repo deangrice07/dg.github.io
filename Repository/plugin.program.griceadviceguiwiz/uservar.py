@@ -152,7 +152,7 @@ REPOZIPURL     =  'http://'
 # Enable Notification screen Yes or No
 ENABLE         = 'Yes'
 # Url to notification file
-NOTIFICATION   = 'https://deangrice07.github.io/dg.github.io/wiz/notifications.txt'
+NOTIFICATION   = 'https://deangrice07.github.io/dg.github.io/wiz/notify.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE     = 'Text'
 # Font size of header
