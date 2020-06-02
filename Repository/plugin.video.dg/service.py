@@ -17,11 +17,11 @@ control.execute('RunPlugin(plugin://%s)' % control.get_plugin_url({'action': 'se
 addon_name = 'DG'
 addon_icon = xbmcaddon.Addon().getAddonInfo('icon')
 addon_path = xbmc.translatePath(('special://home/addons/plugin.video.dg')).decode('utf-8')
-module_path = xbmc.translatePath(('special://home/addons/script.module.dg')).decode('utf-8')
+module_path = xbmc.translatePath(('special://home/addons/script.module.openscrapers')).decode('utf-8')
 
 
 def main():
-    fum_ver = xbmcaddon.Addon(id='script.module.dg').getAddonInfo('version')
+    fum_ver = xbmcaddon.Addon(id='script.module.openscrapers').getAddonInfo('version')
     updated = xbmcaddon.Addon(id='plugin.video.dg').getSetting('module_base')
     if updated == '' or updated is None:
         updated = '0'
@@ -60,16 +60,16 @@ def main():
     xbmcgui.Dialog().notification(addon_name, 'Setting up Debrid Providers', addon_icon)
     settings_xml_path = os.path.join(addon_path, 'resources/settings.xml')
     scraper_path = os.path.join(module_path, 'lib/resources/lib/sources/en_de')
-    log('NuMb3r5 Path: %s' % (str(scraper_path)), LOGINFO)
+    log('DG Path: %s' % (str(scraper_path)), LOGINFO)
     try:
         xml = openfile(settings_xml_path)
     except Exception:
         failure = traceback.format_exc()
-        log('NuMb3r5 Service - Exception: \n %s' % (str(failure)), LOGINFO)
+        log('DG Service - Exception: \n %s' % (str(failure)), LOGINFO)
         return
 
     new_settings = []
-    new_settings = '<category label="90004">\n'
+    new_settings = '<category label="30333">\n'
     for file in glob.glob("%s/*.py" % (scraper_path)):
         file = os.path.basename(file)
         if '__init__' not in file:
@@ -78,7 +78,7 @@ def main():
                 file.lower(), file.upper())
     new_settings += '    </category>'
 
-    xml = xml.replace('<category label="90004"></category>', str(new_settings))
+    xml = xml.replace('<category label="30333"></category>', str(new_settings))
     savefile(settings_xml_path, xml)
 
     xbmcaddon.Addon(id='plugin.video.dg').setSetting('module_base', fum_ver)
@@ -97,7 +97,7 @@ def main():
         return
 
     new_settings = []
-    new_settings = '<category label="90005">\n'
+    new_settings = '<category label="30334">\n'
     for file in glob.glob("%s/*.py" % (scraper_path)):
         file = os.path.basename(file)
         if '__init__' not in file:
@@ -106,7 +106,7 @@ def main():
                 file.lower(), file.upper())
     new_settings += '    </category>'
 
-    xml = xml.replace('<category label="90005"></category>', str(new_settings))
+    xml = xml.replace('<category label="30334"></category>', str(new_settings))
     savefile(settings_xml_path, xml)
 
     xbmcaddon.Addon(id='plugin.video.dg').setSetting('module_base', fum_ver)

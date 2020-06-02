@@ -1,38 +1,19 @@
+# Addon Name: mirrorv2
+# Addon id: plugin.video.mirrorv2
+# Addon Provider: Cy4Root
 # Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Diallo, 2017
-# lambda81, 2016
-# Mike Bike, 2015
-# Mike Bike, 2016-2017
-# Robin Caluwe, 2017
-# Sedat B, 2017
-# Youko van der Blom, 2017
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Numbers\n"
+"Project-Id-Version: Mirror\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-05-30 09:11+0000\n"
-"Last-Translator: Viper2k4\n"
-"Language-Team: Dutch (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2019-10-24 12:00+0000\n"
+"Last-Translator: cy4root\n"
+"Language-Team: Ducth (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: Nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
@@ -111,6 +92,15 @@ msgctxt "#32019"
 msgid "Most Voted"
 msgstr "Meeste Stemmen"
 
+
+msgctxt "#32634"
+msgid "TMDb Lists "
+msgstr "TMDb Lijst"
+
+msgctxt "#32635"
+msgid "[COLOR=gold]M[/COLOR]ovie Collection "
+msgstr "[COLOR=gold]F[/COLOR]ilm Collectie"
+
 msgctxt "#32020"
 msgid "Box Office"
 msgstr "Box Office"
@@ -122,6 +112,10 @@ msgstr "Oscar Winnaars"
 msgctxt "#32022"
 msgid "In Theaters"
 msgstr "In de Bioscoop"
+
+msgctxt "#320222"
+msgid "In Theaters TMDb"
+msgstr "In de Bioscoop TMDb"
 
 msgctxt "#32023"
 msgid "Highly Rated"
@@ -168,8 +162,8 @@ msgid "Watchlist"
 msgstr "Volglijst"
 
 msgctxt "#32034"
-msgid "IMDb"
-msgstr "IMDb"
+msgid "[COLOR=gold]I[/COLOR]MDb Collection"
+msgstr "[COLOR=gold]I[/COLOR]MDb Collectie"
 
 msgctxt "#32035"
 msgid "Featured"
@@ -224,24 +218,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]INSTELLINGEN[/B] : Bronnen"
 
 msgctxt "#32048"
-msgid "[B]Numbers[/B] : Downloads"
-msgstr "[B]Numbers[/B] : Downloads"
+msgid "[B]MIRROR[/B] : Downloads"
+msgstr "[B]MIRROR[/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]Numbers[/B] : Viewtypes"
-msgstr "[B]Numbers[/B] : Layout instellingen"
+msgid "[B]MIRROR[/B] : Viewtypes"
+msgstr "[B]MIRROR[/B] : Layout instellingen"
 
 msgctxt "#32050"
-msgid "[B]Numbers[/B] : Clear providers..."
-msgstr "[B]Numbers[/B] : Opschonen van Bronnen..."
+msgid "[B]MIRROR[/B] : Clear providers..."
+msgstr "[B]MIRROR[/B] : Opschonen van Bronnen..."
 
 msgctxt "#32051"
-msgid "[B]Numbers[/B] : Clear metadata..."
-msgstr "[B]Numbers[/B] : Opschonen van MetaData..."
+msgid "[B]MIRROR[/B] : Clear metadata..."
+msgstr "[B]MIRROR[/B] : Opschonen van MetaData..."
 
 msgctxt "#32052"
-msgid "[B]Numbers[/B] : Clear cache..."
-msgstr "[B]Numbers[/B] : Opschonen van Cache..."
+msgid "[B]MIRROR[/B] : Clear cache..."
+msgstr "[B]MIRROR[/B] : Opschonen van Cache..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -297,12 +291,12 @@ msgid "Queue item"
 msgstr "In wachtrij plaatsen"
 
 msgctxt "#32066"
-msgid "Watched in Numbers"
-msgstr "Markeer als bekeken in Numbers"
+msgid "Watched in Mirror"
+msgstr "Markeer als bekeken in Mirror"
 
 msgctxt "#32067"
-msgid "Unwatched in Numbers"
-msgstr "Bekeken status verwijderen in Numbers"
+msgid "Unwatched in Mirror"
+msgstr "Bekeken status verwijderen in Mirror"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -572,29 +566,46 @@ msgctxt "#32360"
 msgid "Providers Language"
 msgstr "Taal van bronnen"
 
+msgctxt "#32363"
+msgid "HEVC"
+msgstr "HEVC"
+
+msgctxt "#32372"
+msgid "When playback ends..."
+msgstr "Wanneer het afspelen eindigt"
+
+msgctxt "#32373"
+msgid "Force container refresh"
+msgstr "Forceer container vernieuwen"
+
+msgctxt "#32374"
+msgid "Enable Debug"
+msgstr "Debug inschakelen"
+
+
 msgctxt "#32401"
 msgid "No stream available"
 msgstr "Geen stream beschikbaar"
 
 msgctxt "#32402"
-msgid "Playback outside Numbers is not allowed"
-msgstr "Afspelen buiten Numbers is niet toegestaan"
+msgid "Playback outside Mirror is not allowed"
+msgstr "Afspelen buiten Mirror is niet toegestaan"
 
 msgctxt "#32403"
 msgid "Download"
 msgstr "Downloaden"
 
 msgctxt "#32404"
-msgid "Time elapsed: %s seconds"
-msgstr "Tijd verstreken: %s seconden"
+msgid "[COLOR skyblue]Time elapsed: %s seconds[/COLOR]"
+msgstr "[COLOR skyblue]Tijd verstreken: %s seconden[/COLOR]"
 
 msgctxt "#32405"
-msgid "%s seconds"
-msgstr "%s seconden"
+msgid "[COLOR skyblue]%s seconds[/COLOR]"
+msgstr "[COLOR skyblue]%s seconden[/COLOR]"
 
 msgctxt "#32406"
-msgid "Remaining providers: %s"
-msgstr "Overgebleven Bronnen: %s"
+msgid "[COLOR skyblue]Remaining providers: %s[/COLOR]"
+msgstr "[COLOR skyblue]Overgebleven Bronnen: %s[/COLOR]"
 
 msgctxt "#32407"
 msgid "Are you sure?"
@@ -691,4 +702,580 @@ msgstr "Nu aan het afspelen"
 msgctxt "#32537"
 msgid "Nothing found to play"
 msgstr "Niets gevonden om af te spelen"
+
+msgctxt "#32538"
+msgid "DEBRID-SERVICE"
+msgstr "DEBRID-SERVICE"
+
+msgctxt "#32539"
+msgid "Configure Debrid Services in ResolveURL Settings."
+msgstr "Configureer Debrid Services in ResolveURL-instellingen."
+
+msgctxt "#32540"
+msgid "ResolveURL Settings"
+msgstr "ResolveURL-instellingen"
+
+msgctxt "#32541"
+msgid "Library"
+msgstr "Bibliotheek"
+
+msgctxt "#32542"
+msgid "Mirror folders will be imported to library if they are added to media sources."
+msgstr "Mirror-mappen worden geïmporteerd als ze aan mediabronnen worden toegevoegd."
+
+msgctxt "#32543"
+msgid "Movies"
+msgstr "Films"
+
+msgctxt "#32544"
+msgid "TV"
+msgstr "TV"
+
+msgctxt "#32545"
+msgid "Auto update TV Shows"
+msgstr "Tv-programma's automatisch bijwerken"
+
+msgctxt "#32546"
+msgid "Show notifications during update"
+msgstr "Meldingen weergeven tijdens update"
+
+msgctxt "#32547"
+msgid "Update library after adding content"
+msgstr "Werk de bibliotheek bij na toevoegen van inhoud"
+
+msgctxt "#32548"
+msgid "Avoid creating duplicate content"
+msgstr "Maak geen dubbele inhoud"
+
+msgctxt "#32549"
+msgid "Check movie before adding it"
+msgstr "Controleer de film voordat deze wordt toegevoegd"
+
+msgctxt "#32550"
+msgid "Check first episode of season before adding it"
+msgstr "Controleer de serie voordat deze wordt toegevoegd"
+
+msgctxt "#32551"
+msgid "Add to Library"
+msgstr "Toevoegen aan bibliotheek"
+
+msgctxt "#32552"
+msgid "Adding to library..."
+msgstr "Toevoegen aan bibliotheek ..."
+
+msgctxt "#32553"
+msgid "Updating TV shows..."
+msgstr "Tv-programma's bijwerken ..."
+
+msgctxt "#32554"
+msgid "Process Complete"
+msgstr "Proces voltooid"
+
+msgctxt "#32555"
+msgid "Are you sure?"
+msgstr "Weet je het zeker?"
+
+msgctxt "#32556"
+msgid "[B]MIRROR[/B] : Library"
+msgstr "[B]MIRROR[/B] : Bibliotheek"
+
+msgctxt "#32557"
+msgid "[B]LIBRARY[/B] : Settings"
+msgstr "[B]BIBLIOTHEEK[/B] : Instellingen"
+
+msgctxt "#32558"
+msgid "[B]MIRROR[/B] : Update library..."
+msgstr "[B]MIRROR[/B] : Bibliotheek bijwerken ..."
+
+msgctxt "#32559"
+msgid "[B]MIRROR[/B] : Movie folder..."
+msgstr "[B]MIRROR[/B] : Film map ..."
+
+msgctxt "#32560"
+msgid "[B]MIRROR[/B] : TV folder..."
+msgstr "[B]MIRROR[/B] : Serie map..."
+
+msgctxt "#32561"
+msgid "[B]TRAKT[/B] : Import Collection..."
+msgstr "[B]TRAKT[/B] : Collectie importeren ..."
+
+msgctxt "#32562"
+msgid "[B]TRAKT[/B] : Import Watchlist..."
+msgstr "[B]TRAKT[/B] : Volglijst importeren ..."
+
+msgctxt "#32565"
+msgid "Include episodes with unknown air dates"
+msgstr "Afleveringen met onbekende uitzenddata"
+
+msgctxt "#32570"
+msgid "Show unaired seasons/episodes"
+msgstr "Toon onbekeken seizoenen/afleveringen"
+
+msgctxt "#32571"
+msgid "Hide movies in cinema"
+msgstr "Verberg films in de bioscoop"
+
+msgctxt "#32572"
+msgid "Protected Link. Please enter account credentials in the settings."
+msgstr "Beschermde link. Voer accountgegevens in de instellingen in."
+
+msgctxt "#32580"
+msgid "Films/TV Movies"
+msgstr "Films / TV-Films"
+
+msgctxt "#32581"
+msgid "Results Limit"
+msgstr "Resultaten Limiet"
+
+msgctxt "#32582"
+msgid "Personal API keys provide quicker API responses."
+msgstr "Persoonlijke API-sleutels zorgen voor snellere API-reacties."
+
+msgctxt "#32583"
+msgid "Become a VIP member for many benefits at: https://fanart.tv/vip"
+msgstr "Word VIP-lid voor veel voordelen op: https://fanart.tv/vip"
+
+msgctxt "#32584"
+msgid "Sort order for Trakt Watched Progress"
+msgstr "Sorteervolgorde in Trakt Bekeken uitzendingen"
+
+msgctxt "#32585"
+msgid "Recently aired"
+msgstr "Recent uitgezonden"
+
+msgctxt "#32587"
+msgid "Show Extra Source Info"
+msgstr "Toon extra broninfo"
+
+msgctxt "#32588"
+msgid "Premium Source Identifier Color"
+msgstr "Premium bron identificatie kleur"
+
+msgctxt "#32589"
+msgid "Blue"
+msgstr "Blauw"
+
+msgctxt "#32590"
+msgid "Red"
+msgstr "Rood"
+
+msgctxt "#32591"
+msgid "Yellow"
+msgstr "Geel"
+
+msgctxt "#32592"
+msgid "Deep Pink"
+msgstr "Donker Roze"
+
+msgctxt "#32593"
+msgid "Cyan"
+msgstr "Cyan"
+
+msgctxt "#32594"
+msgid "Lawn darkorange"
+msgstr "Gazon Groen"
+
+msgctxt "#32595"
+msgid "Gold"
+msgstr "Goud"
+
+msgctxt "#32596"
+msgid "Magenta"
+msgstr "Rood Paars"
+
+msgctxt "#32597"
+msgid "Yellow darkorange"
+msgstr "Geel Groen"
+
+msgctxt "#32598"
+msgid "No Color"
+msgstr "Geen Kleur"
+
+msgctxt "#32599"
+msgid "Getting genre information from Trakt"
+msgstr "Genre-informatie ophalen van Trakt"
+
+msgctxt "#32600"
+msgid "[COLOR=gold]Preparing sources[/COLOR]"
+msgstr "[COLOR=gold]Mirror zoek u bronnen[/COLOR]"
+
+msgctxt "#32601"
+msgid "Total"
+msgstr "Totaal"
+
+msgctxt "#32602"
+msgid "Waiting for"
+msgstr "Wachten op"
+
+msgctxt "#32603"
+msgid "New search..."
+msgstr "Nieuwe Zoekopdracht..."
+
+msgctxt "#32604"
+msgid "[B]MIRROR[/B] : Clear search history..."
+msgstr "[B]MIRROR[/B] : Verwijder Zoekgeschiedenis..."
+
+msgctxt "#32605"
+msgid "Click to clear search history"
+msgstr "Klik om de Zoekgeschiedenis te wissen"
+
+msgctxt "#32606"
+msgid "[B][COLOR=gold]Paid[/COLOR][/B]"
+msgstr "[B][COLOR=gold]Betaald[/COLOR][/B]"
+
+msgctxt "#32607"
+msgid "[B][COLOR=yellow]Free[/COLOR][/B]"
+msgstr "[B][COLOR=yellow]Vrij[/COLOR][/B]"
+
+msgctxt "#32608"
+msgid "Unaired Season/Episode Color"
+msgstr "Onbekeken seizoenen/afleveringen kleur"
+
+msgctxt "#32609"
+msgid "ResolveURL  Settings"
+msgstr "ResolveURL-instellingen"
+
+msgctxt "#32610"
+msgid "Kids Corner"
+msgstr "Kinderhoek"
+
+msgctxt "#32611"
+msgid "Fitness Zone"
+msgstr "Fitness Zone"
+
+msgctxt "#32612"
+msgid "Legends of Music"
+msgstr "Legends of Music"
+
+msgctxt "#32613"
+msgid "[B]MIRROR[/B] : Clear All Cache..."
+msgstr "[B]MIRROR[/B] : Wis alle Cache ..."
+
+msgctxt "#32614"
+msgid "[B]MIRROR[/B] : Clear Meta Cache..."
+msgstr "[B]MIRROR[/B] : Metacache Wissen ..."
+
+msgctxt "#32615"
+msgid "Check Host for Valid URL"
+msgstr "Controleer Host op geldige URL"
+
+msgctxt "#32616"
+msgid "Debugging"
+msgstr "Debugging"
+
+msgctxt "#32617"
+msgid "Debug Log"
+msgstr "Foutopsporingslogboek"
+
+msgctxt "#32618"
+msgid "Kodi Log"
+msgstr "Kodi Logboek"
+
+msgctxt "#32619"
+msgid "Addon Log"
+msgstr "Addon Logboek"
+
+msgctxt "#32621"
+msgid "Navigation"
+msgstr "Navigatie"
+
+msgctxt "#32622"
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+msgctxt "#32623"
+msgid "Reviews and Trailers"
+msgstr "Beoordelingen en Trailers"
+
+msgctxt "#32627"
+msgid "Categories"
+msgstr "Categorieën"
+
+msgctxt "#32628"
+msgid "[B]SETTINGS[/B] : Navigation"
+msgstr "[B]SETTINGS[/B] : Navigatie"
+
+msgctxt "#32629"
+msgid "PodBay"
+msgstr ""
+
+msgctxt "#32630"
+msgid "Documentary"
+msgstr "Documentaire"
+
+msgctxt "#32631"
+msgid "My Trakt"
+msgstr "Mijn Trakt"
+
+msgctxt "#32632"
+msgid "[COLOR=darkorange]M[/COLOR]ovie Selection "
+msgstr "[COLOR=darkorange]F[/COLOR]ilm Selectie "
+
+msgctxt "#32633"
+msgid "[COLOR=darkorange]C[/COLOR]hild Selection "
+msgstr "[COLOR=darkorange]K[/COLOR]inder Selectie"
+
+msgctxt "#32636"
+msgid "[COLOR=gold]News and Updates[/COLOR]"
+msgstr "[COLOR=gold]Nieuws en Updates[/COLOR]"
+
+
+msgctxt "#32637"
+msgid "Movies History"
+msgstr "Films Geschiedenis"
+
+msgctxt "#32638"
+msgid "TvShows History"
+msgstr "Series Geschiedenis"
+
+msgctxt "#32639"
+msgid "Movies Watchlist"
+msgstr "Volglijst van Films"
+
+msgctxt "#32640"
+msgid "TvShows Watchlist"
+msgstr "Volglijst van Series"
+
+msgctxt "#32641"
+msgid "[COLOR=gold]M[/COLOR]arvel Collection"
+msgstr "[COLOR=gold]M[/COLOR]arvel Collectie"
+
+msgctxt "#32084"
+msgid "Provider Choice:"
+msgstr "Provider Keuze:"
+
+msgctxt "#32685"
+msgid "Debrid Sources Only"
+msgstr "Alleen Debrid Bronnen"
+
+msgctxt "#32089"
+msgid "duplicate links removed"
+msgstr "dubbele links verwijderd"
+
+msgctxt "#32090"
+msgid "Filter-out duplicate links"
+msgstr "filter dubbele links"
+
+msgctxt "#32091"
+msgid "[COLOR=gold]A[/COLOR]ctor Collection"
+msgstr "[COLOR=gold]A[/COLOR]cteur Collectie"
+
+msgctxt "#32092"
+msgid "[COLOR=gold]H[/COLOR]olidays Collection"
+msgstr "[COLOR=gold]F[/COLOR]eestdagen Collectie"
+
+msgctxt "#32093"
+msgid "[COLOR=darkorange]N[/COLOR]etflix Selection"
+msgstr "[COLOR=darkorange]N[/COLOR]etflix Selectie"
+
+msgctxt "#32094"
+msgid "[COLOR=gold]D[/COLOR]isney Collection"
+msgstr "[COLOR=gold]D[/COLOR]isney Collectie"
+
+msgctxt "#32095"
+msgid "Christmas"
+msgstr "Kerstmis"
+
+msgctxt "#32096"
+msgid "Easter"
+msgstr "Pasen"
+
+msgctxt "#32097"
+msgid "Halloween"
+msgstr "Halloween"
+
+msgctxt "#32098"
+msgid "Default"
+msgstr "Standaard"
+
+msgctxt "#32099"
+msgid "Clear Providers Cache"
+msgstr "Cache van provider wissen"
+
+msgctxt "#33000"
+msgid "Random Movies"
+msgstr "Willekeurige Films"
+
+msgctxt "#33020"
+msgid "Vip Movies"
+msgstr "Vip Films"
+
+msgctxt "#33019"
+msgid "1 Click Movies"
+msgstr "1 Klik Films"
+
+msgctxt "#33001"
+msgid "4k Movies"
+msgstr "4k Films"
+
+msgctxt "#33002"
+msgid "1080p Movies"
+msgstr "1080p Films"
+
+msgctxt "#33003"
+msgid "Real Debrid Movies"
+msgstr "Real Debrid Films"
+
+msgctxt "#33004"
+msgid "Dolby Surround Movies"
+msgstr "Dolby Surround Films"
+
+msgctxt "#33005"
+msgid "Kids Movies"
+msgstr "Kinder Films"
+
+msgctxt "#33006"
+msgid "Dutch Movies"
+msgstr "Nederlandse Films"
+
+msgctxt "#30702"
+msgid "Unplayable stream"
+msgstr "Niet-afspeelbare stream"
+
+msgctxt "#30702"
+msgid ""
+msgstr ""
+
+msgctxt "#30703"
+msgid "Clear History"
+msgstr ""
+
+msgctxt "#30707"
+msgid "Trailer"
+msgstr ""
+
+msgctxt "#30708"
+msgid "Information"
+msgstr ""
+
+msgctxt "#30722"
+msgid "Download item"
+msgstr ""
+
+msgctxt "#30711"
+msgid "Set Movies view"
+msgstr ""
+
+msgctxt "#30712"
+msgid "Set TV Shows view"
+msgstr ""
+
+msgctxt "#30713"
+msgid "Set Seasons view"
+msgstr ""
+
+msgctxt "#30714"
+msgid "Set Episodes view"
+msgstr ""
+
+msgctxt "#30715"
+msgid "Enable Torrent Scrapers"
+msgstr ""
+
+msgctxt "#30716"
+msgid "Torrent Source Identifier Color"
+msgstr ""
+
+msgctxt "#30717"
+msgid "Sort By Torrent/Premium"
+msgstr ""
+
+msgctxt "#30718"
+msgid "Minimum Seeders"
+msgstr ""
+
+msgctxt "#30319"
+msgid "Trakt User:"
+msgstr "Trakt Gebruiker:"
+
+msgctxt "#30320"
+msgid "(Real Debrid)Authorize my account"
+msgstr "(Real Debrid)Mijn Account Autoriseren"
+
+msgctxt "#30321"
+msgid "(AllDebrid)Authorize My Account"
+msgstr "(AllDebrid)Mijn Account Autoriseren"
+
+msgctxt "#30322"
+msgid "(PremiumizeMe)Authorize My Account"
+msgstr "(PremiumizeMe)Mijn Account Autoriseren"
+
+msgctxt "#30323"
+msgid "[COLOR=gold]K[/COLOR]ids Collection"
+msgstr "[COLOR=gold]K[/COLOR]inder Collectie"
+
+msgctxt "#30324"
+msgid "[COLOR=gold]T[/COLOR]V-Show Collection"
+msgstr "[COLOR=gold]T[/COLOR]V-Serie Collectie"
+
+msgctxt "#30325"
+msgid "[COLOR=darkorange]G[/COLOR]enre Selection"
+msgstr "[COLOR=darkorange]G[/COLOR]enre Selectie"
+
+msgctxt "#30326"
+msgid "Hackers Movies"
+msgstr "Hackers Films"
+
+msgctxt "#30327"
+msgid "Crime Movies"
+msgstr "Crime Films"
+
+msgctxt "#30328"
+msgid "Prison Movies"
+msgstr "Gevangenis Films"
+
+msgctxt "#30329"
+msgid "Musical Movies"
+msgstr "Musical Films"
+
+msgctxt "#30330"
+msgid "Romance Movies"
+msgstr "Romantische Films"
+
+msgctxt "#30331"
+msgid "Western Movies"
+msgstr "Western Films"
+
+msgctxt "#30332"
+msgid "Ducth Tv Shows"
+msgstr "Nederlandse Tv Shows"
+
+msgctxt "#30333"
+msgid "Real-Debrid Providers"
+msgstr ""
+
+msgctxt "#30334"
+msgid "Torrent Providers"
+msgstr ""
+
+msgctxt "#30335"
+msgid "[COLOR=darkorange]M[/COLOR]ovie Selection list"
+msgstr "[COLOR=darkorange]F[/COLOR]ilm Selectie lijst"
+
+msgctxt "#30336"
+msgid "Foreign Movies"
+msgstr "Buitenlandse Films"
+
+msgctxt "#30337"
+msgid "Psychological Movies"
+msgstr "Psychological Films"
+
+msgctxt "#30338"
+msgid "Hindustani Movies"
+msgstr "Hindoestaanse Films"
+
+msgctxt "#30339"
+msgid "Source Filters"
+msgstr "Bronfilters"
+
+msgctxt "#30340"
+msgid "Powered by"
+msgstr "Aangedreven door"
+
+msgctxt "#30341"
+msgid "Clear Providers Cache After Changing Scraper Provider"
+msgstr "Cache providers wissen na het wijzigen provider"
+
+
+
 
