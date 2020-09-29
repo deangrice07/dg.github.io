@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -37,7 +37,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
       
         
             
-        x=requests.get('https://yts.mx/api/v2/list_movies.json?query_term=%s&page=1&limit=300&order_by=desc&sort_by=rating'%(search_url),headers=base_header,timeout=10,verify=False).json()
+        x=get_html('https://yts.mx/api/v2/list_movies.json?query_term=%s&page=1&limit=300&order_by=desc&sort_by=rating'%(search_url),headers=base_header,timeout=10,verify=False).json()
         logging.warning('https://yts.mx/api/v2/list_movies.json?query_term=%s&page=1&limit=300&order_by=desc&sort_by=rating'%(search_url))
         
    

@@ -1,16 +1,16 @@
-
+ # -*- coding: utf-8 -*-
 from public import addNolink,addDir3,addLink,lang,user_dataDir
 
 import threading,urllib,os
-import re,logging,sys,time,requests
+import re,logging,sys,time
 import xbmcaddon,xbmc,xbmcgui
 import cache,xbmcplugin,json
 Addon = xbmcaddon.Addon()
 
-
+from  resources.modules.client import get_html
 
 domain_s='https://'
-from general import fix_q,post_trakt
+from general import fix_q,post_trakt,addon_id
 from general import call_trakt,BASE_LOGO,base_header
 
 
@@ -79,7 +79,7 @@ def adv_gen_window(url):
             self.placeControl(edit_label, 0, 3)
             
             url='http://api.themoviedb.org/3/genre/%s/list?api_key=34142515d9d23817496eeb4ff1d223d0&language=%s&page=1'%(self.type,lang)
-            x=requests.get(url).json()
+            x=get_html(url).json()
             self.all_g=[]
             for items in x['genres']:
                
@@ -159,11 +159,11 @@ class Thread(threading.Thread):
 def get_html_g():
     try:
         url_g='https://api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        html_g_tv=requests.get(url_g).json()
+        html_g_tv=get_html(url_g).json()
          
    
         url_g='https://api.themoviedb.org/3/genre/movie/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        html_g_movie=requests.get(url_g).json()
+        html_g_movie=get_html(url_g).json()
     except Exception as e:
         logging.warning('Err in HTML_G:'+str(e))
     return html_g_tv,html_g_movie
@@ -190,7 +190,7 @@ def get_tmdb_data(new_name_array,html_g,fav_search_f,fav_servers_en,fav_servers,
            
                    
        #except:
-           html=requests.get(url).json()
+           html=get_html(url).json()
            
            max_page=html['total_pages']
      
@@ -220,7 +220,7 @@ def get_tmdb_data(new_name_array,html_g,fav_search_f,fav_servers_en,fav_servers,
                     addults=data['adult']
                  else:
                     addults=False
-                 if 'erotic ' in plot.lower() or 'sex' in plot.lower() or addults==True:
+                 if 'erotic ' in plot.lower() or 'sex' in plot.lower() or addults==True :
                     continue
                 
              if 'title' not in data:
@@ -243,7 +243,7 @@ def get_tmdb_data(new_name_array,html_g,fav_search_f,fav_servers_en,fav_servers,
                  f_subs=cache.get(get_links,9999,'movie',original_name,original_name,'0','0','0','0',year,id,True, table='pages')
                if data['original_language']!='en':
                 
-                html2=requests.get('http://api.themoviedb.org/3/movie/%s?api_key=34142515d9d23817496eeb4ff1d223d0'%id).json()
+                html2=get_html('http://api.themoviedb.org/3/movie/%s?api_key=34142515d9d23817496eeb4ff1d223d0'%id).json()
                 original_name=html2['title']
                 
                
@@ -255,7 +255,7 @@ def get_tmdb_data(new_name_array,html_g,fav_search_f,fav_servers_en,fav_servers,
                
                if data['original_language']!='en':
                 
-                    html2=requests.get('http://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0'%id).json()
+                    html2=get_html('http://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0'%id).json()
                     if 'name' in html2:
                         original_name=html2['name']
                     #if 'name' in data:
@@ -283,7 +283,7 @@ def get_tmdb_data(new_name_array,html_g,fav_search_f,fav_servers_en,fav_servers,
              try:genere = u' / '.join([genres_list[x] for x in data['genre_ids']])
              except:genere=''
              
-             trailer = "plugin://plugin.video.drg?mode=25&id=%s&url=%s" % (id,tv_movie)
+             trailer = "plugin://%s?mode=25&id=%s&url=%s" % (addon_id,id,tv_movie)
              if new_name not in new_name_array:
               new_name_array.append(new_name)
               if Addon.getSetting("check_subs")=='true' or Addon.getSetting("disapear")=='true':
@@ -378,7 +378,7 @@ def get_all_data(first,last,url,link,new_name_array,isr):
         else:
              url_g='https://api.themoviedb.org/3/genre/movie/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
              html_g=html_g_movie
-        #html_g=requests.get(url_g).json()
+        #html_g=get_html(url_g).json()
  
         if Addon.getSetting("dp")=='true' and (last-first)>1:
                 dp = xbmcgui.DialogProgress()
@@ -540,7 +540,9 @@ def get_movies(url,local=False,reco=0,global_s=False):
             else:
                 aa=addDir3(items,url,14,'https://www.techniquetuesday.com/mm5/graphics/00000001/Technique-Tuesday-Calendar-Years-Clear-Stamps-Large_329x400.jpg','https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/08/16/Photos/Processed/investment-knrG--621x414@LiveMint.jpg',items,collect_all=True)
                 all_d.append(aa)
+        xbmcplugin .addDirectoryItems(int(sys.argv[1]),all_d,len(all_d))
         
+        return 0
    if url=='tv_years&page=1' and 'page=1' in url:
       if Addon.getSetting("dip_dialog")=='0':
           ret=ret = xbmcgui.Dialog().select("Choose", all_years)
@@ -757,33 +759,63 @@ def get_seasons(name,url,iconimage,fanart,description,data,original_title,id,heb
    #headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Accept-Language': 'he'}
    #r = requests.post(domain_s+'api.thetvdb.com/login', json=payload, headers=headers)
    #r_json = r.json()
+   from tvdb import TVDB
 
-   url=domain_s+'api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en&append_to_response=external_ids'%id
-
-   html=requests.get(url).json()
-   if 'first_air_date' in html:
-    show_original_year=html['first_air_date'].split("-")[0]
+   t = TVDB()
+   if 'tvdb' not in id:
+       url=domain_s+'api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en&append_to_response=external_ids'%id
+       
+       html=get_html(url).json()
+       try:
+           if 'first_air_date' in html:
+            show_original_year=html['first_air_date'].split("-")[0]
+           else:
+            show_original_year=0
+       except:
+        show_original_year=0
+       #tmdb data
+       #headers['Authorization'] = "Bearer %s" %  str(r_json.get('token'))
+       tvdb_id=str(html['external_ids']['tvdb_id'])
    else:
-    show_original_year=0
-   #tmdb data
-   #headers['Authorization'] = "Bearer %s" %  str(r_json.get('token'))
-   tmdbid=html['external_ids']['tvdb_id']
-   if tmdbid==None:
-     response2 = requests.get(domain_s+'www.thetvdb.com/?string=%s&searchseriesid=&tab=listseries&function=Search'%name).content
-     
-     SearchSeriesRegexPattern = 'a href=".+?tab=series.+?id=(.+?)mp'
-     match=re.compile(SearchSeriesRegexPattern).findall(response2)
+    tvdb_id=id.replace('tvdb','')
+    show_data=t.getShowData_id(tvdb_id)
+    logging.warning('show_data')
+    logging.warning(show_data)
+    html={}
+    html['seasons']=[]
+    html['overview']=show_data['data']['overview']
+    html['original_name']=show_data['data']['seriesName']
+    html['original_language']= show_data['data']['language'] 
+    html['backdrop_path']= 'https://www.thetvdb.com/banners/'+show_data['data']['fanart'] 
+    if 'firstAired' in show_data['data']:
+        show_original_year=show_data['data']['firstAired'].split("-")[0]
+    else:
+        show_original_year=0
    
-     for tmnum in match:
-       tmnum=tmnum.replace("&a","")
-       if len(tmnum)>0:
-         tmdbid=tmnum
+   if tvdb_id=='None':
+    logging.warning('Tryning None')
+    try:
+        tvdb_id_pre=t.getShow( original_title)
+        for itt in tvdb_id_pre['data']:
+            if itt['seriesName'].lower()==original_title.lower():
+                tvdb_id=str(itt['id'])
+        show=t.getShow_id(tvdb_id)
+    except:
+        show={'data':[]}
+        pass
+    
+    
+   else:
+    show=t.getShow_id(tvdb_id)
+   
+   max_season_tvdb=0
+   match=[]
 
-   #import tvdb
-   #tvdb=tvdb.TheTvDb()
-   #response=tvdb.get_series(html['external_ids']['tvdb_id'])
+   for item_tvdb in show['data']:
+        match.append((item_tvdb['episodeName'],item_tvdb['airedEpisodeNumber'],item_tvdb['firstAired'],item_tvdb['airedSeason'],item_tvdb['overview']))
+   
   
-   #response = requests.get('http://thetvdb.com/api/0629B785CE550C8D/series/%s/all/he.xml'%html['external_ids']['tvdb_id'],headers=base_header,timeout=5).content
+   #response = get_html('http://thetvdb.com/api/0629B785CE550C8D/series/%s/all/he.xml'%html['external_ids']['tvdb_id'],headers=base_header,timeout=5).content
    #logging.warning(json.dumps(response))
    #attr=['Combined_season','FirstAired']
    #regex='<Episode>.+?<EpisodeName>(.+?)</EpisodeName>.+?<EpisodeNumber>(.+?)</EpisodeNumber>.+?<FirstAired>(.+?)</FirstAired>.+?<SeasonNumber>(.+?)</SeasonNumber>'
@@ -807,24 +839,31 @@ def get_seasons(name,url,iconimage,fanart,description,data,original_title,id,heb
          
          
                             
-   match=[]
+   
    #seasons_tvdb=parseDOM(response,'Episode', attr)
    all_season=[]
    all_season_tvdb_data=[]
     
    all_season_imdb=[]
    all_season_imdb_data=[]
-   for ep_name,ep_num,aired,s_number in match:
-     if s_number not in all_season:
+   count_season=0
+   s_number_pre=1
+   season_ep_count={}
+   for ep_name,ep_num,aired,s_number,overview in match:
+     season_ep_count[s_number]=ep_num
+   for ep_name,ep_num,aired,s_number,overview in match:
+     
+     if str(s_number) not in all_season:
 
        all_season.append(str(s_number))
-       all_season_tvdb_data.append({"name":ep_name,"episode_number":ep_num,"air_date":aired,"season_number":s_number,"poster_path":iconimage})
+       all_season_tvdb_data.append({"name":ep_name,"episode_number":ep_num,"air_date":aired,"season_number":s_number,"poster_path":iconimage,'episode_count':season_ep_count[s_number],'overview':overview})
+   
    try:
        url2='http://api.themoviedb.org/3/tv/%s?api_key=%s&language=en&append_to_response=external_ids'%(id,tmdbKey)
       
        
-       imdb_id=requests.get(url2).json()['external_ids']['imdb_id']
-       xx=requests.get('https://www.imdb.com/title/%s/episodes'%imdb_id).content
+       imdb_id=get_html(url2).json()['external_ids']['imdb_id']
+       xx=get_html('https://www.imdb.com/title/%s/episodes'%imdb_id).content
        regex='<label for="bySeason">(.+?)</div'
        match_imdb_s_pre=re.compile(regex,re.DOTALL).findall(xx)[0]
        regex='<option.+?value="(.+?)"'
@@ -916,13 +955,13 @@ def get_seasons(name,url,iconimage,fanart,description,data,original_title,id,heb
                  txt_1=Addon.getLocalizedString(32187)
                  color='white'
         datea='[COLOR aqua]'+txt_1+time.strftime( "%d-%m-%Y",a) + '[/COLOR]\n'
-     except:
-             
+     except Exception as e:
+             logging.warning('TVDB error:'+str(e))
              datea=''
              color='red'
-     if 'season 0' in new_name:
+     if str(data['season_number'])=='0' or str(data['season_number'])=='-1':
         continue
-     aa=addDir3( '[COLOR %s]'%color+new_name+'[/COLOR]',url,19,icon,fan,datea+plot,data=year,original_title=original_name,id=id,season=season,tmdbid=tmdbid,show_original_year=show_original_year,heb_name=heb_name,ep_number=ep_number,watched_ep=watched,watched=watched,remain=remain,premired=premired)
+     aa=addDir3( '[COLOR %s]'%color+new_name+'[/COLOR]',url,19,icon,fan,datea+plot,data=year,original_title=original_name,id=id,season=season,tmdbid=tvdb_id,show_original_year=show_original_year,heb_name=heb_name,ep_number=ep_number,watched_ep=watched,watched=watched,remain=remain,premired=premired)
      all_d.append(aa)
    xbmcplugin .addDirectoryItems(int(sys.argv[1]),all_d,len(all_d))
 def get_episode_data(id,season,episode,yjump=True,o_name=' '):
@@ -930,12 +969,12 @@ def get_episode_data(id,season,episode,yjump=True,o_name=' '):
     o_episode=episode
     url='http://api.themoviedb.org/3/tv/%s/season/%s/episode/%s?api_key=653bb8af90162bd98fc7ee32bcbbfb3d&language=%s&append_to_response=external_ids'%(id,season,episode,lang)
 
-    html=requests.get(url).json()
+    html=get_html(url).json()
    
     if yjump:
       if 'status_code' in html:
         url='http://api.themoviedb.org/3/tv/%s/season/%s/episode/%s?api_key=653bb8af90162bd98fc7ee32bcbbfb3d&language=%s&append_to_response=external_ids'%(id,str(int(season)+1),'1',lang)
-        html=requests.get(url).json()
+        html=get_html(url).json()
         episode='1'
         season=str(int(season)+1)
     if 'name' in html:
@@ -961,23 +1000,48 @@ def get_episode_data(id,season,episode,yjump=True,o_name=' '):
         return name,plot,image,season,episode
     else:
        return o_name,' ',' ',o_season,o_episode
-def get_episode(name,url,iconimage,fanart,description,data,original_title,id,season,tmdbid,show_original_year,heb_name):
+def get_episode(name,url,iconimage,fanart,description,data,original_title,id,season,tvdb_id,show_original_year,heb_name):
    import _strptime
    all_d=[]
-   url=domain_s+'api.themoviedb.org/3/tv/%s/season/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=%s'%(id,season,lang)
+   
+   url=domain_s+'api.themoviedb.org/3/tv/%s/season/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=%s&append_to_response=external_ids'%(id,season,lang)
    tmdbKey = '653bb8af90162bd98fc7ee32bcbbfb3d'
-   html=requests.get(url).json()
+   html=get_html(url).json()
    #tmdb data
+
    if 'episodes'  in html:
+      if len(html['episodes'])>0:
        if html['episodes'][0]['name']=='':
          url=domain_s+'api.themoviedb.org/3/tv/%s/season/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=eng'%(id,season)
-         html=requests.get(url).json()
-   #response = requests.get('http://thetvdb.com/api/0629B785CE550C8D/series/%s/all/he.xml'%tmdbid).content
+         html=get_html(url).json()
+   #response = get_html('http://thetvdb.com/api/0629B785CE550C8D/series/%s/all/he.xml'%tmdbid).content
    
    attr=['Combined_season','FirstAired']
    regex='<Episode>.+?<EpisodeName>(.+?)</EpisodeName>.+?<EpisodeNumber>(.+?)</EpisodeNumber>.+?<FirstAired>(.+?)</FirstAired>.+?<Overview>(.+?)</Overview>.+?<SeasonNumber>(.+?)</SeasonNumber>'
    #match=re.compile(regex,re.DOTALL).findall(response)
    match=[]
+   from tvdb import TVDB
+
+   t = TVDB()
+   
+   show=t.getShow_id(tvdb_id)
+   max_season_tvdb=0
+   match=[]
+   for item_tvdb in show['data']:
+        if item_tvdb['filename']!='':
+            img='https://www.thetvdb.com/banners/'+item_tvdb['filename']
+        else:
+            img=fanart
+        
+        ep=item_tvdb['episodeName']
+        if not ep:
+            ep='Episode '+str(item_tvdb['airedEpisodeNumber'])
+        
+        
+        
+        match.append(('(T) '+ep,item_tvdb['airedEpisodeNumber'],item_tvdb['firstAired'],item_tvdb['overview'],item_tvdb['airedSeason'],img))
+   
+   
    regex_eng='<slug>(.+?)</slug>'
    #match_eng=re.compile(regex_eng).findall(response)
    match_eng=[]
@@ -992,52 +1056,59 @@ def get_episode(name,url,iconimage,fanart,description,data,original_title,id,sea
    
    all_episodes_imdb=[]
    all_episodes_imdb_data=[]
-   image2=' '
-   for ep_name,ep_num,aired,overview,s_number in match:
+   image2=fanart
+   for ep_name,ep_num,aired,overview,s_number,image in match:
      
-     image2=fanart
-     if s_number==season:
+   
+     if str(s_number)==str(season):
          if ep_num not in all_episodes:
            
            all_episodes.append(str(ep_num))
-           all_season_tvdb_data.append({"name":ep_name,"episode_number":ep_num,"air_date":aired,"overview":overview,"season_number":s_number,"still_path":iconimage,"poster_path":image2})
+           all_season_tvdb_data.append({"name":ep_name,"episode_number":ep_num,"air_date":aired,"overview":overview,"season_number":s_number,"still_path":image,"poster_path":image})
    
    url2='http://api.themoviedb.org/3/tv/%s?api_key=%s&language=en&append_to_response=external_ids'%(id,tmdbKey)
       
        
     
+   try:
+       imdb_id=get_html(url2).json()['external_ids']['imdb_id']
+       xx=get_html('https://www.imdb.com/title/%s/episodes?season=%s'%(imdb_id,season)).content
+       logging.warning('https://www.imdb.com/title/%s/episodes?season=%s'%(imdb_id,season))
+       regex='div class="image">.+?title="(.+?)"(.+?)meta itemprop="episodeNumber" content="(.+?)".+?<div class="airdate">(.+?)<.+?itemprop="description">(.+?)<'
+       match_imdb_s_pre=re.compile(regex,re.DOTALL).findall(xx)
       
-       
-   imdb_id=requests.get(url2).json()['external_ids']['imdb_id']
-   xx=requests.get('https://www.imdb.com/title/%s/episodes?season=%s'%(imdb_id,season)).content
-
-   regex='div class="image">.+?title="(.+?)"(.+?)meta itemprop="episodeNumber" content="(.+?)".+?itemprop="description">(.+?)<'
-   match_imdb_s_pre=re.compile(regex,re.DOTALL).findall(xx)
-  
-   for ep_name,poster,ep_num,plot in match_imdb_s_pre:
-        if 'src="' in poster:
-            regex='src="(.+?)"'
-            poster=re.compile(regex).findall(poster)[0]
-        else:
-            poster=' '
-        all_episodes_imdb.append(str(ep_num))
-        all_episodes_imdb_data.append({"name":ep_name,"episode_number":ep_num,"air_date":' ',"season_number":season,"poster_path":poster,'still_path':poster,"overview":plot})
-   
+       for ep_name,poster,ep_num,air_date,plot in match_imdb_s_pre:
+            if 'src="' in poster:
+                regex='src="(.+?)"'
+                poster=re.compile(regex).findall(poster)[0]
+            else:
+                poster=' '
+            air_date=air_date.replace('\n','').replace(' ','')
+            all_episodes_imdb.append(str(ep_num))
+            all_episodes_imdb_data.append({"name":'(I) '+ep_name,"episode_number":ep_num,"air_date":air_date,"season_number":season,"poster_path":poster,'still_path':poster,"overview":plot})
+   except:
+    pass
   
    all_episodes_tmdb=[]
-
    if 'episodes' not in html:
      html['episodes']=[]
      html['poster_path']=fanart
    else:
-       for data in html['episodes']:
+      for data in html['episodes']:
           all_episodes_tmdb.append(str(data['episode_number']))
    for items_a in all_episodes:
      if items_a not in all_episodes_tmdb:
        html['episodes'].append(all_season_tvdb_data[all_episodes.index(items_a)])
+   for data in html['episodes']:
+          all_episodes_tmdb.append(str(data['episode_number']))
+   
    for items_a in all_episodes_imdb:
      if items_a not in all_episodes_tmdb:
        html['episodes'].append(all_episodes_imdb_data[all_episodes_imdb.index(items_a)])
+
+   
+   
+   
        
    original_name=original_title
    if Addon.getSetting("dp")=='true' and (Addon.getSetting("disapear")=='true' or Addon.getSetting("check_subs")=='true'):
@@ -1154,8 +1225,10 @@ def get_episode(name,url,iconimage,fanart,description,data,original_title,id,sea
                  color2='white'
         datea='[COLOR gold]'+Addon.getLocalizedString(32187)+time.strftime( "%d-%m-%Y",a) + '[/COLOR]\n'
      except:
-             
-             datea=''
+             try:
+                datea=data['air_date']
+             except:
+                datea=''
              color2='red'
      f_subs=[]
      
@@ -1191,7 +1264,7 @@ def get_episode(name,url,iconimage,fanart,description,data,original_title,id,sea
               watched='yes'
        
        
-       aa=addDir3( '[COLOR %s]'%color+new_name+'[/COLOR]', url,15, icon,image,datea+plot,data=year,original_title=original_name,id=id,season=season,episode=data['episode_number'],eng_name=eng_name,show_original_year=show_original_year,heb_name=heb_name,watched=watched,fav_status=fav_status,all_w=all_w,premired=premired)
+       aa=addDir3( '[COLOR %s]'%color+new_name+'[/COLOR]', url,15, icon,image,str(datea)+str(plot),data=year,original_title=original_name,id=id,season=season,episode=data['episode_number'],eng_name=eng_name,show_original_year=show_original_year,heb_name=heb_name,watched=watched,fav_status=fav_status,all_w=all_w,premired=premired,tmdbid=tvdb_id)
        all_d.append(aa)
    #dbcur.close()
    #dbcon.close()

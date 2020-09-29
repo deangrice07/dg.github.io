@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
@@ -11,7 +11,7 @@ try:
 except:
  local=True
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 try:
     from resources.modules.general import Addon
 except:
@@ -35,22 +35,28 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
      else:
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','-'),season_n,episode_n)).lower()]
     for itt in search_url:
-      se=requests.get('https://torrentquest.com/search/?q=%s&m=1&x=0&y=0'%itt,headers=base_header).url.replace(itt+'/','')
+      se=get_html('https://torrentquest.com/search/?q=%s&m=1&x=0&y=0'%itt,headers=base_header).url.replace(itt+'/','')
    
-    
+      regex='<tr>(.+?)</tr>'
+      regex1=re.compile(regex)
+      
+      regex='href="(.+?)".+?a href.+?title="(.+?)".+?td class="s">(.+?)<.+?<td class="l">(.+?)<'
+      regex2=re.compile(regex,re.DOTALL)
+            
+            
       for page in range(1,4):
         
-        x=requests.get(se+'%s/se/desc/%s/'%(itt,str(page)),headers=base_header).content
+        x=get_html(se+'%s/se/desc/%s/'%(itt,str(page)),headers=base_header).content()
         
         regex='<tr>(.+?)</tr>'
-        macth_pre=re.compile(regex).findall(x)
+        macth_pre=regex1.findall(x)
        
         for items in macth_pre:
             
             if stop_all==1:
                 break
             regex='href="(.+?)".+?a href.+?title="(.+?)".+?td class="s">(.+?)<.+?<td class="l">(.+?)<'
-            match=re.compile(regex,re.DOTALL).findall(items)
+            match=regex2.findall(items)
             try:
                 size = re.findall('((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GiB|MiB|GB|MB))', items)[0]
             except:

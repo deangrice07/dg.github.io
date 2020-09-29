@@ -1,9 +1,11 @@
-
-import xbmcaddon,xbmcgui,xbmcplugin,xbmc,requests,sys
+ # -*- coding: utf-8 -*-
+import xbmcaddon,xbmcgui,xbmcplugin,xbmc,sys
 import time,logging,re,json,threading
 import cache
 from general import call_trakt,replaceHTMLCodes,html_g_tv,html_g_movie,BASE_LOGO
 from public import addNolink,addDir3,addLink,lang,user_dataDir
+global tvdb_html
+tvdb_html={}
 isr='0'
 lang=xbmc.getLanguage(0)
 domain_s='https://'
@@ -11,7 +13,7 @@ Addon = xbmcaddon.Addon()
 time_to_save=1
 global trd_response
 trd_response={}
-
+from  resources.modules.client import get_html
 class Thread(threading.Thread):
     def __init__(self, target, *args):
        
@@ -24,7 +26,7 @@ class Thread(threading.Thread):
     def run(self):
         
         self._target(*self._args)
-def get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre):
+def get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,tvdb_id=''):
     global trd_response
     headers = {
             'Accept': 'Retry-After,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -37,31 +39,37 @@ def get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,seaso
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
         }
-        
+    for i in range(0,4):
+        try:
+            response=get_html(url,headers=headers,timeout=10)
+            header=response.headers()
+            break
+        except:
+            pass
     
-    response=requests.get(url,headers=headers,timeout=10)
     
-    if '200' in str(response):
-        trd_response[url.encode('base64')]=[response.json(),s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre]
+    
+    if 'error_code' not in str(response.json()):
+        trd_response[url.encode('base64')]=[response.json(),s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,tvdb_id]
         return trd_response[url.encode('base64')]
-    elif 'Retry-After' in response.headers:
+    elif 'Retry-After' in response.headers():
       
-        timeout = response.headers['Retry-After']
+        timeout = header['Retry-After']
         
         time.sleep(int(timeout) + 1)
-        return get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre)
+        return get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,tvdb_id=tvdb_id)
     else: 
-        logging.warning("error_in tmdb")
-        logging.warning(response.headers)
+        logging.warning("error_in tmdb2")
+        logging.warning(header)
         logging.warning(url)
         return trd_response[url.encode('base64')]
 def get_movie_data_simple(url):
-    x=requests.get(url).json()
+    x=get_html(url).json()
     return x
-def get_movie_data(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre):
+def get_movie_data(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,tvdb_id=''):
     global trd_response
     
-    trd_response[url.encode('base64')]=['',s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre]
+    trd_response[url.encode('base64')]=['',s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,tvdb_id]
     get_movie_data_trd(url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre)
     
     
@@ -150,6 +158,7 @@ def remove_trk_resume(name,id,season,episode,type_o):
                 call_trakt('sync/playback/%s' % i['id'],is_delete=True)
         xbmc.executebuiltin('Container.Refresh')
 def progress_trakt(url,sync=False):
+        
         all_trk_data={}
         
         
@@ -170,7 +179,7 @@ def progress_trakt(url,sync=False):
         url_g=domain_s+'api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
      
   
-        html_g=requests.get(url_g).json()
+        html_g=get_html(url_g).json()
         #html_g=html_g_tv
         result = call_trakt(url)
         
@@ -180,22 +189,27 @@ def progress_trakt(url,sync=False):
         new_name_array=[]
         
         for item in result:
-            ddatetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
+            
             try:
-                
                 num_1 = 0
-                for i in range(0, len(item['seasons'])):
-                    if item['seasons'][i]['number'] > 0: num_1 += len(item['seasons'][i]['episodes'])
-                num_2 = int(item['show']['aired_episodes'])
-                if num_1 >= num_2: raise Exception()
+                if 'seasons' in item:
+                    for i in range(0, len(item['seasons'])):
+                        if item['seasons'][i]['number'] > 0: num_1 += len(item['seasons'][i]['episodes'])
+                    num_2 = int(item['show']['aired_episodes'])
+                    if num_1 >= num_2 and not sync: raise Exception()
 
-                season = str(item['seasons'][-1]['number'])
+                    season = str(item['seasons'][-1]['number'])
 
-                episode = [x for x in item['seasons'][-1]['episodes'] if 'number' in x]
-                episode = sorted(episode, key=lambda x: x['number'])
-                episode = str(episode[-1]['number'])
+                    episode = [x for x in item['seasons'][-1]['episodes'] if 'number' in x]
+                    episode = sorted(episode, key=lambda x: x['number'])
+                    episode = str(episode[-1]['number'])
+                else:
+                    season = str(item['episode']['season'])
+                    episode=str(item['episode']['number'])
+                   
 
                 tvshowtitle = item['show']['title']
+    
                 if tvshowtitle == None or tvshowtitle == '': raise Exception()
                 tvshowtitle = replaceHTMLCodes(tvshowtitle)
 
@@ -207,22 +221,33 @@ def progress_trakt(url,sync=False):
                 if imdb == None or imdb == '': imdb = '0'
 
                 tmdb = item['show']['ids']['tmdb']
-                if tmdb == None or tmdb == '': raise Exception()
+                #if tmdb == None or tmdb == '': raise Exception()
                 tmdb = re.sub('[^0-9]', '', str(tmdb))
-
-                last_watched = item['last_watched_at']
+                
+                tvdb=item['show']['ids']['tvdb']
+                #if tmdb == None or tmdb == '': raise Exception()
+                tvdb = re.sub('[^0-9]', '', str(tvdb))
+               
+                trakt = item['show']['ids']['trakt']
+                if trakt == None or trakt == '': raise Exception()
+                trakt = re.sub('[^0-9]', '', str(trakt))
+                if 'last_watched_at' in item:
+                    last_watched = item['last_watched_at']
+                else:
+                    last_watched = item['listed_at']
+                
                 if last_watched == None or last_watched == '': last_watched = '0'
-                items.append({'imdb': imdb, 'tmdb': tmdb, 'tvshowtitle': tvshowtitle, 'year': year, 'snum': season, 'enum': episode, '_last_watched': last_watched})
+                items.append({'imdb': imdb, 'tmdb': tmdb,'tvdb':tvdb, 'tvshowtitle': tvshowtitle, 'year': year, 'snum': season, 'enum': episode, '_last_watched': last_watched})
             
             except Exception as e:
                logging.warning(e)
             
         if not sync:
             result = call_trakt('/users/hidden/progress_watched?limit=1000&type=show')
-            
             result = [str(i['show']['ids']['tmdb']) for i in result]
-            
+        
             items_pre = [i for i in items if not i['tmdb'] in result]
+            
         else:
             items_pre=items
         if Addon.getSetting("dp")=='false':
@@ -233,12 +258,13 @@ def progress_trakt(url,sync=False):
         #trd_response=cache.get(get_tmdb_data,24,items_pre,False,html_g,html_g,items, table='pages')
       
         trd_response=[]
-        
         try:
             trd_response=get_tmdb_data(items_pre,False,html_g,html_g,items_pre)
         except:
             pass
+        
         counter=0
+        get_tvdb_arr=[]
         for ur in trd_response:
           try:
               html=trd_response[ur][0]
@@ -252,14 +278,16 @@ def progress_trakt(url,sync=False):
               episode=trd_response[ur][8]
               l_res=trd_response[ur][9]
               items=trd_response[ur][10]
-          
+              tvdb_id=trd_response[ur][11]
               watched='no'
               not_yet=0
               gone=0
               season=items['snum']
               episode=items['enum']
               last_played=items['_last_watched'].replace('T',' ').replace('Z','').replace('.000','')
+              #url='http://api.themoviedb.org/3/tv/%s?api_key=%s&language=%s&append_to_response=external_ids'%(s_id,'653bb8af90162bd98fc7ee32bcbbfb3d',lang)
               
+              #html=cache.get(get_movie_data_simple,time_to_save,url, table='pages')
               plot=' '
               if 'The resource you requested could not be found' not in str(html):
                  data=html
@@ -291,6 +319,9 @@ def progress_trakt(url,sync=False):
                      else:
                        plot=data['overview']
                  if 'title' not in data:
+                   if 'name' not in data:
+                        get_tvdb_arr.append((tvdb_id,season,episode))
+                        continue
                    new_name=data['name']
                  else:
                    new_name=data['title']
@@ -298,10 +329,8 @@ def progress_trakt(url,sync=False):
                  
                  original_name=data['original_name']
                  id=str(data['id'])
-                 if Addon.getSetting("s_traker_style")=='true':
-                    mode=146
-                 else:
-                    mode=15
+                 
+                 mode=15
                  if data['poster_path']==None:
                   icon=' '
                  else:
@@ -383,25 +412,20 @@ def progress_trakt(url,sync=False):
                       season_n="0"+season
                   else:
                       season_n=season
-                  video_data['mediatype']='episode'
-                  video_data['TVshowtitle']=new_name
-                  video_data['Season']=int(str(season).replace('%20','0'))
-                  video_data['Episode']=int(str(episode).replace('%20','0'))
-                  
-                  video_data['mediatype']='episode'
+
+                  video_data['mediatype']='tvshow'
                   video_data['OriginalTitle']=new_name
                   video_data['title']=new_name+' S'+season_n+'E'+episode_n
 
 
 
                   video_data['year']=year
-                 
-                 
+                  video_data['season']=season
+                  video_data['episode']=episode
                   video_data['genre']=genere
                   video_data['lastplayed']=last_played
          
                 
-                 
                   
                   try:
                     
@@ -423,6 +447,7 @@ def progress_trakt(url,sync=False):
                     max_ep=data['seasons'][int(season)-1]['episode_count']
                   except Exception as e:
                     max_ep=100
+                
                   check=False
                   if Addon.getSetting("show_over")=='true':
                     check=True
@@ -451,8 +476,10 @@ def progress_trakt(url,sync=False):
                         all_trk_data[id]['heb_name']=new_name
                         all_trk_data[id]['type']='tv'
                         
-                        
-                     
+                        if Addon.getSetting("s_traker_style")=='true':
+                            mode=146
+                        else:
+                            mode=15
                         aa.append(addDir3('[COLOR '+color+']'+new_name+'[/COLOR]'+' S'+season_n+'E'+episode_n,url,mode,icon,fan,plot+addon,data=year,original_title=original_name,id=id,rating=rating,heb_name=new_name,show_original_year=year,generes=genere,trailer=trailer,watched=watched,season=season,episode=episode,eng_name=original_name,tmdbid=id,video_info=video_data,dates=dates,fav_status=fav_status))
                       else:
                        addNolink('[COLOR red][I]'+ new_name.encode('utf8')+'[/I][/COLOR]'+' S'+season_n+'E'+episode_n, 'www',999,False,iconimage=icon,fanart=fan,plot=video_data['plot'])
@@ -465,6 +492,7 @@ def progress_trakt(url,sync=False):
                   
                    
                     addNolink('[COLOR red][I]'+ responce['title']+'[/I][/COLOR]', 'www',999,False)
+              
           except Exception as e:
             logging.warning('323')
             import linecache
@@ -482,9 +510,43 @@ def progress_trakt(url,sync=False):
                 addNolink('[COLOR red][I]'+ responce['title']+'[/I][/COLOR]', 'www',999,False)
             except:
                 pass
+        from tvdb import TVDB
+        t = TVDB()
+        for tvdb_id,season,episode in get_tvdb_arr:
+            
+        
+            show_data=t.getShowData_id(tvdb_id)
+   
+            if 'error_code' in show_data:
+                continue
+            
+            tvdb_html[tvdb_id]={}
+            tvdb_html[tvdb_id]['overview']=show_data['data']['overview']
+            tvdb_html[tvdb_id]['original_name']=show_data['data']['seriesName']
+            tvdb_html[tvdb_id]['original_language']= show_data['data']['language'] 
+            tvdb_html[tvdb_id]['tv_movie']='tv'
+            fan=show_data['data']['fanart'] 
+            if fan=='':
+                fan=show_data['data']['poster'] 
+            tvdb_html[tvdb_id]['backdrop_path']= 'https://www.thetvdb.com/banners/'+fan
+            if 'firstAired' in show_data['data']:
+                tvdb_html[tvdb_id]['year']=show_data['data']['firstAired'].split("-")[0]
+            else:
+                tvdb_html[tvdb_id]['year']='0'
+            
+            
+            mode=15
+            plot=tvdb_html[tvdb_id]['overview']
+            seriesName=tvdb_html[tvdb_id]['original_name']
+           
+            img=tvdb_html[tvdb_id]['backdrop_path']
+           
+            year=tvdb_html[tvdb_id]['year']
+            aa.append(addDir3('(T)'+seriesName+' S'+season+'E'+episode,' ',mode,img,img,plot,season=season,episode=episode,data=year,original_title=seriesName,id='tvdb'+str(tvdb_id),heb_name=seriesName,show_original_year=year))
+
         if Addon.getSetting("dp")=='true':
           dp.close()
-
+        
         xbmcplugin .addDirectoryItems(int(sys.argv[1]),aa,len(aa))
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LASTPLAYED)
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_DATE)
@@ -508,7 +570,7 @@ def resume_episode_list(url,sync=False):
         url_g=domain_s+'api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
      
   
-        html_g=requests.get(url_g).json()
+        html_g=get_html(url_g).json()
         #html_g=html_g_tv
         result = call_trakt(url)
 
@@ -796,7 +858,14 @@ def make_day(date, use_words=True):
         elif 1 < day_diff < 7:
             day = date.strftime('%A').upper()
     return ' ['+day+'] '
+def get_tvdb_data(tvdb_id,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,l_res,items_pre,type_tvdb):
+    global tvdb_html
     
+    tvdb_html[tvdb_id]={}
+    tvdb_html[tvdb_id]['tv_movie']=type_tvdb
+    tvdb_html[tvdb_id]['season']=season
+    tvdb_html[tvdb_id]['episode']=episode
+    return tvdb_html
 def get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m,items_pre=None):
         global trd_response
         start_time = time.time()
@@ -806,26 +875,28 @@ def get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m,items_pre=None):
             responce=call_trakt(ur_f,with_auth=with_auth)
         
             
-         
+            
             for items in responce:
-              
+             
+              tvdb_id=None
               progress=None
               revenue=None
               if 'revenue' in items:
                 revenue=items['revenue']
               if 'progress' in items:
                     progress=items['progress']
-              
-              if 'show' in items or 'shows' in ur_f:
-                 slug = 'tv'
-                 html_g=html_g_tv
-              else:
+              if 'movie' in items:
                 slug = 'movies'
                 html_g=html_g_m
+              else:
+                 slug = 'tv'
+                 html_g=html_g_tv
+              
+                
               if 'person' in items:
                 nm=items['person']['name']
                 link='https://api.themoviedb.org/3/person/%s?api_key=1180357040a128da71b71716058f6c5c&append_to_response=credits,images&language=%s&sort_by=popularity.desc'%(str(items['person']['ids']['tmdb']),lang)
-                x=requests.get(link).json()
+                x=get_html(link).json()
                 icon=' '
                 fan=' '
            
@@ -853,18 +924,32 @@ def get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m,items_pre=None):
                 if 'movie' in items:
                     s_id=items['movie']['ids']['tmdb']          
                     nam=items['movie']['title']
+                    if s_id==None:
+                        tvdb_id=items['show']['ids']['tvdb']
+                        type_tvdb='tv'
+                    
                 else:
-                    s_id=items['ids']['tmdb']          
-                    nam=items['title']
+                    s_id=items['movie']['ids']['tmdb']          
+                    nam=items['movie']['title']
+                    
+                    if s_id==None:
+                        tvdb_id=items['movie']['ids']['tvdb']
+                        type_tvdb='movie'
                 url='http://api.themoviedb.org/3/movie/%s?api_key=%s&language=%s&append_to_response=external_ids'%(s_id,'653bb8af90162bd98fc7ee32bcbbfb3d',lang)
                 
               else:
                 if 'show' in items:
                     s_id=items['show']['ids']['tmdb']
                     nam=items['show']['title']
+                    if s_id==None:
+                        tvdb_id=items['show']['ids']['tvdb']
+                        type_tvdb='tv'
                 else:
-                    s_id=items['ids']['tmdb']          
-                    nam=items['title']
+                    s_id=items['movie']['ids']['tmdb']          
+                    nam=items['movie']['title']
+                    if s_id==None:
+                        tvdb_id=items['movie']['ids']['tvdb']
+                        type_tvdb='movie'
                 url='http://api.themoviedb.org/3/tv/%s?api_key=%s&language=%s&append_to_response=external_ids'%(s_id,'653bb8af90162bd98fc7ee32bcbbfb3d',lang)
                 
               date_mark=''
@@ -879,12 +964,17 @@ def get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m,items_pre=None):
                 season=str(items['episode']['season'])
                 episode=str(items['episode']['number'])
               
-          
-            
-              thread.append(Thread(get_movie_data,url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,len(responce),items_pre))
-              thread[len(thread)-1].setName(nam.encode('utf8'))
-                
-              thread[len(thread)-1].start()
+              
+              if tvdb_id==None:
+                  thread.append(Thread(get_movie_data,url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,len(responce),items_pre))
+                  thread[len(thread)-1].setName(nam.encode('utf8'))
+                    
+                  thread[len(thread)-1].start()
+              else:
+                  thread.append(Thread(get_tvdb_data,tvdb_id,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,len(responce),items_pre,type_tvdb))
+                  thread[len(thread)-1].setName(nam.encode('utf8'))
+                    
+                  thread[len(thread)-1].start()
         else:
             date_mark=''
             progress=None
@@ -896,13 +986,13 @@ def get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m,items_pre=None):
                 season=items['snum']
                 episode=items['enum']
                 s_id=items['tmdb']
+                tvdb_id=items['tvdb']
                 nam=items['tvshowtitle']
-          
                 slug='tv'
                 responce=[]
                 last_played=items['_last_watched'].replace('T',' ').replace('Z','').replace('.000','')
                 url='http://api.themoviedb.org/3/tv/%s?api_key=%s&language=%s&append_to_response=external_ids'%(items['tmdb'],'653bb8af90162bd98fc7ee32bcbbfb3d',lang)
-                thread.append(Thread(get_movie_data,url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,len(responce),items))
+                thread.append(Thread(get_movie_data,url,s_id,slug,progress,revenue,saved_date,date_mark,season,episode,len(responce),items,tvdb_id))
                 thread[len(thread)-1].setName(nam.encode('utf8'))
                 
                 thread[len(thread)-1].start()
@@ -954,8 +1044,8 @@ def get_trk_data(url):
                      
         
         url_g_tv=domain_s+'api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        #html_g_tv=requests.get(url_g_tv).json()
-        #html_g_m=requests.get(url_g_m).json()
+        #html_g_tv=get_html(url_g_tv).json()
+        #html_g_m=get_html(url_g_m).json()
         #html_g_tv=html_g_tv
         all_movie_w=[]
         all_w_tv_data={}
@@ -1040,9 +1130,45 @@ def get_trk_data(url):
         if Addon.getSetting("dp")=='true':
             elapsed_time = time.time() - start_time
             dp.update(0, Addon.getLocalizedString(32072)+ time.strftime("%H:%M:%S", time.gmtime(elapsed_time)),'Tmdb Metadate')
-        trd_response=cache.get(get_tmdb_data,24,ur_f,with_auth,html_g_tv,html_g_m, table='pages')
-        #trd_response=get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m)
+        #trd_response=cache.get(get_tmdb_data,24,ur_f,with_auth,html_g_tv,html_g_m, table='pages')
+        tvdb_html={}
+        trd_response=get_tmdb_data(ur_f,with_auth,html_g_tv,html_g_m)
         aa=[]
+        from tvdb import TVDB
+
+        t = TVDB()
+        for tvdb_id in tvdb_html:
+            show_data=t.getShowData_id(tvdb_id)
+
+            if 'error_code' in show_data:
+                continue
+            
+            
+            tvdb_html[tvdb_id]['overview']=show_data['data']['overview']
+            tvdb_html[tvdb_id]['original_name']=show_data['data']['seriesName']
+            tvdb_html[tvdb_id]['original_language']= show_data['data']['language'] 
+            fan=show_data['data']['fanart'] 
+            if fan=='':
+                fan=show_data['data']['poster'] 
+            tvdb_html[tvdb_id]['backdrop_path']= 'https://www.thetvdb.com/banners/'+fan
+            if 'firstAired' in show_data['data']:
+                tvdb_html[tvdb_id]['year']=show_data['data']['firstAired'].split("-")[0]
+            else:
+                tvdb_html[tvdb_id]['year']='0'
+            type_tvdb=tvdb_html[tvdb_id]['tv_movie']
+            if type_tvdb=='tv':
+                mode=16
+            else:
+                mode=15
+            plot=tvdb_html[tvdb_id]['overview']
+            seriesName=tvdb_html[tvdb_id]['original_name']
+            season=tvdb_html[tvdb_id]['season']
+            episode=tvdb_html[tvdb_id]['episode']
+            img=tvdb_html[tvdb_id]['backdrop_path']
+           
+            year=tvdb_html[tvdb_id]['year']
+            aa.append(addDir3('(T)'+seriesName,' ',mode,img,img,plot,season=season,episode=episode,data=year,original_title=seriesName,id='tvdb'+str(tvdb_id),heb_name=seriesName,show_original_year=year))
+
         for ur in trd_response:
           if 'actor_id' in trd_response[ur]:
                 lk=trd_response[ur]['actor_id']
@@ -1291,8 +1417,8 @@ def get_simple_trk_data(url):
                      
         
         url_g_tv=domain_s+'api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        #html_g_tv=requests.get(url_g_tv).json()
-        #html_g_m=requests.get(url_g_m).json()
+        #html_g_tv=get_html(url_g_tv).json()
+        #html_g_m=get_html(url_g_m).json()
         #html_g_tv=html_g_tv
         
         html_g_m=html_g_movie
@@ -1501,7 +1627,7 @@ def get_one_trk(color,name,url_o,url,icon,fanart,data_ep,plot,year,original_titl
           fanart=image
           url=domain_s+'api.themoviedb.org/3/tv/%s/season/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=%s'%(id,season,lang)
          
-          html=requests.get(url).json()
+          html=get_html(url).json()
           next=''
           ep=0
           f_episode=0
@@ -1564,7 +1690,7 @@ def get_one_trk(color,name,url_o,url,icon,fanart,data_ep,plot,year,original_titl
                color='yellow'
               else:
                color='white'
-               h2=requests.get('https://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en-US'%id).json()
+               h2=get_html('https://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en-US'%id).json()
                last_s_to_air=int(h2['last_episode_to_air']['season_number'])
                last_e_to_air=int(h2['last_episode_to_air']['episode_number'])
               
@@ -1637,11 +1763,11 @@ def get_Series_trk_data(url_o,match):
           fanart=image
           url=domain_s+'api.themoviedb.org/3/tv/%s/season/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=%s'%(id,season,lang)
          
-          html=requests.get(url).json()
+          html=get_html(url).json()
           if 'status_message' in html:
             if html['status_message']!='The resource you requested could not be found.':
                 xbmc.sleep(10000)
-                html=requests.get(url).json()
+                html=get_html(url).json()
             
           ep=0
           f_episode=0
@@ -1718,7 +1844,7 @@ def get_Series_trk_data(url_o,match):
                color='yellow'
               else:
                color='white'
-               h2=requests.get('https://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en-US'%id).json()
+               h2=get_html('https://api.themoviedb.org/3/tv/%s?api_key=34142515d9d23817496eeb4ff1d223d0&language=en-US'%id).json()
                last_s_to_air=int(h2['last_episode_to_air']['season_number'])
                last_e_to_air=int(h2['last_episode_to_air']['episode_number'])
               
@@ -1771,14 +1897,13 @@ def get_Series_trk_data(url_o,match):
         return 0
 def trakt_liked(url,iconImage,fanart):
     o_url=url
-    logging.warning(o_url)
     responce=call_trakt(url)
     aa=[]
-    
+   
     
     for items in responce:
-       
-        url=items['list']['user']['username']+'$$$$$$$$$$$'+items['list']['ids']['slug']
+     
+        url=items['list']['user']['ids']['slug']+'$$$$$$$$$$$'+items['list']['ids']['slug']
         aa.append(addDir3(items['list']['name'],url,117,iconImage,fanart,items['list']['description']))
     regex='page=(.+?)$'
     match=re.compile(regex).findall(o_url)
@@ -1828,4 +1953,5 @@ def get_trakt(url):
         slug = item['slug']
         url=user+'$$$$$$$$$$$'+slug+'^^^^^^^^'+o_url
         aa.append(addDir3(item['name'] ,url,117,' ',' ',item['name']))
+    
     xbmcplugin .addDirectoryItems(int(sys.argv[1]),aa,len(aa))

@@ -7,7 +7,7 @@ global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon

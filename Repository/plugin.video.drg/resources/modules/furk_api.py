@@ -1,11 +1,11 @@
 #thanks to Tiki from the Fen addon.
 import sys
 import xbmcaddon
-import requests, json
+import  json
 import time, datetime
-import fen_cache
+import fen_cache,logging
 
-
+from  resources.modules.client import get_html
 addon_id=sys.argv[0].replace('plugin://','').replace('/','')
 __addon__ = xbmcaddon.Addon(id=addon_id)
 _cache = fen_cache.FenCache()
@@ -55,26 +55,27 @@ class FurkAPI:
         self.timeout = 12.0
 
     def get_api(self):
-        try:
+        if 1:#try:
             api_key = __addon__.getSetting('furk_api_key')
             if not api_key:
                 if not self.user_name or not self.user_pass:
                     return
                 else:
                     link = (self.base_link + self.login_link % (self.user_name, self.user_pass))
-                    p = requests.post(link, timeout=self.timeout)
-                    p = json.loads(p.text)
+                    p = get_html(link, timeout=self.timeout).json()
+                    
                     if p['status'] == 'ok':
                         api_key = p['api_key']
                         __addon__.setSetting('furk_api_key', api_key)
                     else:
                         pass
             return api_key
-        except: pass
+        
 
     def search(self, query):
         if 1:#try:
             api_key = self.get_api()
+            logging.warning(api_key)
             if not api_key: return
             if '@files' in query:
                 search_in = ''
@@ -213,9 +214,9 @@ class FurkAPI:
         except: return
 
     def _get(self, link):
-        p = requests.get(link, timeout=self.timeout)
-        p = to_utf8(remove_accents(p.text))
-        return json.loads(p)
+        p_org = get_html(link, timeout=self.timeout)
+        p = to_utf8(remove_accents(p_org.text()))
+        return (p_org.json())
 
 def clear_media_results_database():
     import xbmc

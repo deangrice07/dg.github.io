@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
@@ -11,7 +11,7 @@ try:
 except:
  local=True
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 try:
     from resources.modules.general import Addon
 except:
@@ -36,23 +36,28 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower(),('%s-s%s'%(clean_name(original_title,1).replace(' ','+'),season_n)).lower(),('%s-season-%s'%(clean_name(original_title,1).replace(' ','+'),season)).lower()]
      else:
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower()]
-   
+    regex='<div class="media-body">(.+?)</i></a>'
+    regex1=re.compile(regex)
+    
+    regex='<h5><a href=".+?">(.+?)<.+?Size.+?>(.+?)<.+?Seeders.+?>(.+?)<.+?Leechers.+?>(.+?)<.+?href="(.+?)"'
+    regex2=re.compile(regex,re.DOTALL)
+            
     for itt in search_url:
       for page in range(1,4):
         if stop_all==1:
                 break
         logging.warning('Get 7tor')
-        x=requests.get('https://www.7torrents.cc/search?query=%s&page=%s'%(itt,str(page)),headers=base_header).content
+        x=get_html('https://www.7torrents.cc/search?query=%s&page=%s'%(itt,str(page)),headers=base_header).content()
         logging.warning('end 7tor')
         regex='<div class="media-body">(.+?)</i></a>'
-        macth_pre=re.compile(regex).findall(x)
+        macth_pre=regex1.findall(x)
         
         for items in macth_pre:
       
             if stop_all==1:
                 break
             regex='<h5><a href=".+?">(.+?)<.+?Size.+?>(.+?)<.+?Seeders.+?>(.+?)<.+?Leechers.+?>(.+?)<.+?href="(.+?)"'
-            match=re.compile(regex,re.DOTALL).findall(items)
+            match=regex2.findall(items)
             
             for title,size,seed,peer,link in match:
                      if stop_all==1:

@@ -1,29 +1,23 @@
 # -*- coding: utf-8 -*-
 
-import requests
 import time,xbmc,logging
 
-import tools,source_utils,database
+from  resources.modules.client import get_html
 
 class AllDebrid:
-
+    
     def __init__(self):
-        self.agent_identifier = tools.addonName
-        self.token = tools.getSetting('alldebrid.token')
+        import tools
+        self.tools=tools
+        self.agent_identifier = self.tools.addonName
+        self.token = self.tools.getSetting('alldebrid.token')
         self.base_url = 'https://api.alldebrid.com/v4/'
         if self.token=='':
             self.auth()
         
 
     def get_url(self, url, token_req=False):
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'TE': 'Trailers',
-        }
+
         if  self.token == '':
             return
 
@@ -38,7 +32,7 @@ class AllDebrid:
         if token_req:
             url += '&apikey={}'.format(self.token)
 
-        return requests.get(url,headers=headers,timeout=3).json()
+        return get_html(url).json()
 
     def post_url(self, url, post_data=None, token_req=False):
 
@@ -55,21 +49,23 @@ class AllDebrid:
 
         if token_req:
             url += '&apikey={}'.format(self.token)
-   
-        return requests.post(url, data=post_data).json()
+        logging.warning('AD test:'+url)
+        a=get_html(url, data=post_data).json()
+        logging.warning(a)
+        return a
 
     def auth(self):
         pin_url = '{}pin/get?agent={}'.format(self.base_url, self.agent_identifier)
-        resp = requests.get(pin_url).json()['data']
+        resp = get_html(pin_url).json()['data']
        
         expiry = pin_ttl = int(resp['expires_in'])
        
         auth_complete = False
-        tools.copy2clip(resp['pin'])
+        self.tools.copy2clip(resp['pin'])
 
-        tools.progressDialog.create('{} - {}'.format(tools.addonName, 'AllDebrid Auth'))
-        tools.progressDialog.update(100, 'Open this link in a browser: {}'.format(tools.colorString(resp['base_url'])),
-                                    'Enter the code: {}'.format(tools.colorString(
+        self.tools.progressDialog.create('{} - {}'.format(self.tools.addonName, 'AllDebrid Auth'))
+        self.tools.progressDialog.update(100, 'Open this link in a browser: {}'.format(self.tools.colorString(resp['base_url'])),
+                                    'Enter the code: {}'.format(self.tools.colorString(
                                         resp['pin'])),
                                     'This code has been copied to your clipboard')
 
@@ -77,30 +73,30 @@ class AllDebrid:
         # Polling to early will cause an invalid pin error
         time.sleep(5)
 
-        while not auth_complete and not expiry <= 0 and not tools.progressDialog.iscanceled():
+        while not auth_complete and not expiry <= 0 and not self.tools.progressDialog.iscanceled():
 
             auth_complete, expiry = self.poll_auth(resp['check_url'])
             progress_percent = 100 - int((float(pin_ttl - expiry) / pin_ttl) * 100)
-            tools.progressDialog.update(progress_percent)
+            self.tools.progressDialog.update(progress_percent)
             time.sleep(1)
 
-        try:tools.progressDialog.close()
+        try:self.tools.progressDialog.close()
         except:pass
 
         self.store_user_info()
 
         if auth_complete:
-            xbmc.executebuiltin((u'Notification(%s,%s)' % ('Shadow', ('Authentication is completed').decode('utf8'))).encode('utf-8'))
+            xbmc.executebuiltin((u'Notification(%s,%s)' % (self.tools.addonName, ('Authentication is completed').decode('utf8'))).encode('utf-8'))
             
         else:
             return
 
     def poll_auth(self, poll_url):
 
-        resp = requests.get(poll_url).json()['data']
+        resp = get_html(poll_url).json()['data']
         if resp['activated']:
            
-            tools.setSetting('alldebrid.token', resp['apikey'])
+            self.tools.setSetting('alldebrid.token', resp['apikey'])
             self.token = resp['apikey']
             return True, 0
 
@@ -110,13 +106,16 @@ class AllDebrid:
     def store_user_info(self):
         user_information = self.get_url('user', True)
        
-        tools.setSetting('alldebrid.username', user_information['data']['user']['username'])
+        self.tools.setSetting('alldebrid.username', user_information['data']['user']['username'])
         return
 
     def check_hash(self, hash_list):
-        
+        all_mag=[]
+        for itt in hash_list:
+            all_mag.append(itt)
         post_data = {'magnets[]': hash_list}
-        return self.get_url('magnet/instant?magnets[]='+'&magnets[]='.join(hash_list), token_req=True)
+        return self.get_url('magnet/instant?magnets[]='+'&magnets[]='.join(all_mag), token_req=True)
+        
         return self.post_url('magnet/instant', post_data, True)
 
     def upload_magnet(self, hash):
@@ -126,7 +125,7 @@ class AllDebrid:
         return self.get_url('hosts')
 
     def get_hosters(self, hosters):
-
+        import database
         host_list = database.get(self.update_relevant_hosters, 1)
         if host_list is None:
             host_list = self.update_relevant_hosters()
@@ -142,7 +141,7 @@ class AllDebrid:
             hosters['premium']['all_debrid'] = []
 
     def resolve_hoster(self, url):
-        url = tools.quote(url)
+        url = self.tools.quote(url)
         resolve = self.get_url('link/unlock?link={}'.format(url), token_req=True)
    
         if resolve['status']=='success':
@@ -158,7 +157,10 @@ class AllDebrid:
 
         magnet_id = self.upload_magnet(magnet)
 
-        
+        logging.warning(magnet_id)
+        if 'error' in magnet_id:
+            xbmc.executebuiltin(u'Notification(%s,%s)' % (self.tools.addonName+' Error', magnet_id['error']['message']))
+            return 0
         magnet_id =magnet_id ['data']['magnets'][0]['id']
         all_lk=(self.magnet_status(magnet_id))
         
@@ -166,7 +168,7 @@ class AllDebrid:
         folder_details = self.magnet_status(magnet_id)['data']['magnets']['links']
        
         for items in folder_details:
-           
+            
             if 'mkv' in items['filename'] or 'avi' in items['filename'] or 'mp4' in items['filename']:
                 
                 selectedFile = items['link']
@@ -175,7 +177,7 @@ class AllDebrid:
         return self.resolve_hoster(selectedFile)
 
     def resolve_magnet(self, magnet, args, torrent, pack_select=False):
-
+        import source_utils
         if 'showInfo' not in args:
             return self.movie_magnet_to_stream(magnet, args)
 
@@ -220,6 +222,7 @@ class AllDebrid:
             pass
 
     def check_episode_string(self, folder_details, episodeStrings):
+        import source_utils
         for i in folder_details:
             for epstring in episodeStrings:
                 if epstring in source_utils.cleanTitle(i['filename'].replace('&', ' ').lower()):

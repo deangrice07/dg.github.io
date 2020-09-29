@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 from resources.modules import  PTN
 try:
@@ -19,10 +19,10 @@ type=['movie','tv','torrent']
 import urllib2,urllib,logging,base64,json
 
 def _get_token_and_cookies( url):
-    response = requests.get(url)
-    token_id = re.findall(r'token\: (.*)\n', response.content)[0]
+    response = get_html(url)
+    token_id = re.findall(r'token\: (.*)\n', response.content())[0]
   
-    token = ''.join(re.findall(token_id + r" ?\+?\= ?'(.*)'", response.content))
+    token = ''.join(re.findall(token_id + r" ?\+?\= ?'(.*)'", response.content()))
 
     cookies = ''
     for cookie in response.cookies:
@@ -34,11 +34,25 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     global global_var,stop_all
     all_links=[]
     url='https://bitlordsearch.com'
-    token, cookies=_get_token_and_cookies( url)
+    #token, cookies=_get_token_and_cookies( url)
+    #headers = {
+    #    'x-request-token': token,
+    #    'cookie': cookies
+    #}
+    
     headers = {
-        'x-request-token': token,
-        'cookie': cookies
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0',
+        'Accept': '*/*',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Request-Token': 'TLsIXwFkCMfKF-_17VlmSJ3FgT7ANRUabyc3PZ6SwkA',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Origin': 'https://bitlordsearch.com',
+        'Connection': 'keep-alive',
+        'Referer': 'https://bitlordsearch.com/search?q=Rampage%20(2018)%20[1080p]',
+        'TE': 'Trailers',
     }
+
     if tv_movie=='tv':
         if Addon.getSetting('debrid_select')=='0' :
             query=[clean_name(original_title,1).replace(' ','+')+'+s%s'%(season_n),clean_name(original_title,1).replace(' ','+')+'+s%se%s'%(season_n,episode_n),clean_name(original_title,1).replace(' ','+')+'+season+' +season]
@@ -63,7 +77,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
             'filters[risky]': False
         }
 
-        response = requests.post("https://bitlordsearch.com" + "/get_list", data, headers=headers,timeout=10).json()
+        response = get_html("https://bitlordsearch.com" + "/get_list", data=data, headers=headers,timeout=10).json()
+        logging.warning(response)
         for el in response['content']:
         
             

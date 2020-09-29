@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -35,19 +35,24 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
       else:
         search_url=[('%s+s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower()]
     
+    regex='<tr>(.+?)</tr>'
+    regex1=re.compile(regex,re.DOTALL)
     
+    regex='tfiles.org/torrent/.+?/(.+?)\.torrent\?title=(.+?)\.torrent.+?<td class="nowrap-td">(.+?)<.+?<span class="text-success">(.+?)<.+?span class="text-danger">(.+?)<'
+    regex2=re.compile(regex,re.DOTALL)
+            
     for itt in search_url:
       for page in range(1,4):
         
-        x=requests.get('https://ext.to/search/%s/%s/'%(itt,str(page)),headers=base_header,timeout=10).content
+        x=get_html('https://ext.to/search/%s/%s/'%(itt,str(page)),headers=base_header,timeout=10).content()
        
         regex='<tr>(.+?)</tr>'
-        macth_pre=re.compile(regex,re.DOTALL).findall(x)
+        macth_pre=regex1.findall(x)
         
         for itm in macth_pre:
             
             regex='tfiles.org/torrent/.+?/(.+?)\.torrent\?title=(.+?)\.torrent.+?<td class="nowrap-td">(.+?)<.+?<span class="text-success">(.+?)<.+?span class="text-danger">(.+?)<'
-            macth_pre2=re.compile(regex,re.DOTALL).findall(itm)
+            macth_pre2=regex2.findall(itm)
           
             for hash,title,size,peer,seed in macth_pre2:
                     

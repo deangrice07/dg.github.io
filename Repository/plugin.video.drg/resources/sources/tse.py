@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -44,7 +44,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         if stop_all==1:
             break
         try:
-            x=requests.get('http://157.230.67.147/t_api/simplehtmldom_1_5/my_parsers/scraping/my_scraper3.php?query=%s&sort=0&category=0&page=0&adult=0&key=halyoa&concurrent=0&provider_ids[]=%s'%(itt,idd),headers=base_header,timeout=10).json()
+            x=get_html('http://157.230.67.147/t_api/simplehtmldom_1_5/my_parsers/scraping/my_scraper3.php?query=%s&sort=0&category=0&page=0&adult=0&key=halyoa&concurrent=0&provider_ids[]=%s'%(itt,idd),headers=base_header,timeout=10).json()
         except:
             
             continue

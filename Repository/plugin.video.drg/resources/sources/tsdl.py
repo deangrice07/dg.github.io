@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 
 try:
@@ -26,6 +26,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
   
     
+   
     
     all_links=[]
     domains = ['torrentdownloads.me', 'torrentdownloads.info']
@@ -49,20 +50,29 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     else:
         cid='4'
         search_sting=[clean_name(original_title,1).replace(' ','+')+'+%s'%(show_original_year)]
+    regex='<item>(.+?)</item'
+    data_regex=re.compile(regex,re.DOTALL)
+    regex='<title>(.+?)<.+?<size>(.+?)<.+?<info_hash>(.+?)<'
+    data_regex2=re.compile(regex,re.DOTALL)
+        
     for itt in search_sting:
         url_f=search.format(url,cid,itt)
-    
-        x=requests.get(url_f,headers=base_header).content
-        regex='<item>(.+?)</item'
-        m_pre=re.compile(regex,re.DOTALL).findall(x)
-        for items in m_pre:
+       
+        x=get_html(url_f,headers=base_header).content()
+       
         
-            regex='<title>(.+?)<.+?<size>(.+?)<.+?<info_hash>(.+?)<'
-            m=re.compile(regex,re.DOTALL).findall(items)
+        m_pre=data_regex.findall(x)
+        count=0
+        
+        for items in m_pre:
+         
+            count+=1
+            
+            m=data_regex2.findall(items)
             
             
             for title,size,hash in m:
-                    
+                 
                     size = float(int(size))/1073741824
                     
                     lk='magnet:?xt=urn:btih:%s&dn=%s'%(hash,urllib.quote_plus(title))
@@ -88,11 +98,12 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                     
                     
                     max_size=int(Addon.getSetting("size_limit"))
-                      
+                   
                     if size<max_size:
                         all_links.append((title,lk,str(size),res))
-                   
+                        
                         global_var=all_links
+  
     return global_var
         
     

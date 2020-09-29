@@ -1,6 +1,7 @@
-import urllib2,requests,re,logging,urllib
+import urllib2,re,logging,urllib
 from resources.modules import mediaurl
 __USERAGENT__ = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11'
+from  resources.modules.client import get_html
 def fix_q(quality):
     
     
@@ -53,7 +54,7 @@ def getPublicStream(url):
             'Upgrade-Insecure-Requests': '1',
         }
 
-        response_data = requests.get(url, headers=headers, cookies=cookies).content
+        response_data = get_html(url, headers=headers, cookies=cookies).content()
 
 
 

@@ -181,7 +181,7 @@ class FenCache(object):
 
     def _get_database(self):
         '''get reference to our sqllite _database - performs basic integrity check'''
-        addon = xbmcaddon.Addon(ADDON_ID)
+        addon = xbmcaddon.Addon()
         dbpath = addon.getAddonInfo('profile')
         try: dbfile = xbmc.translatePath("%s/fen_cache.db" % dbpath).decode('utf-8')
         except: dbfile = xbmc.translatePath("%s/fen_cache.db" % dbpath)

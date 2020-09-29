@@ -7,7 +7,7 @@ global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -50,7 +50,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
        
         
         logging.warning('Start Sky')
-        x,cook=cloudflare_request('https://btdb.eu/search/%s/?sort=popular&page=%s'%(itt,str(page)))
+        x=requests.get('https://btdb.eu/search/%s/?sort=popular&page=%s'%(itt,str(page)),headers=base_header).content
         logging.warning('got Sky')
         regex='<li class="recent-item">(.+?)</i></a>'
         macth_pre=re.compile(regex,re.DOTALL).findall(x)

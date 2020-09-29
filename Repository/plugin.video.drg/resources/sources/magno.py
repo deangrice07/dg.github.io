@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -48,7 +48,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     all_l=[]
     
-    
+    regex="magnet(.+?)'"
+    regex1=re.compile(regex)
     for itt in search_url:
       
         if stop_all==1:
@@ -59,9 +60,9 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         try:
             
            
-            x = requests.get('https://magno.netlify.app/.netlify/functions/stop', headers=headers, params=params).json()
+            x = get_html('https://magno.netlify.app/.netlify/functions/stop', headers=headers, params=params).json()
             
-            #x=requests.get('https://magno.netlify.app/.netlify/functions/api?keyword=%s'%(itt),headers=base_header,timeout=10).json()
+            #x=get_html('https://magno.netlify.app/.netlify/functions/api?keyword=%s'%(itt),headers=base_header,timeout=10).json()
         except Exception as e:
             logging.warning(e)
             continue
@@ -81,11 +82,11 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                          if 'magnet' not in str(link):
                            continue
                            try:
-                            link=requests.get(link,stream=True).url
+                            link=get_html(link,stream=True).url
                            except Exception as e:
                                
                                regex="magnet(.+?)'"
-                               link='magnet'+re.compile(regex).findall(str(e))[0]
+                               link='magnet'+regex1.findall(str(e))[0]
                                
                               
                         

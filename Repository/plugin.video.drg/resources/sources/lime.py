@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -37,20 +37,27 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         search_url=[('%s s%se%s'%(clean_name(original_title,1),season_n,episode_n)).lower()]
      search_type='tv'
     
-   
+    regex='<tr bgcolor="(.+?)</tr>'
+    regex1=re.compile(regex,re.DOTALL)
+    
+    regex='a href="(.+?)".+?<td class="tdnormal">(.+?)<.+?<td class="tdseed">(.+?)<.+?<td class="tdleech">(.+?)<'
+    regex2=re.compile(regex,re.DOTALL)
+    
+    regex3=re.compile('&dn=(.+?)&')
+    
     for itt in search_url:
       for page in range(0,4):
         
         
-       
-        x,cookie = cloudflare_request('https://limetorrents.at/search?category=%s&search=%s'%(search_type,itt))
-        
+                      
+        x = get_html('https://limetorrents.at/search/%s/category/%s/%s/'%(itt,search_type,str(page)),headers=base_header).content()
+
         regex='<tr bgcolor="(.+?)</tr>'
-        m=re.compile(regex,re.DOTALL).findall(x)
+        m=regex1.findall(x)
         
         for items in m:
             regex='a href="(.+?)".+?<td class="tdnormal">(.+?)<.+?<td class="tdseed">(.+?)<.+?<td class="tdleech">(.+?)<'
-            m2=re.compile(regex,re.DOTALL).findall(items)
+            m2=regex2.findall(items)
         
         
        
@@ -66,7 +73,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                 except Exception as e:
                    
                     size=0
-                title=re.compile('&dn=(.+?)&').findall(link)
+                title=regex3.findall(link)
                 if len(title)>0:
                     title=urllib.unquote_plus(title[0])
                 else:

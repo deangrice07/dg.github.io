@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -33,23 +33,31 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     all_links=[]
     
- 
+    regex='-- Start of Loop -->(.+?)-- End of Loop -->'
+    regex1=re.compile(regex,re.DOTALL)
+    
+    regex_pre='<tr (.+?)</tr>'
+    regex2=re.compile(regex_pre,re.DOTALL)
+    
+    regex='title="Torrent magnet link" href="(.+?)".+?class="cellMainLink">(.+?)<.+?class="nobr center">(.+?)<.+?lass="green center">(.+?)<.+?class="red lasttd center">(.+?)<'
+    regex3=re.compile(regex,re.DOTALL)
+            
     for itt in search_url:
                        
-        x=requests.get('https://thekat.app/usearch/{0}/'.format(itt),headers=base_header,timeout=10).content
+        x=get_html('https://thekat.app/usearch/{0}/'.format(itt),headers=base_header,timeout=10).content()
       
         regex='-- Start of Loop -->(.+?)-- End of Loop -->'
-        m=re.compile(regex,re.DOTALL).findall(x)
+        m=regex1.findall(x)
         
         regex_pre='<tr (.+?)</tr>'
-        m_pre=re.compile(regex_pre,re.DOTALL).findall(m[0])
+        m_pre=regex2.findall(m[0])
        
         for items in m_pre:
            
             if stop_all==1:
                 break
             regex='title="Torrent magnet link" href="(.+?)".+?class="cellMainLink">(.+?)<.+?class="nobr center">(.+?)<.+?lass="green center">(.+?)<.+?class="red lasttd center">(.+?)<'
-            macth_pre=re.compile(regex,re.DOTALL).findall(items)
+            macth_pre=regex3.findall(items)
            
         
                 

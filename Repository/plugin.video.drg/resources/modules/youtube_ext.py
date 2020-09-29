@@ -1,4 +1,5 @@
-import requests,re,time,logging,xbmc
+import re,time,logging,xbmc
+from  resources.modules.client import get_html
 def get_youtube_link(url):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
@@ -32,7 +33,7 @@ def get_youtube_link(url):
           'args[aspectRatio]': '-1'
         }
 
-        response = requests.post('https://www2.onlinevideoconverter.com/webservice', headers=headers, data=data).json()
+        response = get_html('https://www2.onlinevideoconverter.com/webservice', headers=headers, data=data).json()
         print (response)
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
@@ -71,7 +72,7 @@ def get_youtube_link(url):
           'args[aspectRatio]': '-1'
         }
 
-        response2 = requests.post('https://www2.onlinevideoconverter.com/webservice', headers=headers, data=data).json()
+        response2 = get_html('https://www2.onlinevideoconverter.com/webservice', headers=headers, data=data).json()
 
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
@@ -90,7 +91,7 @@ def get_youtube_link(url):
           'id': response2['result']['dPageId']
         }
 
-        html = requests.post('https://www.onlinevideoconverter.com/success', headers=headers, data=data).content
+        html = get_html('https://www.onlinevideoconverter.com/success', headers=headers, data=data).content()
         
         regex="'url': '(.+?)'"
         match=re.compile(regex).findall(str(html))
@@ -112,8 +113,8 @@ def get_youtube_link2(url):
         ('video', url),
     )
 
-    response = requests.get('https://bitdownloader.com/download', headers=headers, params=params).content
-    
+    response = get_html('https://bitdownloader.com/download', headers=headers, params=params).content()
+
     regex=' download="(.+?)" href="(.+?)"'
     match=re.compile(regex).findall(response)
     all_results=[]
@@ -136,7 +137,9 @@ def get_youtube_link3(url):
 
 
 
-    response = requests.get('https://api.videograbber.net/api/video?uri='+url.encode('base64'), headers=headers).json()
+    response = get_html('https://api.videograbber.net/api/video?uri='+url.encode('base64'), headers=headers).json()
+    logging.warning(response)
+    logging.warning('https://api.videograbber.net/api/video?uri='+url.encode('base64'))
     return response['data']['formats'][len(response['data']['formats'])-1]['url']
 
 def get_youtube_link4(videoid):
@@ -156,7 +159,7 @@ def get_youtube_link4(videoid):
 
     data = '{"type":"crawler","params":{"video_url":"https://www.youtube.com/watch?v=%s"}}'%videoid
     
-    response = requests.post('https://v2api.keepvid.pro/v1/job', headers=headers, data=data).json()
+    response = get_html('https://v2api.keepvid.pro/v1/job', headers=headers, data=data).json()
 
     
     headers = {
@@ -177,7 +180,7 @@ def get_youtube_link4(videoid):
     )
     counter=0
     while 1:
-        response = requests.get('https://v2api.keepvid.pro/v1/check', headers=headers, params=params).json()
+        response = get_html('https://v2api.keepvid.pro/v1/check', headers=headers, params=params).json()
         if response['data']['state']!='active':
             break
      
@@ -186,3 +189,38 @@ def get_youtube_link4(videoid):
         if counter>100:
             return ''
     return(response['data']['formats'][len(response['data']['formats'])-1]['url'])
+def get_youtube_link5(url):
+    import requests
+    
+    headers = {
+        'authority': 'y2mate.guru',
+        'accept': 'application/json, text/plain, */*',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36',
+        'content-type': 'application/json;charset=UTF-8',
+        'origin': 'https://y2mate.guru',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-dest': 'empty',
+        'referer': 'https://y2mate.guru/en7/',
+        'accept-language': 'he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7',
+        
+    }
+    x=get_html('https://y2mate.guru/en7/',headers=headers).content()
+    regex='name="csrfmiddlewaretoken" value="(.+?)"'
+    m=re.compile(regex).findall(x)
+    cookies={'csrftoken':m[0]}
+    data = '{"url":"%s"}'%url
+   
+    response = get_html('https://y2mate.guru/api/convert', headers=headers, data=data,cookies=cookies).json()
+   
+    max=0
+    f_url=''
+    for items in response['url']:
+        if items['attr']['class']=='no-audio':
+            continue
+        if int(items['quality'])>max:
+            max=int(items['quality'])
+            f_url=items['url']
+    logging.warning(f_url)
+    return f_url
+    

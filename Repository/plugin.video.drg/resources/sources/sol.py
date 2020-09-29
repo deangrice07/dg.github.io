@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -44,7 +44,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         ('fuv', 'yes'),
         )
 
-        x = requests.get('https://solidtorrents.net/api/v1/search', headers=base_header, params=params,timeout=10).json()
+        x = get_html('https://solidtorrents.net/api/v1/search', headers=base_header, params=params,timeout=10).json()
         
    
         

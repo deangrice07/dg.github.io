@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -22,6 +22,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     global global_var,stop_all
     import xbmc,sys
     path=xbmc.translatePath('special://home/addons/script.module.resolveurl/lib')
+    sys.path.append( path)
+    path=xbmc.translatePath('special://home/addons/script.module.six/lib')
     sys.path.append( path)
     import resolveurl
     
@@ -38,7 +40,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         return []
     
 
-    y = requests.get('http://www1.watchserieshd.tv/series/%s-season-%s-episode-%s'%(clean_name(original_title,1).replace(' ','-'),season,episode), headers=base_header).content
+    y = get_html('http://www1.watchserieshd.tv/series/%s-season-%s-episode-%s'%(clean_name(original_title,1).replace(' ','-'),season,episode), headers=base_header).content()
     
     regex='data-video="(.+?)"'
     lk_pre=re.compile(regex,re.DOTALL).findall(y)

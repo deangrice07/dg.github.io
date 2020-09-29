@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -32,7 +32,12 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     
     all_links=[]
+    regex='<tr(.+?)</tr>'
+    regex1=re.compile(regex,re.DOTALL)
     
+    regex='href="magnet(.+?)".+?title="(.+?)".+?class="is-hidden-touch">(.+?)<.+?green.+?>(.+?)<.+?red.+?>(.+?)<'
+    regex2=re.compile(regex,re.DOTALL)
+            
     for itt in search_url:
       for page in range(1,4):
         if stop_all==1:
@@ -40,15 +45,15 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
        
        
        
-        x,cook=cloudflare_request('https://www.skytorrents.lol/?query=%s&page=%s'%(itt,str(page)))
+        x=get_html('https://www.skytorrents.lol/?query=%s&page=%s'%(itt,str(page)),headers=base_header).content()
             
-        regex='<tr(.+?)</tr>'
-        macth_pre=re.compile(regex,re.DOTALL).findall(x)
+        
+        macth_pre=regex1.findall(x)
        
         for items in macth_pre:
             
             regex='href="magnet(.+?)".+?title="(.+?)".+?class="is-hidden-touch">(.+?)<.+?green.+?>(.+?)<.+?red.+?>(.+?)<'
-            macth=re.compile(regex,re.DOTALL).findall(items)
+            macth=regex2.findall(items)
            
             if stop_all==1:
                 break

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 #frome MediaBoxHD
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
- 
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from  resources.modules.client import get_html
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -30,7 +30,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     try:
        
-        imdb_id=requests.get(url2).json()['external_ids']['imdb_id']
+        imdb_id=get_html(url2).json()['external_ids']['imdb_id']
         
     except:
         return []
@@ -48,7 +48,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
       
         
             
-        x=requests.get('https://qazwsxedcrfvtgb.info/show/'+(imdb_id),headers=base_header,timeout=10,verify=False).json()
+        x=get_html('https://qazwsxedcrfvtgb.info/show/'+(imdb_id),headers=base_header,timeout=10,verify=False).json()
         from resources.modules.google_solve import googledrive_resolve
    
         
@@ -72,15 +72,19 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                                 id_lk=items['mb_stream'][key]
                          else:
                             continue
-                         link='https://drive.google.com/file/d/'+id_lk+'/view'
                          
-                         link2,q=googledrive_resolve(link)
+                         link='https://drive.google.com/file/d/'+id_lk+'/view'
+                         try:
+                            logging.warning(link)
+                            link2,q=googledrive_resolve(link)
+                         except:
+                            continue
                          link2=link2.split('|')
                          cookies={'DRIVE_STREAM':link2[2].split('Cookie=DRIVE_STREAM%3D')[1]}
                          
                          
                          
-                         try_head = requests.get(link2[0].replace('\\',''),headers=base_header,cookies=cookies, stream=True,verify=False,timeout=15)
+                         try_head = get_html(link2[0].replace('\\',''),headers=base_header,cookies=cookies, stream=True,verify=False,timeout=15)
                          size=0
                          
                          if 'Content-Length' in try_head.headers:

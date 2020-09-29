@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
@@ -11,7 +11,7 @@ try:
 except:
  local=True
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 try:
     from resources.modules.general import Addon
 except:
@@ -33,7 +33,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
        url2='http://api.themoviedb.org/3/movie/%s?api_key=%s&append_to_response=external_ids'%(id,tmdbKey)
     try:
         
-        imdb_id=requests.get(url2,timeout=10).json()['external_ids']['imdb_id']
+        imdb_id=get_html(url2,timeout=10).json()['external_ids']['imdb_id']
     except:
         imdb_id=" "
    
@@ -42,7 +42,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     if 1:
   
-        x=requests.get('http://movies-v2.api-fetch.sh/%s/%s'%(tv_movie.replace('tv','show'),imdb_id),headers=base_header).json()
+        x=get_html('http://movies-v2.api-fetch.sh/%s/%s'%(tv_movie.replace('tv','show'),imdb_id),headers=base_header).json()
        
 
         if 'episodes' in x:
@@ -56,6 +56,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                     if stop_all==1:
                         break
                     link=items['torrents'][items2]['url']
+                    if link==None:
+                        continue
                     name=original_title
                     
                     seed=items['torrents'][items2]['seeds']
@@ -100,6 +102,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
             if stop_all==1:
                 break
             link=x['torrents']['en'][items]['url']
+            if link==None:
+                continue
             name=original_title
             seed=x['torrents']['en'][items]['seed']
             peer=x['torrents']['en'][items]['peer']

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -21,7 +21,7 @@ import urllib2,urllib,logging,base64,json
 def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_original_year,id):
     global global_var,stop_all
 
-    x=requests.get('http://www.magnetdl.com/',headers=base_header,timeout=10).content
+    x=get_html('http://www.magnetdl.com/',headers=base_header,timeout=10).content()
     regex='type="hidden" name="m" value="(.+?)"'
     match=re.compile(regex).findall(x)[0]
     
@@ -37,23 +37,29 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','-'),season_n,episode_n)).lower(),('%s-s%s'%(clean_name(original_title,1).replace(' ','-'),season_n)).lower(),('%s-season-%s'%(clean_name(original_title,1).replace(' ','-'),season)).lower()]
       else:
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','-'),season_n,episode_n)).lower()]
-    x=requests.get('http://www.magnetdl.com/search/?q=%s&m=%s'%(search_url,match),headers=base_header).url
-    
+    x=get_html('http://www.magnetdl.com/search/?q=%s&m=%s'%(search_url,match),headers=base_header).geturl()
+    logging.warning(x)
     regex='//www.magnetdl.com/(.+?)/'
     letter=re.compile(regex).findall(x)[0]
+    regex='<tr>(.+?)</tr>'
+    regex1=re.compile(regex)
+    
+    regex='<td class="m"><a href="(.+?)".+?a href.+?title="(.+?)".+?class=".+?">(.+?)</td><td>.+?</td><td>(.+?)</td><td class="s">(.+?)</td><td class="l">(.+?)<'
+    regex2=re.compile(regex)
+            
     for itt in search_url:
       for page in range(1,4):
         
-        x=requests.get('http://www.magnetdl.com/%s/%s/se/desc/%s/'%(letter,itt,str(page)),headers=base_header,timeout=10).content
+        x=get_html('http://www.magnetdl.com/%s/%s/se/desc/%s/'%(letter,itt,str(page)),headers=base_header,timeout=10).content()
         
         regex='<tr>(.+?)</tr>'
-        macth_pre=re.compile(regex).findall(x)
+        macth_pre=regex1.findall(x)
       
         for items in macth_pre:
             if stop_all==1:
                 break
             regex='<td class="m"><a href="(.+?)".+?a href.+?title="(.+?)".+?class=".+?">(.+?)</td><td>.+?</td><td>(.+?)</td><td class="s">(.+?)</td><td class="l">(.+?)<'
-            match=re.compile(regex).findall(items)
+            match=regex2.findall(items)
             
             for link,title,type,size,seed,peer in match:
                 if stop_all==1:

@@ -6,7 +6,6 @@ import re
 try:import xbmc
 except: pass
 
-from requests import Session
 import tools
 
 try:
@@ -487,12 +486,6 @@ def filter_show_pack(simple_info, release_title):
     return False
 
 
-class serenRequests(Session):
-    def __init__(self, *args, **kwargs):
-        super(serenRequests, self).__init__(*args, **kwargs)
-        if "requests" in self.headers["User-Agent"]:
-            # Spoof common and random user agent
-            self.headers["User-Agent"] = random.choice(BROWSER_AGENTS)
 
 def is_file_ext_valid(file_name):
     if '.' + file_name.split('.')[-1] not in COMMON_VIDEO_EXTENSIONS:

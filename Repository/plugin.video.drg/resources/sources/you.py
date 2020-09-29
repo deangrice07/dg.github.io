@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 #from Yu movies apk
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -32,20 +32,20 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
 
             'Connection': 'Keep-Alive'}
     c_name=clean_name(original_title,1).lower()
-    url='https://yumovfreemov.com/salam/hangat.php?cai=%s&tadondo=com.yumovies.mushdomovidev'%clean_name(original_title,1)
-
-    x=requests.get(url,headers=headers).json()
-    logging.warning(x)
+    url='https://yumovfreemov.com/salam/hangat.php?cai=%s&tadondo=com.yumovies.mushdomovidev'%clean_name(original_title,1).replace(' ','%20')
+ 
+    x=get_html(url,headers=headers).json()
+  
     
     for items in x['STREAME']:
         if c_name in items['channel_title'].lower() and show_original_year in items['channel_title']:
             url='https://yumovfreemov.com/salam/hangat.php?channel_id=%s&tadondo=com.yumovies.mushdomovidev'%items['id']
-            y=requests.get(url,headers=headers).json()
+            y=get_html(url,headers=headers).json()
             logging.warning(y)
             for itt in y['STREAME']:
                   size=0
                   try:
-                        try_head = requests.get(itt['channel_url'],headers=base_header, stream=True,verify=False,timeout=3)
+                        try_head = get_html(itt['channel_url'],headers=base_header, stream=True,verify=False,timeout=3)
                     
        
                         if 'Content-Length' in try_head.headers:

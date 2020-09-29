@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -38,18 +38,24 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         search_url=[('%s+s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower()]
     
     div=1024*1024*1024
+    
+    regex='class="torrent_size".+?>(.+?)<.+?"magnet(.+?)"'
+    regex1=re.compile(regex,re.DOTALL)
+    regex='dn\=(.+?)\&'
+    
+    regex2=re.compile(regex)
     for itt in search_url:
       for page in range(0,3):
         
-        x=requests.get('http://btdig.com/search?q=%s&p=%s&order=0'%(itt,page),headers=base_header,timeout=10).content
+        x=get_html('http://btdig.com/search?q=%s&p=%s&order=0'%(itt,page),headers=base_header,timeout=10).content()
         
         regex='class="torrent_size".+?>(.+?)<.+?"magnet(.+?)"'
-        m=re.compile(regex,re.DOTALL).findall(x)
+        m=regex1.findall(x)
        
         for size,link in m:
                      regex='dn\=(.+?)\&'
                      try:
-                        title=re.compile(regex).findall(link)[0]
+                        title=regex2.findall(link)[0]
                      except:
                         title=clean_name(original_title,1)
                      

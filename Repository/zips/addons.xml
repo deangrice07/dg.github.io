@@ -76,29 +76,24 @@
 
 <addon id="plugin.video.drg"
 	   name="DRG"
-	   version="1.0.1"
+	   version="1.0.2"
 	   provider-name="Grice Advice">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.six" version="0.0.1"/>
-	<import addon="script.module.requests"/>
+
   </requires>
   <extension point="xbmc.python.pluginsource"
             library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Trialing a new Addon</summary>
+    <summary lang="en">DRG Add-on</summary>
     <description lang="en">All the media as fast as possible</description>
-	<disclaimer lang="en_US"> Thanks to Nixgates for parts of his code</disclaimer>
+
     <platform>all</platform>
     <assets>
             <icon>icon.gif</icon>
             <fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/screenshot01a.png</screenshot>
-      <screenshot>resources/screenshots/screenshot02a.png</screenshot>
-      <screenshot>resources/screenshots/screenshot03a.png</screenshot>
-        </assets>
+    </assets>
   </extension>
 </addon>
 

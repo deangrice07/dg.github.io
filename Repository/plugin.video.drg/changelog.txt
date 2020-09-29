@@ -1,4 +1,78 @@
-﻿[COLOR yellow][B]v2.1.8[/B]
+﻿[COLOR yellow][B]v2.3.6[/B]
+* fixed marked as unwatched.
+* easier fanart control in themes.
+* New Sonic theme thanks to DaButcher and Funsterbe.
+[COLOR lightblue][B]v2.3.5[/B]
+* improve the look of "clean" look for sources and scraping.
+* fix scraping time while in 'Eye candy' mode.
+* fix "Recomended trailer"
+* fix error in line bugs.
+* fix nextup windows that didnt work for some skins.
+* fix 3d movies(free).
+* add option in the settings for clean title in video player.
+* fix sync to trakt.
+* fix movies in years selection.
+* fix watched precentage.
+* fix upload log.
+* fix unwatched trakt and watched trakt.
+
+[COLOR lightblue][B]v2.3.2[/B]
+* new Eye candy look and features.
+
+[COLOR lightblue][B]v2.3.1[/B]
+* fixed Trakt errors.
+
+[COLOR lightblue][B]v2.2.9[/B]
+* added back the trakt tab in settings.
+* fixed not getting free results.
+
+[COLOR lightblue][B]v2.2.8[/B]
+* fix hidden shows in trakt progress.
+* fix 40 results in trakt.
+* now you can use up to 10 users id in imdb.
+* Thanks DaButcher for his help.
+ 
+[COLOR lightblue][B]v2.2.7[/B]
+* fixed imdb watched list limit.
+* added next page to imdb lists.
+* added universal scraper support you can add them too.:-)
+
+[COLOR lightblue][B]v2.2.6[/B]
+**********This is not just another version, this is a leap forward**********
+* much of the code was rewriten.
+* removed all dependecies for the addon.
+* the addon is much faster now.
+* fixed pages in Trakt.
+* added support for imdb account lists.
+* fix support for Alldebrid.
+
+[COLOR lightblue][B]v2.2.5[/B]
+* fixed some bugs.
+* fixed suppoert for trakt ratings.
+* fixed tracked liked list.
+* fixed scraping time limit.
+* faster search time.
+
+[COLOR lightblue][B]v2.2.4[/B]
+* added tvdb support for series tracker.
+* added tvdb to search results.
+[COLOR lightblue][B]v2.2.3[/B]
+* added TVDB and IMDB as sources to tvshows.
+  marked in (T) and (I), so all your episode and seasons should apear.
+
+[COLOR lightblue][B]v2.2.2[/B]
+* fixed waiting for trailer to end.
+[COLOR lightblue][B]v2.2.1[/B]
+* fixed missing subtitles.
+* fixed one click play in eye candy mode.
+[COLOR lightblue][B]v2.1.9[/B]
+Its been a while :-)
+* added Openscraper option in the setting , in quality vs quality category.
+* added Eye candy mode (in quality vs quality category).
+* even better speed.
+* fix encoding error.
+enjoy.
+[COLOR lightblue][B]v2.1.8[/B]
 * fixed the hidden tv shows in trakt progress.
 * added option to show ended series in progress.
 *add trakt category in the settings.

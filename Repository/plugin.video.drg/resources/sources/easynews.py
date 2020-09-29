@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 
 try:
@@ -46,10 +46,10 @@ def _get_auth():
       'password': password,
       'submit': 'Login'
     }
-    s= requests.Session()
     
-    r=s.post('https://members.easynews.com/login/', headers=headers, data=data).cookies
-    my_cookies = requests.utils.dict_from_cookiejar(s.cookies)
+    
+    html,my_cookies=get_html('https://members.easynews.com/login/', headers=headers, data=data,get_cookies=True).json()
+   
 
     return my_cookies
 
@@ -145,8 +145,8 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         ('fty[]', 'VIDEO'),
     )
 
-    res = requests.get('https://members-beta.easynews.com/3.0/index/basic', headers=headers, params=params, cookies=auth).content
-    logging.warning(auth)
+    res = get_html('https://members-beta.easynews.com/3.0/index/basic', headers=headers, params=params, cookies=auth).content()
+   
 
     
     all_links=[]
@@ -158,7 +158,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     url, params = _translate_search(query,base_link,search_link)
     headers = {'Authorization': auth}
-    response = requests.get(url, params=params, headers=headers).text
+    response = get_html(url, params=params, headers=headers).text
     logging.warning('response')
     logging.warning(response)
     '''

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -39,27 +39,46 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
     if 1:
         
-        x=requests.get('https://torrenthood.net/search/?q=%s&m=%s&t=0'%(search_url,type),headers=base_header,timeout=10).content
+        x=get_html('https://torrenthood.net/search/?q=%s&m=%s&t=0'%(search_url,type),headers=base_header,timeout=10).content()
       
         
         regex='<tr>(.+?)</tr>'
         macth_pre=re.compile(regex,re.DOTALL).findall(x)
-    
+        regex=' href="(.+?)"'
+        regex1=re.compile(regex)
+        
+        regex='<div class="table-row-equal"(.+?)</form>'
+        regex2=re.compile(regex,re.DOTALL)
+        
+        regex='<span class="info2">(.+?)<.+?Size: <b>(.+?)<.+?magnet:(.+?)\''
+        regex3=re.compile(regex,re.DOTALL)
+        
+        
+        regex='<div class="table-row-equal">(.+?)</form></div>'
+        regex4=re.compile(regex,re.DOTALL)
+                
+        regex='<span class="info2" id="episode-(.+?)".+?onClick="(.+?)"'
+        regex5=re.compile(regex,re.DOTALL)
+        
+        regex='<span id="blue">Full Season.+?span class="info4">(.+?)<'
+        regex6=re.compile(regex,re.DOTALL)
+                         
+                         
         for itm in macth_pre:
             
             regex=' href="(.+?)"'
-            ittm=re.compile(regex).findall(itm)[0]
+            ittm=regex1.findall(itm)[0]
             
             if clean_name(original_title,1).lower().replace(' ','-') not in ittm:
                 continue
-            y=requests.get(ittm,headers=base_header,timeout=10).content
+            y=get_html(ittm,headers=base_header,timeout=10).content()
             if tv_movie=='movie':
                 regex='<div class="table-row-equal"(.+?)</form>'
-                m_p=re.compile(regex,re.DOTALL).findall(y)
+                m_p=regex2.findall(y)
                 for mpp in m_p:
                     
                     regex='<span class="info2">(.+?)<.+?Size: <b>(.+?)<.+?magnet:(.+?)\''
-                    m_pre=re.compile(regex,re.DOTALL).findall(mpp)
+                    m_pre=regex3.findall(mpp)
                     if len(m_pre)==0:
                         continue
                     nm=m_pre[0][0]
@@ -108,12 +127,12 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     
                 
                 regex='<div class="table-row-equal">(.+?)</form></div>'
-                m_pre=re.compile(regex,re.DOTALL).findall(y)
+                m_pre=regex4.findall(y)
                 
                 for ittm2 in m_pre:
            
                     regex='<span class="info2" id="episode-(.+?)".+?onClick="(.+?)"'
-                    m_in=re.compile(regex,re.DOTALL).findall(ittm2)
+                    m_in=regex5.findall(ittm2)
                     for idd,lk in m_in:
                          
                          if stop_all==1:
@@ -125,7 +144,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                          if 'magnet' not in lk:
                             continue
                          regex='<span id="blue">Full Season.+?span class="info4">(.+?)<'
-                         title=re.compile(regex,re.DOTALL).findall(y)
+                         title=regex6.findall(y)
                          lk=lk.replace("self.location='",'').replace("'",'')
                          nm=clean_name(original_title,1)
                          if len(title)>0:

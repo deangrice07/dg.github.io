@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
 from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
 from  resources.modules import cache
@@ -26,17 +26,23 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     allow_debrid=True
     search_url=('%s-s%se%s'%(clean_name(original_title,1).replace(' ','-'),season_n,episode_n)).lower()
    
-    x=requests.get('https://eztv.io/search/{0}'.format(search_url),headers=base_header,timeout=10).content
+    x=get_html('https://eztv.io/search/{0}'.format(search_url),headers=base_header,timeout=10).content()
    
     regex_pre='<tr name="hover"(.+?)</tr>'
     m_pre=re.compile(regex_pre,re.DOTALL).findall(x)
+    
+    regex='<td class="forum_thread_post".+?class="epinfo">(.+?)<.+?a href="(.+?)".+?<td align="center" class="forum_thread_post">(.+?)<.+?<td align="center" class="forum_thread_post_end"><font color="green">(.+?)<'
+    regex1=re.compile(regex,re.DOTALL)
+   
+    regex='<td class="forum_thread_post".+?class="epinfo">(.+?)<.+?a href="(.+?)".+?<td align="center" class="forum_thread_post">(.+?)<.+?<td align="center" class="forum_thread_post_end">(.+?)<'
+    regex2=re.compile(regex,re.DOTALL)
     for items in m_pre:
         regex='<td class="forum_thread_post".+?class="epinfo">(.+?)<.+?a href="(.+?)".+?<td align="center" class="forum_thread_post">(.+?)<.+?<td align="center" class="forum_thread_post_end"><font color="green">(.+?)<'
-        m2=re.compile(regex,re.DOTALL).findall(items)
+        m2=regex1.findall(items)
         if len (m2)==0:
             
             regex='<td class="forum_thread_post".+?class="epinfo">(.+?)<.+?a href="(.+?)".+?<td align="center" class="forum_thread_post">(.+?)<.+?<td align="center" class="forum_thread_post_end">(.+?)<'
-            m2=re.compile(regex,re.DOTALL).findall(items)
+            m2=regex2.findall(items)
         
 
         for title,links,size,seed in m2:
@@ -78,7 +84,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                         continue
                   
                    if 0:#allow_debrid:
-                        x=requests.get('https://eztv.io'+links,headers=base_header,timeout=10).content
+                        x=get_html('https://eztv.io'+links,headers=base_header,timeout=10).content()
                         regex='"magnet(.+?)"'
                         mm=re.compile(regex).findall(x)
                         if len(mm)==0:

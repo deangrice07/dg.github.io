@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -25,7 +25,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     allow_debrid=True
     search_url=('%s-s%se%s'%(clean_name(original_title,1).replace(' ','-'),season_n,episode_n)).lower()
    
-    x=requests.get('https://showrss.info/browse',headers=base_header,timeout=10).content
+    x=get_html('https://showrss.info/browse',headers=base_header,timeout=10).content()
     
     regex_pre='option value="(.+?)">(.+?)<'
     m_pre=re.compile(regex_pre,re.DOTALL).findall(x)
@@ -37,9 +37,9 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         if title.lower()==clean_name(original_title,1).lower() or title.lower()==(clean_name(original_title,1).lower() +' (%s)'%show_original_year):
             found=True
             break
-    logging.warning('Found:'+str(found))
+   
     if found:
-        x=requests.get('https://showrss.info/browse/'+idd,headers=base_header,timeout=10).content
+        x=get_html('https://showrss.info/browse/'+idd,headers=base_header,timeout=10).content()
         regex='<li><a href="(.+?)".+?title="(.+?)"'
         m_pre=re.compile(regex,re.DOTALL).findall(x)
         

@@ -389,8 +389,8 @@
 					</control>
 				   <control type="label">
 						
-						<posx>150</posx>
-						<posy>80</posy>
+						<posx>20</posx>
+						<posy>120</posy>
 						<width>1130</width>
 						<height>38</height>
 						<font>font-24</font>
@@ -619,8 +619,8 @@
 					</control>
 				   <control type="label">
 						
-						<posx>150</posx>
-						<posy>80</posy>
+						<posx>20</posx>
+						<posy>120</posy>
 						<width>1130</width>
 						<height>38</height>
 						<font>font-24</font>

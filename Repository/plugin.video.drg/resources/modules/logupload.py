@@ -2,7 +2,7 @@ import os,logging,json
 import re,sys,xbmcgui
 import socket
 import pyqrcode
-import requests
+
 import xbmc
 import xbmcgui
 import xbmcaddon
@@ -225,7 +225,19 @@ class Main:
             return content
 
     def postLog(self, data):
-        
+        path1=xbmc.translatePath('special://home/addons/script.module.requests/lib')
+        sys.path.append( path1)
+        path1=xbmc.translatePath('special://home/addons/script.module.urllib3/lib')
+        sys.path.append( path1)
+        path1=xbmc.translatePath('special://home/addons/script.module.chardet/lib')
+        sys.path.append( path1)
+        path1=xbmc.translatePath('special://home/addons/script.module.certifi/lib')
+        sys.path.append( path1)
+        path1=xbmc.translatePath('special://home/addons/script.module.idna/lib')
+        sys.path.append( path1)
+        path1=xbmc.translatePath('special://home/addons/script.module.futures/lib')
+        sys.path.append( path1)
+        import requests
         self.session = requests.Session()
         UserAgent = '%s: %s' % (ADDONID, ADDONVERSION)
         if 1:#try:

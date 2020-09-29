@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
 
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+from  resources.modules.client import get_html
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -34,12 +34,12 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
        url2='http://api.themoviedb.org/3/movie/%s?api_key=%s&append_to_response=external_ids'%(id,tmdbKey)
     try:
         
-        imdb_id=requests.get(url2,timeout=10).json()['external_ids']['imdb_id']
+        imdb_id=get_html(url2,timeout=10).json()['external_ids']['imdb_id']
     except:
         imdb_id=" "
         
 
-    x=requests.get("https://torrentapi.org/pubapi_v2.php?app_id=me&get_token=get_token",headers=base_header,timeout=10).json()
+    x=get_html("https://torrentapi.org/pubapi_v2.php?app_id=me&get_token=get_token",headers=base_header,timeout=10).json()
     token=x['token']
     if tv_movie=='movie':
      search_url=[((clean_name(original_title,1).replace(' ','%20')+'%20'+show_original_year)).lower()]
@@ -62,7 +62,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         time.sleep(0.4)
         ur='https://torrentapi.org/pubapi_v2.php?app_id=Torapi&mode=search&search_imdb=%s&token=%s&sort=seeders&ranked=0&limit=100&format=json_extended&search_string=%s'%(imdb_id,token,itt)
         
-        y=requests.get(ur,headers=headers,timeout=10).json()
+        y=get_html(ur,headers=headers,timeout=10).json()
         if 'torrent_results' not in y:
            
             continue

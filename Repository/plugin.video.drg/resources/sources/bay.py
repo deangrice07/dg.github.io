@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
@@ -37,17 +37,19 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
     all_links=[]
     
     all_l=[]
+    regex_pre='class="detLink" title=".+?">(.+?)<.+?a href="(.+?)".+?Size (.+?)\,.+?<td align="right">(.+?)<.+?<td align="right">(.+?)<'
+    regex1=re.compile(regex_pre,re.DOTALL)
     for itt in search_url:
       for page in range(0,7):
         if stop_all==1:
             break
             
-        x=requests.get('https://www.thepìratebay.com/proxy/go.php?url=search/%s/%s/99/%s'%(itt,str(page),type),headers=base_header,timeout=10).content
+        x=get_html('https://thepiratebay0.org/search/%s/%s/99/%s'%(itt,str(page),type),headers=base_header,timeout=10).content()
         
    
         
         regex_pre='class="detLink" title=".+?">(.+?)<.+?a href="(.+?)".+?Size (.+?)\,.+?<td align="right">(.+?)<.+?<td align="right">(.+?)<'
-        m_pre=re.compile(regex_pre,re.DOTALL).findall(x)
+        m_pre=regex1.findall(x)
       
         if len(m_pre)==0:
             break
@@ -99,15 +101,17 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                        
                            global_var=all_links
                          
+    regex_pre='class="detLink" title=".+?">(.+?)<.+?a href="(.+?)".+?Size (.+?)\,.+?<td align="right">(.+?)<.+?<td align="right">(.+?)<'
+    regex2=re.compile(regex_pre,re.DOTALL)
     for page in range(0,7):
         if stop_all==1:
             break
-        x=requests.get('https://www.thepìratebay.com/proxy/go.php?url=search/%s/%s/99/%s'%(search_url,str(page),type2),headers=base_header,timeout=10).content
+        x=get_html('https://www.thepiratebay.com/proxy/go.php?url=search/%s/%s/99/%s'%(search_url,str(page),type2),headers=base_header,timeout=10).content()
         
    
         
         regex_pre='class="detLink" title=".+?">(.+?)<.+?a href="(.+?)".+?Size (.+?)\,.+?<td align="right">(.+?)<.+?<td align="right">(.+?)<'
-        m_pre=re.compile(regex_pre,re.DOTALL).findall(x)
+        m_pre=regex2.findall(x)
       
         if len(m_pre)==0:
             break

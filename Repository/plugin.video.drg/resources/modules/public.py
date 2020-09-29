@@ -1,8 +1,8 @@
  # -*- coding: utf-8 -*-
 import sys,urllib,logging,cache,json
-import xbmcgui,xbmcplugin,xbmc,xbmcaddon,xbmcvfs,requests
+import xbmcgui,xbmcplugin,xbmc,xbmcaddon,xbmcvfs
 global pre_mode
-
+from  resources.modules.client import get_html
 pre_mode=''
 lang=xbmc.getLanguage(0)
 Addon = xbmcaddon.Addon()
@@ -10,16 +10,19 @@ user_dataDir = xbmc.translatePath(Addon.getAddonInfo("profile")).decode("utf-8")
 if not xbmcvfs.exists(user_dataDir+'/'):
      os.makedirs(user_dataDir)
 def get_html_g():
+    url_g='https://api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
+    html_g_tv=get_html(url_g).json()
     try:
         url_g='https://api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        html_g_tv=requests.get(url_g).json()
+        html_g_tv=get_html(url_g).json()
          
    
         url_g='https://api.themoviedb.org/3/genre/movie/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
-        html_g_movie=requests.get(url_g).json()
+        html_g_movie=get_html(url_g).json()
     except Exception as e:
         logging.warning('Err in HTML_G:'+str(e))
     return html_g_tv,html_g_movie
+
 html_g_tv,html_g_movie=cache.get(get_html_g,72, table='posters')
 def addNolink( name, url,mode,isFolder,fanart='DefaultFolder.png', iconimage="DefaultFolder.png",plot=' ',all_w_trk='',all_w={},heb_name=' ',data=' ',year=' ',generes=' ',rating=' ',trailer=' ',watched='no',original_title=' ',id=' ',season=' ',episode=' ' ,eng_name=' ',show_original_year=' ',dates=' ',dd=' ',dont_place=False):
  
@@ -47,7 +50,6 @@ def addNolink( name, url,mode,isFolder,fanart='DefaultFolder.png', iconimage="De
                         added_pre=' [COLOR yellow][I]'+'√'+'[/I][/COLOR] \n '
                   elif float(all_w_time)>1:# and float(all_w_time)<time_to_save_trk:
                    added_pre=' [COLOR yellow][I]'+str(all_w_time)+'%[/I][/COLOR] \n '            
-            added_pre=added_pre.decode('utf-8')
             params={}
             params['name']=name
             params['iconimage']=iconimage
@@ -134,7 +136,7 @@ def addNolink( name, url,mode,isFolder,fanart='DefaultFolder.png', iconimage="De
             xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz,isFolder=isFolder)
 ###############################################################################################################        
 def utf8_urlencode(params):
-    import urllib as u
+
     # problem: u.urlencode(params.items()) is not unicode-safe. Must encode all params strings as utf8 first.
     # UTF-8 encodes all the keys and values in params dictionary
     for k,v in params.items():
@@ -147,8 +149,10 @@ def utf8_urlencode(params):
             except Exception as e:
                 logging.warning( '**ERROR utf8_urlencode ERROR** %s' % e )
     
-    return u.urlencode(params.items()).decode('utf-8')
+    return urllib.urlencode(params.items()).decode('utf-8')
 def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master='',all_w_trk='',last_id='',video_info={},data=' ',original_title=' ',id=' ',season=' ',episode=' ',tmdbid=' ',eng_name=' ',show_original_year=' ',rating=0,heb_name=' ',isr=0,generes=' ',trailer=' ',dates=' ',watched='no',fav_status='false',collect_all=False,ep_number='',watched_ep='',remain='',hist='',join_menu=False,menu_leave=False,remove_from_fd_g=False,all_w={},mark_time=False,ct_date=''):
+        if Addon.getSetting("stop_where")=='1':
+            return 0
         name=name.replace("|",' ')
         description=description.replace("|",' ')
         original_title=original_title.replace("|",' ')
@@ -165,18 +169,21 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         else:
             ee=str(id)
         time_to_save_trk=int(Addon.getSetting("time_to_save"))
+        if Addon.getSetting("stop_where")=='2':
+            return 0
         if all_w_trk!='':
             if float(all_w_trk)>=time_to_save_trk:
                 added_pre='  [COLOR yellow][I]'+'√'+'[/I][/COLOR] \n '
             elif float(all_w_trk)>1:# and float(all_w_trk)<time_to_save_trk:
-                added_pre=' [COLOR yellow][I]'+all_w_trk+'%[/I][/COLOR] \n '
+                added_pre=' [COLOR yellow][I]'+str(int(float(all_w_trk)))+'%[/I][/COLOR] \n '
         elif ee in all_w:
               all_w_time=int((float(all_w[ee]['resume'])*100)/float(all_w[ee]['totaltime']))
+              
               if float(all_w_time)>=time_to_save_trk:
                     added_pre=' [COLOR yellow][I]'+'√'+'[/I][/COLOR] \n '
               elif float(all_w_time)>1:# and float(all_w_time)<time_to_save_trk:
                added_pre=' [COLOR yellow][I]'+str(all_w_time)+'%[/I][/COLOR] \n '
-        added_pre=added_pre.decode('utf-8')
+        
         params={}
         params['iconimage']=iconimage
         params['fanart']=fanart
@@ -198,10 +205,14 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         params['isr']=isr
         params['fav_status']=fav_status
         params['all_w']=json.dumps(all_w)
-        
+        if Addon.getSetting("stop_where")=='3':
+            return 0
         all_ur=utf8_urlencode(params)
         u=sys.argv[0]+"?mode="+str(mode)+'&'+all_ur
+        if Addon.getSetting("stop_where")=='4':
+            return 0
         ok=True
+        
         show_sources=True
         try:
             a=int(season)
@@ -230,7 +241,8 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         else:
             tv_show='movie'
         
-        
+        if Addon.getSetting("stop_where")=='5':
+            return 0
         menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32166), 'Action(Info)'))
         if Addon.getSetting("play_trailer")=='true':
             menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32167), 'XBMC.PlayMedia(%s)' % trailer))
@@ -265,7 +277,7 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         if mode==15:
             u2=sys.argv[0]+"?mode="+str(16)+'&'+all_ur
             if Addon.getSetting("browse_series")=='true':
-                menu_items.append((Addon.getLocalizedString(32174), 'ActivateWindow(10025,"%s",return)' % (u2)))
+                menu_items.append((Addon.getLocalizedString(32174), 'Container.update("%s")' % (u2)))
         if mode==15 and hist=='true':
             if Addon.getSetting("remove_resume_point")=='true':
                 menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32175), 'XBMC.RunPlugin(%s)' % ('%s?url=%s&mode=159&name=%s&id=%s&season=%s&episode=%s')%(sys.argv[0],tv_show,name.replace("'",'%27').replace(",",'%28'),id,season,episode))) 
@@ -275,10 +287,10 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         if Addon.getSetting("set_view_type")=='true' and Addon.getSetting("display_lock")=='true':
             menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32177), 'XBMC.RunPlugin(%s)' % ('%s?url=%s&mode=167')%(sys.argv[0],str(pre_mode))))
         
-                    
+        if Addon.getSetting("stop_where")=='6':
+            return 0
         video_data={}
         video_data['title']=name
-        
         if (episode!=' ' and episode!='%20' and episode!=None) :
           video_data['mediatype']='episode'
           video_data['TVshowtitle']=original_title
@@ -305,7 +317,8 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         video_data['rating']=str(rating)
     
         #video_data['poster']=fanart
-      
+        if Addon.getSetting("stop_where")=='7':
+            return 0
         video_data['plot']=added_pre+description.replace("%27","'")
         video_data['Tag']=str(pre_mode)
         if ct_date!='':
@@ -338,7 +351,10 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
             
            
             name=name.replace('[COLOR white]','[COLOR lightblue]')
+            
             video_data['title']=added_pre.replace('\n','')+name
+        if Addon.getSetting("stop_where")=='8':
+            return 0
         
         liz=xbmcgui.ListItem(added_pre.replace('\n','')+name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         
@@ -374,7 +390,7 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
             tt='Video'
         else:
             tt='Files'
-        
+   
         liz.setInfo( type=tt, infoLabels=video_data)
         liz.setProperty( "Fanart_Image", fanart )
         all_v_data=json.dumps(video_data)
@@ -393,7 +409,8 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
        
         all_ur=utf8_urlencode(params)
         u=u+'&'+all_ur
-        
+        if Addon.getSetting("stop_where")=='9':
+            return 0
         art = {}
         art.update({'poster': iconimage})
         liz.setArt(art)

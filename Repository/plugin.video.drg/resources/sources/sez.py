@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -71,9 +71,17 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
       'q': search_string
     }
 
-    response = requests.post('https://sezonlukdizi.vip/ajax/arama.asp', headers=headers, data=data).json()
+    response = get_html('https://sezonlukdizi.vip/ajax/arama.asp', headers=headers, data=data).json()
     logging.warning(response)
     new_url=None
+    regex='<tr>(.+?)</tr>'
+    regex1=re.compile(regex,re.DOTALL)
+    
+    regex2=re.compile('src="(.+?)"')
+    
+    regex='data-options="(.+?)" data-player-container'
+    regex3=re.compile(regex)
+            
     for itt in response['results']['diziler']['results']:
         logging.warning(itt)
         c_title=itt['title']
@@ -84,9 +92,9 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         next_add='https://sezonlukdizi.vip'+itt['url'].replace('diziler','bolumler')
 
 
-        x=requests.get(next_add,headers=headers).content
-        regex='<tr>(.+?)</tr>'
-        m=re.compile(regex,re.DOTALL).findall(x)
+        x=get_html(next_add,headers=headers).content()
+        
+        m=regex1.findall(x)
         
         for item in m:
             
@@ -98,7 +106,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                 new_url='https://sezonlukdizi.vip'+m2[0]
                 break
     if new_url:
-        y=requests.get(new_url,headers=headers).content
+        y=get_html(new_url,headers=headers).content()
         regex='div bid="(.+?)"'
         idd=re.compile(regex).findall(y)[0]
        
@@ -121,7 +129,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
           'dil': '1'
         }
      
-        response = requests.post('https://sezonlukdizi.vip/ajax/dataAlternatif.asp', headers=headers, data=data).json()
+        response = get_html('https://sezonlukdizi.vip/ajax/dataAlternatif.asp', headers=headers, data=data).json()
 
         logging.warning(new_url)
         
@@ -130,9 +138,9 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
               'id': itt['id']
             }
 
-            response = requests.post('https://sezonlukdizi.vip/ajax/dataEmbed.asp', headers=headers, data=data).content
-            logging.warning(response)
-            e_url=re.compile('src="(.+?)"').findall(response)
+            response = get_html('https://sezonlukdizi.vip/ajax/dataEmbed.asp', headers=headers, data=data).content()
+         
+            e_url=regex2.findall(response)
         
             e_url=e_url[0].replace('odnoklassniki','ok')
             if 'http' not in e_url:
@@ -154,9 +162,9 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
             'TE': 'Trailers',
             }
 
-            z=requests.get(e_url,headers=headers).content
-            regex='data-options="(.+?)" data-player-container'
-            sHtmlContent=re.compile(regex).findall(z)[0]
+            z=get_html(e_url,headers=headers).content()
+            
+            sHtmlContent=regex3.findall(z)[0]
             sHtmlContent = removeHtmlTags(sHtmlContent)
             sHtmlContent = unescape(sHtmlContent)#.decode('utf-8'))
                 

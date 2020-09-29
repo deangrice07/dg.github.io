@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time,random
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
 
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
 try:
     from resources.modules.general import Addon
@@ -61,7 +61,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
             ('_', str(time.time()*100)),
         )          
        
-        response = requests.get('https://snowfl.com/OIcObqNfqpHTDvLKWQDNRlzQPbtqRcoKhtlled/%s/%s/%s/NONE/NONE/1'%(search_url,rand_str,str(page)), headers=headers, params=params).json()
+        response = get_html('https://snowfl.com/OIcObqNfqpHTDvLKWQDNRlzQPbtqRcoKhtlled/%s/%s/%s/NONE/NONE/1'%(search_url,rand_str,str(page)), headers=headers, params=params).json()
        
         for results in response:
             if stop_all==1:
@@ -126,7 +126,7 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
                 site=results['site']
                 ur=urllib.quote_plus(results['url']).encode('base64').replace(' ','').replace('\n','').replace('\r','').replace('\t','')
                
-                response = requests.get('https://snowfl.com/OIcObqNfqpHTDvLKWQDNRlzQPbtqRcoKhtlled/%s/%s'%(site,ur), headers=headers, params=params).json()
+                response = get_html('https://snowfl.com/OIcObqNfqpHTDvLKWQDNRlzQPbtqRcoKhtlled/%s/%s'%(site,ur), headers=headers, params=params).json()
                 
                 if 1:
                     nam=results['name']

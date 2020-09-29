@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import requests,re
+import re
 import time
-
+from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
@@ -11,7 +11,7 @@ try:
 except:
  local=True
  
-from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,cloudflare_request,all_colors,base_header
+from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 try:
     from resources.modules.general import Addon
 except:
@@ -37,21 +37,26 @@ def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_ori
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower(),('%s-s%s'%(clean_name(original_title,1).replace(' ','+'),season_n)).lower(),('%s-season-%s'%(clean_name(original_title,1).replace(' ','+'),season)).lower()]
      else:
         search_url=[('%s-s%se%s'%(clean_name(original_title,1).replace(' ','+'),season_n,episode_n)).lower()]
+    regex='<tr class(.+?)</tr>'
+    regex1=re.compile(regex,re.DOTALL)
     
+    regex='a href="magnet(.+?)".+?a href=".+?title="(.+?)".+?td class="sy">(.+?)<.+?td class="ly">(.+?)<'
+    regex2=re.compile(regex,re.DOTALL)
+            
     for itt in search_url:
       for page in range(1,4):
         
-        x,cook=cloudflare_request('https://extratorrent2.unblockninja.com/search/%s/?search=%s&x=0&y=0&category=%s'%(str(page),itt,cat))
+        x=get_html('https://extratorrent2.unblockninja.com/search/%s/?search=%s&x=0&y=0&category=%s'%(str(page),itt,cat),headers=base_header).content()
         
         regex='<tr class(.+?)</tr>'
-        macth_pre=re.compile(regex,re.DOTALL).findall(x)
+        macth_pre=regex1.findall(x)
        
         for items in macth_pre:
       
             if stop_all==1:
                 break
             regex='a href="magnet(.+?)".+?a href=".+?title="(.+?)".+?td class="sy">(.+?)<.+?td class="ly">(.+?)<'
-            match=re.compile(regex,re.DOTALL).findall(items)
+            match=regex2.findall(items)
 
             
             try:

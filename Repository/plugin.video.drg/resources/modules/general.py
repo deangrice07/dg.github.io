@@ -1,5 +1,5 @@
 
-import logging,re,requests,cache,PTN,time,os
+import logging,re,cache,time,os
 global local
 local=False
 try:
@@ -28,8 +28,12 @@ elif Addon.getSetting("theme")=='1':
     art_folder='artwork_keshav'
 elif Addon.getSetting("theme")=='2':
     art_folder='artwork_shinobi'
+elif Addon.getSetting("theme")=='3':
+    art_folder='artwork_sonic'
 BASE_LOGO=os.path.join(addonPath, 'resources', art_folder+'/')
-
+__addon__ = xbmcaddon.Addon()
+addon_name=__addon__.getAddonInfo('name')
+addon_id=__addon__.getAddonInfo('id')
 try:
     import xbmc
     KODI_VERSION = int(xbmc.getInfoLabel("System.BuildVersion").split('.', 1)[0])
@@ -43,8 +47,17 @@ except:
     domain_s='https://'
 all_colors=['aliceblue', 'anitquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'honeydew', 'hotpink', 'indianred ', 'indigo  ', 'ivory', 'khaki', 'kodi', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'none', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'whitesmoke', 'yellow', 'yellowgreen']
 from public import get_html_g
-
+from  resources.modules.client import get_html
 html_g_tv,html_g_movie=cache.get(get_html_g,72, table='posters')
+rd_sources=Addon.getSetting("rdsource")
+allow_debrid = rd_sources == "true" 
+if allow_debrid:
+    rd_domains=cache.get(get_rd_servers, 720, table='RD_Account')
+
+else:
+    rd_domains=[]
+if local:
+    rd_domains=[u'4shared.com', u'openload.co', u'rapidgator.net', u'sky.fm', u'1fichier.com', u'docs.google.com', u'depositfiles.com', u'hitfile.net', u'rapidvideo.com', u'filerio.com', u'solidfiles.com', u'mega.co.nz', u'scribd.com', u'flashx.tv', u'canalplus.fr', u'dailymotion.com', u'salefiles.com', u'youtube.com', u'faststore.org', u'turbobit.net', u'big4shared.com', u'filefactory.com', u'youporn.com', u'oboom.com', u'vimeo.com', u'redtube.com', u'zippyshare.com', u'file.al', u'clicknupload.me', u'soundcloud.com', u'gigapeta.com', u'datafilehost.com', u'datei.to', u'rutube.ru', u'load.to', u'streamango.com', u'sendspace.com', u'vidoza.net', u'tusfiles.net', u'unibytes.com', u'ulozto.net', u'hulkshare.com', u'dl.free.fr', u'streamcherry.com', u'vidlox.tv', u'mediafire.com', u'vk.com', u'uploaded.net', u'userscloud.com']
 def get_rd_servers():
     
         rd_domains=[]
@@ -66,15 +79,7 @@ def get_rd_servers():
             pass
         return rd_domains
 
-rd_sources=Addon.getSetting("rdsource")
-allow_debrid = rd_sources == "true" 
-if allow_debrid:
-    rd_domains=cache.get(get_rd_servers, 720, table='RD_Account')
 
-else:
-    rd_domains=[]
-if local:
-    rd_domains=[u'4shared.com', u'openload.co', u'rapidgator.net', u'sky.fm', u'1fichier.com', u'docs.google.com', u'depositfiles.com', u'hitfile.net', u'rapidvideo.com', u'filerio.com', u'solidfiles.com', u'mega.co.nz', u'scribd.com', u'flashx.tv', u'canalplus.fr', u'dailymotion.com', u'salefiles.com', u'youtube.com', u'faststore.org', u'turbobit.net', u'big4shared.com', u'filefactory.com', u'youporn.com', u'oboom.com', u'vimeo.com', u'redtube.com', u'zippyshare.com', u'file.al', u'clicknupload.me', u'soundcloud.com', u'gigapeta.com', u'datafilehost.com', u'datei.to', u'rutube.ru', u'load.to', u'streamango.com', u'sendspace.com', u'vidoza.net', u'tusfiles.net', u'unibytes.com', u'ulozto.net', u'hulkshare.com', u'dl.free.fr', u'streamcherry.com', u'vidlox.tv', u'mediafire.com', u'vk.com', u'uploaded.net', u'userscloud.com']
 base_header={
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
@@ -91,7 +96,7 @@ class cleantitle():
    def get(self,name):
     return name.replace('%20',' ').replace('%3a',':').replace('%27',"'")
 class client():
-  
+
   def __init__(self, url):
         self.url = url 
   @classmethod
@@ -107,7 +112,7 @@ class client():
             'Upgrade-Insecure-Requests': '1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
         }
-     return requests.get(url,headers=headers,cookies=cookie).content
+     return get_html(url,headers=headers,cookies=cookie).content
 BASE_URL = 'http://api.trakt.tv'
 SETTING_TRAKT_EXPIRES_AT = "trakt_expires_at"
 SETTING_TRAKT_ACCESS_TOKEN = "trakt_access_token"
@@ -119,14 +124,15 @@ def reset_trakt():
     ret =xbmcgui.Dialog().yesno(("Authenticate Trakt"), ("Clear Trakt Auth.?"))
     if ret:
       Addon.setSetting(SETTING_TRAKT_ACCESS_TOKEN, '')
-      xbmc.executebuiltin((u'Notification(%s,%s)' % ('DRG', ' Trakt Cleared'.decode('utf8'))).encode('utf-8'))
+      xbmc.executebuiltin((u'Notification(%s,%s)' % (addon_name, ' Trakt Cleared'.decode('utf8'))).encode('utf-8'))
 def trakt_get_device_code():
     data = { 'client_id': CLIENT_ID }
     return call_trakt("oauth/device/code", data=data, with_auth=False)
 def trakt_authenticate():
     code = trakt_get_device_code()
     token = trakt_get_device_token(code)
-    if token:
+    logging.warning(token)
+    if token and 'error_code' not in token:
         expires_at = time.time() + 60*60*24*30#*3
         Addon.setSetting(SETTING_TRAKT_EXPIRES_AT, str(expires_at))
         Addon.setSetting(SETTING_TRAKT_ACCESS_TOKEN, token["access_token"])
@@ -172,7 +178,7 @@ def copy2clip(txt):
     pass
     
 def trakt_get_device_token(device_codes):
-
+    
     data = {
         "code": device_codes["device_code"],
         "client_id": CLIENT_ID,
@@ -200,15 +206,21 @@ def trakt_get_device_token(device_codes):
                     break
             try:
                 response = call_trakt("oauth/device/token", data=data, with_auth=False)
-            except requests.HTTPError, e:
-                if e.response.status_code != 400:
-                    raise e
+                logging.warning('response')
+                logging.warning(response)
+                if 'error_code' in response:
+                    progress = int(100 * time_passed / expires_in)
+                    progress_dialog.update(progress)
+                    xbmc.sleep(max(device_codes["interval"], 1)*1000)
+                else:
+                    return response
+            except :
+                
                 
                 progress = int(100 * time_passed / expires_in)
                 progress_dialog.update(progress)
                 xbmc.sleep(max(device_codes["interval"], 1)*1000)
-            else:
-                return response
+            
             time_passed = time.time() - start
     finally:
         
@@ -221,6 +233,7 @@ def trakt_get_device_token(device_codes):
 
 def post_trakt(path,data=None, with_auth=True):
     import urllib
+    
     API_ENDPOINT = "https://api-v2launch.trakt.tv"
 
     headers = {
@@ -237,12 +250,13 @@ def post_trakt(path,data=None, with_auth=True):
             headers.update({'Authorization': 'Bearer %s' % token})
             
         
-            return requests.post("{0}/{1}".format(API_ENDPOINT, path), json=(data), headers=headers).content
+            return get_html("{0}/{1}".format(API_ENDPOINT, path), json=(data), headers=headers).content()
   
         
       
 def cached_call_t(path, params={}, data=None, is_delete=False, with_auth=True, pagination = False, page = 1):
     import urllib
+    
     params = dict([(k, (v).encode('utf8')) for k, v in params.items() if v])
     headers = {
         'Content-Type': 'application/json',
@@ -266,11 +280,13 @@ def cached_call_t(path, params={}, data=None, is_delete=False, with_auth=True, p
                 headers['Authorization'] = 'Bearer ' + token
         if data is not None:
             assert not params
-            return requests.post("{0}/{1}".format(API_ENDPOINT, path), json=(data), headers=headers,timeout=15)
+            return get_html("{0}/{1}".format(API_ENDPOINT, path), json=(data), headers=headers,timeout=15).json()
         elif is_delete:
             return requests.delete("{0}/{1}".format(API_ENDPOINT, path), headers=headers,timeout=15)
         else:
-            return requests.get("{0}/{1}".format(API_ENDPOINT, path), params, headers=headers,timeout=15)
+           
+            a=get_html("{0}/{1}".format(API_ENDPOINT, path), params, headers=headers,timeout=15).json()
+            return a
 
     def paginated_query(page):
         lists = []
@@ -287,20 +303,20 @@ def cached_call_t(path, params={}, data=None, is_delete=False, with_auth=True, p
 
     if pagination == False:
         response = send_query()
-        logging.warning('Asking')
+        status_code=200
+        if 'error_code' in response:
+            status_code=response['error_code']
+       
         if Addon.getSetting("auto_trk")=='true':
             check=True
         else:
-            if with_auth and response.status_code == 401:
+            if with_auth and status_code == 401:
                 check=xbmcgui.Dialog().yesno(("Authenticate Trakt"),("You must authenticate with Trakt. Do you want to authenticate now?"))
-        if with_auth and response.status_code == 401 and check and trakt_authenticate():
+        if with_auth and status_code == 401 and check and trakt_authenticate():
             response = send_query()
-        response.raise_for_status()
-        response.encoding = 'utf-8'
-        try:
-            return response.json()
-        except:
-            return response.text
+        #response.raise_for_status()
+       
+        return response
     else:
         
         (response, numpages) = paginated_query(page)
@@ -355,6 +371,8 @@ def fix_q(quality):
       f_q=6
     elif '240' in quality:
       f_q=7
+   
+        
     return f_q
 def base_convert(x,b,alphabet='0123456789abcdefghijklmnopqrstuvwxyz'):
     'convert an integer to its string representation in a given base'
@@ -378,6 +396,7 @@ def base_convert(x,b,alphabet='0123456789abcdefghijklmnopqrstuvwxyz'):
     return rets
     
 def get_imdb_data(info,name_o,image,source,type):
+         
          tmdbKey = '653bb8af90162bd98fc7ee32bcbbfb3d'
          name=name_o
          imdb_id=''
@@ -413,13 +432,13 @@ def get_imdb_data(info,name_o,image,source,type):
           else:
             tmdb_data="https://api.tmdb.org/3/search/%s?api_key=%s&query=%s&language=he&append_to_response=external_ids"%(type,tmdbKey,urllib.quote_plus(info['title']))
 
-          all_data=requests.get(tmdb_data).json()
+          all_data=get_html(tmdb_data).json()
           if 'results' in all_data:
            if len(all_data['results'])>0:
                 if (all_data['results'][0]['id'])!=None:
                     url='https://api.themoviedb.org/3/%s/%s?api_key=%s&language=he&append_to_response=external_ids'%(type,all_data['results'][0]['id'],tmdbKey)
                     try:
-                        all_d2=requests.get(url).json()
+                        all_d2=get_html(url).json()
                         imdb_id=all_d2['external_ids']['imdb_id']
                     except:
                         imdb_id=" "
@@ -474,7 +493,7 @@ def fix_name(name_o):
     name_o=name_o.replace('=',' ').replace('[B]','').replace('[/B]','').replace('silver','').replace('deepskyblue','').replace('[','').replace(']','').replace('/COLOR','').replace('COLOR','').replace('4k','').replace('4K','').strip().replace('(','.').replace(')','.').replace(' ','.').replace('..','.')
     return name_o
 def res_q(quality):
-    f_q=' '
+    f_q='480'
     if '2160' in quality:
       f_q='2160'
     elif '1080' in quality:
@@ -489,6 +508,7 @@ def res_q(quality):
       f_q='360'
     elif '240' in quality:
       f_q='240'
+    
     return f_q
 def fix_q(quality):
     f_q=100
@@ -526,6 +546,7 @@ def similar(w1, w2):
     return int(round(s.ratio()*100))
 def cloudflare_request(url, post=None, headers={}, mobile=False, safe=False,get_url=False, timeout=30):
     from cfscrape import run
+    
     parsed_uri = urlparse( url)
     domain = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
     if get_url:
@@ -542,9 +563,9 @@ def cloudflare_request(url, post=None, headers={}, mobile=False, safe=False,get_
             result= x
         else:
             if post!=None:
-                result=requests.post(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
+                result=get_html(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
             else:
-                result=requests.get(url,headers=token[1],cookies=token[0],timeout=10)   
+                result=get_html(url,headers=token[1],cookies=token[0],timeout=10)   
             result=result.content
         
         
@@ -564,9 +585,9 @@ def cloudflare_request(url, post=None, headers={}, mobile=False, safe=False,get_
                     result= x
                 else:
                     if post!=None:
-                        result=requests.post(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
+                        result=get_html(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
                     else:
-                        result=requests.get(url,headers=token[1],cookies=token[0],timeout=10)   
+                        result=get_html(url,headers=token[1],cookies=token[0],timeout=10)   
                     
                     result=result.content
                     if 'jschl-answer' in result:
@@ -582,23 +603,23 @@ def cloudflare_request(url, post=None, headers={}, mobile=False, safe=False,get_
                 result= x
             else:
                 if post!=None:
-                    result=requests.post(url,headers=token[1],cookies=token[0],timeout=10,data=post)
+                    result=get_html(url,headers=token[1],cookies=token[0],timeout=10,data=post)
                 else:
-                    result=requests.get(url,headers=token[1],cookies=token[0],timeout=10)
+                    result=get_html(url,headers=token[1],cookies=token[0],timeout=10)
                 result=result.content
            
                 if 'jschl-answer' in result:
                         
                         x,token=cache.get(run.get_tokens_with_headers,0,url,headers,get_url, table='cookies')
                         if post!=None:
-                            result=requests.post(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
+                            result=get_html(url,headers=token[1],cookies=token[0],timeout=10,data=post)   
                         else:
-                            result=requests.get(url,headers=token[1],cookies=token[0],timeout=10)   
+                            result=get_html(url,headers=token[1],cookies=token[0],timeout=10)   
                         
                         result=result.content
                        
         if x=='NOTCF':
-            result=requests.get(url,headers=token[1],timeout=10)
+            result=get_html(url,headers=token[1],timeout=10)
             result=result.content
     return result,token
 def cloudflare_request_old(url, post=None, headers=None, mobile=False, safe=False, timeout=30):
@@ -631,7 +652,7 @@ def cloudflare_request_old(url, post=None, headers=None, mobile=False, safe=Fals
         except Exception as e:
           
           try:
-            result = requests.get(url,headers=headers,timeout=timeout)
+            result = get_html(url,headers=headers,timeout=timeout)
           except:
             return ' ','OK'
           
@@ -641,11 +662,11 @@ def cloudflare_request_old(url, post=None, headers=None, mobile=False, safe=Fals
         
         if post!=None:
          
-          result = requests.post(url,headers=headers,cookies=tokens,data=post)
+          result = get_html(url,headers=headers,cookies=tokens,data=post)
         else:
 
           
-          result = requests.get(url,headers=headers,cookies=tokens,timeout=timeout)
+          result = get_html(url,headers=headers,cookies=tokens,timeout=timeout)
         if 'jschl-answer' in result.content:
           
             tokens, user_agent = cache.get(cfscrape.get_tokens,0,domain,user_agent, table='cookies')
@@ -653,9 +674,9 @@ def cloudflare_request_old(url, post=None, headers=None, mobile=False, safe=Fals
             
             if post!=None:
               
-              result = requests.post(url,headers=headers,cookies=tokens,data=post)
+              result = get_html(url,headers=headers,cookies=tokens,data=post)
             else:
-              result = requests.get(url,headers=headers,cookies=tokens,timeout=timeout)
+              result = get_html(url,headers=headers,cookies=tokens,timeout=timeout)
 
         #scraper = cfscrape.create_scraper()
         #r = scraper.get(url).content
@@ -716,6 +737,7 @@ def  get_(size):
 
         return str(size)+' '+ Dic_powerN[n]
 def get_vidcloud(url):
+        
         if 'http' not in url:
             url='http:'+url
         headers = {
@@ -730,7 +752,7 @@ def get_vidcloud(url):
             'TE': 'Trailers',
         }
         progress='requests2'
-        x=requests.get(url,headers=headers).content
+        x=get_html(url,headers=headers).content
        
         regex="sources.+?file: '(.+?)'"
         progress='Regex'
@@ -738,6 +760,7 @@ def get_vidcloud(url):
         return urls,headers
                         
 def server_data(f_link,original_title,direct='NO',c_head={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0'},check_now=False):
+       import PTN
        
        time.sleep(0.01)
        not_working_servers=['database.gdriveplayer.us','vidoza','streamcherry','verystream','openload','oload.','streamango','rapidvideo','vidup.me','vidup.me','hqq.','vidup.tv','vidup.io','vidtodo.com','xn--4dbx','thefile.me','videoweed.es','watchvideo17.us','vodlocker.com','bitvid.sx','waaw','flashx.pw','thevideo.me','vev.io','movpod.in','daclips.in','dl8.heyserver.in','cloudtime.to','speedvid.net','watchers.to','vidzella.me','not_found.php','nitroflare','nitrobit','youtube','vidto.me','vidzi.tv','vidoza.net','nowvideo.sx','vidzi.nu','estream','streamcherry.com']
@@ -850,7 +873,7 @@ def server_data(f_link,original_title,direct='NO',c_head={'User-Agent': 'Mozilla
                 id=id.split('&')[0]
             f_link='https://api.rapidvideo.com/v2/file/info?login=OfFwz0oI8nZdKXqJ&key=b1868df14e229e26df05a1f4553be1a612a76a511ccf068af680f22db0d3fbcf&file='+id
             #f_link='https://api.rapidvideo.com/v1/objects.php?ac=info&code='+id
-            x=requests.get(f_link,headers=c_head).json()
+            x=get_html(f_link,headers=c_head).json()
            
             
             if x['result'][id]['status']!=200:
@@ -900,7 +923,7 @@ def server_data(f_link,original_title,direct='NO',c_head={'User-Agent': 'Mozilla
             elif 'verystream' in f_link:
                 base='verystream'
                 ur='https://api.verystream.com/file/info?file='+lks
-            x=requests.get(ur).json()
+            x=get_html(ur).json()
          
             if x['result'][lks]['status']==200:
                 name1=x['result'][lks]['name']
@@ -971,10 +994,10 @@ def server_data(f_link,original_title,direct='NO',c_head={'User-Agent': 'Mozilla
        
         if direct=='yes':
            
-           try_head = requests.get(f_link,headers=c_head, stream=True,verify=False,timeout=15)
+           try_head = get_html(f_link,headers=c_head, stream=True,verify=False,timeout=15)
            #if try_head.url!=f_link:
            #     
-           #     try_head = requests.get(try_head.url,headers=c_head, stream=True,verify=False,timeout=10)
+           #     try_head = get_html(try_head.url,headers=c_head, stream=True,verify=False,timeout=10)
            f_size2='0.0 GB'
            
            if 'Content-Length' in try_head.headers:
@@ -1014,9 +1037,9 @@ def server_data(f_link,original_title,direct='NO',c_head={'User-Agent': 'Mozilla
                 if chunk: # filter out keep-alive new chunks
                     html2+=chunk
           #if 'thevideo' in f_link or 'vev.io' in f_link:
-          #  html2=requests.get(f_link,headers=c_head,timeout=10,verify=False).content
+          #  html2=get_html(f_link,headers=c_head,timeout=10,verify=False).content
           #else:
-          #  html2=requests.get(f_link,headers=c_head,timeout=10).content
+          #  html2=get_html(f_link,headers=c_head,timeout=10).content
         else:
           html2,cook=cloudflare.request(f_link,timeout=5)
         

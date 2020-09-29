@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 
 import time
-import requests
-import tools,source_utils
+
+
 import  json, re, logging,sys,xbmcgui,xbmc,os
 
 
-import subprocess
+
 import xbmcaddon
 
 Addon = xbmcaddon.Addon()
-
+from  resources.modules.client import get_html
 try:
     resuaddon=xbmcaddon.Addon('script.module.resolveurl')
+   
 except Exception as e:
     
     pass
 def copy2clip(txt):
+    import subprocess
     platform = sys.platform
 
     if platform == 'win32':
@@ -58,7 +60,7 @@ def colorString(text, color=None):
     except:
         return '[COLOR ' + str(color) + ']' + text   + '[/COLOR]'
 
-progressDialog = xbmcgui.DialogProgress()
+
 class Premiumize:
 
     def __init__(self):
@@ -74,8 +76,9 @@ class Premiumize:
         }
 
     def auth(self):
+        import tools
         data = {'client_id': self.client_id, 'response_type': 'device_code'}
-        token = requests.post('https://www.premiumize.me/token', data=data).json()
+        token = get_html('https://www.premiumize.me/token', data=data).json()
         expiry = token['expires_in']
         token_ttl = token['expires_in']
         poll_again = True
@@ -85,23 +88,26 @@ class Premiumize:
                                     line1='Open this link in a browser: {}'.format(colorString(token['verification_uri'])),
                                     line2='Enter the code: {}'.format(colorString(token['user_code'])))
         tools.progressDialog.update(0)
-
+        logging.warning(token)
         while poll_again and not token_ttl <= 0 and not tools.progressDialog.iscanceled():
             poll_again, success = self.poll_token(token['device_code'])
             progress_percent = 100 - int((float((expiry - token_ttl) / expiry) * 100))
             tools.progressDialog.update(progress_percent)
             time.sleep(token['interval'])
             token_ttl -= int(token['interval'])
-
+            
         tools.progressDialog.close()
 
         if success:
             tools.showDialog.ok(tools.addonName, 'Authentication is completed')
 
     def poll_token(self, device_code):
+        import tools
         data = {'client_id': self.client_id, 'code': device_code, 'grant_type': 'device_code'}
-        token = requests.post('https://www.premiumize.me/token', data=data).json()
-
+        token = get_html('https://www.premiumize.me/token', data=data).json()
+        
+        if 'error_code' in token:
+            return True, False
         if 'error' in token:
             if token['error'] == "access_denied":
                 return False, False
@@ -116,19 +122,26 @@ class Premiumize:
         return False, True
 
     def get_url(self, url):
+        import tools
         if self.headers['Authorization'] == 'Bearer ':
             tools.log('User is not authorised to make PM requests')
             return None
         url = "https://www.premiumize.me/api{}".format(url)
-        req = requests.get(url, timeout=10, headers=self.headers).json()
+        req = get_html(url, timeout=10, headers=self.headers).json()
         return req
 
     def post_url(self, url, data):
+        import tools
+        
         if self.headers['Authorization'] == 'Bearer ':
             tools.log('User is not authorised to make PM requests')
+            xbmc.executebuiltin((u'Notification(%s,%s)' % ('Error', 'User is not authorised to make PM requests')))
             return None
         url = "https://www.premiumize.me/api{}".format(url)
-        req = requests.post(url, headers=self.headers, data=data, timeout=10).json()
+        logging.warning('f_url')
+        logging.warning(url)
+        req = get_html(url, headers=self.headers, data=data, timeout=10).json()
+        logging.warning(req)
         return req
 
     def account_info(self):
@@ -149,8 +162,14 @@ class Premiumize:
 
     def hash_check(self, hashList):
         url = '/cache/check'
-        postData = {'items[]': hashList}
-        response = self.post_url(url, postData)
+        #postData = {'items[]': hashList}
+        #response = self.post_url(url, postData)
+        all_mag=[]
+        for itt in hashList:
+            all_mag.append(itt)
+            
+        response =self.get_url(url+'?items%5B%5D='+'&items%5B%5D='.join(all_mag))
+       
         return response
 
     def item_details(self, itemID):
@@ -166,6 +185,8 @@ class Premiumize:
     def direct_download(self, src):
         postData = {'src': src}
         url = '/transfer/directdl'
+        logging.warning(postData)
+        logging.warning(url)
         return self.post_url(url, postData)
 
     def list_transfers(self):
@@ -202,7 +223,7 @@ class Premiumize:
         return stream_link
 
     def folder_streams(self, folderID):
-
+        import source_utils
         files = self.list_folder(folderID)
         returnFiles = []
         for i in files:
@@ -226,6 +247,8 @@ class Premiumize:
 
     def _single_magnet_resolve(self, magnet, pack_select=False):
         import logging
+        import source_utils
+        import tools
         response=(self.direct_download(magnet))
         if response['status']=='error':
             tools.showDialog.ok(tools.addonName, response['message'])
@@ -256,7 +279,7 @@ class Premiumize:
 
 
     def resolve_magnet(self, magnet, args, torrent, pack_select):
-
+        import source_utils
         if 'showInfo' not in args:
             return self._single_magnet_resolve(magnet, args)
 
@@ -290,11 +313,13 @@ class Premiumize:
         return stream_link
 
     def _handle_add_to_cloud(self, magnet):
+        import tools
         if tools.getSetting('premiumize.addToCloud') == 'true':
             transfer = self.create_transfer(magnet)
             database.add_premiumize_transfer(transfer['id'])
 
     def _fetch_transcode_or_standard(self, file_object):
+        import tools
         if tools.getSetting('premiumize.transcoded') == 'true' and \
                 file_object['transcode_status'] == 'finished':
             return file_object['stream_link']
@@ -302,6 +327,8 @@ class Premiumize:
             return file_object['link']
 
     def user_select(self, content):
+        import source_utils
+        import tools
         display_list = []
         for i in content:
             if any(i['path'].endswith(ext) for ext in source_utils.COMMON_VIDEO_EXTENSIONS):
