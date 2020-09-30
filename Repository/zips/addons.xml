@@ -87,7 +87,7 @@
 
 <addon id="plugin.video.drg"
 	   name="DRG"
-	   version="1.0.2"
+	   version="1.0.3"
 	   provider-name="Grice Advice">
   <requires>
 
@@ -101,10 +101,6 @@
     <description lang="en">All the media as fast as possible</description>
 
     <platform>all</platform>
-    <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-    </assets>
   </extension>
 </addon>
 

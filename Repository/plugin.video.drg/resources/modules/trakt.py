@@ -514,8 +514,10 @@ def progress_trakt(url,sync=False):
         t = TVDB()
         for tvdb_id,season,episode in get_tvdb_arr:
             
-        
-            show_data=t.getShowData_id(tvdb_id)
+            try:
+                show_data=t.getShowData_id(tvdb_id)
+            except:
+                continue
    
             if 'error_code' in show_data:
                 continue

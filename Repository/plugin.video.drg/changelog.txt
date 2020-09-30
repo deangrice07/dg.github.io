@@ -1,4 +1,13 @@
-﻿[COLOR yellow][B]v2.3.6[/B]
+﻿[COLOR yellow][B]v2.3.9[/B]
+* Added fen scrapers as an option.
+* added new look for sources "Panel" (choose in settings).
+* added new theme "Bob" thanks to Bob Albion.
+
+[COLOR lightblue][B]v2.3.8[/B]
+* fix nextup buttons text
+* fix open season's episodes from series tracker.
+
+[COLOR lightblue][B]v2.3.6[/B]
 * fixed marked as unwatched.
 * easier fanart control in themes.
 * New Sonic theme thanks to DaButcher and Funsterbe.

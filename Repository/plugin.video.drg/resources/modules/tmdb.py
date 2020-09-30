@@ -806,8 +806,12 @@ def get_seasons(name,url,iconimage,fanart,description,data,original_title,id,heb
     
     
    else:
-    show=t.getShow_id(tvdb_id)
-   
+    try:
+        show=t.getShow_id(tvdb_id)
+    except:
+        show={'data':[]}
+   if 'error_code' in show:
+        show={'data':[]}
    max_season_tvdb=0
    match=[]
 
@@ -1023,8 +1027,14 @@ def get_episode(name,url,iconimage,fanart,description,data,original_title,id,sea
    from tvdb import TVDB
 
    t = TVDB()
-   
-   show=t.getShow_id(tvdb_id)
+   try:
+    show=t.getShow_id(tvdb_id)
+    if 'error_code' in show:
+        show={'data':[]}
+   except:
+    show={'data':[]}
+    pass
+   logging.warning(show)
    max_season_tvdb=0
    match=[]
    for item_tvdb in show['data']:

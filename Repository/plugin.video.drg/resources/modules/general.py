@@ -30,6 +30,8 @@ elif Addon.getSetting("theme")=='2':
     art_folder='artwork_shinobi'
 elif Addon.getSetting("theme")=='3':
     art_folder='artwork_sonic'
+elif Addon.getSetting("theme")=='4':
+    art_folder='artwork_bob'
 BASE_LOGO=os.path.join(addonPath, 'resources', art_folder+'/')
 __addon__ = xbmcaddon.Addon()
 addon_name=__addon__.getAddonInfo('name')

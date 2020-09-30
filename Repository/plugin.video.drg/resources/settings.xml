@@ -3,7 +3,7 @@
 	<category label="General">
 		
 		
-		<setting id="theme" type="enum" label="32205" values="Funsterbe|Keshav|Shinobi|Sonic"  default="0" />
+		<setting id="theme" type="enum" label="32205" values="Funsterbe|Keshav|Shinobi|Sonic|Bob"  default="0" />
 		
 		<setting id="num_p"  type="number"  label="32206" visible="true" default="1"/>
 		<setting id="order_networks" type="enum" label="32207" lvalues="32208|32209|32210"  default="0" />
@@ -20,7 +20,7 @@
 		<setting id="adults" label="32217" type="bool"  default="true" />
 		
 		
-		<setting label="[COLOR lightblue][I]$ADDON[plugin.video.shadow 32220][/I][/COLOR]" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=163&url=www)" />
+		<setting label="[COLOR lightblue][I]$ADDON[plugin.video.drg 32220][/I][/COLOR]" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=163&url=www)" />
 		
 		
 		<setting id="rd.auth" type="text" default="" visible="hidden" />
@@ -36,19 +36,19 @@
 
 	</category>
 	
-	<category label="$ADDON[plugin.video.shadow 32027]">
+	<category label="$ADDON[plugin.video.drg 32027]">
 		<setting id="s_traker_style" label="32311" type="bool"  default="false" />
 		<setting id="show_over" label="32312" type="bool"  default="false" />
 		<setting id="time_to_save" label="32214" type="number" default="75" />
-		<setting label="32218" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=147&url=www)" />
-		<setting label="32219" option="close" type="action"   action="RunPlugin(plugin://plugin.video.shadow?mode=157&url=False)"/>
+		<setting label="32218" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=147&url=www)" />
+		<setting label="32219" option="close" type="action"   action="RunPlugin(plugin://plugin.video.drg?mode=157&url=False)"/>
 		<setting label="trakt access token" id="trakt_access_token" type="text" visible="false" />
 		<setting label="trakt refresh token" id="trakt_refresh_token" type="text" visible="false" />
 		<setting label="trakt refresh token" id="trakt_expires_at" type="text" visible="false" />
 		
 	</category>
 	<category label="32221">
-		<setting label="[COLOR khaki][I]$ADDON[plugin.video.shadow 32124][/I][/COLOR]" type="lsep"/>
+		<setting label="[COLOR khaki][I]$ADDON[plugin.video.drg 32124][/I][/COLOR]" type="lsep"/>
 		<setting id="garbage" type="text" default="" visible="false" />
 		<setting label="32222" type="lsep"/>
 		<setting id="max_q" type="enum" label="32223" values="720|1080|2160"  default="2" />
@@ -60,7 +60,7 @@
 		<setting id="hdvc" type="bool" label="32228" default="true" visible="eq(-2,true)"/>
 		<setting id="low_q" type="bool" label="32229" default="false" visible="eq(-3,true)"/>
 		
-		<setting label="[COLOR khaki][I]$ADDON[plugin.video.shadow 32099][/I][/COLOR]" type="lsep"/>
+		<setting label="[COLOR khaki][I]$ADDON[plugin.video.drg 32099][/I][/COLOR]" type="lsep"/>
 		<setting id="garbage2" type="text" default="" visible="false" />
 		<setting label="32222" type="lsep"/>
 		<setting id="max_q_tv" type="enum" label="32223" values="720|1080|2160"  default="2" />
@@ -78,17 +78,17 @@
 	<category label="32231">
 		<setting id="debrid_use" label="32232" type="bool"  default="true" />
 		<setting id="debrid_select" type="enum" label="32233" values="Real-Debrid|Premiumize|ALL-Debrid"  default="0" />
-		<setting label="32234" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=137&url=www)" visible="eq(-1,0)"/>
-		<setting label="32235" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=138&url=www)" visible="eq(-2,0)"/>
+		<setting label="32234" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=137&url=www)" visible="eq(-1,0)"/>
+		<setting label="32235" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=138&url=www)" visible="eq(-2,0)"/>
 		
-		<setting label="32236" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=139&url=www)" visible="eq(-3,1)"/>
-		<setting label="32237" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=140&url=www)" visible="eq(-4,1)"/>
+		<setting label="32236" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=139&url=www)" visible="eq(-3,1)"/>
+		<setting label="32237" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=140&url=www)" visible="eq(-4,1)"/>
 		
 		<setting id="premiumize.addToCloud" type="bool" subsetting="true" label="Store resolved items in cloud" default="false" visible="eq(-5,1)" />
 		<setting id="premiumize.transcoded" type="bool" subsetting="true" label="Prefer Transcoded Files" default="false" visible="eq(-6,1)" />
 		
-		<setting label="32239" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=141&url=www)" visible="eq(-7,2)"/>
-		<setting label="32240" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=142&url=www)" visible="eq(-8,2)"/>
+		<setting label="32239" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=141&url=www)" visible="eq(-7,2)"/>
+		<setting label="32240" option="close" type="action" action="RunPlugin(plugin://plugin.video.drg?mode=142&url=www)" visible="eq(-8,2)"/>
 		
 	</category>
 	
@@ -140,8 +140,8 @@
 		<setting id="time_s"  type="number"  label="32252" visible="true" default="10"/>
 		<setting label="32301" type="lsep"/>
 		
-		<setting label="32253" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=173&url=movie&name=enable)" />
-		<setting label="32254" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=173&url=movie&name=disable)" />
+		<setting label="32253"  type="action" action="RunPlugin(plugin://plugin.video.drg?mode=173&url=movie&name=enable)" />
+		<setting label="32254"  type="action" action="RunPlugin(plugin://plugin.video.drg?mode=173&url=movie&name=disable)" />
 		<setting id="fav_movie" type="text" label="32255" default="" />
 		
 		
@@ -193,8 +193,8 @@
 		<setting id="zg" label="zg" type="bool"  default="true" />
 		
 		<setting label="32299" type="lsep"/>
-		<setting label="32253" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=173&url=tv&name=enable)" />
-		<setting label="32254" option="close" type="action" action="RunPlugin(plugin://plugin.video.shadow?mode=173&url=tv&name=disable)" />
+		<setting label="32253"  type="action" action="RunPlugin(plugin://plugin.video.drg?mode=173&url=tv&name=enable)" />
+		<setting label="32254"  type="action" action="RunPlugin(plugin://plugin.video.drg?mode=173&url=tv&name=disable)" />
 		<setting id="fav_tv" type="text" label="32255" default="" />
 		
 		<setting id="1337x_tv" label="1337x" type="bool"  default="true" />
@@ -264,7 +264,7 @@
 		
 		<setting id="openscrapers" label="Open-scrapers" type="bool"  default="false" enable="System.HasAddon(script.module.openscrapers)"/>
 		<setting id="open.settings" type="action" label="Open-scrapers Settings" option="close" action="RunPlugin(plugin://script.module.openscrapers/?action=OpenscrapersSettings&amp;opensettings=true&amp;query=4.1)" visible="eq(-1,true)" />
-		<setting id="open.settings_resolveurl" type="action" label="Resolveurl Settings" option="close" action="RunPlugin(plugin://plugin.video.shadow?mode=180&url=tv&name=disable)" />
+		<setting id="open.settings_resolveurl" type="action" label="Resolveurl Settings" option="close" action="RunPlugin(plugin://plugin.video.drg?mode=180&url=tv&name=disable)" />
 
 		<setting type="lsep" label="[COLOR dodgerblue]Universal-scrapers (if grayed out you will need to install it)[/COLOR]" />
 		<setting id="universal" label="Universal-scrapers" type="bool"  default="false"  enable="System.HasAddon(script.module.universalscrapers)"/>
@@ -274,6 +274,11 @@
 		
 		<setting id="the_crew" label="The Crew" type="bool"  default="false" enable="System.HasAddon(script.module.thecrew)"/>
 		<setting id="the_crew.settings" type="action" label="the_crew Settings" option="close" action="RunPlugin(plugin://plugin.video.thecrew/?action=openSettings)" visible="eq(-1,true)" />
+		
+		<setting type="lsep" label="[COLOR dodgerblue]Fen (if grayed out you will need to install it)[/COLOR]" />
+		
+		<setting id="fen" label="Fen" type="bool"  default="false" enable="System.HasAddon(script.module.fenomscrapers)"/>
+		<setting id="fen.settings" type="action" label="Fen Settings" option="close" action="RunPlugin(plugin://plugin.video.drg?mode=186&url=tv&name=disable)" visible="eq(-1,true)" />
 		
 		
 	</category>
@@ -292,7 +297,7 @@
 		<setting id="video_in_s_wait" label="Wait for trailer to end before you see results" type="bool"  default="false"  visible="eq(-4,true)"/>
 		<setting id="video_type_in_s" type="enum" label="Trailer content"  values="Recommended|Current Movie" default="1"  visible="eq(-5,true)"/>
 		<setting id="fanart_scraping" label="Show fanart in scraping" type="bool"  default="true" />
-		<setting id="sources_window" type="enum" label="Sources window style" values="Fancy|Clean"  default="1" />
+		<setting id="sources_window" type="enum" label="Sources window style" values="Fancy|Clean|Panel"  default="1" />
 		<setting id="fanart_sources" label="Show fanart in sources" type="bool"  default="true" />
 		<setting id="add_colors" label="Add colors to results" type="bool"  default="true" />
 		<setting id="show_actors" label="Show actor in clean view(when no trailer)" type="bool"  default="true" />
