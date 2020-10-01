@@ -95,7 +95,7 @@
 					<left>290</left>
 					<right>20</right>
 					<control type="button" id="3012">
-							<label>$ADDON[plugin.video.shadow 32272]</label>
+							<label>$ADDON[plugin.video.drg 32272]</label>
 							<height>56</height>
 							<posx>30</posx>
 						    <posy>80</posy>
@@ -117,7 +117,7 @@
 							<pulseonselect>no</pulseonselect>
 						</control>
 						<control type="button" id="3013">
-							<label>$ADDON[plugin.video.shadow 32271]</label>
+							<label>$ADDON[plugin.video.drg 32271]</label>
 							<height>56</height>
 							<posx>360</posx>
 						    <posy>80</posy>
@@ -230,7 +230,7 @@
 						<font>font25_title</font>
 						<textcolor>eeffffff</textcolor>
 						<shadowcolor>00000000</shadowcolor>
-						<label>$ADDON[plugin.video.shadow 32270] [COLOR FFFF4081]$INFO[Player.TimeRemaining,,][/COLOR]</label>
+						<label>$ADDON[plugin.video.drg 32270] [COLOR FFFF4081]$INFO[Player.TimeRemaining,,][/COLOR]</label>
 						
 					</control>
 					<!-- Details -->

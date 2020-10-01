@@ -43,7 +43,7 @@
             <width>915</width>
             <height>70</height>
             <font>font20_title</font>
-            <label>[B]$ADDON[plugin.video.shadow 32160][/B]</label>
+            <label>[B]$ADDON[plugin.video.drg 32160][/B]</label>
             <align>center</align>
             <aligny>center</aligny>
             <shadowcolor>FF000000</shadowcolor>

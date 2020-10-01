@@ -87,7 +87,7 @@
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
                 <textoffsetx>20</textoffsetx>
-                <label>$ADDON[plugin.video.shadow 32297]</label>
+                <label>$ADDON[plugin.video.drg 32297]</label>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
                 <texturenofocus>Button/testbuttonnf.png</texturenofocus>
@@ -104,7 +104,7 @@
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
                 <textoffsetx>20</textoffsetx>
-                <label>$ADDON[plugin.video.shadow 32296]</label>
+                <label>$ADDON[plugin.video.drg 32296]</label>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
                 <texturenofocus>Button/testbuttonnf.png</texturenofocus>
