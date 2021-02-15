@@ -1,21 +1,34 @@
-# Addon Name: MirrorV2
-# Addon id: plugin.video.MirrorV2
-# Addon Provider: Cy4Root
+# Addon Name: The Crew
+# Addon id: plugin.video.The Crew
+# Addon Provider: The Crew
 # Translators:
-
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: MirrorV2\n"
+"Project-Id-Version: The Crew\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2019-11-07 13:23+0000\n"
-"Last-Translator: Viper2k4\n"
-"Language-Team: German (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2016-08-01 02:03+0000\n"
+"Last-Translator: lambda81\n"
+"Language-Team: English (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 
 msgctxt "#32001"
 msgid "Movies"
@@ -93,15 +106,6 @@ msgctxt "#32019"
 msgid "Most Voted"
 msgstr "Die meisten Votes"
 
-
-msgctxt "#32634"
-msgid "TMDb Lists "
-msgstr "TMDb-Listen"
-
-msgctxt "#32635"
-msgid "[COLOR=gold]M[/COLOR]ovie Collection "
-msgstr "[COLOR=gold]F[/COLOR]ilmsammlung"
-
 msgctxt "#32020"
 msgid "Box Office"
 msgstr "Einspielergebnis"
@@ -113,10 +117,6 @@ msgstr "Oskar-Gewinner"
 msgctxt "#32022"
 msgid "In Theaters"
 msgstr "In Kinos"
-
-msgctxt "#320222"
-msgid "In Theaters TMDb"
-msgstr "In Kinos TMDb"
 
 msgctxt "#32023"
 msgid "Highly Rated"
@@ -163,8 +163,8 @@ msgid "Watchlist"
 msgstr "Merkliste"
 
 msgctxt "#32034"
-msgid "[COLOR=gold]I[/COLOR]MDb Collection"
-msgstr "[COLOR=gold]I[/COLOR]MDb Sammlung"
+msgid "IMDb"
+msgstr "IMDb"
 
 msgctxt "#32035"
 msgid "Featured"
@@ -219,24 +219,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]EINSTELLUNGEN[/B] : Indexseiten"
 
 msgctxt "#32048"
-msgid "[B]MIRROR[/B] : Downloads"
-msgstr "[B]MIRROR[/B] : Downloads"
+msgid "[B]COVENANT[/B] : Downloads"
+msgstr "[B]COVENANT[/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]MIRROR[/B] : Viewtypes"
-msgstr "[B]MIRROR[/B] : Anzeige-Typen"
+msgid "[B]COVENANT[/B] : Viewtypes"
+msgstr "[B]COVENANT[/B] : Anzeige-Typen"
 
 msgctxt "#32050"
-msgid "[B]MIRROR[/B] : Clear providers..."
-msgstr "[B]MIRROR[/B] : Indexseiten-Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear providers..."
+msgstr "[B]COVENANT[/B] : Indexseiten-Cache leeren..."
 
 msgctxt "#32051"
-msgid "[B]MIRROR[/B] : Clear metadata..."
-msgstr "[B]MIRROR[/B] : Metadaten-Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear metadata..."
+msgstr "[B]COVENANT[/B] : Metadaten-Cache leeren..."
 
 msgctxt "#32052"
-msgid "[B]MIRROR[/B] : Clear cache..."
-msgstr "[B]MIRROR[/B] : Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear cache..."
+msgstr "[B]COVENANT[/B] : Cache leeren..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -291,12 +291,12 @@ msgid "Queue item"
 msgstr "Eintrag zur Warteschlange hinzufügen"
 
 msgctxt "#32066"
-msgid "Watched in Mirror"
-msgstr "In MirrorV2 Angesehen"
+msgid "Watched in Covenant"
+msgstr "In Covenant Angesehen"
 
 msgctxt "#32067"
-msgid "Unwatched in Mirror"
-msgstr "In MirrorV2 Ungesehen"
+msgid "Unwatched in Covenant"
+msgstr "In Covenant Ungesehen"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -578,33 +578,29 @@ msgctxt "#32373"
 msgid "Force container refresh"
 msgstr "Verzeichnis neu laden"
 
-msgctxt "#32374"
-msgid "Enable Debug"
-msgstr ""
-
 msgctxt "#32401"
 msgid "No stream available"
 msgstr "Keine Streams verfügbar"
 
 msgctxt "#32402"
-msgid "Playback outside MirrorV2 is not allowed"
-msgstr "Eine Wiedergabe außerhalb von MirrorV2 ist nicht erlaubt"
+msgid "Playback outside Covenant is not allowed"
+msgstr "Eine Wiedergabe außerhalb von Covenant ist nicht erlaubt"
 
 msgctxt "#32403"
 msgid "Download"
 msgstr "Download"
 
 msgctxt "#32404"
-msgid "[COLOR skyblue]Time elapsed: %s seconds[/COLOR]"
-msgstr "[COLOR skyblue]Zeit vergangen: %s Sekunden[/COLOR]"
+msgid "Time elapsed: %s seconds"
+msgstr "Zeit vergangen: %s Sekunden"
 
 msgctxt "#32405"
-msgid "[COLOR skyblue]%s seconds[/COLOR]"
-msgstr "[COLOR skyblue]%s Sekunden[/COLOR]"
+msgid "%s seconds"
+msgstr "%s Sekunden"
 
 msgctxt "#32406"
-msgid "[COLOR skyblue]Remaining providers: %s[/COLOR]"
-msgstr "[COLOR skyblue]Verbleibende Indexseiten: %s[/COLOR]"
+msgid "Remaining providers: %s"
+msgstr "Verbleibende Indexseiten: %s"
 
 msgctxt "#32407"
 msgid "Are you sure?"
@@ -708,19 +704,19 @@ msgstr "DEBRID-DIENSTE"
 
 msgctxt "#32539"
 msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Konfiguriere Debrid-Dienste in den ResolverURL-Einstellungen."
+msgstr "Konfiguriere Debrid-Dienste in den ResolveURL-Einstellungen."
 
 msgctxt "#32540"
 msgid "ResolveURL Settings"
-msgstr "ResolverURL-Einstellungen"
+msgstr "ResolveURL-Einstellungen"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "Bibliothek"
 
 msgctxt "#32542"
-msgid "Mirror folders will be imported to library if they are added to media sources."
-msgstr "Mirror-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
+msgid "Covenant folders will be imported to library if they are added to media sources."
+msgstr "Covenant-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -775,24 +771,24 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 msgctxt "#32556"
-msgid "[B]MIRROR[/B] : Library"
-msgstr "[B]MIRROR[/B] : Bibliothek"
+msgid "[B]COVENANT[/B] : Library"
+msgstr "[B]COVENANT[/B] : Bibliothek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTHEK[/B] : Einstellungen"
 
 msgctxt "#32558"
-msgid "[B]MIRROR[/B] : Update library..."
-msgstr "[B]MIRROR[/B] : Bibliothek aktualisieren..."
+msgid "[B]COVENANT[/B] : Update library..."
+msgstr "[B]COVENANT[/B] : Bibliothek aktualisieren..."
 
 msgctxt "#32559"
-msgid "[B]MIRROR[/B] : Movie folder..."
-msgstr "[B]MIRROR[/B] : Film-Ordner..."
+msgid "[B]COVENANT[/B] : Movie folder..."
+msgstr "[B]COVENANT[/B] : Film-Ordner..."
 
 msgctxt "#32560"
-msgid "[B]MIRROR[/B] : TV folder..."
-msgstr "[B]MIRROR[/B] : Serien-Ordner..."
+msgid "[B]COVENANT[/B] : TV folder..."
+msgstr "[B]COVENANT[/B] : Serien-Ordner..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."
@@ -883,7 +879,7 @@ msgid "Cyan"
 msgstr "Cyan"
 
 msgctxt "#32594"
-msgid "Lawn darkgold"
+msgid "Lawn Green"
 msgstr "Grasgrün"
 
 msgctxt "#32595"
@@ -895,7 +891,7 @@ msgid "Magenta"
 msgstr "Magenta"
 
 msgctxt "#32597"
-msgid "Yellow darkgold"
+msgid "Yellow Green"
 msgstr "Gelbgrün"
 
 msgctxt "#32598"
@@ -907,388 +903,5 @@ msgid "Getting genre information from Trakt"
 msgstr "Hole Genre-Info von Trakt"
 
 msgctxt "#32600"
-msgid "[COLOR=gold]Preparing sources[/COLOR]"
-msgstr "[COLOR=gold]Quellen werden vorbereitet[/COLOR]"
-
-msgctxt "#32601"
-msgid "Total"
-msgstr "Gesamt"
-
-msgctxt "#32602"
-msgid "Waiting for"
-msgstr "Warten auf"
-
-msgctxt "#32603"
-msgid "New search..."
-msgstr "Neue Suche..."
-
-msgctxt "#32604"
-msgid "[B]MIRROR[/B] : Clear search history..."
-msgstr "[B]MIRROR[/B] : Suchverlauf löschen..."
-
-msgctxt "#32605"
-msgid "Click to clear search history"
-msgstr "Klicken Sie, um den Suchverlauf zu löschen"
-
-msgctxt "#32606"
-msgid "[B][COLOR=gold]Paid[/COLOR][/B]"
-msgstr ""
-
-msgctxt "#32607"
-msgid "[B][COLOR=yellow]Free[/COLOR][/B]"
-msgstr ""
-
-msgctxt "#32608"
-msgid "Unaired Season/Episode Color"
-msgstr ""
-
-msgctxt "#32609"
-msgid "ResolveURL  Settings"
-msgstr ""
-
-msgctxt "#32610"
-msgid "Kids Corner"
-msgstr ""
-
-msgctxt "#32611"
-msgid "Fitness Zone"
-msgstr ""
-
-msgctxt "#32612"
-msgid "Legends of Music"
-msgstr ""
-
-msgctxt "#32613"
-msgid "[B]MIRROR[/B] : Clear All Cache..."
-msgstr ""
-
-msgctxt "#32614"
-msgid "[B]MIRROR[/B] : Clear Meta Cache..."
-msgstr ""
-
-msgctxt "#32615"
-msgid "Check Host for Valid URL"
-msgstr ""
-
-msgctxt "#32616"
-msgid "Debugging"
-msgstr ""
-
-msgctxt "#32617"
-msgid "Debug Log"
-msgstr ""
-
-msgctxt "#32618"
-msgid "Kodi Log"
-msgstr ""
-
-msgctxt "#32619"
-msgid "Addon Log"
-msgstr ""
-
-msgctxt "#32621"
-msgid "Navigation"
-msgstr ""
-
-msgctxt "#32622"
-msgid "Main Menu"
-msgstr ""
-
-msgctxt "#32623"
-msgid "Reviews and Trailers"
-msgstr "Bewertungen und Trailer"
-
-
-msgctxt "#32627"
-msgid "Categories"
-msgstr "Kategorien"
-
-msgctxt "#32628"
-msgid "[B]SETTINGS[/B] : Navigation"
-msgstr ""
-
-
-msgctxt "#32630"
-msgid "Documentary"
-msgstr "Dokumentarfilm"
-
-msgctxt "#32631"
-msgid "My Trakt"
-msgstr "Mein Trakt"
-
-msgctxt "#32632"
-msgid "[COLOR=darkgold]M[/COLOR]ovie Selection "
-msgstr ""
-
-msgctxt "#32633"
-msgid "[COLOR=darkgold]C[/COLOR]hild Selection "
-msgstr ""
-
-
-msgctxt "#32636"
-msgid "[COLOR=gold]News and Updates[/COLOR]"
-msgstr ""
-
-
-msgctxt "#32637"
-msgid "Movies History"
-msgstr "Filmgeschichte"
-
-msgctxt "#32638"
-msgid "TvShows History"
-msgstr "TvShows Geschichte"
-
-msgctxt "#32639"
-msgid "Movies Watchlist"
-msgstr "Filme Watchlist"
-
-msgctxt "#32640"
-msgid "TvShows Watchlist"
-msgstr "TV zeigt Watchlist"
-
-msgctxt "#32641"
-msgid "[COLOR=gold]M[/COLOR]arvel Collection"
-msgstr ""
-
-msgctxt "#32084"
-msgid "Provider Choice:"
-msgstr "Anbieterauswahl:"
-
-msgctxt "#32685"
-msgid "Debrid Sources Only"
-msgstr "Nur Debridquellen"
-
-msgctxt "#32089"
-msgid "duplicate links removed"
-msgstr "doppelte links entfernt"
-
-msgctxt "#32090"
-msgid "Filter-out duplicate links"
-msgstr "Herausfiltern doppelter Links"
-
-msgctxt "#32091"
-msgid "[COLOR=gold]A[/COLOR]ctor Collection"
-msgstr ""
-
-msgctxt "#32092"
-msgid "[COLOR=gold]H[/COLOR]olidays Collection"
-msgstr ""
-
-msgctxt "#32093"
-msgid "[COLOR=darkgold]N[/COLOR]etflix Selection"
-msgstr ""
-
-msgctxt "#32094"
-msgid "[COLOR=gold]D[/COLOR]isney Collection"
-msgstr ""
-
-msgctxt "#32095"
-msgid "Christmas"
-msgstr "Weihnachten"
-
-msgctxt "#32096"
-msgid "Easter"
-msgstr "Ostern"
-
-msgctxt "#32097"
-msgid "Halloween"
-msgstr "Halloween"
-
-msgctxt "#32098"
-msgid "Default"
-msgstr "Standard"
-
-msgctxt "#32099"
-msgid "Clear Providers Cache"
-msgstr "Anbieter-Cache leeren"
-
-msgctxt "#33000"
-msgid "Random Movies"
-msgstr "Zufällige Filme"
-
-msgctxt "#33020"
-msgid "Vip Movies"
-msgstr "Vip Filme"
-
-msgctxt "#33019"
-msgid "1 Click Movies"
-msgstr "1 Klicken Sie auf Filme"
-
-msgctxt "#33001"
-msgid "4k Movies"
-msgstr "4k Filme"
-
-msgctxt "#33002"
-msgid "1080p Movies"
-msgstr "1080p Filme"
-
-msgctxt "#33003"
-msgid "Real-Debrid Movies"
-msgstr "Real-Debrid Filme"
-
-msgctxt "#33004"
-msgid "Dolby Surround Movies"
-msgstr "Dolby Surround Filme"
-
-msgctxt "#33005"
-msgid "Kids Movies"
-msgstr "Kinderfilme"
-
-msgctxt "#33006"
-msgid "Dutch Movies"
-msgstr "Niederländische Filme"
-
-msgctxt "#30702"
-msgid "Unplayable stream"
-msgstr "Nicht abspielbarer Stream"
-
-msgctxt "#30703"
-msgid "Clear History"
-msgstr "Verlauf löschen"
-
-msgctxt "#30707"
-msgid "Trailer"
-msgstr "Trailer"
-
-msgctxt "#30708"
-msgid "Information"
-msgstr ""
-
-msgctxt "#30722"
-msgid "Download item"
-msgstr ""
-
-msgctxt "#30711"
-msgid "Set Movies view"
-msgstr "Filmansicht einstellen"
-
-msgctxt "#30712"
-msgid "Set TV Shows view"
-msgstr "TV-Sendungsansicht einstellen"
-
-msgctxt "#30713"
-msgid "Set Seasons view"
-msgstr "Jahreszeiten-Ansicht einstellen"
-
-msgctxt "#30714"
-msgid "Set Episodes view"
-msgstr "Stellen Sie die Episodenansicht ein"
-
-msgctxt "#30715"
-msgid "Enable Torrent Scrapers"
-msgstr "Aktivieren Sie Torrent Scraper"
-
-msgctxt "#30716"
-msgid "Torrent Source Identifier Color"
-msgstr ""
-
-msgctxt "#30717"
-msgid "Sort By Torrent/Premium"
-msgstr ""
-
-msgctxt "#30718"
-msgid "Minimum Seeders"
-msgstr "Minimum Seeders"
-
-msgctxt "#30319"
-msgid "Trakt User:"
-msgstr "Trakt Anwender:"
-
-msgctxt "#30320"
-msgid "(Real Debrid)Authorize my account"
-msgstr ""
-
-msgctxt "#30321"
-msgid "(AllDebrid)Authorize My Account"
-msgstr ""
-
-msgctxt "#30322"
-msgid "(PremiumizeMe)Authorize My Account"
-msgstr ""
-
-msgctxt "#30323"
-msgid "[COLOR=gold]K[/COLOR]ids Collection"
-msgstr "[COLOR=gold]K[/COLOR]inder Sammlung"
-
-msgctxt "#30324"
-msgid "[COLOR=gold]T[/COLOR]V-Show Collection"
-msgstr "[COLOR=gold]T[/COLOR]V-Serien-Sammlung"
-
-msgctxt "#30325"
-msgid "[COLOR=darkorange]G[/COLOR]enre Selection"
-msgstr "[COLOR=darkorange]G[/COLOR]enre Auswahl"
-
-msgctxt "#30326"
-msgid "Hackers Movies"
-msgstr "Hacker Filme"
-
-msgctxt "#30327"
-msgid "Crime Movies"
-msgstr "Kriminal Filme"
-
-msgctxt "#30328"
-msgid "Prison Movies"
-msgstr "Gefängnis Filme"
-
-msgctxt "#30329"
-msgid "Musical Movies"
-msgstr "Musikalische Filme"
-
-msgctxt "#30330"
-msgid "Romance Movies"
-msgstr "Romantische Filme"
-
-msgctxt "#30331"
-msgid "Western Movies"
-msgstr "Western Filme"
-
-msgctxt "#30332"
-msgid "Ducth Tv Shows"
-msgstr ""
-
-msgctxt "#30333"
-msgid "Real-Debrid Providers"
-msgstr ""
-
-msgctxt "#30334"
-msgid "Torrent Providers"
-msgstr ""
-
-msgctxt "#30335"
-msgid "[COLOR=darkorange]M[/COLOR]ovie Selection list"
-msgstr ""
-
-msgctxt "#30336"
-msgid "Foreign Movies"
-msgstr ""
-
-msgctxt "#30337"
-msgid "Psychological Movies"
-msgstr ""
-
-msgctxt "#30338"
-msgid "Hindustani Movies"
-msgstr ""
-
-msgctxt "#30339"
-msgid "Source Filters"
-msgstr "Quellfilter"
-
-msgctxt "#30340"
-msgid "Powered by"
-msgstr "Unterstützt von""
-
-
-msgctxt "#30341"
-msgid "Clear Providers Cache After Changing Scraper Provider"
-msgstr "Cache nachdem Sie den Scraper-Provider gewechselt haben"
-
-
-
-
-
-
-
-
-
-
+msgid "Preparing sources"
+msgstr "Quellen werden vorbereitet"

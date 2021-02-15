@@ -1,241 +1,246 @@
-# Addon Name: mirrorv2
-# Addon id: plugin.video.mirrorv2
-# Addon Provider: Cy4Root
+# Addon Name: THE CREW
+# Addon id: plugin.video.THE CREW byTHE CREW
+# Addon Provider: THE CREW
+# Translators: lambda81
+# Translators: Dutch (THE CREW)
+# Translators: 9
 # Translators:
-
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Mirror\n"
+"Project-Id-Version: THE CREW\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2019-10-24 12:00+0000\n"
-"Last-Translator: cy4root\n"
-"Language-Team: Ducth (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2020-03-17 14:30+0100\n"
+"Last-Translator: 9\n"
+"Language-Team: Dutch (THE CREW)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: Nl\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgctxt "#32000"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Box Sets[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Box Sets[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
 msgctxt "#32001"
-msgid "Movies"
-msgstr "Films"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Movies[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Films[/COLOR][/B]"
 
 msgctxt "#32002"
-msgid "TV Shows"
-msgstr "Series"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Shows[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV-Series[/COLOR][/B]"
 
 msgctxt "#32003"
-msgid "My Movies"
-msgstr "Mijn Films"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]My Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mijn Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32004"
-msgid "My TV Shows"
-msgstr "Mijn Series"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]My TV Shows[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mijn TV-series[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32005"
-msgid "New Movies"
-msgstr "Nieuwe Films"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]New Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Nieuwe Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32006"
-msgid "New Episodes"
-msgstr "Nieuwe Afleveringen"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]New Episodes[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Nieuwe Afleveringen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32007"
-msgid "Channels"
-msgstr "Kanalen"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Channels[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kanalen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32008"
-msgid "Tools"
-msgstr "Gereedschap"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Tools[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Instellingen[/COLOR][/B]"
 
 msgctxt "#32009"
-msgid "Downloads"
-msgstr "Downloads"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Downloads[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Downloads[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32010"
-msgid "Search"
-msgstr "Zoeken"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Search[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Zoeken[/COLOR][/B]"
 
 msgctxt "#32011"
-msgid "Genres"
-msgstr "Genres"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32012"
-msgid "Year"
-msgstr "Jaren"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Year[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Jaar[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32013"
-msgid "People"
-msgstr "Acteurs"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]People[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32014"
-msgid "Languages"
-msgstr "Talen"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]International[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Internationaal[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32015"
-msgid "Certificates"
-msgstr "Kijkwijzer"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Certificates[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Certificaten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32016"
-msgid "Networks"
-msgstr "Netwerken"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Networks[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Netwerken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32017"
-msgid "People Watching"
-msgstr "Meest Bekeken"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trending[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trending[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32018"
-msgid "Most Popular"
-msgstr "Populair"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Most Popular[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Meest Populair[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32019"
-msgid "Most Voted"
-msgstr "Meeste Stemmen"
-
-
-msgctxt "#32634"
-msgid "TMDb Lists "
-msgstr "TMDb Lijst"
-
-msgctxt "#32635"
-msgid "[COLOR=gold]M[/COLOR]ovie Collection "
-msgstr "[COLOR=gold]F[/COLOR]ilm Collectie"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Most Voted[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Meest Gestemd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32020"
-msgid "Box Office"
-msgstr "Box Office"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Box Office[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kaskrakers[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32021"
-msgid "Oscar Winners"
-msgstr "Oscar Winnaars"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Oscar Winners[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Oscar Winnaars[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32022"
-msgid "In Theaters"
-msgstr "In de Bioscoop"
-
-msgctxt "#320222"
-msgid "In Theaters TMDb"
-msgstr "In de Bioscoop TMDb"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]In Theaters[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]In Bioscopen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32023"
-msgid "Highly Rated"
-msgstr "Meest Gewaardeerd"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Highly Rated[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Hoogst Gewaardeerd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32024"
-msgid "Airing today"
-msgstr "Vandaag te zien"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Airing today[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Draait Vandaag[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32025"
-msgid "Returning TV Shows"
-msgstr "Terugkomende Series"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Returning Shows[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Terugkerende Series[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32026"
-msgid "New TV Shows"
-msgstr "Nieuwe Series"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]New TV Shows[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Nieuwe TV-Series[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32027"
-msgid "TV Calendar"
-msgstr "Serie Kalender"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Calendar[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Kalendar[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32028"
-msgid "People Search"
-msgstr "Zoek Acteurs"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]People Search[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personen Zoeken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32029"
-msgid "People (Movies)"
-msgstr "Acteurs (Films)"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]People - Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personen - Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32030"
-msgid "People (TV)"
-msgstr "Acteurs (Series)"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]People - TV Shows[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personen - TV-Series[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32031"
-msgid "Discover"
-msgstr "Ontdekken"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Discover[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Ontdekken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32032"
-msgid "Collection"
-msgstr "Collectie"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Collection[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Collectie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32033"
-msgid "Watchlist"
-msgstr "Volglijst"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Watchlist[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Watchlist[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32034"
-msgid "[COLOR=gold]I[/COLOR]MDb Collection"
-msgstr "[COLOR=gold]I[/COLOR]MDb Collectie"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32035"
-msgid "Featured"
-msgstr "Uitgelicht"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Featured[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Uitgelicht[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32036"
-msgid "History"
-msgstr "Geschiedenis"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]History[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Geschiedenis[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32037"
-msgid "Progress"
-msgstr "Process"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Progress[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Voortgang[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32038"
-msgid "Episodes"
-msgstr "Afleveringen"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Episodes[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Afleveringen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32039"
-msgid "Movie Lists"
-msgstr "Film Lijst"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Movie Lists[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Filmlijsten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32040"
-msgid "TV Show Lists"
-msgstr "Series Lijst"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Shows Lists[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Serielijsten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32041"
-msgid "Episode Lists"
-msgstr "Afleverings-lijst"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Episode Lists[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Afleveringslijsten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
-msgstr "Geen Trakt of IMDb account gevonden"
+msgstr "Er is geen  Trakt of IMDb account gevonden."
 
 msgctxt "#32043"
-msgid "[B]SETTINGS[/B] : General"
-msgstr "[B]INSTELLINGEN[/B] : Algemeen"
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : General"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Algemeen"
 
 msgctxt "#32044"
-msgid "[B]SETTINGS[/B] : Accounts"
-msgstr "[B]INSTELLINGEN[/B] : Accounts"
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : Accounts"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Accounts"
 
 msgctxt "#32045"
-msgid "[B]SETTINGS[/B] : Playback"
-msgstr "[B]INSTELLINGEN[/B] : Afspelen"
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : Playback"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Afspelen"
 
 msgctxt "#32046"
-msgid "[B]SETTINGS[/B] : Subtitles"
-msgstr "[B]INSTELLINGEN[/B] : Ondertiteling"
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : Subtitles"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Ondertiteling"
 
 msgctxt "#32047"
-msgid "[B]SETTINGS[/B] : Providers"
-msgstr "[B]INSTELLINGEN[/B] : Bronnen"
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : Providers"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Providers"
 
 msgctxt "#32048"
-msgid "[B]MIRROR[/B] : Downloads"
-msgstr "[B]MIRROR[/B] : Downloads"
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Downloads"
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]MIRROR[/B] : Viewtypes"
-msgstr "[B]MIRROR[/B] : Layout instellingen"
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Viewtypes"
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Viewtypes"
 
 msgctxt "#32050"
-msgid "[B]MIRROR[/B] : Clear providers..."
-msgstr "[B]MIRROR[/B] : Opschonen van Bronnen..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear providers..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen providers..."
 
 msgctxt "#32051"
-msgid "[B]MIRROR[/B] : Clear metadata..."
-msgstr "[B]MIRROR[/B] : Opschonen van MetaData..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear metadata..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen metadata..."
 
 msgctxt "#32052"
-msgid "[B]MIRROR[/B] : Clear cache..."
-msgstr "[B]MIRROR[/B] : Opschonen van Cache..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear cache..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen cache..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -254,20 +259,19 @@ msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
 msgctxt "#32057"
-msgid "Process Complete"
-msgstr "Voortgang Compleet"
+msgid "KEEP CALM and EXPECT US!"
+msgstr "BLIJF KALM en VERWACHT ONS!"
 
 msgctxt "#32058"
 msgid "This will slow down things until they are re-cached!"
-msgstr "Dit zal alles vertragen tot alle URL's terug in de cache zitten"
+msgstr "Dit zal zaken vertragen totdat ze opnieuw worden ge-cached!"
 
 msgctxt "#32059"
 msgid "CLICK HERE TO SAVE VIEW"
-msgstr "Klik hier om Layout op te slaan"
+msgstr "KLIK HIER OM BEELD OP TE SLAAN"
 
 msgctxt "#32060"
-msgid ""
-"January|February|March|April|May|June|July|August|September|October|November|December"
+msgid "January|February|March|April|May|June|July|August|September|October|November|December"
 msgstr "Januari|Februari|Maart|April|Mei|Juni|Juli|Augustus|September|Oktober|November|December"
 
 msgctxt "#32061"
@@ -288,43 +292,51 @@ msgstr "Automatisch Afspelen"
 
 msgctxt "#32065"
 msgid "Queue item"
-msgstr "In wachtrij plaatsen"
+msgstr "Wachtrij item"
 
 msgctxt "#32066"
-msgid "Watched in Mirror"
-msgstr "Markeer als bekeken in Mirror"
+msgid "Watched in THE CREW"
+msgstr "Bekeken in THE CREW"
 
 msgctxt "#32067"
-msgid "Unwatched in Mirror"
-msgstr "Bekeken status verwijderen in Mirror"
+msgid "Unwatched in THE CREW"
+msgstr "Niet bekeken in THE CREW"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
-msgstr "Markeer als bekeken in Trakt"
+msgstr "Bekeken in Trakt"
 
 msgctxt "#32069"
 msgid "Unwatched in Trakt"
-msgstr "Bekeken status verwijderen in Trakt"
+msgstr "Niet bekeken in Trakt"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
-msgstr "Trakt Beheer"
+msgstr "Trakt Manager"
 
 msgctxt "#32071"
 msgid "Browse Series"
-msgstr "Zoek in Series"
+msgstr "Blader door Series"
 
 msgctxt "#32072"
 msgid "Refresh"
 msgstr "Verversen"
 
 msgctxt "#32073"
-msgid "[B]TRAKT[/B] : Authorize"
-msgstr "[B]TRAKT[/B]: Autoriseren"
+msgid "[B][COLOR crimson]TRAKT[/COLOR][/B] : AUTHORIZE"
+msgstr "[B][COLOR crimson]TRAKT[/COLOR][/B] : AUTORISEREN"
 
 msgctxt "#32074"
 msgid "[B]HELP[/B]"
 msgstr "[B]HELP[/B]"
+
+msgctxt "#32089"
+msgid "{0} duplicate links removed"
+msgstr "{0} dubbele links verwijderd"
+
+msgctxt "#32090"
+msgid "Filter-out duplicate links"
+msgstr "Verwijder identieke links"
 
 msgctxt "#32301"
 msgid "Enabled"
@@ -372,31 +384,31 @@ msgstr "Uiterlijk"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
-msgstr "Bronnen Tijdslimiet"
+msgstr "Providers Time-out"
 
 msgctxt "#32313"
 msgid "Indicators"
-msgstr "Meldingen"
+msgstr "Indicatoren"
 
 msgctxt "#32314"
 msgid "Local"
-msgstr "Lokaal "
+msgstr "Lokaal"
 
 msgctxt "#32315"
-msgid "Trakt"
-msgstr "Trakt"
+msgid "[COLOR crimson]Trakt[/COLOR]"
+msgstr "[COLOR crimson]Trakt[/COLOR]"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Taal Info"
+msgstr "Info Taal"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
-msgstr "Verberg seizoenen van series"
+msgstr "Maak TV seizoenen platter"
 
 msgctxt "#32318"
 msgid "Enable Fanart"
-msgstr "Fanart inschakelen"
+msgstr "Schakel Fanart in"
 
 msgctxt "#32319"
 msgid "Menu"
@@ -412,15 +424,15 @@ msgstr "Uitgelicht"
 
 msgctxt "#32322"
 msgid "People Watching"
-msgstr "Meest Bekeken"
+msgstr "Wat mensen nu kijken"
 
 msgctxt "#32323"
 msgid "Most Popular"
-msgstr "Populair"
+msgstr "Meest populair"
 
 msgctxt "#32324"
 msgid "In Theaters"
-msgstr "In de Bioscoop"
+msgstr "In Bioscopen"
 
 msgctxt "#32325"
 msgid "New Episodes"
@@ -448,7 +460,7 @@ msgstr "Afspelen"
 
 msgctxt "#32331"
 msgid "Default action"
-msgstr "Standaard Actie"
+msgstr "Standaard actie"
 
 msgctxt "#32332"
 msgid "Dialog"
@@ -460,11 +472,11 @@ msgstr "Map"
 
 msgctxt "#32334"
 msgid "Auto Play"
-msgstr "Automatisch Afspelen"
+msgstr "Auto Afspelen"
 
 msgctxt "#32335"
 msgid "Progress Dialog"
-msgstr "Voortgangs Dialoog "
+msgstr "Voortgangsdialoog"
 
 msgctxt "#32336"
 msgid "Foreground"
@@ -476,35 +488,35 @@ msgstr "Achtergrond"
 
 msgctxt "#32338"
 msgid "File Hosting Filters"
-msgstr "Bestand Bron Filters"
+msgstr "Bestandshosting Filters"
 
 msgctxt "#32339"
 msgid "Max Quality"
-msgstr "Maximale Kwaliteit"
+msgstr "Max Kwaliteit"
 
 msgctxt "#32340"
 msgid "SD Hosters in Auto Play"
-msgstr "SD Bronnen Automatisch Afspelen"
+msgstr "SD Hosters in Auto Afspelen"
 
 msgctxt "#32341"
 msgid "Hosters with captchas"
-msgstr "Bronnen met captchas"
+msgstr "Hosters met captchas"
 
 msgctxt "#32342"
 msgid "Sort by Provider"
-msgstr "Sorteren op Bron"
+msgstr "Sorteer op Provider"
 
 msgctxt "#32343"
 msgid "When playback starts..."
-msgstr "Wanneer Afspelen begint..."
+msgstr "Als afspelen begint..."
 
 msgctxt "#32344"
 msgid "Resume Playback"
-msgstr "Doorgaan met Afspelen"
+msgstr "Hervat Afspelen"
 
 msgctxt "#32345"
 msgid "Providers"
-msgstr "Bronnen"
+msgstr "Providers"
 
 msgctxt "#32346"
 msgid "Accounts"
@@ -516,7 +528,7 @@ msgstr "Downloads"
 
 msgctxt "#32348"
 msgid "Enable downloads"
-msgstr "Downloaden Inschakelen"
+msgstr "Inschakelen downloads"
 
 msgctxt "#32349"
 msgid "Movies"
@@ -524,15 +536,15 @@ msgstr "Films"
 
 msgctxt "#32350"
 msgid "TV"
-msgstr "Series"
+msgstr "TV"
 
 msgctxt "#32351"
 msgid "Downloading features are disabled by default."
-msgstr "Download functies zijn standaard uitgeschakeld."
+msgstr "Downloadfuncties zijn standaard uitgeschakeld."
 
 msgctxt "#32352"
 msgid "Set up your download folders in order to enable them."
-msgstr "Stel uw download locatie in om dit te activeren."
+msgstr "Stel uw downloadmappen in om ze in te schakelen."
 
 msgctxt "#32353"
 msgid "Subtitles"
@@ -540,31 +552,31 @@ msgstr "Ondertiteling"
 
 msgctxt "#32354"
 msgid "Enable subtitles"
-msgstr "Activeer ondertiteling"
+msgstr "Inschakelen ondertiteling"
 
 msgctxt "#32355"
 msgid "Convert subtitles to UTF-8"
-msgstr "Ondertiteling omzetten naar UTF-8"
+msgstr "Converteer ondertitels naar UTF-8"
 
 msgctxt "#32356"
 msgid "Primary Language"
-msgstr "1e keuze Ondertitelings Taal"
+msgstr "Eerste Taal"
 
 msgctxt "#32357"
 msgid "Secondary Language"
-msgstr "2e keuze Ondertitelings Taal"
+msgstr "Tweede Taal"
 
 msgctxt "#32358"
 msgid "Subtitles could be unavailable or out of sync."
-msgstr "Ondertiteling is niet beschikbaar of loopt niet gelijk."
+msgstr "Ondertitels kunnen niet aanwezig zijn of niet synchroon lopen."
 
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
-msgstr "In dat geval kies uw eigen ondertiteling."
+msgstr "Gebruik in dat geval uw eigen ondertitels."
 
 msgctxt "#32360"
 msgid "Providers Language"
-msgstr "Taal van bronnen"
+msgstr "Taal Providers"
 
 msgctxt "#32363"
 msgid "HEVC"
@@ -572,48 +584,51 @@ msgstr "HEVC"
 
 msgctxt "#32372"
 msgid "When playback ends..."
-msgstr "Wanneer het afspelen eindigt"
+msgstr "Als afspelen eindigt..."
 
 msgctxt "#32373"
 msgid "Force container refresh"
-msgstr "Forceer container vernieuwen"
+msgstr "Forceer verversen container"
 
 msgctxt "#32374"
 msgid "Enable Debug"
-msgstr "Debug inschakelen"
+msgstr "Inschakelen Debug"
 
+msgctxt "#32375"
+msgid "News and Updates"
+msgstr "Nieuws en Updates"
 
 msgctxt "#32401"
 msgid "No stream available"
 msgstr "Geen stream beschikbaar"
 
 msgctxt "#32402"
-msgid "Playback outside Mirror is not allowed"
-msgstr "Afspelen buiten Mirror is niet toegestaan"
+msgid "Playback outside THE CREW is not allowed"
+msgstr "Afspelen buiten THE CREW is niet toegestaan"
 
 msgctxt "#32403"
 msgid "Download"
-msgstr "Downloaden"
+msgstr "Download"
 
 msgctxt "#32404"
-msgid "[COLOR skyblue]Time elapsed: %s seconds[/COLOR]"
-msgstr "[COLOR skyblue]Tijd verstreken: %s seconden[/COLOR]"
+msgid "Time elapsed: %s seconds"
+msgstr "Tijd verstreken: %s seconden"
 
 msgctxt "#32405"
-msgid "[COLOR skyblue]%s seconds[/COLOR]"
-msgstr "[COLOR skyblue]%s seconden[/COLOR]"
+msgid "%s seconds"
+msgstr "%s seconden"
 
 msgctxt "#32406"
-msgid "[COLOR skyblue]Remaining providers: %s[/COLOR]"
-msgstr "[COLOR skyblue]Overgebleven Bronnen: %s[/COLOR]"
+msgid "[COLOR orchid]Remaining providers[/COLOR]: %s"
+msgstr "[COLOR orchid]Resterende providers[/COLOR]: %s"
 
 msgctxt "#32407"
 msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
 msgctxt "#32408"
-msgid "Process Complete"
-msgstr "Voortgang Compleet"
+msgid "KEEP CALM and EXPECT US!"
+msgstr "BLIJF KALM en VERWACHT ONS!"
 
 msgctxt "#32501"
 msgid "Start from beginning"
@@ -621,19 +636,19 @@ msgstr "Start vanaf het begin"
 
 msgctxt "#32502"
 msgid "Resume from %s"
-msgstr "Doorgaan vanaf %s"
+msgstr "Hervat vanaf %s"
 
 msgctxt "#32503"
 msgid "Resume"
-msgstr "Doorgaan"
+msgstr "Hervatten"
 
 msgctxt "#32511"
 msgid "An account already exists."
-msgstr "Een account bestaat reeds."
+msgstr "Er bestaat al een account."
 
 msgctxt "#32512"
 msgid "Do you want to reset?"
-msgstr "Wilt u een reset uitvoeren?"
+msgstr "Wilt u resetten?"
 
 msgctxt "#32513"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -641,47 +656,47 @@ msgstr "1) Bezoek : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32514"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
-msgstr "2) Wanneer gevraagd, vul in : [COLOR skyblue]%s[/COLOR]"
+msgstr "2) Indien gevraagd, voer in : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32515"
 msgid "Trakt Manager"
-msgstr "Trakt Beheer"
+msgstr "Trakt Manager"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
-msgstr "Toevoegen aan [B]Collectie[/B]"
+msgstr "Voeg toe aan [B]Collectie[/B]"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr "Verwijderen uit [B]Collectie[/B]"
+msgstr "Verwijder van [B]Collection[/B]"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
-msgstr "Toevoegen aan [B]Watchlist[/B]"
+msgstr "Voeg toe aan [B]Watchlist[/B]"
 
 msgctxt "#32519"
 msgid "Remove from [B]Watchlist[/B]"
-msgstr "Verwijderen van [B]Watchlist[/B]"
+msgstr "Verwijder van [B]Watchlist[/B]"
 
 msgctxt "#32520"
 msgid "Add to [B]new List[/B]"
-msgstr "Toevoegen aan een [B]nieuwe Lijst[/B]"
+msgstr "Voeg toe aan [B]nieuwe List[/B]"
 
 msgctxt "#32521"
 msgid "Add to [B]%s[/B]"
-msgstr "Toevoegen aan [B]%s[/B]"
+msgstr "Voeg toe aan [B]%s[/B]"
 
 msgctxt "#32522"
 msgid "Remove from [B]%s[/B]"
-msgstr "Verwijderen van [B]%s[/B]"
+msgstr "Verwijder van [B]%s[/B]"
 
 msgctxt "#32531"
 msgid "An account already exists."
-msgstr "Een account bestaat reeds."
+msgstr "Er bestaat al een account."
 
 msgctxt "#32532"
 msgid "Do you want to reset?"
-msgstr "Wilt u een reset uitvoeren?"
+msgstr "Wilt u resetten?"
 
 msgctxt "#32533"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
@@ -689,15 +704,15 @@ msgstr "1) Bezoek : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
-msgstr "2) Wanneer gevraagd, vul in : [COLOR skyblue]%s[/COLOR]"
+msgstr "2) Indien gevraagd, voer in : [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32535"
 msgid "Play Random"
-msgstr "Speel willekeurige af"
+msgstr "Speel willekeurig af"
 
 msgctxt "#32536"
 msgid "Playing"
-msgstr "Nu aan het afspelen"
+msgstr "Spelen"
 
 msgctxt "#32537"
 msgid "Nothing found to play"
@@ -709,19 +724,19 @@ msgstr "DEBRID-SERVICE"
 
 msgctxt "#32539"
 msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Configureer Debrid Services in ResolveURL-instellingen."
+msgstr "Configureer Debrid Services in ResolveURL Instellingen."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL-instellingen"
+msgid "[B][COLOR white]ResolveURL[/COLOR][/B] : SETTINGS"
+msgstr "[B][COLOR white]ResolveURL[/COLOR][/B] : INSTELLINGEN"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "Bibliotheek"
 
 msgctxt "#32542"
-msgid "Mirror folders will be imported to library if they are added to media sources."
-msgstr "Mirror-mappen worden geïmporteerd als ze aan mediabronnen worden toegevoegd."
+msgid "THE CREW folders will be imported to library if they are added to media sources."
+msgstr "THE CREW mappen worden in de bibliotheek geïmporteerd als ze aan mediabronnen worden toegevoegd."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -733,159 +748,171 @@ msgstr "TV"
 
 msgctxt "#32545"
 msgid "Auto update TV Shows"
-msgstr "Tv-programma's automatisch bijwerken"
+msgstr "TV-Series automatisch bijwerken"
 
 msgctxt "#32546"
 msgid "Show notifications during update"
-msgstr "Meldingen weergeven tijdens update"
+msgstr "Toon meldingen tijdens bijwerken"
 
 msgctxt "#32547"
 msgid "Update library after adding content"
-msgstr "Werk de bibliotheek bij na toevoegen van inhoud"
+msgstr "Werk bibliotheek bij na toevoegen inhoud"
 
 msgctxt "#32548"
 msgid "Avoid creating duplicate content"
-msgstr "Maak geen dubbele inhoud"
+msgstr "Vermijd aanmaken identieke inhoud"
 
 msgctxt "#32549"
 msgid "Check movie before adding it"
-msgstr "Controleer de film voordat deze wordt toegevoegd"
+msgstr "Controleer film voor toevoegen"
 
 msgctxt "#32550"
 msgid "Check first episode of season before adding it"
-msgstr "Controleer de serie voordat deze wordt toegevoegd"
+msgstr "Controleer eerste aflevering van seizoen voor toevoegen"
 
 msgctxt "#32551"
 msgid "Add to Library"
-msgstr "Toevoegen aan bibliotheek"
+msgstr "Voeg toe aan bibliotheek"
 
 msgctxt "#32552"
 msgid "Adding to library..."
-msgstr "Toevoegen aan bibliotheek ..."
+msgstr "Toevoegen aan bibliotheek..."
 
 msgctxt "#32553"
 msgid "Updating TV shows..."
-msgstr "Tv-programma's bijwerken ..."
+msgstr "Bijwerken TV-Series..."
 
 msgctxt "#32554"
 msgid "Process Complete"
-msgstr "Proces voltooid"
+msgstr "Voortgang Compleet"
 
 msgctxt "#32555"
 msgid "Are you sure?"
-msgstr "Weet je het zeker?"
+msgstr "Weet u het zeker?"
 
 msgctxt "#32556"
-msgid "[B]MIRROR[/B] : Library"
-msgstr "[B]MIRROR[/B] : Bibliotheek"
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Library"
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Bibliotheek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTHEEK[/B] : Instellingen"
 
 msgctxt "#32558"
-msgid "[B]MIRROR[/B] : Update library..."
-msgstr "[B]MIRROR[/B] : Bibliotheek bijwerken ..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Update library..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Bijwerken bibliotheek..."
 
 msgctxt "#32559"
-msgid "[B]MIRROR[/B] : Movie folder..."
-msgstr "[B]MIRROR[/B] : Film map ..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Movie folder..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Film map..."
 
 msgctxt "#32560"
-msgid "[B]MIRROR[/B] : TV folder..."
-msgstr "[B]MIRROR[/B] : Serie map..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : TV folder..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : TV map..."
 
 msgctxt "#32561"
-msgid "[B]TRAKT[/B] : Import Collection..."
-msgstr "[B]TRAKT[/B] : Collectie importeren ..."
+msgid "[B][COLOR crimson]TRAKT[/COLOR][/B] : Import Collection..."
+msgstr "[B][COLOR crimson]TRAKT[/COLOR][/B] : Importeer Collectie..."
 
 msgctxt "#32562"
-msgid "[B]TRAKT[/B] : Import Watchlist..."
-msgstr "[B]TRAKT[/B] : Volglijst importeren ..."
+msgid "[B][COLOR crimson]TRAKT[/COLOR][/B] : Import Watchlist..."
+msgstr "[B][COLOR crimson]TRAKT[/COLOR][/B] : Importeer Watchlist..."
+
+msgctxt "#32563"
+msgid "[B][COLOR crimson]TRAKT[/COLOR][/B] : Import TV Collection..."
+msgstr "[B][COLOR crimson]TRAKT[/COLOR][/B] : Importeer TV Collectie..."
+
+msgctxt "#32564"
+msgid "[B][COLOR crimson]TRAKT[/COLOR][/B] : Import TV Watchlist..."
+msgstr "[B][COLOR crimson]TRAKT[/COLOR][/B] : Importeer TV Watchlist..."
 
 msgctxt "#32565"
 msgid "Include episodes with unknown air dates"
-msgstr "Afleveringen met onbekende uitzenddata"
+msgstr "Voeg afleveringen met onbekende uitzenddata toe"
 
 msgctxt "#32570"
 msgid "Show unaired seasons/episodes"
-msgstr "Toon onbekeken seizoenen/afleveringen"
+msgstr "Toon niet uitgezonden seizoenen/afleveringen"
 
 msgctxt "#32571"
 msgid "Hide movies in cinema"
-msgstr "Verberg films in de bioscoop"
+msgstr "Verberg films in bioscoop"
 
 msgctxt "#32572"
 msgid "Protected Link. Please enter account credentials in the settings."
-msgstr "Beschermde link. Voer accountgegevens in de instellingen in."
+msgstr "Beschermde link. Voer de inloggegevens van uw account in de instellingen in."
 
 msgctxt "#32580"
 msgid "Films/TV Movies"
-msgstr "Films / TV-Films"
+msgstr "Films / TV Films"
 
 msgctxt "#32581"
 msgid "Results Limit"
-msgstr "Resultaten Limiet"
+msgstr "Resultaat Limiet"
 
 msgctxt "#32582"
 msgid "Personal API keys provide quicker API responses."
-msgstr "Persoonlijke API-sleutels zorgen voor snellere API-reacties."
+msgstr "Persoonlijke API sleutels geven een sneller API antwoord."
 
 msgctxt "#32583"
 msgid "Become a VIP member for many benefits at: https://fanart.tv/vip"
-msgstr "Word VIP-lid voor veel voordelen op: https://fanart.tv/vip"
+msgstr "Word een VIP-lid voor vele voordelen via: https://fanart.tv/vip"
 
 msgctxt "#32584"
 msgid "Sort order for Trakt Watched Progress"
-msgstr "Sorteervolgorde in Trakt Bekeken uitzendingen"
+msgstr "Sorteer volgorde voor Trakt Bekeken Voortgang"
 
 msgctxt "#32585"
 msgid "Recently aired"
 msgstr "Recent uitgezonden"
 
+msgctxt "#32586"
+msgid "Recently watched"
+msgstr "Recent bekeken"
+
 msgctxt "#32587"
 msgid "Show Extra Source Info"
-msgstr "Toon extra broninfo"
+msgstr "Toon Extra Bron Info"
 
 msgctxt "#32588"
 msgid "Premium Source Identifier Color"
-msgstr "Premium bron identificatie kleur"
+msgstr "Premium Bron Identificatie Kleur"
 
 msgctxt "#32589"
-msgid "Blue"
-msgstr "Blauw"
+msgid "[COLOR orchid]Blue[/COLOR]"
+msgstr "[COLOR orchid]Blauw[/COLOR]"
 
 msgctxt "#32590"
-msgid "Red"
-msgstr "Rood"
+msgid "[COLOR red]Red[/COLOR]"
+msgstr "[COLOR red]Rood[/COLOR]"
 
 msgctxt "#32591"
-msgid "Yellow"
-msgstr "Geel"
+msgid "[COLOR yellow]Yellow[/COLOR]"
+msgstr "[COLOR yellow]Geel[/COLOR]"
 
 msgctxt "#32592"
-msgid "Deep Pink"
-msgstr "Donker Roze"
+msgid "[COLOR pink]Deep Pink[/COLOR]"
+msgstr "[COLOR pink]Diep Roze[/COLOR]"
 
 msgctxt "#32593"
-msgid "Cyan"
-msgstr "Cyan"
+msgid "[COLOR cyan]Cyan[/COLOR]"
+msgstr "[COLOR cyan]Cyaan[/COLOR]"
 
 msgctxt "#32594"
-msgid "Lawn darkorange"
-msgstr "Gazon Groen"
+msgid "[COLOR lawngreen]Lawn Green[/COLOR]"
+msgstr "[COLOR lawngreen]Grasgroen[/COLOR]"
 
 msgctxt "#32595"
-msgid "Gold"
-msgstr "Goud"
+msgid "[COLOR gold]Gold[/COLOR]"
+msgstr "[COLOR gold]Goud[/COLOR]"
 
 msgctxt "#32596"
-msgid "Magenta"
-msgstr "Rood Paars"
+msgid "[COLOR magenta]Magenta[/COLOR]"
+msgstr "[COLOR magenta]Magenta[/COLOR]"
 
 msgctxt "#32597"
-msgid "Yellow darkorange"
-msgstr "Geel Groen"
+msgid "[COLOR yellow]Yellow Green[/COLOR]"
+msgstr "[COLOR yellow]Geel Groen[/COLOR]"
 
 msgctxt "#32598"
 msgid "No Color"
@@ -893,11 +920,11 @@ msgstr "Geen Kleur"
 
 msgctxt "#32599"
 msgid "Getting genre information from Trakt"
-msgstr "Genre-informatie ophalen van Trakt"
+msgstr "Haal genre informatie op van Trakt"
 
 msgctxt "#32600"
-msgid "[COLOR=gold]Preparing sources[/COLOR]"
-msgstr "[COLOR=gold]Mirror zoek u bronnen[/COLOR]"
+msgid "THE CREW Will Find Your Links"
+msgstr "THE CREW is op zoek naar links"
 
 msgctxt "#32601"
 msgid "Total"
@@ -909,55 +936,43 @@ msgstr "Wachten op"
 
 msgctxt "#32603"
 msgid "New search..."
-msgstr "Nieuwe Zoekopdracht..."
+msgstr "Opnieuw zoeken..."
 
 msgctxt "#32604"
-msgid "[B]MIRROR[/B] : Clear search history..."
-msgstr "[B]MIRROR[/B] : Verwijder Zoekgeschiedenis..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear search history..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen zoekgeschiedenis..."
 
 msgctxt "#32605"
 msgid "Click to clear search history"
-msgstr "Klik om de Zoekgeschiedenis te wissen"
+msgstr "Klik om zoekgeschiedenis te wissen"
 
 msgctxt "#32606"
-msgid "[B][COLOR=gold]Paid[/COLOR][/B]"
-msgstr "[B][COLOR=gold]Betaald[/COLOR][/B]"
+msgid "[B][COLOR white]¤ [/COLOR][/B][COLOR orchid]Paid[/COLOR]"
+msgstr "[B][COLOR white]¤ [/COLOR][/B][COLOR orchid]Prem[/COLOR]"
 
 msgctxt "#32607"
-msgid "[B][COLOR=yellow]Free[/COLOR][/B]"
-msgstr "[B][COLOR=yellow]Vrij[/COLOR][/B]"
+msgid "[B][COLOR white]¤ [/COLOR][/B][COLOR hotpink]Free[/COLOR]"
+msgstr "[B][COLOR white]¤ [/COLOR][/B][COLOR hotpink]Gratis[/COLOR]"
 
 msgctxt "#32608"
 msgid "Unaired Season/Episode Color"
-msgstr "Onbekeken seizoenen/afleveringen kleur"
+msgstr "Niet uitgezonden Seizoen/Aflevering Kleur"
 
 msgctxt "#32609"
-msgid "ResolveURL  Settings"
-msgstr "ResolveURL-instellingen"
-
-msgctxt "#32610"
-msgid "Kids Corner"
-msgstr "Kinderhoek"
-
-msgctxt "#32611"
-msgid "Fitness Zone"
-msgstr "Fitness Zone"
-
-msgctxt "#32612"
-msgid "Legends of Music"
-msgstr "Legends of Music"
+msgid "[B][COLOR crimson]RESOLVEURL[/COLOR][/B] : SETTINGS"
+msgstr "[B][COLOR crimson]RESOLVEURL[/COLOR][/B] : INSTELLINGEN"
 
 msgctxt "#32613"
-msgid "[B]MIRROR[/B] : Clear All Cache..."
-msgstr "[B]MIRROR[/B] : Wis alle Cache ..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear All Cache..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen alle Cache..."
 
 msgctxt "#32614"
-msgid "[B]MIRROR[/B] : Clear Meta Cache..."
-msgstr "[B]MIRROR[/B] : Metacache Wissen ..."
+msgid "[B][COLOR orchid]THE CREW[/COLOR][/B] : Clear Meta Cache..."
+msgstr "[B][COLOR orchid]THE CREW[/COLOR][/B] : Wissen Meta Cache..."
 
 msgctxt "#32615"
 msgid "Check Host for Valid URL"
-msgstr "Controleer Host op geldige URL"
+msgstr "Controleer Host voor een geldige URL"
 
 msgctxt "#32616"
 msgid "Debugging"
@@ -965,317 +980,920 @@ msgstr "Debugging"
 
 msgctxt "#32617"
 msgid "Debug Log"
-msgstr "Foutopsporingslogboek"
+msgstr "Debug Log"
 
 msgctxt "#32618"
 msgid "Kodi Log"
-msgstr "Kodi Logboek"
+msgstr "Kodi Log"
 
 msgctxt "#32619"
 msgid "Addon Log"
-msgstr "Addon Logboek"
+msgstr "Addon Log"
 
 msgctxt "#32621"
 msgid "Navigation"
 msgstr "Navigatie"
 
 msgctxt "#32622"
-msgid "Main Menu"
-msgstr "Hoofdmenu"
-
-msgctxt "#32623"
-msgid "Reviews and Trailers"
-msgstr "Beoordelingen en Trailers"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Main Menu[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Hoofdmenu[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
 msgctxt "#32627"
 msgid "Categories"
 msgstr "Categorieën"
 
 msgctxt "#32628"
-msgid "[B]SETTINGS[/B] : Navigation"
-msgstr "[B]SETTINGS[/B] : Navigatie"
-
-msgctxt "#32629"
-msgid "PodBay"
-msgstr ""
+msgid "[B][COLOR orchid]SETTINGS[/COLOR][/B] : Navigation"
+msgstr "[B][COLOR orchid]INSTELLINGEN[/COLOR][/B] : Navigatie"
 
 msgctxt "#32630"
-msgid "Documentary"
-msgstr "Documentaire"
+msgid "Show Season 0 in Browse Seasons"
+msgstr "Toon Seizoen 0 bij Bladeren door Seizoenen"
 
 msgctxt "#32631"
-msgid "My Trakt"
-msgstr "Mijn Trakt"
+msgid "Boxsets"
+msgstr "Boxsets"
 
-msgctxt "#32632"
-msgid "[COLOR=darkorange]M[/COLOR]ovie Selection "
-msgstr "[COLOR=darkorange]F[/COLOR]ilm Selectie "
+msgctxt "#32634"
+msgid "Torrent Source Identifier Color"
+msgstr "Torrent Bron Identificatie Kleur"
 
-msgctxt "#32633"
-msgid "[COLOR=darkorange]C[/COLOR]hild Selection "
-msgstr "[COLOR=darkorange]K[/COLOR]inder Selectie"
+msgctxt "#32635"
+msgid "Torrent Support (Requires Real-Debrid)"
+msgstr "Torrent Ondersteuning (Vereist Real-Debrid)"
 
 msgctxt "#32636"
-msgid "[COLOR=gold]News and Updates[/COLOR]"
-msgstr "[COLOR=gold]Nieuws en Updates[/COLOR]"
-
+msgid "Enable Torrent Scrapers"
+msgstr "Schakel Torrent Scrapers in"
 
 msgctxt "#32637"
-msgid "Movies History"
-msgstr "Films Geschiedenis"
+msgid "[COLOR lightskyblue]Real-Debrid Torrent Settings[/COLOR]"
+msgstr "[COLOR lightskyblue]Real-Debrid Torrent Instellingen[/COLOR]"
 
 msgctxt "#32638"
-msgid "TvShows History"
-msgstr "Series Geschiedenis"
+msgid "Minimum Seeders"
+msgstr "Minimum Seeders"
 
 msgctxt "#32639"
-msgid "Movies Watchlist"
-msgstr "Volglijst van Films"
+msgid "Sort By Torrent/Premium"
+msgstr "Sorteer op Torrent/Premium"
 
 msgctxt "#32640"
-msgid "TvShows Watchlist"
-msgstr "Volglijst van Series"
+msgid "[COLOR lightskyblue]Real-Debrid[/COLOR] : Authorize"
+msgstr "[COLOR lightskyblue]Real-Debrid[/COLOR] : Autoriseren"
 
-msgctxt "#32641"
-msgid "[COLOR=gold]M[/COLOR]arvel Collection"
-msgstr "[COLOR=gold]M[/COLOR]arvel Collectie"
+msgctxt "#32700"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Documentaries[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Documentaires[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32084"
-msgid "Provider Choice:"
-msgstr "Provider Keuze:"
+msgctxt "#32701"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32685"
-msgid "Debrid Sources Only"
-msgstr "Alleen Debrid Bronnen"
+msgctxt "#32702"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]International[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Internationaal[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32089"
-msgid "duplicate links removed"
-msgstr "dubbele links verwijderd"
+msgctxt "#32703"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]Certificates[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Certificaten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32090"
-msgid "Filter-out duplicate links"
-msgstr "filter dubbele links"
+msgctxt "#32704"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]People Watching[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Mensen kijken nu[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32091"
-msgid "[COLOR=gold]A[/COLOR]ctor Collection"
-msgstr "[COLOR=gold]A[/COLOR]cteur Collectie"
+msgctxt "#32705"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]Most Popular[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Meest Populair[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32092"
-msgid "[COLOR=gold]H[/COLOR]olidays Collection"
-msgstr "[COLOR=gold]F[/COLOR]eestdagen Collectie"
+msgctxt "#32706"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]Most Voted[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Meest Gestemd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32093"
-msgid "[COLOR=darkorange]N[/COLOR]etflix Selection"
-msgstr "[COLOR=darkorange]N[/COLOR]etflix Selectie"
+msgctxt "#32707"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]People Search[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Personen Zoeken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32094"
-msgid "[COLOR=gold]D[/COLOR]isney Collection"
-msgstr "[COLOR=gold]D[/COLOR]isney Collectie"
+msgctxt "#32708"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]Networks[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Netwerken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32095"
-msgid "Christmas"
-msgstr "Kerstmis"
+msgctxt "#32711"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]Collections[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Collecties[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32096"
-msgid "Easter"
-msgstr "Pasen"
+msgctxt "#32712"
+msgid "[COLOR orchid]¤ [/COLOR][B][COLOR white]People Search[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤ [/COLOR][B][COLOR white]Personen Zoeken[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#32097"
-msgid "Halloween"
-msgstr "Halloween"
+msgctxt "#70001"
+msgid "Debrid Providers"
+msgstr "Debrid Providers"
 
-msgctxt "#32098"
-msgid "Default"
-msgstr "Standaard"
-
-msgctxt "#32099"
-msgid "Clear Providers Cache"
-msgstr "Cache van provider wissen"
-
-msgctxt "#33000"
-msgid "Random Movies"
-msgstr "Willekeurige Films"
-
-msgctxt "#33020"
-msgid "Vip Movies"
-msgstr "Vip Films"
-
-msgctxt "#33019"
-msgid "1 Click Movies"
-msgstr "1 Klik Films"
-
-msgctxt "#33001"
-msgid "4k Movies"
-msgstr "4k Films"
-
-msgctxt "#33002"
-msgid "1080p Movies"
-msgstr "1080p Films"
-
-msgctxt "#33003"
-msgid "Real Debrid Movies"
-msgstr "Real Debrid Films"
-
-msgctxt "#33004"
-msgid "Dolby Surround Movies"
-msgstr "Dolby Surround Films"
-
-msgctxt "#33005"
-msgid "Kids Movies"
-msgstr "Kinder Films"
-
-msgctxt "#33006"
-msgid "Dutch Movies"
-msgstr "Nederlandse Films"
-
-msgctxt "#30702"
-msgid "Unplayable stream"
-msgstr "Niet-afspeelbare stream"
-
-msgctxt "#30702"
-msgid ""
-msgstr ""
-
-msgctxt "#30703"
-msgid "Clear History"
-msgstr ""
-
-msgctxt "#30707"
-msgid "Trailer"
-msgstr ""
-
-msgctxt "#30708"
-msgid "Information"
-msgstr ""
-
-msgctxt "#30722"
-msgid "Download item"
-msgstr ""
-
-msgctxt "#30711"
-msgid "Set Movies view"
-msgstr ""
-
-msgctxt "#30712"
-msgid "Set TV Shows view"
-msgstr ""
-
-msgctxt "#30713"
-msgid "Set Seasons view"
-msgstr ""
-
-msgctxt "#30714"
-msgid "Set Episodes view"
-msgstr ""
-
-msgctxt "#30715"
-msgid "Enable Torrent Scrapers"
-msgstr ""
-
-msgctxt "#30716"
-msgid "Torrent Source Identifier Color"
-msgstr ""
-
-msgctxt "#30717"
-msgid "Sort By Torrent/Premium"
-msgstr ""
-
-msgctxt "#30718"
-msgid "Minimum Seeders"
-msgstr ""
-
-msgctxt "#30319"
-msgid "Trakt User:"
-msgstr "Trakt Gebruiker:"
-
-msgctxt "#30320"
-msgid "(Real Debrid)Authorize my account"
-msgstr "(Real Debrid)Mijn Account Autoriseren"
-
-msgctxt "#30321"
-msgid "(AllDebrid)Authorize My Account"
-msgstr "(AllDebrid)Mijn Account Autoriseren"
-
-msgctxt "#30322"
-msgid "(PremiumizeMe)Authorize My Account"
-msgstr "(PremiumizeMe)Mijn Account Autoriseren"
-
-msgctxt "#30323"
-msgid "[COLOR=gold]K[/COLOR]ids Collection"
-msgstr "[COLOR=gold]K[/COLOR]inder Collectie"
-
-msgctxt "#30324"
-msgid "[COLOR=gold]T[/COLOR]V-Show Collection"
-msgstr "[COLOR=gold]T[/COLOR]V-Serie Collectie"
-
-msgctxt "#30325"
-msgid "[COLOR=darkorange]G[/COLOR]enre Selection"
-msgstr "[COLOR=darkorange]G[/COLOR]enre Selectie"
-
-msgctxt "#30326"
-msgid "Hackers Movies"
-msgstr "Hackers Films"
-
-msgctxt "#30327"
-msgid "Crime Movies"
-msgstr "Crime Films"
-
-msgctxt "#30328"
-msgid "Prison Movies"
-msgstr "Gevangenis Films"
-
-msgctxt "#30329"
-msgid "Musical Movies"
-msgstr "Musical Films"
-
-msgctxt "#30330"
-msgid "Romance Movies"
-msgstr "Romantische Films"
-
-msgctxt "#30331"
-msgid "Western Movies"
-msgstr "Western Films"
-
-msgctxt "#30332"
-msgid "Ducth Tv Shows"
-msgstr "Nederlandse Tv Shows"
-
-msgctxt "#30333"
-msgid "Real-Debrid Providers"
-msgstr ""
-
-msgctxt "#30334"
+msgctxt "#70002"
 msgid "Torrent Providers"
-msgstr ""
+msgstr "Torrent Providers"
 
-msgctxt "#30335"
-msgid "[COLOR=darkorange]M[/COLOR]ovie Selection list"
-msgstr "[COLOR=darkorange]F[/COLOR]ilm Selectie lijst"
+msgctxt "#90000"
+msgid "[COLOR orchid]¤[/COLOR] [COLOR hotpink]Information[/COLOR] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [COLOR hotpink]Informatie[/COLOR] [COLOR orchid]¤[/COLOR]"
 
-msgctxt "#30336"
-msgid "Foreign Movies"
-msgstr "Buitenlandse Films"
+msgctxt "#90001"
+msgid "User Files"
+msgstr "Gebruikersbestanden"
 
-msgctxt "#30337"
-msgid "Psychological Movies"
-msgstr "Psychological Films"
+msgctxt "#90002"
+msgid "Search"
+msgstr "Zoeken"
 
-msgctxt "#30338"
-msgid "Hindustani Movies"
-msgstr "Hindoestaanse Films"
+msgctxt "#90003"
+msgid "Unaired Identity Color"
+msgstr "Niet uitgezonden Identificatie Kleur"
 
-msgctxt "#30339"
-msgid "Source Filters"
-msgstr "Bronfilters"
+msgctxt "#90004"
+msgid "Real-Debrid Providers"
+msgstr "Real-Debrid Providers"
 
-msgctxt "#30340"
-msgid "Powered by"
-msgstr "Aangedreven door"
+msgctxt "#90005"
+msgid "Torrent Providers"
+msgstr "Torrent Providers"
 
-msgctxt "#30341"
-msgid "Clear Providers Cache After Changing Scraper Provider"
-msgstr "Cache providers wissen na het wijzigen provider"
+msgctxt "#90006"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Bluehat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Sports[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Bluehat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Sport[/COLOR][/B]"
 
+msgctxt "#90007"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Whitehat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]IPTV[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Whitehat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]IPTV[/COLOR][/B]"
 
+msgctxt "#90008"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Pinkhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Porn[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Pinkhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Porno[/COLOR][/B]"
 
+msgctxt "#90009"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Greyhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Kids[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Greyhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Kinderen[/COLOR][/B]"
 
+msgctxt "#90010"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Blackhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Fitness[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Blackhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Fitness[/COLOR][/B]"
+
+msgctxt "#90011"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Greenhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]1 Clicks[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Greenhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]1 Kliks[/COLOR][/B]"
+
+msgctxt "#90012"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Goldenhat[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Goldenhat[/COLOR][/B]"
+
+msgctxt "#90013"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Swift Streams[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Swift Streams[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90014"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]24/7 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]24/7 Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90015"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]24/7 TV Shows[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]24/7 TV-Series[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90016"
+msgid "Korean Providers"
+msgstr "Koreaanse Providers"
+
+msgctxt "#90017"
+msgid "Spanish Providers"
+msgstr "Spaanse Providers"
+
+msgctxt "#90018"
+msgid "French Providers"
+msgstr "Franse Providers"
+
+msgctxt "#90019"
+msgid "German Providers"
+msgstr "Duitse Providers"
+
+msgctxt "#90020"
+msgid "Italian Providers"
+msgstr "Italiaanse Providers"
+
+msgctxt "#90021"
+msgid "Polish Providers"
+msgstr "Poolse Providers"
+
+msgctxt "#90022"
+msgid "Russian Providers"
+msgstr "Russische Providers"
+
+msgctxt "#90023"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NCAA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NCAA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90024"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]MLB[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]MLB[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90025"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90026"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NHL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NHL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90027"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NBA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NBA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90028"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]UFC[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]UFC[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90029"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]MMA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]MMA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90030"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sports Channels[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sport Kanalen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90031"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sports Replays[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sport Herhalingen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90033"
+msgid "[COLOR pink]¤[/COLOR] [B][COLOR pink]Adult Play Ground[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+msgstr "[COLOR pink]¤[/COLOR] [B][COLOR pink]Volwassenen Speeltuin[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+
+msgctxt "#90034"
+msgid "[COLOR pink]¤[/COLOR] [B][COLOR pink]Adult Section (age 18+)[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+msgstr "[COLOR pink]¤[/COLOR] [B][COLOR pink]Volwassen Sectie (leeftijd 18+)[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+
+msgctxt "#90035"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90036"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90037"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90038"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]En Espanol TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]En Espanol TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90039"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Faith TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Faith TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90040"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]CCTV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]CCTV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90041"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Latest HD Releases[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Nieuwste HD Releases[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90042"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Latest 4K UHD Releases[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Nieuwste 4K UHD Releases[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90043"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]This Weeks Top 10 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Top 10 Films Deze Week[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90044"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Academy Award For Best Cinematography[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Academy Award voor beste Cinematografie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90045"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stand-up Comedy[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stand-up Comedy[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90046"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]FIFA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]FIFA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90047"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]MOTO-GP[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]MOTO-GP[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90048"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]RUGBY[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]RUGBY[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90049"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]WWE[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]WWE[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90050"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt On Deck[/COLOR][/B] [COLOR orchid]¤¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt On Deck[/COLOR][/B] [COLOR orchid]¤¤[/COLOR]"
+
+msgctxt "#90051"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt Lists[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt Lijsten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90052"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt List Boxset[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Trakt Lijsten Boxset[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90053"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Action[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Actie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90054"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Adventure[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Avontuur[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90055"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Animation[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Animatie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90056"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Comedy[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Komedie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90057"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Crime[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Misdaad[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90058"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Drama[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Drama[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90059"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Family[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Familie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90060"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]History[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Geschiedenis[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90061"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Horror[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Horror[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90062"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Music Based[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Muziek Gebaseerd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90063"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mystery[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mysterie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90064"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Romance[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Romantiek[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90065"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sci-Fi[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sci-Fi[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90066"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Thriller[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Thriller[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90067"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]War[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Oorlog[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90068"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Western[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Western[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90069"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Marvel Comics[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Marvel Comics[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90070"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Walt Disney Animated[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Walt Disney Animaties[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90071"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Batman[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Batman[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90072"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Superman[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Superman[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90073"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Starwars[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Starwars[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90074"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]007 - Bond[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]007 - Bond[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90075"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Pixar[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Pixar[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90076"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Quentin Tarantino[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Quentin Tarantino[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90077"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rocky[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rocky[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90078"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dreamworks Animation[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dreamworks Animatie[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90079"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]DC Comics[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]DC Comics[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90080"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]30 Best Romantic Comedies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]30 Beste Romantische Komedies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90081"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]88th Academy Awards Winners[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]88th Academy Awards Winnaars[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90082"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Most Sexy Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Meest Sexy Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90083"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dance Based[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dans Gebaseerd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90084"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Halloween Based[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Halloween Gebaseerd[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90085"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Top 100[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb Top 100[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90086"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Top 250[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb Top 250[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90087"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Top 1000[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb Top 1000[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90088"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Best Director Winning[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb Beste Regisseur wint[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90089"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rated G[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kijkadvies G[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90090"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rated PG[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kijkadvies PG[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90091"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rated PG-13[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kijkadvies PG-13[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90092"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rated R[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kijkadvies R[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90093"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Rated NC-17[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kijkadvies NC-17[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90094"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]National Film Board Preserved[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]National Film Board Preserved[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90095"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]FOX Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]FOX Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90096"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Paramount Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Paramount Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90097"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]MGM Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]MGM Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90098"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Disney Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Disney Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90099"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Universal Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Universal Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90100"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sony Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Sony Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90101"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Warner Brothers Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Warner Brothers Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90102"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Prime Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDb Prime Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90103"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90104"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Horror Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Horror Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90105"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Fantasy Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Fantasie Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90106"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Western Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Western Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90107"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Animation Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Animatie Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90108"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic War Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Oorlog Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90109"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Classic Sci-fi Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Klassieke Sci-fi Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90110"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]1980 - 1989 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]1980 - 1989 Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90111"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]1990 - 1999 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]1990 - 1999 Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90112"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]2000 - 2010 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]2000 - 2010 Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90113"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Redhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Stand Up Comedy[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Redhat[/COLOR] [COLOR orchid]»[/COLOR] [COLOR white]Stand Up Comedy[/COLOR][/B]"
+
+msgctxt "#90114"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Misc Sports[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Diverse Sporten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90115"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Boxing[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Boksen[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90116"
+msgid "Include Special Episodes"
+msgstr "Toon Speciale Afleveringen"
+
+msgctxt "#90117"
+msgid "TV Shows"
+msgstr "TV-Series"
+
+msgctxt "#90118"
+msgid "Enter Password"
+msgstr "Voer Wachtwoord in"
+
+msgctxt "#90119"
+msgid "Multiline source list"
+msgstr "Meerregelige bronnenlijst"
+
+msgctxt "#90120"
+msgid "Debrid Only"
+msgstr "Enkel Debrid"
+
+msgctxt "#90121"
+msgid "Pre-emptive Termination"
+msgstr "Preventieve Beëindiging"
+
+msgctxt "#90122"
+msgid "Pre-emptive Limit"
+msgstr "Preventieve Limiet"
+
+msgctxt "#90123"
+msgid "Trakt Bookmarks"
+msgstr "Trakt Bladwijzers"
+
+msgctxt "#90124"
+msgid "Auto Resume"
+msgstr "Automatisch Hervatten"
+
+msgctxt "#90125"
+msgid "Sync on Kodi Start"
+msgstr "Synchroniseer bij Kodi start"
+
+msgctxt "#90126"
+msgid "Schedule Updates Every - Hour/s"
+msgstr "Updates Plannen Elke... (in Uren)"
+
+msgctxt "#90127"
+msgid "Account Information"
+msgstr "Account Informatie"
+
+msgctxt "#90128"
+msgid "Account"
+msgstr "Account"
+
+msgctxt "#90129"
+msgid "Chillax.ws - Your login details are not protected"
+msgstr "Chillax.ws -Uw login gegevens zijn niet beveiligd"
+
+msgctxt "#90130"
+msgid "Furk Username"
+msgstr "Furk Gebruikersnaam"
+
+msgctxt "#90131"
+msgid "Furk Password"
+msgstr "Furk Wachtwoord"
+
+msgctxt "#90132"
+msgid "Furk API Key"
+msgstr "Furk API Sleutel"
+
+msgctxt "#90133"
+msgid "Limit results"
+msgstr "Limiteer resultaten"
+
+msgctxt "#90134"
+msgid "24HR delay before import"
+msgstr "24 uur vertraging voor importeren"
+
+msgctxt "#90135"
+msgid "Enable Debug"
+msgstr "Debug Inschakelen"
+
+msgctxt "#90136"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TENNIS[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TENNIS[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90137"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Navigation Home[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Start Navigatie[/COLOR][/B]"
+
+msgctxt "#90138"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Family Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Familie Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90139"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]2010 - 2019 Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]2010 - 2019 Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90140"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dreamworks Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Dreamworks Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90141"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Lists[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IMDB Lijsten[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90142"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]LFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]LFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90143"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Food & Brews[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Eten & Drinken[/COLOR][/B]"
+
+msgctxt "#32669"
+msgid "Swift Streamz"
+msgstr "Swift Streams"
+
+msgctxt "#32672"
+msgid "Sort By Channel Name"
+msgstr "Sorteren op naam Kanaal"
+
+msgctxt "#32675"
+msgid "Use Adaptive Stream Player"
+msgstr "Gebruik Adaptive Stream Player"
+
+msgctxt "#32676"
+msgid "Filter out MOV Lists"
+msgstr "Filter MOV lijsten eruit"
+
+msgctxt "#32677"
+msgid "Filter out Sports Lists"
+msgstr "Filter Sports Lijsten eruit"
+
+msgctxt "#32678"
+msgid "Filter out TV Lists"
+msgstr "Filter TV lijsten eruit"
+
+msgctxt "#90144"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween Flicks[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween Films[/COLOR][/B]"
+
+msgctxt "#90145"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween Related Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween gerelateerde Films/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90146"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween Franchise Set[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Halloween Franchise Set[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90147"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]The Top 100 Halloween Movies of All-time[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]De Top 100 Halloween Films Aller Tijden[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90148"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Best Halloween Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]Beste Halloween Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90149"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR orange]100 Great Halloween Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR orange]100 Goede Halloween Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90150"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Chains Of Absolution[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Chains Of Absolution[/COLOR][/B]"
+
+msgctxt "#90151"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]FORMULA 1[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Formule 1[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90152"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NASCAR[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NASCAR[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90153"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]PGA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]PGA[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90154"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]CRICKET[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]CRICKET[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90155"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mad Titan[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Mad Titan[/COLOR][/B]"
+
+msgctxt "#90156"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]NCAAB[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]NCAAB[/COLOR][/B]"
+
+msgctxt "#90157"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR red]Holiday Cheer[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR red]Feestdagen[/COLOR][/B]"
+
+msgctxt "#90158"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Holiday Related Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Decembermaand Films[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90159"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Hallmark Christmas[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Hallmark Kerstmis[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90160"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Random Christmas Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Willekeurige Kerstfilms[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90161"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Top 50 Holiday Movies[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Top 50 Kerstfilms[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90162"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Best Holiday Movies of All Times (as well as some rare finds)[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Beste Decembermaand Films aller Tijden (ook enkele zeldzame)[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90163"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kiddo (CDTV)[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Kiddo (CDTV)[/COLOR][/B]"
+
+msgctxt "#90164"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Eye Candy[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Eye Candy[/COLOR][/B]"
+
+msgctxt "#90165"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Retribution[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Retribution[/COLOR][/B]"
+
+msgctxt "#90166"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Disney +[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Disney +[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90167"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personal List[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Persoonlijke lijst[/COLOR][/B]"
+
+msgctxt "#90168"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Personal List URL[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Persoonlijke lijst URL[/COLOR][/B]"
+
+msgctxt "#90169"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Enable Personal List[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Schakel Persoonlijke lijst in[/COLOR][/B]"
+
+msgctxt "#90170"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Apple TV +[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Apple TV +[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90171"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus - Lust[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus - Lust[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90172"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge - En Espanol[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge - Engels-Spaan[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90173"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge - Arabic[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]TV Lodge - Arabisch[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90174"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Chile[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Chili[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90175"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - India & Pakistan[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - India & Pakistan[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90176"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Colombia[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Colombia[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90177"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Argentina[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Argentinië[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90178"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Spain[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Spanje[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90179"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Arabic[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Arabisch[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90180"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Brazil & Portugal[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus - Brazilië & Portugal[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90181"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Additional Addons[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Extra Addons[/COLOR][/B]"
+
+msgctxt "#90182"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]USA IPTV GIT[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]USA IPTV GIT[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90183"
+msgid "TV Shows"
+msgstr "TV-Series"
+
+msgctxt "#90184"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Fluxus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90185"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Stratus TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90186"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Lodge TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Lodge TV[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90187"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]IPTV - ORG[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]IPTV - ORG[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90188"
+msgid "[B][COLOR ff00ff7f]REPORT BUGS[/COLOR][/B]"
+msgstr "[B][COLOR ff00ff7f]REPORT BUGS[/COLOR][/B]"
+
+msgctxt "#90189"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]CC Collections[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]CC Collecties[/COLOR][/B]"
+
+msgctxt "#90190"
+msgid "Hide movies in cinema"
+msgstr "Verberg Films in Cinema"
+
+msgctxt "#90191"
+msgid "Page Item Limit"
+msgstr "Pagina Item Limiet"
+
+msgctxt "#90192"
+msgid "Months to Rollback for Hide in Cinema"
+msgstr "Maanden terugrollen voor verbergen in Cinema"
+
+msgctxt "#90193"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]XFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]XFL[/COLOR][/B] [COLOR orchid]¤[/COLOR]"
+
+msgctxt "#90194"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]Show only Hats[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]Toon enkel de Hats[/COLOR][/B]"
+
+msgctxt "#90195"
+msgid "[COLOR orchid]¤[/COLOR] [B][COLOR white]The Crew Version[/COLOR][/B]"
+msgstr "[COLOR orchid]¤[/COLOR] [B][COLOR white]The Crew Versie[/COLOR][/B]"

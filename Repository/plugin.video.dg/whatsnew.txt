@@ -1,7 +1,0 @@
-
-update:  03-02-2020
-
-[COLOR yellow]Fix problems with history and cache[/COLOR]
-
-
-
