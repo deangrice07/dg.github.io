@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="32310">
-        <setting id="appearance.alt" type="action" label="32311" default="-" option="close" action="RunPlugin(plugin://plugin.video.thecrew/?action=artwork)" visible="!System.HasAddon(script.thecrew.artwork)" />
-        <setting id="appearance.1" type="select" label="32311" values="thecrew" default="thecrew" visible="false" />
+        <setting id="appearance.alt" type="action" label="32311" default="-" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=artwork)" visible="!System.HasAddon(script.dg.artwork)" />
+        <setting id="appearance.1" type="select" label="32311" values="dg" default="dg" visible="false" />
         <setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
         <setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
         <setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
@@ -107,7 +107,7 @@
         <setting id="torrent.identify" type="enum" label="32634" enable="eq(-1,true)" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="7" />
         <setting id="torrent.min.seeders" type="slider" label="32638" enable="eq(-2,true)" default="10" range="1,100" option="int" />
         <setting id="torrent.sort.the.crew" type="bool" label="32639" enable="eq(-3,true)" default="true" />
-        <setting id="torrent.resolveurl" type="action" label="32637" enable="eq(-4,true)" option="close" action="RunPlugin(plugin://plugin.video.thecrew/?action=ResolveUrlTorrent&query=1.58)" />
+        <setting id="torrent.resolveurl" type="action" label="32637" enable="eq(-4,true)" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=ResolveUrlTorrent&query=1.58)" />
         <setting id="check.torr.cache" type="bool" label="Verify Torrents Cache" default="false" />
         <setting type="lsep" label="32343" />
         <setting id="bookmarks" type="bool" label="32344" default="true" />
@@ -123,7 +123,7 @@
         <setting id="schedTraktTime" type="slider" label="90126" default="0" range="0,24" option="int" />
         <setting type="lsep" label="Account Information" />
         <setting id="trakt.auth" type="text" default="" visible="hidden"/>
-        <setting type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.thecrew/?action=authTrakt)" />
+        <setting type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=authTrakt)" />
         <setting id="trakt.user" type="text" label="Account" default="" visible="true" enable="false" />
         <setting id="trakt.token" type="text" visible="hidden" label="" default="" />
         <setting id="trakt.refresh" type="text" visible="hidden" label="" default="" />
@@ -230,8 +230,8 @@
         <setting id="furk.limit" label="Limit results" type="slider" default="25" range="5,5,200" option="int" />
     </category>
     <category label="32541">
-        <setting id="library.movie" type="folder" label="32543" default="special://userdata/addon_data/plugin.video.thecrew/Movies" />
-        <setting id="library.tv" type="folder" label="32544" default="special://userdata/addon_data/plugin.video.thecrew/TVShows" />
+        <setting id="library.movie" type="folder" label="32543" default="special://userdata/addon_data/plugin.video.dg/Movies" />
+        <setting id="library.tv" type="folder" label="32544" default="special://userdata/addon_data/plugin.video.dg/TVShows" />
         <setting type="lsep" label="32542" />
         <setting type="sep" />
         <setting id="library.service.update" type="bool" label="32545" default="true" />
