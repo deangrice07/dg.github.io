@@ -95,7 +95,7 @@
         <setting id="hosts.captcha" type="bool" label="32341" default="true" />
         <setting type="lsep" label="32338" />
         <setting id="debrid.only" type="bool" label="90120" default="" />
-        <setting id="prem.identify" type="enum" label="32588" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="3" />
+        <setting id="prem.identify" type="enum" label="32588" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="2" />
         <setting id="preemptive.termination" type="bool" label="90121" default="false" />
         <setting id="preemptive.limit" type="slider" label="90122" default="10" range="1,50" option="int" />
         <setting id="remove.dups" type="bool" label="32090" default="true" />
@@ -104,7 +104,7 @@
         <setting id="autoplay.sd" type="bool" label="32340" default="false" />
         <setting type="lsep" label="32635" />
         <setting id="torrent.enabled" type="bool" label="32636" default="true" />
-        <setting id="torrent.identify" type="enum" label="32634" enable="eq(-1,true)" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="7" />
+        <setting id="torrent.identify" type="enum" label="32634" enable="eq(-1,true)" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32598" default="8" />
         <setting id="torrent.min.seeders" type="slider" label="32638" enable="eq(-2,true)" default="10" range="1,100" option="int" />
         <setting id="torrent.sort.the.crew" type="bool" label="32639" enable="eq(-3,true)" default="true" />
         <setting id="torrent.resolveurl" type="action" label="32637" enable="eq(-4,true)" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=ResolveUrlTorrent&query=1.58)" />
