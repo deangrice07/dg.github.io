@@ -31,171 +31,171 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32000"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Box Sets[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Box Sets[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32001"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Movies[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Movies[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32002"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Shows[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]TV Shows[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32003"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]My Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]My Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32004"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]My TV Shows[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]My TV Shows[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32005"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]New Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]New Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32006"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]New Episodes[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]New Episodes[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32007"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Channels[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Channels[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32008"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Tools[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Tools[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32009"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Downloads[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Downloads[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32010"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Search[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Search[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32011"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Genres[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32012"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Year[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Year[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32013"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]People[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]People[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32014"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]International[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]International[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32015"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Certificates[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Certificates[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32016"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Networks[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Networks[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32017"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Trending[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Trending[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32018"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Most Popular[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Most Popular[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32019"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Most Voted[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Most Voted[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32020"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Box Office[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Box Office[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32021"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Oscar Winners[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Oscar Winners[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32022"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]In Theaters[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]In Theaters[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32023"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Highly Rated[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Highly Rated[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32024"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Airing today[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Airing today[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32025"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Returning Shows[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Returning Shows[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32026"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]New TV Shows[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]New TV Shows[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32027"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Calendar[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TV Calendar[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32028"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]People Search[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]People Search[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32029"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]People - Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]People - Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32030"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]People - TV Shows[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]People - TV Shows[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32031"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Discover[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Discover[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32032"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Collection[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Collection[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32033"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Watchlist[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Watchlist[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32034"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDb[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDb[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32035"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Featured[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Featured[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32036"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]History[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]History[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32037"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Progress[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Progress[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32038"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Episodes[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Episodes[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32039"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Movie Lists[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Movie Lists[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32040"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Shows Lists[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TV Shows Lists[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32041"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Episode Lists[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Episode Lists[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32042"
@@ -727,7 +727,7 @@ msgid "Configure Debrid Services in ResolveURL Settings."
 msgstr ""
 
 msgctxt "#32540"
-msgid "[B][COLOR white]ResolveURL[/COLOR][/B] : SETTINGS"
+msgid "[B][COLOR ghostwhite]ResolveURL[/COLOR][/B] : SETTINGS"
 msgstr ""
 
 msgctxt "#32541"
@@ -891,7 +891,7 @@ msgid "[COLOR yellow]Yellow[/COLOR]"
 msgstr ""
 
 msgctxt "#32592"
-msgid "[COLOR pink]Deep Pink[/COLOR]"
+msgid "[COLOR ghostwhite]Deep Pink[/COLOR]"
 msgstr ""
 
 msgctxt "#32593"
@@ -947,11 +947,11 @@ msgid "Click to clear search history"
 msgstr ""
 
 msgctxt "#32606"
-msgid "[B][COLOR white]¤ [/COLOR][/B][COLOR ghostwhite]Paid[/COLOR]"
+msgid "[B][COLOR ghostwhite]¤ [/COLOR][/B][COLOR ghostwhite]Paid[/COLOR]"
 msgstr ""
 
 msgctxt "#32607"
-msgid "[B][COLOR white]¤ [/COLOR][/B][COLOR ghostwhite]Free[/COLOR]"
+msgid "[B][COLOR ghostwhite]¤ [/COLOR][/B][COLOR ghostwhite]Free[/COLOR]"
 msgstr ""
 
 msgctxt "#32608"
@@ -995,7 +995,7 @@ msgid "Navigation"
 msgstr ""
 
 msgctxt "#32622"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Main Menu[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Main Menu[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32627"
@@ -1043,47 +1043,47 @@ msgid "[COLOR lightskyblue]Debrid[/COLOR] : Authorize"
 msgstr ""
 
 msgctxt "#32700"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Documentaries[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Documentaries[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32701"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Genres[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Genres[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#32702"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]International[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]International[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32703"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]Certificates[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]Certificates[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32704"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]People Watching[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]People Watching[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32705"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]Most Popular[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]Most Popular[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32706"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]Most Voted[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]Most Voted[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32707"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]People Search[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]People Search[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32708"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]Networks[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]Networks[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32711"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]Collections[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]Collections[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32712"
-msgid "[COLOR ghostwhite]¤ [/COLOR][B][COLOR white]People Search[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid "[B][COLOR ghostwhite]People Search[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#70001"
@@ -1119,43 +1119,43 @@ msgid "Torrent Providers"
 msgstr ""
 
 msgctxt "#90006"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Sports[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Sports[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90007"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]IPTV[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]IPTV[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90008"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Porn[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Porn[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90009"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Kids[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Kids[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90010"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Fitness[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Fitness[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90011"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]1 Clicks[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]1 Clicks[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90012"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Radio[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Radio[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90013"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Swift Streams[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Swift Streams[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90014"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]24/7 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]24/7 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90015"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]24/7 TV Shows[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]24/7 TV Shows[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90016"
@@ -1187,371 +1187,371 @@ msgid "Russian Providers"
 msgstr ""
 
 msgctxt "#90023"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NCAAF[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NCAAF[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90024"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]MLB[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]MLB[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90025"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NFL[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NFL[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90026"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NHL[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NHL[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90027"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NBA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NBA[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90028"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]UFC / MMA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]UFC / MMA[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90029"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]MMA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]MMA[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90030"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]SPORTS CHANNELS[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]SPORTS CHANNELS[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90031"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]SPORTS REPLAYS[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]SPORTS REPLAYS[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90033"
-msgid "[COLOR pink]¤[/COLOR] [B][COLOR pink]Adult Play Ground[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR ghostwhite]Adult Play Ground[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
 msgstr ""
 
 msgctxt "#90034"
-msgid "[COLOR pink]¤[/COLOR] [B][COLOR pink]Adult Section (age 18+)[/COLOR][/B] [COLOR pink]¤[/COLOR]"
+msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR ghostwhite]Adult Section (age 18+)[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
 msgstr ""
 
 msgctxt "#90035"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus - IPTV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus - IPTV[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90036"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Lodge - English[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TV Lodge - English[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90037"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - USA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - USA[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90038"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus - En Espanol TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus - En Espanol TV[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90039"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus - Faith[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus - Faith[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90040"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus - CCTV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus - CCTV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90041"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Latest HD Releases[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Latest HD Releases[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90042"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Latest 4K UHD Releases[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Latest 4K UHD Releases[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90043"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]This Weeks Top 10 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]This Weeks Top 10 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90044"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Academy Award For Best Cinematography[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Academy Award For Best Cinematography[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90045"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stand-up Comedy[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stand-up Comedy[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90046"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]FIFA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]FIFA[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90047"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]MOTO-GP[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]MOTO-GP[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90048"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]RUGBY[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]RUGBY[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90049"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]WWE[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]WWE[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90050"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Trakt On Deck[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Trakt On Deck[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90051"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Trakt Lists[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Trakt Lists[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90052"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Trakt List Boxset[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Trakt List Boxset[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90053"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Action[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Action[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90054"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Adventure[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Adventure[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90055"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Animation[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Animation[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90056"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Comedy[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Comedy[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90057"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Crime[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Crime[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90058"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Drama[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Drama[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90059"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Family[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Family[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90060"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]History[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]History[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90061"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Horror[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Horror[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90062"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Music Based[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Music Based[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90063"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Mystery[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Mystery[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90064"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Romance[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Romance[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90065"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Sci-Fi[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Sci-Fi[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90066"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Thriller[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Thriller[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90067"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]War[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]War[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90068"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Western[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Western[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90069"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Marvel Comics[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Marvel Comics[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90070"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Walt Disney Animated[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Walt Disney Animated[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90071"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Batman[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Batman[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90072"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Superman[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Superman[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90073"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Starwars[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Starwars[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90074"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]007 - Bond[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]007 - Bond[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90075"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Pixar[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Pixar[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90076"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Quentin Tarantino[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Quentin Tarantino[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90077"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rocky[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rocky[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90078"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Dreamworks Animation[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Dreamworks Animation[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90079"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]DC Comics[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]DC Comics[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90080"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]30 Best Romantic Comedies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]30 Best Romantic Comedies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90081"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]88th Academy Awards Winners[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]88th Academy Awards Winners[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90082"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Most Sexy Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Most Sexy Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90083"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Dance Based[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Dance Based[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90084"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Halloween Based[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Halloween Based[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90085"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDB Top 100[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDB Top 100[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90086"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDB Top 250[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDB Top 250[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90087"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDB Top 1000[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDB Top 1000[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90088"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDB Best Director Winning[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDB Best Director Winning[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90089"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rated G[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rated G[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90090"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rated PG[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rated PG[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90091"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rated PG-13[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rated PG-13[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90092"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rated R[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rated R[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90093"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Rated NC-17[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Rated NC-17[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90094"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]National Film Board Preserved[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]National Film Board Preserved[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90095"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]FOX Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]FOX Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90096"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Paramount Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Paramount Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90097"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]MGM Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]MGM Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90098"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Disney Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Disney Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90099"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Universal Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Universal Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90100"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Sony Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Sony Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90101"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Warner Brothers Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Warner Brothers Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90102"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Prime Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Prime Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90103"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90104"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Horror Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Horror Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90105"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Fantasy Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Fantasy Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90106"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Western Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Western Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90107"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Animation Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Animation Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90108"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic War Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic War Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90109"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Classic Sci-fi Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Classic Sci-fi Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90110"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]1980 - 1989 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]1980 - 1989 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90111"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]1990 - 1999 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]1990 - 1999 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90112"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]2000 - 2010 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]2000 - 2010 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90113"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Stand Up Comedy[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Stand Up Comedy[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90114"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]MISC SPORTS[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]MISC SPORTS[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90115"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]BOXING[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]BOXING[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90116"
@@ -1635,35 +1635,35 @@ msgid "Enable Debug"
 msgstr ""
 
 msgctxt "#90136"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TENNIS[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TENNIS[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90137"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Navigation Home[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Navigation Home[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90138"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Family Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Family Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90139"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]2010 - 2019 Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]2010 - 2019 Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90140"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Dreamworks Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Dreamworks Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90141"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IMDB Lists[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IMDB Lists[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90142"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]LFL[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]LFL[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90143"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Food & Brews[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Food & Brews[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#32669"
@@ -1691,159 +1691,159 @@ msgid "Filter out TV Lists"
 msgstr ""
 
 msgctxt "#90144"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]Halloween Flicks[/COLOR][/B]"
+msgid " [B][COLOR orange]Halloween Flicks[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90145"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]Halloween Related Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR orange]Halloween Related Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90146"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]Halloween Franchise Set[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR orange]Halloween Franchise Set[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90147"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]The Top 100 Halloween Movies of All-time[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR orange]The Top 100 Halloween Movies of All-time[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90148"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]Best Halloween Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR orange]Best Halloween Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90149"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR orange]100 Great Halloween Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR orange]100 Great Halloween Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90150"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Chain Reaction[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Chain Reaction[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90151"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]FORMULA 1[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]FORMULA 1[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90152"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NASCAR[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NASCAR[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90153"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]PGA[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]PGA[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90154"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]CRICKET[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]CRICKET[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90155"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Mad Titan[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Mad Titan[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90156"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]NCAAB[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]NCAAB[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90157"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR red]Holiday Cheer[/COLOR][/B]"
+msgid " [B][COLOR red]Holiday Cheer[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90158"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Holiday Related Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Holiday Related Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90159"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Hallmark Christmas[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Hallmark Christmas[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90160"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Random Christmas Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Random Christmas Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90161"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Top 50 Holiday Movies[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Top 50 Holiday Movies[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90162"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Best Holiday Movies of All Times (as well as some rare finds)[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Best Holiday Movies of All Times (as well as some rare finds)[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90163"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Kiddo (CDTV)[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Kiddo (CDTV)[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90164"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Eye Candy[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Eye Candy[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90165"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Retribution[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Retribution[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90166"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Disney +[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Disney +[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90167"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Personal List[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Personal List[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90168"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Personal List URL[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Personal List URL[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90169"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Enable Personal List[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Enable Personal List[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90170"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Apple TV +[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Apple TV +[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90171"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus - Lust[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus - Lust[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90172"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Lodge - En Espanol[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TV Lodge - En Espanol[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90173"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]TV Lodge - Arabic[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]TV Lodge - Arabic[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90174"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Chile[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Chile[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90175"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - India & Pakistan[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - India & Pakistan[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90176"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Colombia[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Colombia[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90177"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Argentina[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Argentina[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90178"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Spain[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Spain[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90179"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Arabic[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Arabic[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90180"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus - Brazil & Portugal[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus - Brazil & Portugal[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90181"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Additional Addons[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Additional Addons[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90182"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]USA IPTV GIT[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]USA IPTV GIT[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90183"
@@ -1851,19 +1851,19 @@ msgid "TV Shows"
 msgstr ""
 
 msgctxt "#90184"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Fluxus TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Fluxus TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90185"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Stratus TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Stratus TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90186"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Lodge TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Lodge TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90187"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]IPTV - ORG[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]IPTV - ORG[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90188"
@@ -1871,7 +1871,7 @@ msgid "[B][COLOR ff00ff7f]REPORT BUGS[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90189"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Collections[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Collections[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90190"
@@ -1887,69 +1887,69 @@ msgid "Months to Rollback for Hide in Cinema"
 msgstr ""
 
 msgctxt "#90193"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]XFL[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]XFL[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90194"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Show only Hats[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]Show only Hats[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90195"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]DG Version[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite]DG Version[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90196"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Your Sports Stream[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Your Sports Stream[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90197"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Weak Spell[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Weak Spell[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90198"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Sports 24 Tv[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Sports 24 Tv[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90199"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Arconai Tv[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Arconai Tv[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90200"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Sportsbay Tv[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Sportsbay Tv[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90201"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Base[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Base[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90202"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white][/COLOR][COLOR ghostwhite][/COLOR][COLOR white]Wasteland[/COLOR][/B]"
+msgid " [B][COLOR ghostwhite][/COLOR][COLOR ghostwhite][/COLOR][COLOR ghostwhite]Wasteland[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#90203"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Pluto TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Pluto TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90204"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Xumo TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Xumo TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90205"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Bumblebee TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Bumblebee TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90206"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Distro TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Distro TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90207"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]Tubi TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]Tubi TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90208"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]DaddyLive TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]DaddyLive TV[/COLOR][/B] "
 msgstr ""
 
 msgctxt "#90209"
-msgid "[COLOR ghostwhite]¤[/COLOR] [B][COLOR white]GRATIS TV[/COLOR][/B] [COLOR ghostwhite]¤[/COLOR]"
+msgid " [B][COLOR ghostwhite]GRATIS TV[/COLOR][/B] "
 msgstr ""
