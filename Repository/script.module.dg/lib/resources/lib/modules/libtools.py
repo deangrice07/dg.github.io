@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -12,7 +19,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 
 
@@ -70,9 +77,9 @@ class lib_tools:
 
     @staticmethod
     def nfo_url(media_string, ids):
-        tvdb_url = 'http://thetvdb.com/?tab=series&id=%s'
+        tvdb_url = 'https://thetvdb.com/?tab=series&id=%s'
         tmdb_url = 'https://www.themoviedb.org/%s/%s'
-        imdb_url = 'http://www.imdb.com/title/%s/'
+        imdb_url = 'https://www.imdb.com/title/%s/'
 
         if 'tvdb' in ids:
             return tvdb_url % (str(ids['tvdb']))
@@ -112,7 +119,7 @@ class lib_tools:
         if season:
             path = os.path.join(path, 'Season %s' % season)
         return path
-
+#TC 2/01/19 started
 class libmovies:
     def __init__(self):
         self.library_folder = os.path.join(control.transPath(control.setting('library.movie')), '')
@@ -377,7 +384,7 @@ class libtvshows:
 
             transtitle = cleantitle.normalize(tvshowtitle.translate(None, '\/:*?"<>|'))
 
-            content = '%s?action=play&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&date=%s' % (sys.argv[0], episodetitle, year, imdb, tvdb, season, episode, systitle, syspremiered)
+            content = '%s?action=play1&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&date=%s' % (sys.argv[0], episodetitle, year, imdb, tvdb, season, episode, systitle, syspremiered)
 
             folder = lib_tools.make_path(self.library_folder, transtitle, year)
             if not os.path.isfile(os.path.join(folder, 'tvshow.nfo')):
@@ -617,4 +624,5 @@ class libepisodes:
                 pass
 
             control.sleep(10000)
+
 

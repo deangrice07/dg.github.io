@@ -16,34 +16,26 @@
 '''
 
 
-def get(version):
-    try:
-        import xbmc,xbmcgui,xbmcaddon,xbmcvfs
+def get():
 
-        f = xbmcvfs.File(xbmcaddon.Addon().getAddonInfo('changelog'))
-        text = f.read() ; f.close()
-
-        label = '%s - %s' % (xbmc.getLocalizedString(24054), xbmcaddon.Addon().getAddonInfo('name'))
+        import xbmc,xbmcgui,xbmcaddon,xbmcvfs,os
+        addonInfo = xbmcaddon.Addon().getAddonInfo
+        addonPath = xbmc.translatePath(addonInfo('path'))
+        changelogfile = os.path.join(addonPath, 'changelog.txt')
+        r = open(changelogfile)
+        text = r.read()
 
         id = 10147
-
         xbmc.executebuiltin('ActivateWindow(%d)' % id)
-        xbmc.sleep(100)
-
+        xbmc.sleep(500)
         win = xbmcgui.Window(id)
-
         retry = 50
         while (retry > 0):
             try:
                 xbmc.sleep(10)
-                win.getControl(1).setLabel(label)
-                win.getControl(5).setText(text)
-                retry = 0
-            except:
                 retry -= 1
-
-        return '1'
-    except:
-        return '1'
-
-
+                win.getControl(1).setLabel('THE CREW PROJECT TEST VERSION: %s' %(xbmcaddon.Addon().getAddonInfo('version')))
+                win.getControl(5).setText(text)
+                return
+            except:
+                pass

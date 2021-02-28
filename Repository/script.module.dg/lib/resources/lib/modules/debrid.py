@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -14,7 +21,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 from resources.lib.modules import control, log_utils
 
 try:
@@ -28,7 +34,7 @@ try:
         # As a bonus(?), rapidgator links will be highlighted just like actual debrid links
         debrid_resolvers = [resolver() for resolver in resolveurl.relevant_resolvers(order_matters=True,include_universal=False) if 'rapidgator.net' in resolver.domains]
 
-except Exception:
+except:
     debrid_resolvers = []
 
 

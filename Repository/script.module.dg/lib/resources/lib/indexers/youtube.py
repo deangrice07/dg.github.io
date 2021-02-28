@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 lambda
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -28,46 +35,22 @@ thishandle = int(sys.argv[1])
 class yt_index:
     def __init__(self):
         self.action = 'kidscorner'
-        self.base_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2RlbW9uLWJpdC94bWwtbWFzdGVyL21hc3Rlci95b3V0dWJlLw=='.decode('base64')
+        self.base_url = 'aHR0cHM6Ly90aGUtY3Jldy54eXoveG1scy95b3V0dWJlLw=='.decode('base64')
         self.mainmenu = 'JXNrbm1haW4udHh0'.decode('base64') % (self.base_url)
         self.submenu  = 'JXMvJXMudHh0'.decode('base64')
-        self.default_icon   = 'JXMvaWNvbnMvaWNvbi5wbmc='.decode('base64')
-        self.default_fanart = 'JXMvaWNvbnMvZmFuYXJ0LmpwZw=='.decode('base64')
+        self.default_icon   = 'JXMvaWNvbnMvZml0bmVzcy5wbmc='.decode('base64')
+        self.default_fanart = 'JXMvaWNvbnMvZml0X2Zhbi5qcGc='.decode('base64')
 
     def init_vars(self, action):
         try:
             if action == 'fitness':
                 self.action   = 'fitness'
-                self.base_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tLzEzQ2xvd25zL3Jlc291cmNlcy9tYXN0ZXIveG1scy9maXRuZXNzem9uZS8='.decode('base64')
+                self.base_url = 'aHR0cDovL3RoZS1jcmV3Lnh5ei94bWxoYXQvbWlzYy9maXRuZXNzLw=='.decode('base64')
                 self.mainmenu = 'JXNmem1haW4udHh0'.decode('base64') % (self.base_url)
-            elif action == 'youtube':
-                self.action   = 'youtube'
-                self.base_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2RlbW9uLWJpdC94bWwtbWFzdGVyL21hc3Rlci95b3V0dWJlLw=='.decode('base64')
-                self.mainmenu = 'JXN5dG1haW4udHh0'.decode('base64') % (self.base_url)
-            elif action == 'legends':
-                self.action   = 'legends'
-                self.base_url = 'aHR0cDovL20zdS54eXovbXRiL2xlZ2VuZHNhZGRvbi9tYXN0ZXIvbWVudS8='.decode('base64')
-                self.mainmenu = 'JXNpaG1haW4udHh0'.decode('base64') % (self.base_url)
             elif action == 'moviesyt':
                 self.action   = 'moviesyt'
                 self.base_url = 'aHR0cDovL20zdS54eXovbXRiL3l0bW92aWVzLw=='.decode('base64')
                 self.mainmenu = 'JXNtb3ZpZXMucGhw'.decode('base64') % (self.base_url)
-            elif action == 'kings':
-                self.action   = 'kings'
-                self.base_url = 'aHR0cDovL20zdS54eXovbXRiL3l0bW92aWVzLw=='.decode('base64')
-                self.mainmenu = 'JXNraW5ncy5waHA='.decode('base64') % (self.base_url)
-            elif action == 'kungfu':
-                self.action   = 'kungfu'
-                self.base_url = 'aHR0cDovL20zdS54eXovbXRiL3l0bW92aWVzLw=='.decode('base64')
-                self.mainmenu = 'JXNrdW5nZnUucGhw'.decode('base64') % (self.base_url)
-            elif action == 'urban':
-                self.action   = 'urban'
-                self.base_url = 'aHR0cDovL20zdS54eXovbXRiL3l0bW92aWVzLw=='.decode('base64')
-                self.mainmenu = 'JXN1cmJhbi5waHA='.decode('base64') % (self.base_url)
-            elif action == 'scifi':
-                self.action   = 'scifi'
-                self.base_url = 'aHR0cDovL20zdS54eXovbXRiL3l0bW92aWVzLw=='.decode('base64')
-                self.mainmenu = 'JXNzY2lmaS50eHQ='.decode('base64') % (self.base_url)
             elif action == 'tvReviews':
                 self.action   = 'tvReviews'
                 self.base_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL211YWRkaWJ0dHYvdGhlY3JpdGljcy9tYXN0ZXIv'.decode('base64')

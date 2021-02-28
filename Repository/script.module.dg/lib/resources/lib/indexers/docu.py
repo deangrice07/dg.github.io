@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 lambda
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
@@ -127,7 +136,7 @@ class documentary:
     def getDailyMotionStream(self, id):
         headers = {'User-Agent':'Android'}
         cookie = {'Cookie':"lang=en_US; ff=off"}
-        r = requests.get("http://www.dailymotion.com/player/metadata/video/"+id,headers=headers,cookies=cookie)
+        r = requests.get("https://www.dailymotion.com/player/metadata/video/"+id,headers=headers,cookies=cookie)
         content = r.json()
         if content.get('error') is not None:
             Error = (content['error']['title'])

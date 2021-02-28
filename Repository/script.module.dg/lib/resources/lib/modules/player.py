@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -12,7 +19,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 
 import base64
@@ -182,7 +189,7 @@ class player(xbmc.Player):
 
         poster, thumb, meta = '', '', {'title': self.name}
         return (poster, thumb, meta)
-
+#TC 2/01/19 started
     def keepPlaybackAlive(self):
 
         pname = '%s.player.overlay' % control.addonInfo('id')
@@ -363,7 +370,7 @@ class subtitles:
             if subLang == langs[0]:
                 raise Exception()
 
-            server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
+            server = xmlrpclib.Server('https://api.opensubtitles.org/xml-rpc', verbose=0)
             token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token']
 
             sublanguageid = ','.join(langs)

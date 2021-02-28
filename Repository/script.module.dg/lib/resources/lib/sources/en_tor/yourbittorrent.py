@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 '''
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,277 +17,146 @@
 '''
 
 import re
+import urllib
+import urlparse
 
-try: from urlparse import parse_qs, urljoin
-except ImportError: from urllib.parse import parse_qs, urljoin
-try: from urllib import urlencode, quote_plus, unquote_plus
-except ImportError: from urllib.parse import urlencode, quote_plus, unquote_plus
-
+from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import source_utils
 from resources.lib.modules import workers
 
 
-class source:
-	def __init__(self):
-		self.priority = 2
-		self.language = ['en']
-		self.domain = ['yourbittorrent2.com', 'yourbittorrent.com']
-		self.base_link = 'https://yourbittorrent2.com'
-		self.search_link = '?q=%s&page=1&v=&c=&sort=size&o=desc'
-		self.min_seeders = 0  # to many items with no value but cached links
-		self.pack_capable = True
+class s0urce:
+    def __init__(self):
+        self.priority = 0
+        self.language = ['en']
+        self.domain = ['yourbittorrent2.com']
+        self.base_link = 'https://yourbittorrent2.com'
+        self.search_link = '/?v=&c=&q=%s'
 
 
-	def movie(self, imdb, title, localtitle, aliases, year):
-		try:
-			url = {'imdb': imdb, 'title': title, 'aliases': aliases, 'year': year}
-			url = urlencode(url)
-			return url
-		except:
-			return
+    def movie(self, imdb, title, localtitle, aliases, year):
+        try:
+            url = {'imdb': imdb, 'title': title, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
 
 
-	def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
-		try:
-			url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'aliases': aliases, 'year': year}
-			url = urlencode(url)
-			return url
-		except:
-			return
+    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
+        try:
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
 
 
-	def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-		try:
-			if url is None:
-				return
-			url = parse_qs(url)
-			url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-			url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-			url = urlencode(url)
-			return url
-		except:
-			return
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            if url is None:
+                return
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
 
 
-	def sources(self, url, hostDict, hostprDict):
-		self.sources = []
-		try:
-			if url is None:
-				return self.sources
-			if debrid.status() is False:
-				return self.sources
+    def sources(self, url, hostDict, hostprDict):
+        self.sources = []
+        try:
+            if url is None:
+                return self.sources
 
-			data = parse_qs(url)
-			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            if debrid.status() is False:
+                return self.sources
 
-			self.title = data['tvshowtitle'].lower() if 'tvshowtitle' in data else data['title'].lower()
-			self.title = self.title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
-			self.aliases = data['aliases']
-			self.hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-			self.year = data['year']
-			self.episode_title = data['title'] if 'tvshowtitle' in data else None
+            self.title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+            self.title = self.title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
 
-			query = '%s %s' % (self.title, self.hdlr)
-			query = re.sub('[^A-Za-z0-9\s\.-]+', '', query)
+            self.hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
+            self.year = data['year']
 
-			url = self.search_link % quote_plus(query)
-			url = urljoin(self.base_link, url).replace('+', '-')
-			# log_utils.log('url = %s' % url, log_utils.LOGDEBUG)
+            query = '%s %s' % (self.title, self.hdlr)
+            query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', '', query)
 
-			r = client.request(url, timeout='5')
-			if not r:
-				return self.sources
-			links = re.findall('<a href="(/torrent/.+?)"', r, re.DOTALL)
+            url = self.search_link % urllib.quote_plus(query)
+            url = urlparse.urljoin(self.base_link, url)
+            # log_utils.log('url = %s' % url, log_utils.LOGDEBUG)
 
-			threads = []
-			for link in links:
-				threads.append(workers.Thread(self.get_sources, link))
-			[i.start() for i in threads]
-			[i.join() for i in threads]
-			return self.sources
-		except:
-			source_utils.scraper_error('YOURBITTORRENT')
-			return self.sources
+            try:
+                r = client.request(url)
+                links = re.findall('<a href="(/torrent/.+?)"', r, re.DOTALL)
 
+                threads = []
+                for link in links:
+                    threads.append(workers.Thread(self.get_sources, link))
+                [i.start() for i in threads]
+                [i.join() for i in threads]
+                return self.sources
+            except:
+                source_utils.scraper_error('YOURBITTORRENT')
+                return self.sources
 
-	def get_sources(self, link):
-		try:
-			url = '%s%s' % (self.base_link, link)
-			result = client.request(url, timeout='5')
-
-			if result is None:
-				return
-			if '<kbd>' not in result:
-				return
-			hash = re.findall('<kbd>(.+?)<', result, re.DOTALL)[0]
-			url = '%s%s' % ('magnet:?xt=urn:btih:', hash)
-			name = re.findall('<h3 class="card-title">(.+?)<', result, re.DOTALL)[0].replace('Original Name: ', '')
-			name = unquote_plus(name)
-			name = source_utils.clean_name(self.title, name)
-			if source_utils.remove_lang(name, self.episode_title ):
-				return
-
-			if not source_utils.check_title(self.title, self.aliases, name, self.hdlr, self.year):
-				return
-
-			# filter for episode multi packs (ex. S01E01-E17 is also returned in query)
-			if self.episode_title:
-				if not source_utils.filter_single_episodes(self.hdlr, name):
-					return
-
-			url = '%s%s%s' % (url, '&dn=', str(name))
-			if url in str(self.sources):
-				return
-
-			try:
-				seeders = int(re.findall('<div class="col-3">Seeders:</div><div class="col"><span style="color:green">([0-9]+|[0-9]+,[0-9]+)<', result, re.DOTALL)[0].replace(',', ''))
-				if self.min_seeders > seeders:
-					return
-			except:
-				seeders = 0
-				pass
-
-			size = re.findall('<div class="col-3">File size:</div><div class="col">(.+?)<', result, re.DOTALL)[0]
-			quality, info = source_utils.get_release_quality(name, url)
-
-			try:
-				size = re.findall('((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', size)[0]
-				dsize, isize = source_utils._size(size)
-				info.insert(0, isize)
-			except:
-				dsize = 0
-				pass
-
-			info = ' | '.join(info)
-
-			self.sources.append({'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'quality': quality,
-											'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
-		except:
-			source_utils.scraper_error('YOURBITTORRENT')
-			pass
+        except:
+            source_utils.scraper_error('YOURBITTORRENT')
+            return self.sources
 
 
-	def sources_packs(self, url, hostDict, hostprDict, search_series=False, total_seasons=None, bypass_filter=False):
-		self.sources = []
-		try:
-			self.search_series = search_series
-			self.total_seasons = total_seasons
-			self.bypass_filter = bypass_filter
+    def get_sources(self, link):
+        try:
+            url = '%s%s' % (self.base_link, link)
+            result = client.request(url)
 
-			if url is None:
-				return self.sources
-			if debrid.status() is False:
-				return self.sources
+            info_hash = re.findall('<kbd>(.+?)<', result, re.DOTALL)[0]
+            url = '%s%s' % ('magnet:?xt=urn:btih:', info_hash)
+            name = re.findall('<h3 class="card-title">(.+?)<', result, re.DOTALL)[0]
+            url = '%s%s%s' % (url, '&dn=', str(name))
 
-			data = parse_qs(url)
-			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            size = re.findall('<div class="col-3">File size:</div><div class="col">(.+?)<', result, re.DOTALL)[0]
 
-			self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU')
-			self.aliases = data['aliases']
-			self.imdb = data['imdb']
-			self.year = data['year']
-			self.season_x = data['season']
-			self.season_xx = self.season_x.zfill(2)
+            if url in str(self.sources):
+                return
 
-			query = re.sub('[^A-Za-z0-9\s\.-]+', '', self.title)
-			queries = [
-						self.search_link % quote_plus(query + ' S%s' % self.season_xx),
-						self.search_link % quote_plus(query + ' Season %s' % self.season_x)
-							]
-			if search_series:
-				queries = [
-						self.search_link % quote_plus(query + ' Season'),
-						self.search_link % quote_plus(query + ' Complete')
-								]
+            if any(x in url.lower() for x in ['french', 'italian', 'spanish', 'truefrench', 'dublado', 'dubbed']):
+                return
 
-			threads = []
-			for url in queries:
-				link = urljoin(self.base_link, url).replace('+', '-')
-				threads.append(workers.Thread(self.get_sources_packs, link))
-			[i.start() for i in threads]
-			[i.join() for i in threads]
-			return self.sources
-		except:
-			source_utils.scraper_error('YOURBITTORRENT')
-			return self.sources
+            t = name.split(self.hdlr)[0].replace(self.year, '').replace('(', '').replace(')', '').replace('&', 'and').replace('+', ' ')
 
+            if cleantitle.get(t) != cleantitle.get(self.title):
+                return
 
-	def get_sources_packs(self, url):
-		# log_utils.log('url = %s' % str(url), __name__, log_utils.LOGDEBUG)
-		try:
-			r = client.request(url, timeout='5')
-			if not r:
-				return
+            if self.hdlr not in name:
+                return
 
-			links = re.findall('<a href="(/torrent/.+?)"', r, re.DOTALL)
-			for link in links:
-				url = '%s%s' % (self.base_link, link)
-				result = client.request(url, timeout='5')
-				if result is None:
-					continue
-				if '<kbd>' not in result:
-					continue
-				hash = re.findall('<kbd>(.+?)<', result, re.DOTALL)[0]
-				url = '%s%s' % ('magnet:?xt=urn:btih:', hash)
+            quality, info = source_utils.get_release_quality(name, url)
 
-				name = re.findall('<h3 class="card-title">(.+?)<', result, re.DOTALL)[0].replace('Original Name: ', '')
-				name = unquote_plus(name)
-				name = source_utils.clean_name(self.title, name)
-				if source_utils.remove_lang(name):
-					continue
+            try:
+                size = re.findall('((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GiB|MiB|GB|MB))', size)[0]
+                div = 1 if size.endswith('GB') else 1024
+                size = float(re.sub('[^0-9|/.|/,]', '', size.replace(',', '.'))) / div
+                size = '%.2f GB' % size
+                info.insert(0, size)
+            except:
+                size = '0'
+                pass
 
-				if not self.search_series:
-					if not self.bypass_filter:
-						if not source_utils.filter_season_pack(self.title, self.aliases, self.year, self.season_x, name):
-							continue
-					package = 'season'
+            info = ' | '.join(info)
 
-				elif self.search_series:
-					if not self.bypass_filter:
-						valid, last_season = source_utils.filter_show_pack(self.title, self.aliases, self.imdb, self.year, self.season_x, name, self.total_seasons)
-						if not valid:
-							continue
-					else:
-						last_season = self.total_seasons
-					package = 'show'
+            self.sources.append({'source': 'torrent', 'quality': quality, 'language': 'en', 'url': url,
+                                                'info': info, 'direct': False, 'debridonly': True})
 
-				url = '%s%s%s' % (url, '&dn=', str(name))
-				if url in str(self.sources):
-					continue
+        except:
+            source_utils.scraper_error('YOURBITTORRENT')
+            pass
 
-				try:
-					seeders = int(re.findall('<div class="col-3">Seeders:</div><div class="col"><span style="color:green">([0-9]+|[0-9]+,[0-9]+)<', result, re.DOTALL)[0].replace(',', ''))
-					if self.min_seeders > seeders:
-						continue
-				except:
-					seeders = 0
-					pass
-
-				size = re.findall('<div class="col-3">File size:</div><div class="col">(.+?)<', result, re.DOTALL)[0]
-				quality, info = source_utils.get_release_quality(name, url)
-
-				try:
-					size = re.findall('((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', size)[0]
-					dsize, isize = source_utils._size(size)
-					info.insert(0, isize)
-				except:
-					dsize = 0
-					pass
-
-				info = ' | '.join(info)
-
-				item = {'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'quality': quality,
-							'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize, 'package': package}
-				if self.search_series:
-					item.update({'last_season': last_season})
-				self.sources.append(item)
-		except:
-			source_utils.scraper_error('YOURBITTORRENT')
-			pass
-
-
-	def resolve(self, url):
-		return url
+    def resolve(self, url):
+        return url

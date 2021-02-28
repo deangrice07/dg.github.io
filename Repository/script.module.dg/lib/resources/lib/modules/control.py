@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -129,10 +136,23 @@ libcacheFile = os.path.join(dataPath, 'library.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 
+dbFile = os.path.join(dataPath, 'debridcache.db')
 key = "RgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6"
 
 iv = "p2s5v8y/B?E(H+Mb"
 
+
+def metadataClean(metadata):
+    if metadata is None:
+        return metadata
+    allowed = [
+        'genre', 'country', 'year', 'episode', 'season', 'sortepisode', 'sortseason', 'episodeguide',
+        'showlink', 'top250', 'setid', 'tracknumber', 'rating', 'userrating', 'watched', 'playcount',
+        'overlay', 'cast', 'castandrole', 'director', 'mpaa', 'plot', 'plotoutline', 'title',
+        'originaltitle', 'sorttitle', 'duration', 'studio', 'tagline', 'writer', 'tvshowtitle', 'premiered',
+        'status', 'set', 'setoverview', 'tag', 'imdbnumber', 'code', 'aired', 'credits', 'lastplayed',
+        'album', 'artist', 'votes', 'path', 'trailer', 'dateadded', 'mediatype', 'dbid']
+    return {k: v for k, v in metadata.iteritems() if k in allowed}
 
 def addonIcon():
     theme = appearance()
@@ -240,7 +260,7 @@ def infoDialog(message, heading=addonInfo('name'), icon='', time=3000, sound=Fal
 
 def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yeslabel=''):
     return dialog.yesno(heading, line1, line2, line3, nolabel, yeslabel)
-
+#TC 2/01/19 started
 
 def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
@@ -385,3 +405,176 @@ def queueItem():
 
 def getKodiVersion():
     return xbmc.getInfoLabel("System.BuildVersion").split(".")[0]
+    
+def installAddon(addonId):
+    from resources.lib.dialogs import notification
+    addonPath = os.path.join(xbmc.translatePath('special://home/addons'), addonId)
+    if not os.path.exists(addonPath) == True:
+        xbmc.executebuiltin('InstallAddon(%s)' % (addonId))
+    else:
+        notification.infoDialog(msg='{0} is already installed'.format(addonId))
+
+class Remap(dict):
+    def __init__(self, **kwargs):
+        super(Remap, self).__init__(**kwargs)
+        self.__dict__ = self
+
+
+xDirSort = Remap(NoSort=xbmcplugin.SORT_METHOD_NONE, Label=xbmcplugin.SORT_METHOD_LABEL, Title=xbmcplugin.SORT_METHOD_TITLE)
+
+
+class Time(object):
+    # Use time.clock() instead of time.time() for processing time.
+    # NB: Do not use time.clock(). Gives the wrong answer in timestamp() AND runs very fast in Linux. Hence, in the stream finding dialog, for every real second, Linux progresses 5-6 seconds.
+    # http://stackoverflow.com/questions/85451/python-time-clock-vs-time-time-accuracy
+    # https://www.tutorialspoint.com/python/time_clock.htm
+
+    ZoneUtc = 'utc'
+    ZoneLocal = 'local'
+
+    FormatTimestamp = None
+    FormatDateTime = '%Y-%m-%d %H:%M:%S'
+    FormatDate = '%Y-%m-%d'
+    FormatTime = '%H:%M:%S'
+    FormatTimeShort = '%H:%M'
+
+    def __init__(self, start=False):
+        self.mStart = None
+        if start:
+            self.start()
+
+    def start(self):
+        self.mStart = time.time()
+        return self.mStart
+
+    def restart(self):
+        return self.start()
+
+    def elapsed(self, milliseconds=False):
+        if self.mStart == None:
+            self.mStart = time.time()
+        if milliseconds:
+            return int((time.time() - self.mStart) * 1000)
+        else:
+            return int(time.time() - self.mStart)
+
+    def expired(self, expiration):
+        return self.elapsed() >= expiration
+
+    @classmethod
+    def sleep(self, seconds):
+        time.sleep(seconds)
+
+    # UTC timestamp
+    @classmethod
+    def timestamp(self, fixedTime=None):
+        if fixedTime == None:
+            # Do not use time.clock(), gives incorrect result for search.py
+            return int(time.time())
+        else:
+            return int(time.mktime(fixedTime.timetuple()))
+
+    @classmethod
+    def format(self, timestamp=None, format=FormatDateTime):
+        if timestamp == None:
+            timestamp = self.timestamp()
+        return datetime.datetime.utcfromtimestamp(timestamp).strftime(format)
+
+    # datetime object from string
+    @classmethod
+    def datetime(self, string, format=FormatDateTime):
+        try:
+            return datetime.datetime.strptime(string, format)
+        except Exception:
+            # Older Kodi Python versions do not have the strptime function.
+            # http://forum.kodi.tv/showthread.php?tid=112916
+            return datetime.datetime.fromtimestamp(time.mktime(time.strptime(string, format)))
+
+    @classmethod
+    def past(self, seconds=0, minutes=0, days=0, format=FormatTimestamp):
+        result = self.timestamp() - seconds - (minutes * 60) - (days * 86400)
+        if not format == self.FormatTimestamp:
+            result = self.format(timestamp=result, format=format)
+        return result
+
+    @classmethod
+    def future(self, seconds=0, minutes=0, days=0, format=FormatTimestamp):
+        result = self.timestamp() + seconds + (minutes * 60) + (days * 86400)
+        if not format == self.FormatTimestamp:
+            result = self.format(timestamp=result, format=format)
+        return result
+
+    @classmethod
+    def localZone(self):
+        if time.daylight:
+            offsetHour = time.altzone / 3600
+        else:
+            offsetHour = time.timezone / 3600
+        return 'Etc/GMT%+d' % offsetHour
+
+    @classmethod
+    def convert(
+            self, stringTime, stringDay=None, abbreviate=False, formatInput=FormatTimeShort, formatOutput=None,
+            zoneFrom=ZoneUtc, zoneTo=ZoneLocal):
+        result = ''
+        try:
+            # If only time is given, the date will be set to 1900-01-01 and there are conversion problems if this goes down to 1899.
+            if formatInput == '%H:%M':
+                # Use current datetime (now) in order to accomodate for daylight saving time.
+                stringTime = '%s %s' % (datetime.datetime.now().strftime('%Y-%m-%d'), stringTime)
+                formatNew = '%Y-%m-%d %H:%M'
+            else:
+                formatNew = formatInput
+
+            if zoneFrom == Time.ZoneUtc:
+                zoneFrom = pytz.timezone('UTC')
+            elif zoneFrom == Time.ZoneLocal:
+                zoneFrom = pytz.timezone(self.localZone())
+            else:
+                zoneFrom = pytz.timezone(zoneFrom)
+
+            if zoneTo == Time.ZoneUtc:
+                zoneTo = pytz.timezone('UTC')
+            elif zoneTo == Time.ZoneLocal:
+                zoneTo = pytz.timezone(self.localZone())
+            else:
+                zoneTo = pytz.timezone(zoneTo)
+
+            timeobject = self.datetime(string=stringTime, format=formatNew)
+
+            if stringDay:
+                stringDay = stringDay.lower()
+                if stringDay.startswith('mon'):
+                    weekday = 0
+                elif stringDay.startswith('tue'):
+                    weekday = 1
+                elif stringDay.startswith('wed'):
+                    weekday = 2
+                elif stringDay.startswith('thu'):
+                    weekday = 3
+                elif stringDay.startswith('fri'):
+                    weekday = 4
+                elif stringDay.startswith('sat'):
+                    weekday = 5
+                else:
+                    weekday = 6
+                weekdayCurrent = datetime.datetime.now().weekday()
+                timeobject += datetime.timedelta(days=weekday) - datetime.timedelta(days=weekdayCurrent)
+
+            timeobject = zoneFrom.localize(timeobject)
+            timeobject = timeobject.astimezone(zoneTo)
+
+            if not formatOutput:
+                formatOutput = formatInput
+
+            stringTime = timeobject.strftime(formatOutput)
+            if stringDay:
+                if abbreviate:
+                    stringDay = calendar.day_abbr[timeobject.weekday()]
+                else:
+                    stringDay = calendar.day_name[timeobject.weekday()]
+                return (stringTime, stringDay)
+            else:
+                return stringTime
+        except Exception:
+            return stringTime

@@ -6,6 +6,8 @@
     Copyright (C) 2015 lambda
     Copyright (C) 2015 spoyser
     Copyright (C) 2015 crzen
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -126,7 +128,7 @@ def addDownload(name, url, image, provider=None):
 
     control.infoDialog('Item Added to Queue', name)
 
-
+#TC 2/01/19 started
 def removeDownload(url):
     try:
         def download(): return []

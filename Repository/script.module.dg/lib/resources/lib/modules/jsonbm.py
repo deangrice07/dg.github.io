@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
 '''
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -136,7 +143,7 @@ class jsonBookmarks(object):
         except Exception:
             failure = traceback.format_exc()
             log_utils.log('Bookmarks - Add Podcast Exception: \n' + str(failure))
-
+#TC 2/01/19 started
     def rem_podcast(self, dbase):
         temp = dbase.decode('base64').split('|')
         show_id = temp[1]

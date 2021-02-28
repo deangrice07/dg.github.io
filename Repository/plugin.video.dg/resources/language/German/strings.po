@@ -1,8 +1,6 @@
-# Translators:
-# Addon id: plugin.video.Clown's Replica
-# Addon Provider: Clown's Replica
-# Translators:
-# Translators:
+# Addon Name: The Crew
+# Addon id: plugin.video.The Crew
+# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,24 +15,20 @@
 # Translators:
 # Translators:
 # Translators:
-# Kr1ss, 2017
-# Viper2k4, 2017
-# Christian Klippel, 2015
-# eidermar, 2016
-# lambda81, 2016
+# Translators:
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Clown's Replica\n"
+"Project-Id-Version: The Crew\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-05-30 13:23+0000\n"
-"Last-Translator: Viper2k4\n"
-"Language-Team: German (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2016-08-01 02:03+0000\n"
+"Last-Translator: lambda81\n"
+"Language-Team: English (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 
 msgctxt "#32001"
 msgid "Movies"
@@ -225,24 +219,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]EINSTELLUNGEN[/B] : Indexseiten"
 
 msgctxt "#32048"
-msgid "[B]Clown's Replica[/B] : Downloads"
-msgstr "[B]Clown's Replica[/B] : Downloads"
+msgid "[B]COVENANT[/B] : Downloads"
+msgstr "[B]COVENANT[/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]Clown's Replica[/B] : Viewtypes"
-msgstr "[B]Clown's Replica[/B] : Anzeige-Typen"
+msgid "[B]COVENANT[/B] : Viewtypes"
+msgstr "[B]COVENANT[/B] : Anzeige-Typen"
 
 msgctxt "#32050"
-msgid "[B]Clown's Replica[/B] : Clear providers..."
-msgstr "[B]Clown's Replica[/B] : Indexseiten-Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear providers..."
+msgstr "[B]COVENANT[/B] : Indexseiten-Cache leeren..."
 
 msgctxt "#32051"
-msgid "[B]Clown's Replica[/B] : Clear metadata..."
-msgstr "[B]Clown's Replica[/B] : Metadaten-Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear metadata..."
+msgstr "[B]COVENANT[/B] : Metadaten-Cache leeren..."
 
 msgctxt "#32052"
-msgid "[B]Clown's Replica[/B] : Clear cache..."
-msgstr "[B]Clown's Replica[/B] : Cache leeren..."
+msgid "[B]COVENANT[/B] : Clear cache..."
+msgstr "[B]COVENANT[/B] : Cache leeren..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -297,12 +291,12 @@ msgid "Queue item"
 msgstr "Eintrag zur Warteschlange hinzufügen"
 
 msgctxt "#32066"
-msgid "Watched in Clown's Replica"
-msgstr "In Clown's Replica Angesehen"
+msgid "Watched in Covenant"
+msgstr "In Covenant Angesehen"
 
 msgctxt "#32067"
-msgid "Unwatched in Clown's Replica"
-msgstr "In Clown's Replica Ungesehen"
+msgid "Unwatched in Covenant"
+msgstr "In Covenant Ungesehen"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -589,8 +583,8 @@ msgid "No stream available"
 msgstr "Keine Streams verfügbar"
 
 msgctxt "#32402"
-msgid "Playback outside Clown's Replica is not allowed"
-msgstr "Eine Wiedergabe außerhalb von Clown's Replica ist nicht erlaubt"
+msgid "Playback outside Covenant is not allowed"
+msgstr "Eine Wiedergabe außerhalb von Covenant ist nicht erlaubt"
 
 msgctxt "#32403"
 msgid "Download"
@@ -709,20 +703,20 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-DIENSTE"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in URLResolver Settings."
-msgstr "Konfiguriere Debrid-Dienste in den URLResolver-Einstellungen."
+msgid "Configure Debrid Services in ResolveURL Settings."
+msgstr "Konfiguriere Debrid-Dienste in den ResolveURL-Einstellungen."
 
 msgctxt "#32540"
-msgid "URLResolver Settings"
-msgstr "URLResolver-Einstellungen"
+msgid "ResolveURL Settings"
+msgstr "ResolveURL-Einstellungen"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "Bibliothek"
 
 msgctxt "#32542"
-msgid "Clown's Replica folders will be imported to library if they are added to media sources."
-msgstr "Clown's Replica-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
+msgid "Covenant folders will be imported to library if they are added to media sources."
+msgstr "Covenant-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -777,24 +771,24 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 msgctxt "#32556"
-msgid "[B]Clown's Replica[/B] : Library"
-msgstr "[B]Clown's Replica[/B] : Bibliothek"
+msgid "[B]COVENANT[/B] : Library"
+msgstr "[B]COVENANT[/B] : Bibliothek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTHEK[/B] : Einstellungen"
 
 msgctxt "#32558"
-msgid "[B]Clown's Replica[/B] : Update library..."
-msgstr "[B]Clown's Replica[/B] : Bibliothek aktualisieren..."
+msgid "[B]COVENANT[/B] : Update library..."
+msgstr "[B]COVENANT[/B] : Bibliothek aktualisieren..."
 
 msgctxt "#32559"
-msgid "[B]Clown's Replica[/B] : Movie folder..."
-msgstr "[B]Clown's Replica[/B] : Film-Ordner..."
+msgid "[B]COVENANT[/B] : Movie folder..."
+msgstr "[B]COVENANT[/B] : Film-Ordner..."
 
 msgctxt "#32560"
-msgid "[B]Clown's Replica[/B] : TV folder..."
-msgstr "[B]Clown's Replica[/B] : Serien-Ordner..."
+msgid "[B]COVENANT[/B] : TV folder..."
+msgstr "[B]COVENANT[/B] : Serien-Ordner..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."
@@ -911,171 +905,3 @@ msgstr "Hole Genre-Info von Trakt"
 msgctxt "#32600"
 msgid "Preparing sources"
 msgstr "Quellen werden vorbereitet"
-
-msgctxt "#32601"
-msgid "Total"
-msgstr "Gesamt"
-
-msgctxt "#32602"
-msgid "Waiting for"
-msgstr "Warten auf"
-
-msgctxt "#32603"
-msgid "New search..."
-msgstr "Neue Suche..."
-
-msgctxt "#32604"
-msgid "[B]Clown's Replica[/B] : Clear search history..."
-msgstr "[B]Clown's Replica[/B]: Suchhistorie löschen ..."
-
-msgctxt "#32605"
-msgid "Click to clear search history"
-msgstr "Klicken Sie hier, um den Suchverlauf zu löschen"
-
-msgctxt "#32606"
-msgid "[COLOR=green]Paid[/COLOR]"
-msgstr "[COLOR=green]Bezahlt[/COLOR]"
-
-msgctxt "#32607"
-msgid "[COLOR=yellow]Free[/COLOR]"
-msgstr "[COLOR=yellow]Kostenlos[/COLOR]"
-
-msgctxt "#32608"
-msgid "Unaired Season/Episode Color"
-msgstr "Unaired Season / Episodenfarbe"
-
-msgctxt "#32609"
-msgid "[B][COLOR red]ResolveURL[/COLOR][/B] Settings"
-msgstr "[B][COLOR red]ResolveURL[/COLOR][/B] Settings"
-
-msgctxt "#32610"
-msgid "Kids Corner"
-msgstr ""
-
-msgctxt "#32611"
-msgid "Fitness Zone"
-msgstr ""
-
-msgctxt "#32612"
-msgid "Legends of Music"
-msgstr ""
-
-msgctxt "#80000"
-msgid "Kings Of Horror"
-msgstr ""
-
-msgctxt "#80001"
-msgid "Kung Fu"
-msgstr ""
-
-msgctxt "#80002"
-msgid "Urban"
-msgstr ""
-
-msgctxt "#80003"
-msgid "MST3K / Sci-Fi"
-msgstr ""
-
-msgctxt "#80004"
-msgid "Movie Time"
-msgstr ""
-
-msgctxt "#32613"
-msgid "[B]Clown's Replica[/B] : Clear All Cache..."
-msgstr "[B]Clown's Replica[/B] : Alle Cache löschen ..."
-
-msgctxt "#32614"
-msgid "[B]Clown's Replica[/B] : Clear Meta Cache..."
-msgstr "[B]Clown's Replica[/B] : Meta-Cache löschen ..."
-
-msgctxt "#32615"
-msgid "Check Host for Valid URL"
-msgstr "Überprüfen Sie den Host auf gültige URL"
-
-msgctxt "#32616"
-msgid "Debugging"
-msgstr ""
-
-msgctxt "#32617"
-msgid "Debug Log"
-msgstr "Austestungsprotokoll"
-
-msgctxt "#32618"
-msgid "Kodi Log"
-msgstr "Was ist Log"
-
-msgctxt "#32619"
-msgid "Addon Log"
-msgstr ""
-
-msgctxt "#32620"
-msgid "Podcasts"
-msgstr ""
-
-msgctxt "#32621"
-msgid "Navigation"
-msgstr ""
-
-msgctxt "#32622"
-msgid "Main Menu"
-msgstr "Hauptmenü"
-
-msgctxt "#32623"
-msgid "Reviews and Trailers"
-msgstr "Bewertungen und Anhänger"
-
-msgctxt "#32624"
-msgid "P[COLOR red]o[/COLOR]dcast[COLOR red]One[/COLOR]"
-msgstr ""
-
-msgctxt "#32625"
-msgid "Featured Podcasts"
-msgstr ""
-
-msgctxt "#32626"
-msgid "New Podcasts"
-msgstr ""
-
-msgctxt "#32627"
-msgid "Categories"
-msgstr "Kategorien"
-
-msgctxt "#32628"
-msgid "[B]SETTINGS[/B] : Navigation"
-msgstr "[B]SETTINGS[/B] : Navigation"
-
-msgctxt "#32629"
-msgid "PodBay"
-msgstr ""
-
-msgctxt "#32630"
-msgid "Show Season 0 in Browse Seasons"
-msgstr "Staffel 0 in Browse Seasons anzeigen"
-
-msgctxt "#32631"
-msgid "Documentaries"
-msgstr "Dokumentarfilme"
-
-msgctxt "#32634"
-msgid "Torrent Source Identifier Color"
-msgstr "Torrent Source Identifier Farbe"
-
-msgctxt "#32635"
-msgid "Torrent Support (Requires Real-Debrid or Premiumize)"
-msgstr "Torrent-Support (erfordert echte Rückstände oder Premium-Unterstützung)"
-
-msgctxt "#32636"
-msgid "Enable Torrent Scrapers"
-msgstr "Aktivieren Sie Torrent Scrapers"
-
-msgctxt "#32637"
-msgid "Real-Debrid Torrent Settings"
-msgstr "Real-Debrid Torrent-Einstellungen"
-
-msgctxt "#32638"
-msgid "Minimum Seeders"
-msgstr "Minimale Sämaschine"
-
-msgctxt "#32639"
-msgid "Sort By Torrent/Premium"
-msgstr "Nach Torrent / Premium sortieren"

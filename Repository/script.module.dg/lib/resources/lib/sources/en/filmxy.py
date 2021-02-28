@@ -14,61 +14,54 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
+
 import re
-
-try: from urlparse import urljoin
-except ImportError: from urllib.parse import urljoin
-
-from resources.lib.modules import cfscrape
-from resources.lib.modules import cleantitle
-from resources.lib.modules import source_utils
+import urlparse
 
 
-class source:
-	def __init__(self):
-		self.priority = 31
-		self.language = ['en']
-		self.domains = ['filmxy.nl', 'filmxy.me', 'filmxy.one', 'filmxy.ws', 'filmxy.live']
-		self.base_link = 'https://www.filmxy.nl'
-		self.search_link = '/%s-%s'
-		self.scraper = cfscrape.create_scraper()
+from resources.lib.modules import cleantitle, client, log_utils, source_utils, cfscrape
 
-	def movie(self, imdb, title, localtitle, aliases, year):
-		try:
-			title = cleantitle.geturl(title)
-			url = urljoin(self.base_link, (self.search_link % (title, year)))
-			return url
-		except:
-			source_utils.scraper_error('FILEXY')
-			return
 
-	def sources(self, url, hostDict, hostprDict):
-		try:
-			sources = []
+class s0urce:
+    def __init__(self):
+        self.priority = 1
+        self.language = ['en']
+        self.domains = ['filmxy.me', 'filmxy.one', 'filmxy.ws', 'filmxy.live']
+        self.base_link = 'https://www.filmxy.nl'
+        self.search_link = '/%s-%s'
+        self.scraper = cfscrape.create_scraper()
 
-			if url is None:
-				return sources
-			headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0'}
-			result = self.scraper.get(url, headers=headers).content
-			streams = re.compile('data-player="&lt;[A-Za-z]{6}\s[A-Za-z]{3}=&quot;(.+?)&quot;', re.DOTALL).findall(
-				result)
+    def movie(self, imdb, title, localtitle, aliases, year):
+        try:
+            title = cleantitle.geturl(title)
+            url = urlparse.urljoin(self.base_link, (self.search_link % (title, year)))
+            return url
+        except Exception:
+            return
 
-			for link in streams:
-				quality = source_utils.check_url(link)
-				host = link.split('//')[1].replace('www.', '')
-				host = host.split('/')[0].lower()
+    def sources(self, url, hostDict, hostprDict):
+        try:
+            sources = []
 
-				if quality == 'SD':
-					sources.append({'source': host, 'quality': '720p', 'info': '', 'language': 'en', 'url': link, 'direct': False,
-					                'debridonly': False})
-				else:
-					sources.append({'source': host, 'quality': quality, 'info': '', 'language': 'en', 'url': link, 'direct': False,
-					                'debridonly': False})
+            if url is None:
+                return sources
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0'}
+            result = self.scraper.get(url, headers=headers).content
+            streams = re.compile('data-player="&lt;[A-Za-z]{6}\s[A-Za-z]{3}=&quot;(.+?)&quot;', re.DOTALL).findall(result)
 
-			return sources
-		except:
-			source_utils.scraper_error('FILEXY')
-			return sources
+            for link in streams:
+                quality = source_utils.check_sd_url(link)
+                host = link.split('//')[1].replace('www.', '')
+                host = host.split('/')[0].lower()
 
-	def resolve(self, url):
-		return url
+                if quality == 'SD':
+                    sources.append({'source': host, 'quality': '720p', 'language': 'en', 'url': link, 'direct': False, 'debridonly': False})
+                else:
+                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': link, 'direct': False, 'debridonly': False})
+
+            return sources
+        except Exception:
+            return sources
+
+    def resolve(self, url):
+        return url

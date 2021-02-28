@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
 '''
-    bennu Add-on
-    Code ported from Shani's LiveStreamsPro Add-on
+    Genesis Add-on
+    Copyright (C) 2015 lambda
+
+    -Mofidied by The Crew
+    -Copyright (C) 2019 The Crew
+
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -135,7 +139,7 @@ def resolve(regex):
             return r[0]
     except Exception:
         return
-
+#TC 2/01/19 started
 
 class NoRedirection(urllib2.HTTPErrorProcessor):
     def http_response(self, request, response):
