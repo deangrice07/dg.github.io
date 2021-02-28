@@ -43,7 +43,7 @@ def syncTraktLibrary():
 try:
     ModuleVersion = control.addon('script.module.dg').getAddonInfo('version')
     AddonVersion = control.addon('plugin.video.dg').getAddonInfo('version')
-    RepoVersion = control.addon('repository.griceadvice').getAddonInfo('version')
+    RepoVersion = control.addon('repository.griceadvicekodi').getAddonInfo('version')
 
     log_utils.log('######################### DG ############################', log_utils.LOGNOTICE)
     log_utils.log('####### CURRENT DG VERSIONS REPORT ######################', log_utils.LOGNOTICE)

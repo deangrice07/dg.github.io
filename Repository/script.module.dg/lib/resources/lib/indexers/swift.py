@@ -200,8 +200,8 @@ class swift:
 
     def endDirectory(self, contentType='addons', sortMethod=xbmcplugin.SORT_METHOD_NONE):
         control.content(syshandle, contentType)
-        sort_clownsreplica = control.setting('tv.swift.sorttheclownsreplica')
-        if sort_clownsreplica == '' or sort_clownsreplica == 'true':
+        sort_dg = control.setting('tv.swift.sortthedg')
+        if sort_dg == '' or sort_dg == 'true':
             control.sortMethod(syshandle, xbmcplugin.SORT_METHOD_LABEL)
         else:
             control.sortMethod(syshandle, sortMethod)

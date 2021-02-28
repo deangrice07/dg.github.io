@@ -187,7 +187,7 @@ class navigator:
         self.endDirectory()
 
     def movies(self, lite=False):
-        self.addDirectoryItem('[B][COLORghostwhite]DG Top Movies Of All Time[/COLOR][/B]', 'movies&url=clownsreplica', 'featured.png', 'DefaultRecentlyAddedMovies.png')
+        self.addDirectoryItem('[B][COLORghostwhite]DG Top Movies Of All Time[/COLOR][/B]', 'movies&url=dg', 'featured.png', 'DefaultRecentlyAddedMovies.png')
         self.addDirectoryItem(32000, 'collectionsNavigator', 'boxsets.png', 'DefaultMovies.png')
 #        self.addDirectoryItem('[B][COLOR yellow]24/7 Movies[/COLOR][/B]', '247movies', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem('4K UHD', '4k', 'featured.png', 'DefaultRecentlyAddedMovies.png')

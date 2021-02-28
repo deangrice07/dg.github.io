@@ -33,7 +33,7 @@ from xbmc import (LOGDEBUG, LOGERROR, LOGFATAL, LOGINFO,  # @UnusedImport
 name = control.addonInfo('name')
 # Using color coding, for color formatted log viewers like Assassin's Tools
 # thank you for this code
-DEBUGPREFIX = '[COLOR red][ Clowns Replica ][/COLOR]'
+DEBUGPREFIX = '[COLOR red][ DG ][/COLOR]'
 LOGPATH = xbmc.translatePath('special://logpath/')
 
 
@@ -52,7 +52,7 @@ def log(msg, level=LOGNOTICE):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
         if not control.setting('debug.location') == '0':
-            log_file = os.path.join(LOGPATH, 'clownsreplica.log')
+            log_file = os.path.join(LOGPATH, 'dg.log')
             if not os.path.exists(log_file):
                 f = open(log_file, 'w')
                 f.close()

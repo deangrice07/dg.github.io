@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    clownsreplica Add-on
+    dg Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F6D722D696E76697369626C65732F7265736F75726365732F6D61737465722F74526D4B476A5462722F786D6C732F636C6973742E786D6C'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -57,7 +57,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f73706f72742e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -68,7 +68,7 @@ class indexer:
         try:
             regex.clear()
             url = '687474703A2F2F696E76697369626C65732E78797A2F786D6C2F7878782F7878782E786D6C'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -79,7 +79,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f796f75747562652f6b6e6d61696e2e747874'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -91,7 +91,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F6D722D696E76697369626C65732F7265736F75726365732F6D61737465722F74526D4B476A5462722F786D6C732F697074762F5553412E6D3375'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -101,7 +101,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F6D722D696E76697369626C65732F7265736F75726365732F6D61737465722F74526D4B476A5462722F786D6C732F697074762F756B2E6D3375'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -112,7 +112,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f497074762f636f756e74726965732e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -123,7 +123,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f497074762f43696e656d61495054562e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -135,7 +135,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f3234376d6f766965732e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -146,7 +146,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f32343773686f77732e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -157,7 +157,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f497074762f346b6d6f766965732e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -168,7 +168,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6c697374732f497074762f616c6c72642f616c6c2e72642e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -179,7 +179,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f64656d6f6e2d6269742f786d6c2d6d61737465722f6d61737465722f6d6f766965732f313038302e786d6c'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -190,7 +190,7 @@ class indexer:
         try:
             regex.clear()
             url = '68747470733A2F2F7261772E67697468756275736572636F6E74656E742E636F6D2F64656D6F6E2D6269742F786D6C2D6D61737465722F6D61737465722F6C697374732F6B6964732E786D6C'.decode('hex')
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
@@ -202,7 +202,7 @@ class indexer:
 
     def get(self, url):
         try:
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             self.worker()
             self.addDirectory(self.list)
             return self.list
@@ -212,7 +212,7 @@ class indexer:
 
     def getq(self, url):
         try:
-            self.list = self.clownsreplica_list(url)
+            self.list = self.dg_list(url)
             self.worker()
             self.addDirectory(self.list, queue=True)
             return self.list
@@ -226,7 +226,7 @@ class indexer:
             x = regex.fetch(x)
             r += urllib.unquote_plus(x)
             url = regex.resolve(r)
-            self.list = self.clownsreplica_list('', result=url)
+            self.list = self.dg_list('', result=url)
             self.addDirectory(self.list)
             return self.list
         except:
@@ -237,7 +237,7 @@ class indexer:
         try:
             url = os.path.join(control.dataPath, 'testings.xml')
             f = control.openFile(url) ; result = f.read() ; f.close()
-            self.list = self.clownsreplica_list('', result=result)
+            self.list = self.dg_list('', result=result)
             for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
             return self.list
@@ -305,7 +305,7 @@ class indexer:
             if preset == 'tvtuner':
                 result = result.replace('<sublink>searchsd</sublink>', '')
 
-            self.list = self.clownsreplica_list('', result=result)
+            self.list = self.dg_list('', result=result)
 
             if preset == 'tvtuner':
                 self.addDirectory(self.list, queue=True)
@@ -408,7 +408,7 @@ class indexer:
             else: links = [i for i in links if str(i).startswith('http') and matcher.lower() in str(i).lower()]
 
             self.list = [] ; threads = []
-            for link in links: threads.append(workers.Thread(self.clownsreplica_list, link))
+            for link in links: threads.append(workers.Thread(self.dg_list, link))
             [i.start() for i in threads] ; [i.join() for i in threads]
 
 
@@ -417,7 +417,7 @@ class indexer:
             for i in self.list:
                 try:
                     name = ''
-                    if not i['vip'] in ['clownsreplica TV']: name += '[B]%s[/B] | ' % i['vip'].upper()
+                    if not i['vip'] in ['dg TV']: name += '[B]%s[/B] | ' % i['vip'].upper()
                     name += i['name']
                     i.update({'name' : name})
                 except:
@@ -427,7 +427,7 @@ class indexer:
             self.addDirectory(self.list)
 
 
-    def clownsreplica_list(self, url, result=None):
+    def dg_list(self, url, result=None):
 
         try:
             if result == None: result = cache.get(client.request, 0, url)

@@ -72,7 +72,7 @@ class movies:
         self.ninetys_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=1990-01-01,1999-12-31&user_rating=5.0,10.0'
         self.twothousand_link = 'https://www.imdb.com/search/title?title_type=feature&release_date=2000-01-01,2010-12-31&user_rating=5.0'
         self.spotlight_link = 'https://www.imdb.com/list/ls041160568/?sort=user_rating,desc&st_dt=&mode=detail&page=1'
-        self.clownsreplica_link = 'https://www.imdb.com/list/ls041160300/?sort=user_rating,desc&st_dt=&mode=detail&page=1'
+        self.dg_link = 'https://www.imdb.com/list/ls041160300/?sort=user_rating,desc&st_dt=&mode=detail&page=1'
         self.newdocs_link = 'https://www.imdb.com/search/title?title_type=documentary&release_date=1990-01-01,&user_rating=5.0,'
         
         if self.hidecinema == 'true':
