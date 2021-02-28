@@ -43,13 +43,13 @@ def syncTraktLibrary():
 try:
     ModuleVersion = control.addon('script.module.dg').getAddonInfo('version')
     AddonVersion = control.addon('plugin.video.dg').getAddonInfo('version')
-    RepoVersion = control.addon('repository.griceadvicekodi').getAddonInfo('version')
+#    RepoVersion = control.addon('repository.griceadvicekodi').getAddonInfo('version')
 
     log_utils.log('######################### DG ############################', log_utils.LOGNOTICE)
     log_utils.log('####### CURRENT DG VERSIONS REPORT ######################', log_utils.LOGNOTICE)
     log_utils.log('### DG PLUGIN VERSION: %s ###' % str(AddonVersion), log_utils.LOGNOTICE)
     log_utils.log('### DG SCRIPT VERSION: %s ###' % str(ModuleVersion), log_utils.LOGNOTICE)
-    log_utils.log('### DG REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
+#    log_utils.log('### DG REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
     log_utils.log('###############################################################', log_utils.LOGNOTICE)
 except:
     log_utils.log('######################### DG ############################', log_utils.LOGNOTICE)
