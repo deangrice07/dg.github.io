@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,8 +12,9 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
+
 
 import json
 import re
@@ -36,8 +30,9 @@ from resources.lib.modules import log_utils
 from resources.lib.modules import utils
 
 BASE_URL = 'https://api.trakt.tv'
-V2_API_KEY = '482f9db52ee2611099ce3aa1abf9b0f7ed893c6d3c6b5face95164eac7b01f71'
-CLIENT_SECRET = '80a2729728b53ba1cc38137b22f21f34d590edd35454466c4b8920956513d967'
+#BASE_URL = 'https://api-v2launch.trakt.tv'
+V2_API_KEY = 'a75d5c09b1dec5d7d46ef616b5a017fe4acea5899b5d30111888587fe041188f'
+CLIENT_SECRET = '8e2cc5822926d6f481ff10d67f9ab4a17bfbee2b7cd29e8925fd32f3956ddffd'
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
 def __getTrakt(url, post=None):
@@ -69,24 +64,25 @@ def __getTrakt(url, post=None):
             return result, resp_header
 
         oauth = urlparse.urljoin(BASE_URL, '/oauth/token')
-        opost = {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'redirect_uri': REDIRECT_URI, 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
+        opost = {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'redirect_uri': REDIRECT_URI,
+                 'grant_type': 'refresh_token', 'refresh_token': control.setting('trakt.refresh')}
 
         result = client.request(oauth, post=json.dumps(opost), headers=headers)
         result = utils.json_loads_as_str(result)
 
         token, refresh = result['access_token'], result['refresh_token']
+
         control.setSetting(id='trakt.token', value=token)
         control.setSetting(id='trakt.refresh', value=refresh)
 
         headers['Authorization'] = 'Bearer %s' % token
 
-        result = client.request(url, post=post, headers=headers, output='extended', error=True, timeout='25')
+        result = client.request(url, post=post, headers=headers, output='extended', error=True)
         return result[0], result[2]
     except Exception as e:
-        failure = traceback.format_exc()
-        log_utils.log('Trakt - Exception: \n' + str(failure))
         log_utils.log('Unknown Trakt Error: %s' % e, log_utils.LOGWARNING)
         pass
+
 
 def getTraktAsJson(url, post=None):
     try:
@@ -97,6 +93,7 @@ def getTraktAsJson(url, post=None):
         return r
     except Exception:
         pass
+
 
 def authTrakt():
     try:
@@ -114,17 +111,14 @@ def authTrakt():
         verification_url = (control.lang(32513) % result['verification_url']).encode('utf-8')
         user_code = (control.lang(32514) % result['user_code']).encode('utf-8')
         expires_in = int(result['expires_in'])
-        expires_in = int(str(expires_in)[:2]) * 2
         device_code = result['device_code']
         interval = result['interval']
 
         progressDialog = control.progressDialog
         progressDialog.create('Trakt', verification_url, user_code)
-        r = []
+
         for i in range(0, expires_in):
             try:
-                percent = int(100 * float(i) / int(expires_in))
-                progressDialog.update(max(1, percent))
                 if progressDialog.iscanceled():
                     break
                 time.sleep(1)
@@ -251,17 +245,17 @@ def manager(name, imdb, tvdb, content):
             try:
                 slug = utils.json_loads_as_str(result)['ids']['slug']
             except Exception:
-                return notification.infoDialog(
-                    msg=control.lang(32515).encode('utf-8'),
-                    title=str(name),
-                    style='ERROR')
+                return control.infoDialog(
+                    control.lang(32515).encode('utf-8'),
+                    heading=str(name),
+                    sound=True, icon='ERROR')
             result = __getTrakt(items[select][1] % slug, post=post)[0]
         else:
             result = __getTrakt(items[select][1], post=post)[0]
 
         icon = control.infoLabel('ListItem.Icon') if result is not None else 'ERROR'
 
-        notification.infoDialog(msg=control.lang(32515).encode('utf-8'), title=str(name), style=icon)
+        control.infoDialog(control.lang(32515).encode('utf-8'), heading=str(name), sound=True, icon=icon)
     except Exception:
         return
 

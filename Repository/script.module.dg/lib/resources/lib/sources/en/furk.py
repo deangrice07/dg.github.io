@@ -15,250 +15,239 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import requests, json, sys
-from resources.lib.modules import source_utils, cleantitle, control
+import json
+import sys
 
+import requests
 
-class s0urce:
-    def __init__(self):
-        self.priority = 0
-        self.language = ['en']
-        self.domain = 'furk.net/'
-        self.base_link = 'https://www.furk.net'
-        self.meta_search_link = "/api/plugins/metasearch?api_key=%s&q=%s&cached=yes" \
-                                "&match=%s&moderated=%s%s&sort=relevance&type=video&offset=0&limit=%s"
-        self.tfile_link = "/api/file/get?api_key=%s&t_files=1&id=%s"
-        self.login_link = "/api/login/login?login=%s&pwd=%s"
-        self.user_name = control.setting('furk.user_name')
-        self.user_pass = control.setting('furk.user_pass')
-        self.api_key = control.setting('furk.api')
-        self.search_limit = control.setting('furk.limit')
+from resources.lib.modules import control
+from resources.lib.modules import cleantitle
+from resources.lib.modules import source_utils
 
-    def get_api(self):
+class source:
+	def __init__(self):
+		self.priority = 35
+		self.language = ['en']
+		self.domain = 'furk.net/'
+		self.base_link = 'https://www.furk.net'
+		self.search_link = "/api/plugins/metasearch?api_key=%s&q=%s&cached=yes" \
+								"&match=%s&moderated=%s%s&sort=relevance&type=video&offset=0&limit=200"
+		self.tfile_link = "/api/file/get?api_key=%s&t_files=1&id=%s"
+		self.login_link = "/api/login/login?login=%s&pwd=%s"
+		self.files = []
 
-        try:
+	def get_api(self):
 
-            api_key = self.api_key
+		try:
 
-            if api_key == '':
-                if self.user_name == '' or self.user_pass == '':
-                    return
+			user_name = control.setting('furk.user_name')
+			user_pass = control.setting('furk.user_pass')
+			api_key = control.setting('furk.api')
 
-                else:
-                    s = requests.Session()
-                    link = (self.base_link + self.login_link % (self.user_name, self.user_pass))
-                    p = s.post(link)
-                    p = json.loads(p.text)
+			if api_key == '':
+				if user_name == '' or user_pass == '':
+					return
 
-                    if p['status'] == 'ok':
-                        api_key = p['api_key']
-                        control.setSetting('furk.api', api_key)
-                    else:
-                        pass
+				s = requests.Session()
+				link = (self.base_link + self.login_link % (user_name, user_pass))
+				p = s.post(link)
+				p = json.loads(p.text)
 
-            return api_key
+				if p['status'] == 'ok':
+					api_key = p['api_key']
+					control.setSetting('furk.api', api_key)
+				else:
+					pass
 
-        except:
-            print("Unexpected error in Furk Script: check_api", sys.exc_info()[0])
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            print(exc_type, exc_tb.tb_lineno)
-            pass
+			return api_key
 
-    def movie(self, imdb, title, localtitle, aliases, year):
-        try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            return url
-        except:
-            return
+		except:
+			print("Unexpected error in Furk Script: check_api", sys.exc_info()[0])
+			exc_type, exc_obj, exc_tb = sys.exc_info()
+			print(exc_type, exc_tb.tb_lineno)
+			pass
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
-        try:
-            url = tvshowtitle
-            return url
-        except:
-            pass
+	def movie(self, imdb, title, localtitle, aliases, year):
+		try:
+			url = {'imdb': imdb, 'title': title, 'year': year}
+			return url
+		except:
+			return
 
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        try:
-            url = {'tvshowtitle': url, 'season': season, 'episode': episode}
-            return url
-        except:
-            pass
+	def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
+		try:
+			url = tvshowtitle
+			return url
+		except:
+			pass
 
-    def sources(self, url, hostDict, hostprDict):
+	def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+		try:
+			url = {'tvshowtitle': url, 'season': season, 'episode': episode}
+			return url
+		except:
+			pass
 
-        api_key = self.get_api()
+	def sources(self, url, hostDict, hostprDict):
 
-        if not api_key:
-            return
+		api_key = self.get_api()
 
-        sources = []
+		if not api_key:
+			return
 
-        try:
+		sources = []
 
-            content_type = 'episode' if 'tvshowtitle' in url else 'movie'
-            match = 'extended'
-            moderated = 'no' if content_type == 'episode' else 'yes'
-            search_in = ''
+		try:
 
-            if content_type == 'movie':
-                title = url['title'].replace(':', ' ').replace(' ', '+').replace('&', 'and')
-                title = title.replace("'", "")
-                year = url['year']
-                link = '@name+%s+%s+@files+%s+%s' \
-                        % (title, year, title, year)
+			content_type = 'episode' if 'tvshowtitle' in url else 'movie'
+			match = 'extended'
+			moderated = 'no' if content_type == 'episode' else 'yes'
+			search_in = ''
+		
+			if content_type == 'movie':
+				title = cleantitle.normalize(url.get('title'))
+				year = url.get('year')
+				query = '@name+%s+%s+@files+%s+%s' % (title, year, title, year)
 
-            elif content_type == 'episode':
-                title = url['tvshowtitle'].replace(':', ' ').replace(' ', '+').replace('&', 'and')
-                season = int(url['season'])
-                episode = int(url['episode'])
-                season00_ep00_SE = 's%02de%02d' % (season, episode)
-                season0_ep0_SE = 's%de%d' % (season, episode)
-                season00_ep00_X = '%02dx%02d' % (season, episode)
-                season0_ep0_X = '%dx%d' % (season, episode)
-                season0_ep00_X = '%dx%02d' % (season, episode)
-                link = '@name+%s+@files+%s+|+%s+|+%s+|+%s+|+%s' \
-                        % (title, season00_ep00_SE, season0_ep0_SE, season00_ep00_X, season0_ep0_X, season0_ep00_X)
+			elif content_type == 'episode':
+				title = cleantitle.normalize(url.get('tvshowtitle'))
+				season = int(url['season'])
+				episode = int(url['episode'])
+				seasEpList = self._seas_ep_query_list(season, episode)
+				query = '@name+%s+@files+%s+|+%s+|+%s+|+%s+|+%s' % (title, seasEpList[0], seasEpList[1], seasEpList[2], seasEpList[3], seasEpList[4])
+			
 
-            s = requests.Session()
-            link = (
-                    self.base_link + self.meta_search_link % (
-            api_key, link, match, moderated, search_in, self.search_limit))
+			s = requests.Session()
+			link = self.base_link + self.search_link % \
+				   (api_key, query, match, moderated, search_in)
 
-            p = s.get(link)
-            p = json.loads(p.text)
+			p = s.get(link)
+			p = json.loads(p.text)
 
-            if p['status'] != 'ok':
-                return
+			if p['status'] != 'ok':
+				return
 
-            files = p['files']
+			files = p['files']
 
-            for i in files:
-                if i['is_ready'] == '1' and i['type'] == 'video':
-                    try:
-                        source = 'SINGLE'
-                        if int(i['files_num_video']) > 3:
-                            source = 'PACK [B](x%02d)[/B]' % int(i['files_num_video'])
-                        file_name = i['name']
-                        file_id = i['id']
-                        file_dl = i['url_dl']
-                        if content_type == 'episode':
-                            url = '%s<>%s<>%s<>%s<>%s<>%s' % (
-                                file_id, season00_ep00_SE, season0_ep0_SE, season00_ep00_X, season0_ep0_X,
-                                season0_ep00_X)
-                            details = self.details(file_name, i['size'], i['video_info'])
-                        else:
-                            url = '%s<>%s<>%s+%s' % (file_id, 'movie', title, year)
-                            details = self.details(file_name, i['size'], i['video_info']).split('|')
-                            details = details[0] + ' | ' + file_name.replace('.', ' ')
+			for i in files:
+				
+				if i['is_ready'] == '1' and i['type'] == 'video':
+					
+					try:
 
-                        quality = source_utils.get_release_quality(file_name, file_dl)
-                        sources.append({'source': source,
-                                        'quality': quality[0],
-                                        'language': "en",
-                                        'url': url,
-                                        'info': details,
-                                        'direct': True,
-                                        'debridonly': False})
-                    except:
-                        pass
+						source = 'SINGLE'
+						if int(i['files_num_video']) > 3:
+							source = 'PACK [B](x%02d)[/B]' % int(i['files_num_video'])
+						file_name = i['name']
+						file_id = i['id']
+						file_dl = i['url_dl']
+						size = float(i['size']) / 1073741824
+						
+						if content_type == 'episode':
+							url = json.dumps({'content': 'episode', 'file_id': file_id, 'season': season, 'episode': episode})
+						else:
+							url = json.dumps({'content': 'movie', 'file_id': file_id, 'title': title, 'year': year})
 
-                else:
-                    continue
+						quality = source_utils.get_release_quality(file_name, file_dl)[0]
+						info = source_utils.getFileType(file_name)
+						info = '%.2f GB | %s | %s' % (size, info, file_name.replace('.', ' ').upper())
+						sources.append({'source': source,
+										'quality': quality,
+										'language': "en",
+										'url': url,
+										'info': info,
+										'direct': True,
+										'debridonly': False})
 
-            return sources
+					except:
+						pass
 
-        except:
-            print("Unexpected error in Furk Script: source", sys.exc_info()[0])
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            print(exc_type, exc_tb.tb_lineno)
-            pass
+				else:
+					continue
 
-    def resolve(self, url):
+			return sources
 
-        try:
-            info = url.split('<>')
-            file_id = info[0]
-            content_type = 'movie' if info[1] == 'movie' else 'episode'
+		except:
+			print("Unexpected error in Furk Script: source", sys.exc_info()[0])
+			exc_type, exc_obj, exc_tb = sys.exc_info()
+			print(exc_type, exc_tb.tb_lineno)
+			pass
 
-            filtering_list = info[1:]
+	def resolve(self, url):
 
-            link = (self.base_link + self.tfile_link % (self.api_key, file_id))
-            s = requests.Session()
-            p = s.get(link)
-            p = json.loads(p.text)
+		try:
+			
+			api_key = self.get_api()
 
-            if p['status'] != 'ok' or p['found_files'] != '1':
-                return
+			if not api_key:
+				return
 
-            files = p['files']
-            files = (files[0])['t_files']
+			url = json.loads(url)
 
-            for i in files:
-                name = i['name']
+			file_id = url.get('file_id')
 
-                ct = i['ct']
+			self.content_type = 'movie' if url.get('content') == 'movie' else 'episode'
 
-                if 'video' in i['ct']:
+			if self.content_type == 'episode': self.filtering_list = self._seas_ep_resolve_list(url.get('season'), url.get('episode'))
 
-                    if content_type == 'movie':
-                        if name.lower() != 'rarbg.mp4' and name.lower() != 'rarbg.mkv' and 'furk320' not in name.lower() and 'sample' not in name.lower() and not name.lower().endswith(
-                                'sub'):
-                            if int(i['size']) > 150:
-                                mv_title = str(info[2]).split('+')
-                                fail = 0
-                                for word in mv_title:
-                                    if word.lower() not in name.lower():
-                                        if word != 'and':
-                                            fail += 1
-                                            break
-                                if fail == 0:
-                                    url = i['url_dl']
-                            else:
-                                pass
+			link = (self.base_link + self.tfile_link % (api_key, file_id))
+			s = requests.Session()
+			p = s.get(link)
+			p = json.loads(p.text)
 
-                    else:
-                        if 'furk320' not in name.lower() and 'sample' not in name.lower():
-                            for x in filtering_list:
-                                if x in name.lower():
-                                    url = i['url_dl']
-                                else:
-                                    pass
-                else:
-                    pass
+			if p['status'] != 'ok' or p['found_files'] != '1':
+				return
 
-            return url
+			files = p['files'][0]
+			files = files['t_files']
 
-        except:
-            print("Unexpected error in Furk Script: resolve", sys.exc_info()[0])
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            print(exc_type, exc_tb.tb_lineno)
-            pass
+			for i in files:
+				if 'video' not in i['ct']:
+					pass
+				else:
+					self.files.append(i)
 
-    def details(self, name, size, video_info):
+			url = self._manage_pack()
 
-        import HTMLParser, re
+			return url
 
-        name = re.sub("(&#[0-9]+)([^;^0-9]+)", "\\1;\\2", name)
-        name = HTMLParser.HTMLParser().unescape(name)
-        name = name.replace("&quot;", "\"")
-        name = name.replace("&amp;", "&")
-        size = float(size) / 1073741824
-        fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*)(\.|\)|\]|\s)', '', name)
-        fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
-        fmt = [x.lower() for x in fmt]
-        info = video_info.replace('\n', '')
-        v = re.compile('Video: (.+?),').findall(info)[0]
-        a = re.compile('Audio: (.+?), .+?, (.+?),').findall(info)[0]
-        if '3d' in fmt:
-            q = '  | 3D'
-        else:
-            q = ''
-        info = '%.2f GB%s | %s | %s | %s' % (size, q, v, a[0], a[1])
-        info = re.sub('\(.+?\)', '', info)
-        info = info.replace('stereo', '2.0')
-        info = info.replace('eac3', 'dd+')
-        info = info.replace('ac3', 'dd')
-        info = ' '.join(info.split())
+		except:
+			print("Unexpected error in Furk Script: resolve", sys.exc_info()[0])
+			exc_type, exc_obj, exc_tb = sys.exc_info()
+			print(exc_type, exc_tb.tb_lineno)
+			pass
 
-        return info
+	def _manage_pack(self):
+
+		for i in self.files:
+
+			if self.content_type == 'movie':
+				if 'is_largest' in i:
+					url = i['url_dl']
+
+			else:
+				name = cleantitle.get_simple(i['name'])
+				if 'furk320' not in name.lower() and 'sample' not in name.lower():
+					for x in self.filtering_list:
+						if x in name.lower():
+							url = i['url_dl']
+						else:
+							pass
+		
+		return url
+
+	def _seas_ep_query_list(self, season, episode):
+		
+		return ['s%02de%02d' % (season, episode),
+				'%dx%02d' % (season, episode),
+				'%02dx%02d' % (season, episode),
+				'"season %d episode %d"' % (season, episode),
+				'"season %02d episode %02d"' % (season, episode)]
+	
+	def _seas_ep_resolve_list(self, season, episode):
+		
+		return ['s%02de%02d' % (season, episode),
+				'%dx%02d' % (season, episode),
+				'%02dx%02d' % (season, episode),
+				'season%depisode%d' % (season, episode),
+				'season%02depisode%02d' % (season, episode)]

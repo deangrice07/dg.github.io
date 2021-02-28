@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -22,24 +15,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from six.moves import urllib_parse
+import urllib
+import urlparse
 
-from resources.lib.modules import cache
-from resources.lib.modules import client
-from resources.lib.modules import cleantitle
-from resources.lib.modules import utils
+from resources.lib.modules import cache, cleantitle, client, utils
 
 
 def _getAniList(url):
     try:
-        url = urllib_parse.urljoin('https://anilist.co', '/api%s' % url)
+        url = urlparse.urljoin('https://anilist.co', '/api%s' % url)
         return client.request(url, headers={'Authorization': '%s %s' % cache.get(_getToken, 1), 'Content-Type': 'application/x-www-form-urlencoded'})
-    except:
+    except Exception:
         pass
 
 
 def _getToken():
-    result = urllib_parse.urlencode({'grant_type': 'client_credentials', 'client_id': 'kodiexodus-7erse', 'client_secret': 'XelwkDEccpHX2uO8NpqIjVf6zeg'})
+    result = urllib.urlencode({'grant_type': 'client_credentials', 'client_id': 'placenta-po0z6', 'client_secret': 'WHMhfUXcXb0q5iKjUIGssQu'})
     result = client.request('https://anilist.co/api/auth/access_token', post=result, headers={'Content-Type': 'application/x-www-form-urlencoded'}, error=True)
     result = utils.json_loads_as_str(result)
     return result['token_type'], result['access_token']
@@ -54,5 +45,5 @@ def getAlternativTitle(title):
         r = [i[1][0] if i[0] == title and len(i[1]) > 0 else i[0] for i in r]
         r = [i for i in r if i if i != title][0]
         return r
-    except:
+    except Exception:
         pass

@@ -15,120 +15,178 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re,urllib,urlparse
+
+import re
+
+try: from urlparse import parse_qs, urljoin
+except ImportError: from urllib.parse import parse_qs, urljoin
+try: from urllib import urlencode, quote_plus
+except ImportError: from urllib.parse import urlencode, quote_plus
 
 from resources.lib.modules import cfscrape
+from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import source_utils
 
 
-class s0urce:
-    def __init__(self):
-        self.priority = 1
-        self.language = ['en']
-        self.domains = ['max-rls.com']
-        self.base_link = 'http://max-rls.com'
-        self.search_link = '/?s=%s&submit=Find'
+class source:
+	def __init__(self):
+		self.priority = 28
+		self.language = ['en']
+		self.domains = ['max-rls.com']
+		self.base_link = 'http://max-rls.com'
+		self.search_link = '/?s=%s&submit=Find'
 
-    def movie(self, imdb, title, localtitle, aliases, year):
-        try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
-            return url
-        except:
-            return
 
-    def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
-        try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
-            return url
-        except:
-            return
+	def movie(self, imdb, title, localtitle, aliases, year):
+		try:
+			url = {'imdb': imdb, 'title': title, 'year': year}
+			url = urlencode(url)
+			return url
+		except:
+			return
 
-    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        try:
-            if url is None:
-                return
 
-            url = urlparse.parse_qs(url)
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urllib.urlencode(url)
-            return url
-        except:
-            return
+	def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
+		try:
+			url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+			url = urlencode(url)
+			return url
+		except:
+			return
 
-    def sources(self, url, hostDict, hostprDict):
-        try:
-            sources = []
-            scraper = cfscrape.create_scraper()
 
-            if url is None:
-                return sources
+	def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+		try:
+			if url is None:
+				return
+			url = parse_qs(url)
+			url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+			url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+			url = urlencode(url)
+			return url
+		except:
+			return
 
-            if debrid.status() is False:
-                raise Exception()
 
-            data = urlparse.parse_qs(url)
-            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-            hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
+	def sources(self, url, hostDict, hostprDict):
+		sources = []
+		try:
+			self.scraper = cfscrape.create_scraper(delay=5)
 
-            query = '%s S%02dE%02d' % (
-                data['tvshowtitle'], int(data['season']), int(data['episode'])) \
-                if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
+			if url is None:
+				return sources
 
-            url = self.search_link % urllib.quote_plus(query)
-            url = urlparse.urljoin(self.base_link, url).replace('%3A+', '+')
+			if debrid.status() is False:
+				return sources
 
-            r = scraper.get(url).content
-            if r is None and 'tvshowtitle' in data:
-                season = re.search('S(.*?)E', hdlr)
-                season = season.group(1)
-                url = title
+			hostDict = hostprDict + hostDict
 
-                r = scraper.get(url).content
+			data = parse_qs(url)
+			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            for loopCount in range(0, 2):
-                if loopCount == 1 or (r is None and 'tvshowtitle' in data):
+			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
 
-                    r = scraper.get(url).content
+			hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
 
-                posts = client.parseDOM(r, "h2", attrs={"class": "postTitle"})
-                hostDict = hostprDict + hostDict
-                items = []
-                for post in posts:
-                    try:
-                        u = client.parseDOM(post, 'a', ret='href')
-                        for i in u:
-                            name = str(i)
-                            items.append(name)
-                    except:
-                        pass
+			query = '%s %s' % (title, hdlr)
+			query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', '', query)
 
-                if len(items) > 0:
-                    break
+			url = self.search_link % quote_plus(query)
+			url = urljoin(self.base_link, url).replace('%3A+', '+')
+			# log_utils.log('url = %s' % url, log_utils.LOGDEBUG)
 
-            for item in items:
-                try:
-                    i = str(item)
-                    r = scraper.get(i).content
-                    u = client.parseDOM(r, "div", attrs={"class": "postContent"})
-                    for t in u:
-                        r = client.parseDOM(t, 'a', ret='href')
-                        for url in r:
-                            quality, info = source_utils.get_release_quality(url)
-                            if 'SD' in quality:
-                                continue
-                            valid, host = source_utils.is_host_valid(url, hostDict)
-                            sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
-                except:
-                    pass
-            return sources
-        except:
-            return sources
+			r = self.scraper.get(url).content
 
-    def resolve(self, url):
-        return url
+			if r is None and 'tvshowtitle' in data:
+				season = re.search('S(.*?)E', hdlr)
+				season = season.group(1)
+				url = title
+				r = self.scraper.get(url).content
+
+			for loopCount in range(0, 2):
+				if loopCount == 1 or (r is None and 'tvshowtitle' in data):
+					r = self.scraper.get(url).content
+				posts = client.parseDOM(r, "h2", attrs={"class": "postTitle"})
+
+				items = []
+				for post in posts:
+					try:
+						u = client.parseDOM(post, 'a', ret='href')
+
+						for i in u:
+							link = str(i)
+							name = link.rsplit('/', 1)[0]
+							name = name.rsplit('/', 1)[1].upper()
+							if source_utils.remove_lang(name):
+								return
+
+							t = name.split(hdlr)[0].replace(data['year'], '').replace('(', '').replace(')', '').replace('&', 'and')
+							if cleantitle.get(t) != cleantitle.get(title):
+								break
+
+							if hdlr not in name:
+								break
+
+							# check year for reboot/remake show issues if year is available-crap shoot
+							# if 'tvshowtitle' in data:
+								# if re.search(r'([1-3][0-9]{3})', name):
+									# if not any(value in name for value in [data['year'], str(int(data['year'])+1), str(int(data['year'])-1)]):
+										# break
+							items.append(link)
+
+					except:
+						source_utils.scraper_error('MAXRLS')
+						pass
+				if len(items) > 0:
+					break
+
+			for item in items:
+				try:
+					i = str(item)
+					r = self.scraper.get(url).content
+					u = client.parseDOM(r, "div", attrs={"class": "postContent"})
+
+					for t in u:
+						links = zip(re.findall('Download: (.*?)</strong>', t, re.DOTALL), re.findall('((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GiB|MiB|GB|MB|gb|mb))', t, re.DOTALL))
+
+						for link in links:
+							urls = link[0]
+							results = re.compile('href="(.+?)"', re.DOTALL).findall(urls)
+
+							for url in results:
+								if url in str(self.sources):
+									return
+
+								quality, info = source_utils.get_release_quality(url)
+
+								try:
+									dsize, isize = source_utils._size(link[1])
+									info.insert(0, isize)
+								except:
+									dsize = 0
+									pass
+
+								info = ' | '.join(info)
+
+								valid, host = source_utils.is_host_valid(url, hostDict)
+								if not valid:
+									continue
+
+								sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+
+				except:
+					source_utils.scraper_error('MAXRLS')
+					pass
+
+			return sources
+
+		except:
+			source_utils.scraper_error('MAXRLS')
+			return sources
+
+
+	def resolve(self, url):
+		return url

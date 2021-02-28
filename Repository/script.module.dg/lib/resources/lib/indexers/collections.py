@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 lambda
-
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -398,7 +391,7 @@ class collections:
         self.xmen_link = 'https://api.themoviedb.org/3/list/33137?api_key=%s' % (self.tmdb_key)
 
 
-
+    
     def get(self, url, idx=True, create_directory=True):
         try:
             try: url = getattr(self, url + '_link')

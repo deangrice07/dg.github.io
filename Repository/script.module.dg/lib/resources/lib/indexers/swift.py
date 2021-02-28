@@ -1,27 +1,5 @@
 # -*- coding: utf-8 -*-
 
-'''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-'''
-
 import json
 import os
 import requests
@@ -30,7 +8,7 @@ import time
 import traceback
 import urllib
 
-# from Cryptodome.Cipher import AES
+
 from hashlib import md5
 from binascii import b2a_hex
 
@@ -38,7 +16,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 
-from resources.lib.modules import client, control, log_utils, pyaes
+from resources.lib.modules import client, control, jsonbm, log_utils, pyaes
 
 sysaddon = sys.argv[0]
 syshandle = int(sys.argv[1])
@@ -118,6 +96,18 @@ class swift:
                     item.setProperty("IsPlayable", "true")
                     item.setArt({"thumb": icon, "icon": icon})
                     item.setInfo(type="video", infoLabels={"Title": name, "mediatype": "video"})
+
+                    '''
+                    Let's build out this context menu bitches
+                    '''
+                    try:
+                        cm = jsonbm.jsonBookmarks().build_cm('Channels', name=name, id=a['id'], action='swiftPlay', icon=icon, url=playencode.encode('base64'))
+                        if len(cm) > 0:
+                            item.addContextMenuItems(cm)
+                    except Exception:
+                        failure = traceback.format_exc()
+                        log_utils.log('Swift Streamz - BM Exception: \n' + str(failure))
+
                     try:
                         item.setContentLookup(False)
                     except AttributeError:
@@ -210,8 +200,8 @@ class swift:
 
     def endDirectory(self, contentType='addons', sortMethod=xbmcplugin.SORT_METHOD_NONE):
         control.content(syshandle, contentType)
-        sort_the_crew = control.setting('tv.swift.sort_the_crew')
-        if sort_the_crew == '' or sort_the_crew == 'true':
+        sort_clownsreplica = control.setting('tv.swift.sorttheclownsreplica')
+        if sort_clownsreplica == '' or sort_clownsreplica == 'true':
             control.sortMethod(syshandle, xbmcplugin.SORT_METHOD_LABEL)
         else:
             control.sortMethod(syshandle, sortMethod)

@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -22,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+
 import re,json
 
 from resources.lib.modules import client
@@ -31,7 +25,7 @@ from resources.lib.modules import workers
 class youtube(object):
     def __init__(self, key=''):
         self.list = [] ; self.data = []
-        self.base_link = 'https://www.youtube.com'
+        self.base_link = 'http://www.youtube.com'
         self.key_link = '&key=%s' % key
         self.playlists_link = 'https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&channelId=%s'
         self.playlist_link = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=%s'
@@ -44,35 +38,38 @@ class youtube(object):
         url = self.playlists_link % url + self.key_link
         return self.play_list(url)
 
-
     def playlist(self, url, pagination=False):
         cid = url.split('&')[0]
         url = self.playlist_link % url + self.key_link
         return self.video_list(cid, url, pagination)
 
+    def videoseries(self, url, pagination=False):
+        lid = url.split('list=')[1]
+        url = self.playlist_link % lid + self.key_link
+        return self.video_list(lid, url, pagination)
 
     def videos(self, url, pagination=False):
         cid = url.split('&')[0]
         url = self.videos_link % url + self.key_link
         return self.video_list(cid, url, pagination)
 
-
     def play_list(self, url):
         try:
             result = client.request(url)
             result = json.loads(result)
             items = result['items']
-        except:
+        except Exception:
             pass
 
         for i in range(1, 5):
             try:
-                if not 'nextPageToken' in result: raise Exception()
+                if 'nextPageToken' not in result:
+                    raise Exception()
                 next = url + '&pageToken=' + result['nextPageToken']
                 result = client.request(next)
                 result = json.loads(result)
                 items += result['items']
-            except:
+            except Exception:
                 pass
 
         for item in items:
@@ -84,58 +81,65 @@ class youtube(object):
                 url = url.encode('utf-8')
 
                 image = item['snippet']['thumbnails']['high']['url']
-                if '/default.jpg' in image: raise Exception()
+                if '/default.jpg' in image:
+                    raise Exception()
                 image = image.encode('utf-8')
 
                 self.list.append({'title': title, 'url': url, 'image': image})
-            except:
+            except Exception:
                 pass
 
         return self.list
-
 
     def video_list(self, cid, url, pagination):
         try:
             result = client.request(url)
             result = json.loads(result)
             items = result['items']
-        except:
+        except Exception:
             pass
 
         for i in range(1, 5):
             try:
-                if pagination == True: raise Exception()
-                if not 'nextPageToken' in result: raise Exception()
+                if pagination is True:
+                    raise Exception()
+                if 'nextPageToken' not in result:
+                    raise Exception()
                 page = url + '&pageToken=' + result['nextPageToken']
                 result = client.request(page)
                 result = json.loads(result)
                 items += result['items']
-            except:
+            except Exception:
                 pass
 
         try:
-            if pagination == False: raise Exception()
+            if pagination is False:
+                raise Exception()
             next = cid + '&pageToken=' + result['nextPageToken']
-        except:
+        except Exception:
             next = ''
 
-        for item in items: 
+        for item in items:
             try:
                 title = item['snippet']['title']
                 title = title.encode('utf-8')
 
-                try: url = item['snippet']['resourceId']['videoId']
-                except: url = item['id']['videoId']
+                try:
+                    url = item['snippet']['resourceId']['videoId']
+                except Exception:
+                    url = item['id']['videoId']
                 url = url.encode('utf-8')
 
                 image = item['snippet']['thumbnails']['high']['url']
-                if '/default.jpg' in image: raise Exception()
+                if '/default.jpg' in image:
+                    raise Exception()
                 image = image.encode('utf-8')
 
                 append = {'title': title, 'url': url, 'image': image}
-                if not next == '': append['next'] = next
+                if not next == '':
+                    append['next'] = next
                 self.list.append(append)
-            except:
+            except Exception:
                 pass
 
         try:
@@ -151,8 +155,9 @@ class youtube(object):
             [i.join() for i in threads]
 
             items = []
-            for i in self.data: items += json.loads(i)['items']
-        except:
+            for i in self.data:
+                items += json.loads(i)['items']
+        except Exception:
             pass
 
         for item in range(0, len(self.list)):
@@ -166,26 +171,29 @@ class youtube(object):
                 d = d[0][1]['duration']
 
                 duration = 0
-                try: duration += 60 * 60 * int(re.findall('(\d*)H', d)[0])
-                except: pass
-                try: duration += 60 * int(re.findall('(\d*)M', d)[0])
-                except: pass
-                try: duration += int(re.findall('(\d*)S', d)[0])
-                except: pass
+                try:
+                    duration += 60 * 60 * int(re.findall('(\d*)H', d)[0])
+                except Exception:
+                    pass
+                try:
+                    duration += 60 * int(re.findall('(\d*)M', d)[0])
+                except Exception:
+                    pass
+                try:
+                    duration += int(re.findall('(\d*)S', d)[0])
+                except Exception:
+                    pass
                 duration = str(duration)
 
                 self.list[item]['duration'] = duration
-            except:
+            except Exception:
                 pass
 
         return self.list
-
 
     def thread(self, url, i):
         try:
             result = client.request(url)
             self.data[i] = result
-        except:
+        except Exception:
             return
-
-

@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
-
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,13 +12,13 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 import json
 from resources.lib.modules import client
 
-URL_PATTERN = 'https://thexem.de/map/single?id=%s&origin=tvdb&season=%s&episode=%s&destination=scene'
+URL_PATTERN = 'http://thexem.de/map/single?id=%s&origin=tvdb&season=%s&episode=%s&destination=scene'
 
 def get_scene_episode_number(tvdbid, season, episode):
 
@@ -35,8 +28,8 @@ def get_scene_episode_number(tvdbid, season, episode):
         r = json.loads(r)
         if r['result'] == 'success':
             data = r['data']['scene']
-            return data['season'], data['episode']
+            return data['season'], data['episode']            
     except:
         pass
 
-    return season, episode
+    return season, episode    

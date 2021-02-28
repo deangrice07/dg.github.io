@@ -1,52 +1,58 @@
-# -*- coding: UTF-8 -*-
+"""
+    tknorris shared module
+    Copyright (C) 2016 tknorris
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
 
 import cProfile
-import inspect
 import json
 import os
 import pstats
 import StringIO
 import time
-import xbmc
-
 from datetime import datetime
-from xbmc import LOGDEBUG, LOGERROR, LOGFATAL, LOGINFO, LOGNONE, LOGNOTICE, LOGSEVERE, LOGWARNING  # @UnusedImport
 
+import xbmc
 from resources.lib.modules import control
-
+from xbmc import (LOGDEBUG, LOGERROR, LOGFATAL, LOGINFO,  # @UnusedImport
+                  LOGNONE, LOGNOTICE, LOGSEVERE, LOGWARNING)
 
 name = control.addonInfo('name')
-DEBUGPREFIX = '[COLOR red][The Crew - DEBUG ][/COLOR]'
+# Using color coding, for color formatted log viewers like Assassin's Tools
+# thank you for this code
+DEBUGPREFIX = '[COLOR red][ Clowns Replica ][/COLOR]'
 LOGPATH = xbmc.translatePath('special://logpath/')
 
-addonName = "The Crew"
 
-
-def log(msg, caller=None, level = LOGNOTICE):
+def log(msg, level=LOGNOTICE):
     debug_enabled = control.setting('addon_debug')
     debug_log = control.setting('debug.location')
 
     print DEBUGPREFIX + ' Debug Enabled?: ' + str(debug_enabled)
     print DEBUGPREFIX + ' Debug Log?: ' + str(debug_log)
 
-    if control.setting('addon_debug') != 'true':
+    if not control.setting('addon_debug') == 'true':
         return
 
     try:
-        if caller is not None and level == LOGDEBUG:
-            func = inspect.currentframe().f_back.f_code
-            line_number = inspect.currentframe().f_back.f_lineno
-            caller = "%s.%s()" % (caller, func.co_name)
-            msg = 'From func name: %s Line # :%s\n                       msg : %s'%(caller,line_number,msg)
-
-        if caller is not None and level == LOGERROR:
-            msg = 'From func name: %s.%s() Line # :%s\n                       msg : %s'%(caller[0], caller[1], caller[2], msg)
-
         if isinstance(msg, unicode):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
         if not control.setting('debug.location') == '0':
-            log_file = os.path.join(LOGPATH, 'the_crew.log')
+            log_file = os.path.join(LOGPATH, 'clownsreplica.log')
             if not os.path.exists(log_file):
                 f = open(log_file, 'w')
                 f.close()
@@ -58,66 +64,8 @@ def log(msg, caller=None, level = LOGNOTICE):
     except Exception as e:
         try:
             xbmc.log('Logging Failure: %s' % (e), level)
-        except:
+        except Exception:
             pass
-
-
-def log2(msg, level='info'):
-    msg = safeStr(msg)
-    msg = addonName.upper() + ': ' + msg
-    if level == 'error':
-        xbmc.log(msg, level=xbmc.LOGERROR)
-    elif level == 'info':
-        xbmc.log(msg, level=xbmc.LOGINFO)
-    elif level == 'notice':
-        xbmc.log(msg, level=xbmc.LOGNOTICE)
-    elif level == 'warning':
-        xbmc.log(msg, level=xbmc.LOGWARNING)
-    else:
-        xbmc.log(msg)
-
-
-def error(message=None, exception=True):
-    try:
-        import sys
-        if exception:
-            type, value, traceback = sys.exc_info()
-
-            sysaddon = sys.argv[0].split('//')[1].replace('/', '.')
-
-            filename = (traceback.tb_frame.f_code.co_filename).replace('\\', '.').replace('.py', '')
-            filename = filename.split(sysaddon)[1].replace('\\', '.')
-
-            name = traceback.tb_frame.f_code.co_name
-
-            linenumber = traceback.tb_lineno
-
-            errortype = type.__name__
-            errormessage = value.message
-
-            if errormessage == '':
-                raise Exception()
-            if message:
-                message += ' -> '
-            else:
-                message = ''
-            message += str(errortype) + ' -> ' + str(errormessage)
-            caller = [filename, name, linenumber]
-
-        else:
-            caller = None
-        log(msg=message, caller=caller, level = LOGERROR)
-    except:
-        pass
-
-
-def safeStr(obj):
-    try:
-        return str(obj)
-    except UnicodeEncodeError:
-        return obj.encode('utf-8', 'ignore').decode('ascii', 'ignore')
-    except:
-        return ""
 
 
 class Profiler(object):
@@ -125,7 +73,6 @@ class Profiler(object):
         self._profiler = cProfile.Profile(builtins=builtins)
         self.file_path = file_path
         self.sort_by = sort_by
-
 
     def profile(self, f):
         def method_profile_on(*args, **kwargs):
@@ -138,18 +85,16 @@ class Profiler(object):
                 log('Profiler Error: %s' % (e), LOGWARNING)
                 return f(*args, **kwargs)
 
-
         def method_profile_off(*args, **kwargs):
             return f(*args, **kwargs)
+
         if _is_debugging():
             return method_profile_on
         else:
             return method_profile_off
 
-
     def __del__(self):
         self.dump_stats()
-
 
     def dump_stats(self):
         if self._profiler is not None:
@@ -167,11 +112,13 @@ def trace(method):
         start = time.time()
         result = method(*args, **kwargs)
         end = time.time()
-        log('{name!r} time: {time:2.4f}s args: |{args!r}| kwargs: |{kwargs!r}|'.format(name=method.__name__, time=end - start, args=args, kwargs=kwargs), LOGDEBUG)
+        log('{name!r} time: {time:2.4f}s args: |{args!r}| kwargs: |{kwargs!r}|'.format(
+            name=method.__name__, time=end - start, args=args, kwargs=kwargs), LOGDEBUG)
         return result
 
     def method_trace_off(*args, **kwargs):
         return method(*args, **kwargs)
+
     if _is_debugging():
         return method_trace_on
     else:
@@ -179,11 +126,13 @@ def trace(method):
 
 
 def _is_debugging():
-    command = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.getSettings', 'params': {'filter': {'section': 'system', 'category': 'logging'}}}
+    command = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.getSettings',
+               'params': {'filter': {'section': 'system', 'category': 'logging'}}}
     js_data = execute_jsonrpc(command)
     for item in js_data.get('result', {}).get('settings', {}):
         if item['id'] == 'debug.showloginfo':
             return item['value']
+
     return False
 
 
