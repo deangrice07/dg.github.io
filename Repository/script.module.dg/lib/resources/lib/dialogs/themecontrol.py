@@ -39,7 +39,7 @@ ACTION_MOUSE_LONG_CLICK = 108
 MENU_ACTIONS = [ACTION_MOVE_UP, ACTION_MOVE_DOWN, ACTION_MOUSE_WHEEL_UP, ACTION_MOUSE_WHEEL_DOWN, ACTION_MOVE_MOUSE]
 
 artPath = control.artPath()
-_addon = xbmcaddon.Addon(id='plugin.video.numbersbynumbers')
+_addon = xbmcaddon.Addon(id='plugin.video.dg')
 addonname = _addon.getAddonInfo('name')
 
 bg_news = os.path.join(artPath, 'newsbg.png')
@@ -109,7 +109,7 @@ def skinTheme():
     theme = control.appearance()
     if theme in ['-', '']:
         return
-    elif control.condVisibility('System.HasAddon(script.numbersbynumbers.artwork)'):
+    elif control.condVisibility('System.HasAddon(script.dg.artwork)'):
         return theme
 
 
@@ -117,21 +117,21 @@ def skinModule():
     theme = control.appearance()
     if theme in ['-', '']:
         return
-    elif control.condVisibility('System.HasAddon(script.numbersbynumbers.artwork)'):
-        return os.path.join(xbmcaddon.Addon('script.numbersbynumbers.artwork').getAddonInfo('path'))
+    elif control.condVisibility('System.HasAddon(script.dg.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.dg.artwork').getAddonInfo('path'))
 
 
 def skinSubPath():
     theme = control.appearance()
     if theme in ['-', '']:
         return
-    elif control.condVisibility('System.HasAddon(script.numbersbynumbers.artwork)'):
-        return os.path.join(xbmcaddon.Addon('script.numbersbynumbers.artwork').getAddonInfo('path'), 'resources', 'skins', theme)
+    elif control.condVisibility('System.HasAddon(script.dg.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.dg.artwork').getAddonInfo('path'), 'resources', 'skins', theme)
 
 
 def skinAudioPath():
     theme = control.appearance()
     if theme in ['-', '']:
         return
-    elif control.condVisibility('System.HasAddon(script.numbersbynumbers.artwork)'):
-        return os.path.join(xbmcaddon.Addon('script.numbersbynumbers.artwork').getAddonInfo('path'), 'resources', 'skins', theme, 'sounds')
+    elif control.condVisibility('System.HasAddon(script.dg.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.dg.artwork').getAddonInfo('path'), 'resources', 'skins', theme, 'sounds')

@@ -19,7 +19,7 @@ from resources.lib.dialogs import themecontrol
 from resources.lib.modules import control, log_utils
 
 
-def infoDialog(title="NuMb3r5", msg='', style='INFO', timer=3000):
+def infoDialog(title="DG", msg='', style='INFO', timer=3000):
     class Notify_Box(xbmcgui.WindowXMLDialog):
         # until now we have a blank window, the onInit function will parse your xml file
         def onInit(self):
