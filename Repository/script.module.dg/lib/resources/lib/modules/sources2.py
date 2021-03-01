@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+ ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███    ██████ 
+ ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒▒██    ▒ 
+▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒░ ▓██▄   
+▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒
+▒██░   ▓██░▒▒█████▓ ▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒▒██████▒▒
+░ ▒░   ▒ ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░
+░ ░░   ░ ▒░░░▒░ ░ ░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░
+   ░   ░ ░  ░░░ ░ ░ ░      ░    ░    ░    ░     ░░   ░ ░  ░  ░  
+         ░    ░            ░    ░         ░  ░   ░           ░  
+                                     ░                          
 
-    -Mofidied by The Crew
-    -Copyright (C) 2019 lambda
-
+    NuMbErS Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,11 +28,21 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import sys,re,json,urllib,urlparse,random,datetime,time
+import datetime
+import json
+import random
+import re
+import openscrapers
+import sys
+import time
+import urllib
+import urlparse
 
+from resources.lib.dialogs import notification
 from resources.lib.modules import (cleantitle, client, control, debrid,
                                    log_utils, source_utils, trakt, tvmaze,
                                    workers)
+
 try:
     from sqlite3 import dbapi2 as database
 except Exception:
@@ -42,6 +58,7 @@ try:
 except Exception:
     pass
 
+
 class sources:
     def __init__(self):
         self.getConstants()
@@ -49,12 +66,13 @@ class sources:
 
     def play(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select):
         try:
+
             url = None
 
             items = self.getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered)
-            select = control.setting('hosts.mode') if select is None else select                        
+            select = control.setting('hosts.mode') if select is None else select
             title = tvshowtitle if not tvshowtitle is None else title
-           
+
             if control.window.getProperty('PseudoTVRunning') == 'True':
                 return control.resolve(int(sys.argv[1]), True, control.item(path=str(self.sourcesDirect(items))))
 
@@ -342,7 +360,7 @@ class sources:
 
         sourceDict = self.sourceDict
 
-        progressDialog.update(0, control.lang(32600).encode('utf-8'))
+        progressDialog.update(0, notification.infoDialog(msg=control.lang(32600).encode('utf-8'), style='ERROR'))
 
         content = 'movie' if tvshowtitle is None else 'episode'
         if content == 'movie':
@@ -420,7 +438,6 @@ class sources:
 
         pre_emp =  control.setting('preemptive.termination')
         pre_emp_limit = control.setting('preemptive.limit')
-
         source_4k = d_source_4k = 0
         source_1080 = d_source_1080 = 0
         source_720 = d_source_720 = 0
@@ -434,14 +451,9 @@ class sources:
         pdiag_format = ' 4K: %s | 1080p: %s | 720p: %s | SD: %s | %s: %s'.split('|')
         pdiag_bg_format = '4K:%s(%s)|1080p:%s(%s)|720p:%s(%s)|SD:%s(%s)|T:%s(%s)'.split('|')
 
-
-#TC 2/01/19 started
-
-
-
         for i in range(0, 4 * timeout):
             if str(pre_emp) == 'true':
-                if quality in ['0']:
+                if quality in ['0','1']:
                     if (source_4k + d_source_4k) >= int(pre_emp_limit): break
                 elif quality in ['1']:
                     if (source_1080 + d_source_1080) >= int(pre_emp_limit): break
@@ -451,9 +463,9 @@ class sources:
                     if (source_sd + d_source_sd) >= int(pre_emp_limit): break
                 else:
                     if (source_sd + d_source_sd) >= int(pre_emp_limit): break
-
             try:
-                if xbmc.abortRequested == True: return sys.exit()
+                if xbmc.abortRequested is True:
+                    return sys.exit()
 
                 try:
                     if progressDialog.iscanceled():
@@ -709,7 +721,7 @@ class sources:
         
         if control.addonInfo('id') == 'plugin.video.dg':
             try:
-                if progressDialog: progressDialog.update(100, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
+                if progressDialog: progressDialog.update(100, control.lang(90040).encode('utf-8'), control.lang(90041).encode('utf-8'))
 
                 items = self.sourcesFilter()
 
@@ -963,7 +975,7 @@ class sources:
         except Exception:
             pass
 
-    def clearSources(self):
+    def clearCacheProviders(self):
         try:
             control.idle()
 
@@ -979,9 +991,24 @@ class sources:
             dbcur.execute("VACUUM")
             dbcon.commit()
 
-            control.infoDialog(control.lang(32408).encode('utf-8'), sound=True, icon='INFO')
+            notification.infoDialog(msg=control.lang(32408).encode('utf-8'))
         except Exception:
             pass
+
+    def uniqueSourcesGen(self, sources):# remove duplicate links code by doko-desuka
+        uniqueURLs = set()
+        for source in sources:
+            url = json.dumps(source['url'])
+            if 'magnet:' in url:
+                url = url.lower()[:60]
+            if isinstance(url, basestring):
+                if url not in uniqueURLs:
+                    uniqueURLs.add(url)
+                    yield source # Yield the unique source.
+                else:
+                    pass # Ignore duped sources.
+            else:
+                yield source # Always yield non-string url sources.
 
     def sourcesFilter(self):
         provider = control.setting('hosts.sort.provider')
@@ -992,9 +1019,9 @@ class sources:
         if debrid_only == '': 
             debrid_only = 'false'
 
-        sortthecrew = control.setting('torrent.sort.the.crew')
-        if sortthecrew == '':
-            sortthecrew = 'false'
+        sort = control.setting('torrent.sort')
+        if sort == '':
+            sort = 'false'
 
         quality = control.setting('hosts.quality')
         if quality == '':
@@ -1026,13 +1053,29 @@ class sources:
         filter += [i for i in self.sources if i['direct'] is True]
         filter += [i for i in self.sources if i['direct'] is False]
         self.sources = filter
+        ''' Filter-out duplicate links'''
+        try:
+            if control.setting('remove.dups') == 'true':
+                stotal = len(self.sources)
+                self.sources = list(self.uniqueSourcesGen(self.sources))
+                dupes = int(stotal - len(self.sources))
+                notification.infoDialog(msg=control.lang(32089).encode('utf-8').format(dupes))
+            else:
+                self.sources
+        except:
+            import traceback
+            failure = traceback.format_exc()
+            log_utils.log('DUP - Exception: ' + str(failure))
+            notification.infoDialog(msg='Dupes filter failed', style='ERROR')
+            self.sources
+        '''END'''
 
         filter = []
 
         for d in debrid.debrid_resolvers:
             valid_hoster = set([i['source'] for i in self.sources])
             valid_hoster = [i for i in valid_hoster if d.valid_url('', i)]
-            if sortthecrew == 'true':
+            if sort == 'true':
                 filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if 'magnet:' in i['url']]
                 filter += [dict(i.items() + [('debrid', d.name)]) for i in self.sources if i['source'] in valid_hoster and 'magnet:' not in i['url']]
             else:
@@ -1144,7 +1187,7 @@ class sources:
 
             if d.lower() == 'real-debrid':
                 d = 'RD'
-            elif d.lower() == 'premiumize.me':
+            if d.lower() == 'premiumize.me':
                 d = 'PM'
 
             if not d == '':
@@ -1197,7 +1240,7 @@ class sources:
 
         try:
             if not HEVC == 'true':
-                self.sources = [i for i in self.sources if 'label' or 'multiline_label' in i]
+                self.sources = [i for i in self.sources if 'label' or 'multiline_label' in i['label']]
         except Exception:
             pass
 
@@ -1218,8 +1261,7 @@ class sources:
             provider = item['provider']
             call = [i[1] for i in self.sourceDict if i[0] == provider][0]
             u = url = call.resolve(url)
-            if url == None or not '://' in url and not local and not 'magnet:' in url: 
-                raise Exception()
+            if url == None or not '://' in url and not local and not 'magnet:' in url: raise Exception()
 
             if not local:
                 url = url[8:] if url.startswith('stack:') else url
@@ -1434,7 +1476,7 @@ class sources:
         return u
 
     def errorForSources(self):
-        control.infoDialog(control.lang(32401).encode('utf-8'), sound=False, icon='INFO')
+        notification.infoDialog(msg=control.lang(32401).encode('utf-8'), style='ERROR')
 
     def getLanguage(self):
         langDict = {
@@ -1502,7 +1544,8 @@ class sources:
 
         self.metaProperty = 'plugin.video.dg.container.meta'
 
-        from resources.lib.sources import sources
+        #from resources.lib.sources import sources
+        from openscrapers import sources
 
         self.sourceDict = sources()
 
@@ -1513,26 +1556,18 @@ class sources:
             self.hostDict = [x for y, x in enumerate(self.hostDict) if x not in self.hostDict[:y]]
         except Exception:
             self.hostDict = []
-            
-        self.hostprDict = [
-            '1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'uploadgig.com',
-            'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net', 'multiup.org']
 
-        self.hostcapDict = [
-            'openload.io', 'openload.co', 'oload.tv', 'oload.stream', 'oload.win', 'oload.download', 'oload.info',
-            'oload.icu', 'oload.fun', 'oload.life', 'openload.pw', 'vev.io', 'vidup.me', 'vidup.tv', 'vidup.io',
-            'vshare.io', 'vshare.eu', 'flashx.tv', 'flashx.to', 'flashx.sx', 'flashx.bz', 'flashx.cc', 'hugefiles.net',
-            'hugefiles.cc', 'thevideo.me', 'streamin.to', 'extramovies.guru', 'extramovies.trade', 'extramovies.host' ]
+        self.hostprDict = ['1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net',
+                           'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
+
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co',
+                            'oload.tv', 'thevideo.me', 'vidup.me', 'streamin.to', 'torba.se']
 
         self.hosthqDict = [
-            'gvideo', 'google.com', 'thevideo.me', 'raptu.com', 'filez.tv', 'uptobox.com', 'uptostream.com',
-            'xvidstage.com', 'xstreamcdn.com', 'idtbox.com']
+            'gvideo', 'google.com', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com',
+            'raptu.com', 'filez.tv', 'uptobox.com', 'uptobox.com', 'uptostream.com', 'xvidstage.com', 'streamango.com']
 
-        self.hostblockDict = [
-            'zippyshare.com', 'youtube.com', 'facebook.com', 'twitch.tv', 'streamango.com', 'streamcherry.com',
-            'openload.io', 'openload.co', 'openload.pw', 'oload.tv', 'oload.stream', 'oload.win', 'oload.download',
-            'oload.info', 'oload.icu', 'oload.fun', 'oload.life', 'oload.space', 'oload.monster', 'openload.pw',
-            'rapidvideo.com', 'rapidvideo.is', 'rapidvid.to']
+        self.hostblockDict = []
 
     def getPremColor(self, n):
         if n == '0':

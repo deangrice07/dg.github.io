@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+ ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███    ██████ 
+ ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒▒██    ▒ 
+▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒░ ▓██▄   
+▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒
+▒██░   ▓██░▒▒█████▓ ▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒▒██████▒▒
+░ ▒░   ▒ ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░
+░ ░░   ░ ▒░░░▒░ ░ ░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░
+   ░   ░ ░  ░░░ ░ ░ ░      ░    ░    ░    ░     ░░   ░ ░  ░  ░  
+         ░    ░            ░    ░         ░  ░   ░           ░  
+                                     ░                          
 
-    -Mofidied by The Crew
-    -Copyright (C) 2019 lambda
-
+    NuMbErS Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,7 +32,7 @@ import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs,time
 from HTMLParser import HTMLParser
 import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib,urllib2,json,resolveurl,ssl,zipfile,urlparse
 
-AddonTitle     = "[COLOR yellow]The Crew[/COLOR]"
+AddonTitle     = "[COLOR white]DG[/COLOR]"
 dialog         = xbmcgui.Dialog()
 addon_id       = 'plugin.video.dg'
 fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
@@ -47,7 +53,7 @@ def TextBoxes(announce):
             xbmc.sleep(500) # give window time to initialize
             self.setControls()
         def setControls(self):
-            self.win.getControl(self.CONTROL_LABEL).setLabel('The Crew') # set heading
+            self.win.getControl(self.CONTROL_LABEL).setLabel('NuMb3r5') # set heading
             try: f=open(announce); text=f.read()
             except: text=announce
             self.win.getControl(self.CONTROL_TEXTBOX).setText(str(text))
@@ -161,7 +167,7 @@ def open_url(url):
     link=response.read()
     response.close()
     return link
-#TC 2/01/19 started
+
 def addDir(name,url,mode,iconimage,fanartimage):
 
     u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanartimage="+urllib.quote_plus(fanartimage)

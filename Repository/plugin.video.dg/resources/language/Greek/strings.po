@@ -1,6 +1,6 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
+# Addon Name: Numbers
+# Addon id: plugin.video.numbers
+# Addon Provider: Numbers
 # Translators:
 # Translators:
 # Translators:
@@ -17,17 +17,18 @@
 # Translators:
 # Translators:
 # Translators:
+
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 09:11+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: Greek (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
@@ -219,24 +220,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]ΡΥΘΜΙΣΕΙΣ[/B] : Πάροχοι"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Λήψεις"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Λήψεις"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Προβολές"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Προβολές"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Καθαρισμός παρόχων..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Καθαρισμός παρόχων..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Καθαρισμός μεταδεδομένων..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Καθαρισμός μεταδεδομένων..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Καθαρισμός μνήμης..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Καθαρισμός μνήμης..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -291,12 +292,12 @@ msgid "Queue item"
 msgstr "Προσθήκη στην ουρά"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Προβληθέν στο Covenant"
+msgid "Watched in Numbers"
+msgstr "Προβληθέν στο Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Μη προβληθέν στο Covenant"
+msgid "Unwatched in Numbers"
+msgstr "Μη προβληθέν στο Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -571,8 +572,8 @@ msgid "No stream available"
 msgstr "Δεν υπάρχει διαθέσιμη ροή"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Η αναπαραγωγή εκτός Covenant δεν επιτρέπεται"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Η αναπαραγωγή εκτός Numbers δεν επιτρέπεται"
 
 msgctxt "#32403"
 msgid "Download"
@@ -690,19 +691,19 @@ msgid "DEBRID-SERVICE"
 msgstr "ΥΠΗΡΕΣΙΑ-DEBRID"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Ρύθμισε τις υπηρεσίες Debrid στις ρυθμίσεις του ResolveURL"
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Ρύθμισε τις υπηρεσίες Debrid στις ρυθμίσεις του URLResolver"
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "Ρυθμίσεις ResolveURL"
+msgid "URLResolver Settings"
+msgstr "Ρυθμίσεις URLResolver"
 msgctxt "#32541"
 msgid "Library"
 msgstr "Βιβλιοθήκη"
 
 msgctxt "#32542"
-msgid "Covenant folders will be imported to library if they are added to media sources."
-msgstr "Οι φάκελοι του Covenant θα εισαχθούν στην βιβλιοθήκη όταν προστεθούν στις πηγές πολυμέσων"
+msgid "Numbers folders will be imported to library if they are added to media sources."
+msgstr "Οι φάκελοι του Numbers θα εισαχθούν στην βιβλιοθήκη όταν προστεθούν στις πηγές πολυμέσων"
 
 msgctxt "#32543"
 msgid "Movies"
@@ -757,24 +758,24 @@ msgid "Are you sure?"
 msgstr "Είστε σίγουροι;"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
-msgstr "[B]COVENANT[/B] : Βιβλιοθήκη"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Βιβλιοθήκη"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]ΒΙΒΛΙΟΘΗΚΗ[/B] : Ρυθμίσεις"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
-msgstr "[B]COVENANT[/B] : Ενημέρωση βιβλιοθήκης..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Ενημέρωση βιβλιοθήκης..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
-msgstr "[B]COVENANT[/B] : Φάκελος ταινιών..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Φάκελος ταινιών..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
-msgstr "[B]COVENANT[/B] : Φάκελος τηλεόρασης..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : Φάκελος τηλεόρασης..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."

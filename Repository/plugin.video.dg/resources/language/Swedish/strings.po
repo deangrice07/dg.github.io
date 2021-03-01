@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,17 +14,20 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# Jonatan Nyberg, 2017
+# Simon Eriksson, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-06-06 06:03+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
+"Language-Team: Swedish (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
@@ -219,24 +219,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]INSTÄLLNINGAR[/B] : Källor"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Hämtningar"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Hämtningar"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Visningstyp"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Visningstyp"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Rensa källor..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Rensa källor..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Rensa metadata..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Rensa metadata..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Rensa cache..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Rensa cache..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -292,12 +292,12 @@ msgid "Queue item"
 msgstr "Lägg till i kö"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Sedda i Covenant"
+msgid "Watched in Numbers"
+msgstr "Sedda i Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Osedda i Covenant"
+msgid "Unwatched in Numbers"
+msgstr "Osedda i Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -572,8 +572,8 @@ msgid "No stream available"
 msgstr "Ingen stream tillgänglig"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Uppspelning utanför Covenant är inte tillåtet"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Uppspelning utanför Numbers är inte tillåtet"
 
 msgctxt "#32403"
 msgid "Download"
@@ -692,12 +692,12 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-TJÄNST"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Konfigurera Debridtjänster i ResolveURL inställningar."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Konfigurera Debridtjänster i URLResolver inställningar."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL inställningar"
+msgid "URLResolver Settings"
+msgstr "URLResolver inställningar"
 
 msgctxt "#32541"
 msgid "Library"
@@ -705,9 +705,9 @@ msgstr "Bibliotek"
 
 msgctxt "#32542"
 msgid ""
-"Covenant folders will be imported to library if they are added to media "
+"Numbers folders will be imported to library if they are added to media "
 "sources."
-msgstr "Covenant-mappar importeras till biblioteket om de läggs till i mediekällor."
+msgstr "Numbers-mappar importeras till biblioteket om de läggs till i mediekällor."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -762,24 +762,24 @@ msgid "Are you sure?"
 msgstr "Är du säker?"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
-msgstr "[B]COVENANT[/B] : Bibliotek"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Bibliotek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTEK[/B] : Inställningar"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
-msgstr "[B]COVENANT[/B] : Uppdatera bibliotek..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Uppdatera bibliotek..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
-msgstr "[B]COVENANT[/B] : Filmmapp..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Filmmapp..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
-msgstr "[B]COVENANT[/B] : TV-mapp..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : TV-mapp..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."

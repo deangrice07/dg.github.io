@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+ ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███    ██████ 
+ ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒▒██    ▒ 
+▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒░ ▓██▄   
+▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒
+▒██░   ▓██░▒▒█████▓ ▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒▒██████▒▒
+░ ▒░   ▒ ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░
+░ ░░   ░ ▒░░░▒░ ░ ░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░
+   ░   ░ ░  ░░░ ░ ░ ░      ░    ░    ░    ░     ░░   ░ ░  ░  ░  
+         ░    ░            ░    ░         ░  ░   ░           ░  
+                                     ░                          
 
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
+    NuMbErS Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,8 +25,9 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
+
 
 import random
 import re
@@ -90,43 +97,43 @@ def get():
 
     'https://www.3proxy.us/index.php?hl=2e5&q=',
     'https://www.4proxy.us/index.php?hl=2e5&q=',
-    'https://www.xxlproxy.com/index.php?hl=3e4&q=',
-    'https://free-proxyserver.com/browse.php?b=20&u=',
-    'https://proxite.net/browse.php?b=20&u=',
-    'https://proxydash.com/browse.php?b=20&u=',
-    'https://webproxy.stealthy.co/browse.php?b=20&u=',
-    'https://sslpro.eu/browse.php?b=20&u=',
-    'https://webtunnel.org/browse.php?b=20&u=',
-    'https://proxycloud.net/browse.php?b=20&u=',
-    'https://sno9.com/browse.php?b=20&u=',
-    'https://www.onlineipchanger.com/browse.php?b=20&u=',
-    'https://www.pingproxy.com/browse.php?b=20&u=',
+    'http://www.xxlproxy.com/index.php?hl=3e4&q=',
+    'http://free-proxyserver.com/browse.php?b=20&u=',
+    'http://proxite.net/browse.php?b=20&u=',
+    'http://proxydash.com/browse.php?b=20&u=',
+    'http://webproxy.stealthy.co/browse.php?b=20&u=',
+    'http://sslpro.eu/browse.php?b=20&u=',
+    'http://webtunnel.org/browse.php?b=20&u=',
+    'http://proxycloud.net/browse.php?b=20&u=',
+    'http://sno9.com/browse.php?b=20&u=',
+    'http://www.onlineipchanger.com/browse.php?b=20&u=',
+    'http://www.pingproxy.com/browse.php?b=20&u=',
     'https://www.ip123a.com/browse.php?b=20&u=',
-    'https://buka.link/browse.php?b=20&u=',
+    'http://buka.link/browse.php?b=20&u=',
     'https://zend2.com/open18.php?b=20&u=',
-    'https://proxy.deals/browse.php?b=20&u=',
-    'https://freehollandproxy.com/browse.php?b=20&u=',
-    'https://proxy.rocks/browse.php?b=20&u=',
-    'https://proxy.discount/browse.php?b=20&u=',
-    'https://proxy.lgbt/browse.php?b=20&u=',
-    'https://proxy.vet/browse.php?b=20&u=',
-    'https://www.unblockmyweb.com/browse.php?b=20&u=',
-    'https://onewebproxy.com/browse.php?b=20&u=',
-    'https://pr0xii.com/browse.php?b=20&u=',
-    'https://mlproxy.science/surf.php?b=20&u=',
+    'http://proxy.deals/browse.php?b=20&u=',
+    'http://freehollandproxy.com/browse.php?b=20&u=',
+    'http://proxy.rocks/browse.php?b=20&u=',
+    'http://proxy.discount/browse.php?b=20&u=',
+    'http://proxy.lgbt/browse.php?b=20&u=',
+    'http://proxy.vet/browse.php?b=20&u=',
+    'http://www.unblockmyweb.com/browse.php?b=20&u=',
+    'http://onewebproxy.com/browse.php?b=20&u=',
+    'http://pr0xii.com/browse.php?b=20&u=',
+    'http://mlproxy.science/surf.php?b=20&u=',
     'https://www.prontoproxy.com/browse.php?b=20&u=',
-    'https://fproxy.net/browse.php?b=20&u=',
+    'http://fproxy.net/browse.php?b=20&u=',
 
-    #'https://www.ruby-group.xyz/browse.php?b=20&u=',
-    #'https://securefor.com/browse.php?b=20&u=',
-    #'https://www.singleclick.info/browse.php?b=20&u=',
-    #'https://www.socialcommunication.xyz/browse.php?b=20&u=',
-    #'https://www.theprotected.xyz/browse.php?b=20&u=',
-    #'https://www.highlytrustedgroup.xyz/browse.php?b=20&u=',
-    #'https://www.medicalawaregroup.xyz/browse.php?b=20&u=',
-    #'https://www.proxywebsite.us/browse.php?b=20&u=',
-    'https://www.mybriefonline.xyz/browse.php?b=20&u=',
-    'https://www.navigate-online.xyz/browse.php?b=20&u='
+    #'http://www.ruby-group.xyz/browse.php?b=20&u=',
+    #'http://securefor.com/browse.php?b=20&u=',
+    #'http://www.singleclick.info/browse.php?b=20&u=',
+    #'http://www.socialcommunication.xyz/browse.php?b=20&u=',
+    #'http://www.theprotected.xyz/browse.php?b=20&u=',
+    #'http://www.highlytrustedgroup.xyz/browse.php?b=20&u=',
+    #'http://www.medicalawaregroup.xyz/browse.php?b=20&u=',
+    #'http://www.proxywebsite.us/browse.php?b=20&u=',
+    'http://www.mybriefonline.xyz/browse.php?b=20&u=',
+    'http://www.navigate-online.xyz/browse.php?b=20&u='
 
     ]
 

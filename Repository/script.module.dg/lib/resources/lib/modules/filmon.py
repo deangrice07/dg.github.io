@@ -1,26 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
 
-    -Mofidied by The Crew
-    -Copyright (C) 2019 The Crew
-
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-'''
 
 import re,urlparse,json
 from resources.lib.modules import client
@@ -29,7 +9,7 @@ def resolve(url):
     try:
         if '/vod/' in url:
             url = re.compile('/(\d+)').findall(url)[-1]
-            url = 'https://www.filmon.com/vod/info/%s' % url
+            url = 'http://www.filmon.com/vod/info/%s' % url
         elif '/tv/' in url:
             url = url.replace('/tv/', '/channel/')
         elif not '/channel/' in url:
@@ -46,7 +26,7 @@ def resolve(url):
 
         headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
 
-        url = 'https://www.filmon.com/ajax/getChannelInfo?channel_id=%s' % cid
+        url = 'http://www.filmon.com/ajax/getChannelInfo?channel_id=%s' % cid
 
         result = client.request(url, cookie=cookie, headers=headers)
 

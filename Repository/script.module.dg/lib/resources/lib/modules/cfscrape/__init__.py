@@ -11,8 +11,8 @@ from copy import deepcopy
 
 from requests.adapters import HTTPAdapter
 from requests.sessions import Session
-from requests_toolbelt.utils import dump
-
+#from requests_toolbelt.utils import dump
+import dump
 from time import sleep
 
 # ------------------------------------------------------------------------------- #
@@ -46,19 +46,18 @@ from .exceptions import (
     CloudflareLoopProtection,
     CloudflareCode1020,
     CloudflareIUAMError,
-    CloudflareSolveError,
     CloudflareChallengeError,
-    CloudflareCaptchaError,
-    CloudflareCaptchaProvider
+    CloudflareReCaptchaError,
+    CloudflareReCaptchaProvider
 )
 
 from .interpreters import JavaScriptInterpreter
-from .captcha import Captcha
+from .reCaptcha import reCaptcha
 from .user_agent import User_Agent
 
 # ------------------------------------------------------------------------------- #
 
-__version__ = '1.2.48'
+__version__ = '1.2.40'
 
 # ------------------------------------------------------------------------------- #
 
@@ -71,23 +70,12 @@ class CipherSuiteAdapter(HTTPAdapter):
         'config',
         '_pool_connections',
         '_pool_maxsize',
-        '_pool_block',
-        'source_address'
+        '_pool_block'
     ]
 
     def __init__(self, *args, **kwargs):
         self.ssl_context = kwargs.pop('ssl_context', None)
         self.cipherSuite = kwargs.pop('cipherSuite', None)
-        self.source_address = kwargs.pop('source_address', None)
-
-        if self.source_address:
-            if isinstance(self.source_address, str):
-                self.source_address = (self.source_address, 0)
-
-            if not isinstance(self.source_address, tuple):
-                raise TypeError(
-                    "source_address must be IP address string or (ip, port) tuple"
-                )
 
         if not self.ssl_context:
             self.ssl_context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
@@ -101,14 +89,12 @@ class CipherSuiteAdapter(HTTPAdapter):
 
     def init_poolmanager(self, *args, **kwargs):
         kwargs['ssl_context'] = self.ssl_context
-        kwargs['source_address'] = self.source_address
         return super(CipherSuiteAdapter, self).init_poolmanager(*args, **kwargs)
 
     # ------------------------------------------------------------------------------- #
 
     def proxy_manager_for(self, *args, **kwargs):
         kwargs['ssl_context'] = self.ssl_context
-        kwargs['source_address'] = self.source_address
         return super(CipherSuiteAdapter, self).proxy_manager_for(*args, **kwargs)
 
 # ------------------------------------------------------------------------------- #
@@ -122,11 +108,9 @@ class CloudScraper(Session):
         self.cipherSuite = kwargs.pop('cipherSuite', None)
         self.ssl_context = kwargs.pop('ssl_context', None)
         self.interpreter = kwargs.pop('interpreter', 'native')
-        self.captcha = kwargs.pop('captcha', {})
+        self.recaptcha = kwargs.pop('recaptcha', {})
         self.requestPreHook = kwargs.pop('requestPreHook', None)
         self.requestPostHook = kwargs.pop('requestPostHook', None)
-        self.source_address = kwargs.pop('source_address', None)
-        self.doubleDown = kwargs.pop('doubleDown', True)
 
         self.allow_brotli = kwargs.pop(
             'allow_brotli',
@@ -159,8 +143,7 @@ class CloudScraper(Session):
             'https://',
             CipherSuiteAdapter(
                 cipherSuite=self.cipherSuite,
-                ssl_context=self.ssl_context,
-                source_address=self.source_address
+                ssl_context=self.ssl_context
             )
         )
 
@@ -173,13 +156,6 @@ class CloudScraper(Session):
 
     def __getstate__(self):
         return self.__dict__
-
-    # ------------------------------------------------------------------------------- #
-    # Allow replacing actual web request call via subclassing
-    # ------------------------------------------------------------------------------- #
-
-    def perform_request(self, method, url, *args, **kwargs):
-        return super(CloudScraper, self).request(method, url, *args, **kwargs)
 
     # ------------------------------------------------------------------------------- #
     # Raise an Exception with no stacktrace and reset depth counter.
@@ -260,7 +236,7 @@ class CloudScraper(Session):
         # ------------------------------------------------------------------------------- #
 
         response = self.decodeBrotli(
-            self.perform_request(method, url, *args, **kwargs)
+            super(CloudScraper, self).request(method, url, *args, **kwargs)
         )
 
         # ------------------------------------------------------------------------------- #
@@ -334,11 +310,10 @@ class CloudScraper(Session):
                 resp.headers.get('Server', '').startswith('cloudflare')
                 and resp.status_code in [429, 503]
                 and re.search(
-                    r'cpo.src\s*=\s*"/cdn-cgi/challenge-platform/\S+orchestrate/jsch/v1"',
+                    r'cpo.src\s*=\s*"/cdn-cgi/challenge-platform/orchestrate/jsch/v1"',
                     resp.text,
                     re.M | re.S
                 )
-                and re.search(r'window._cf_chl_enter\(', resp.text, re.M | re.S)
             )
         except AttributeError:
             pass
@@ -346,38 +321,17 @@ class CloudScraper(Session):
         return False
 
     # ------------------------------------------------------------------------------- #
-    # check if the response contains a v2 hCaptcha Cloudflare challenge
+    # check if the response contains a valid Cloudflare reCaptcha challenge
     # ------------------------------------------------------------------------------- #
 
     @staticmethod
-    def is_New_Captcha_Challenge(resp):
-        try:
-            return (
-                CloudScraper.is_Captcha_Challenge(resp)
-                and re.search(
-                    r'cpo.src\s*=\s*"/cdn-cgi/challenge-platform/\S+orchestrate/captcha/v1"',
-                    resp.text,
-                    re.M | re.S
-                )
-                and re.search(r'window._cf_chl_enter\(', resp.text, re.M | re.S)
-            )
-        except AttributeError:
-            pass
-
-        return False
-
-    # ------------------------------------------------------------------------------- #
-    # check if the response contains a Cloudflare hCaptcha challenge
-    # ------------------------------------------------------------------------------- #
-
-    @staticmethod
-    def is_Captcha_Challenge(resp):
+    def is_reCaptcha_Challenge(resp):
         try:
             return (
                 resp.headers.get('Server', '').startswith('cloudflare')
                 and resp.status_code == 403
                 and re.search(
-                    r'action="/\S+__cf_chl_captcha_tk__=\S+',
+                    r'action="/.*?__cf_chl_captcha_tk__=\S+".*?data\-sitekey=.*?',
                     resp.text,
                     re.M | re.DOTALL
                 )
@@ -409,7 +363,7 @@ class CloudScraper(Session):
         return False
 
     # ------------------------------------------------------------------------------- #
-    # Wrapper for is_Captcha_Challenge, is_IUAM_Challenge, is_Firewall_Blocked
+    # Wrapper for is_reCaptcha_Challenge, is_IUAM_Challenge, is_Firewall_Blocked
     # ------------------------------------------------------------------------------- #
 
     def is_Challenge_Request(self, resp):
@@ -419,21 +373,15 @@ class CloudScraper(Session):
                 'Cloudflare has blocked this request (Code 1020 Detected).'
             )
 
-        if self.is_New_Captcha_Challenge(resp):
-            self.simpleException(
-                CloudflareChallengeError,
-                'Detected a Cloudflare version 2 Captcha challenge, This feature is not available in the opensource (free) version.'
-            )
-
         if self.is_New_IUAM_Challenge(resp):
             self.simpleException(
                 CloudflareChallengeError,
-                'Detected a Cloudflare version 2 challenge, This feature is not available in the opensource (free) version.'
+                'Detected the new Cloudflare challenge.'
             )
 
-        if self.is_Captcha_Challenge(resp) or self.is_IUAM_Challenge(resp):
+        if self.is_reCaptcha_Challenge(resp) or self.is_IUAM_Challenge(resp):
             if self.debug:
-                print('Detected a Cloudflare version 1 challenge.')
+                print('Detected Challenge.')
             return True
 
         return False
@@ -494,10 +442,10 @@ class CloudScraper(Session):
         }
 
     # ------------------------------------------------------------------------------- #
-    #  Try to solve the Captcha challenge via 3rd party.
+    #  Try to solve the reCaptcha challenge via 3rd party.
     # ------------------------------------------------------------------------------- #
 
-    def captcha_Challenge_Response(self, provider, provider_params, body, url):
+    def reCaptcha_Challenge_Response(self, provider, provider_params, body, url):
         try:
             formPayload = re.search(
                 r'<form (?P<form>.*?="challenge-form" '
@@ -508,8 +456,8 @@ class CloudScraper(Session):
 
             if not all(key in formPayload for key in ['form', 'challengeUUID']):
                 self.simpleException(
-                    CloudflareCaptchaError,
-                    "Cloudflare Captcha detected, unfortunately we can't extract the parameters correctly."
+                    CloudflareReCaptchaError,
+                    "Cloudflare reCaptcha detected, unfortunately we can't extract the parameters correctly."
                 )
 
             payload = OrderedDict(
@@ -523,28 +471,11 @@ class CloudScraper(Session):
 
         except (AttributeError, KeyError):
             self.simpleException(
-                CloudflareCaptchaError,
-                "Cloudflare Captcha detected, unfortunately we can't extract the parameters correctly."
+                CloudflareReCaptchaError,
+                "Cloudflare reCaptcha detected, unfortunately we can't extract the parameters correctly."
             )
 
-        # ------------------------------------------------------------------------------- #
-        # Pass proxy parameter to provider to solve captcha.
-        # ------------------------------------------------------------------------------- #
-
-        if self.proxies and self.proxies != self.captcha.get('proxy'):
-            self.captcha['proxy'] = self.proxies
-
-        # ------------------------------------------------------------------------------- #
-        # Pass User-Agent if provider supports it to solve captcha.
-        # ------------------------------------------------------------------------------- #
-
-        self.captcha['User-Agent'] = self.headers['User-Agent']
-
-        # ------------------------------------------------------------------------------- #
-        # Submit job to provider to request captcha solve.
-        # ------------------------------------------------------------------------------- #
-
-        captchaResponse = Captcha.dynamicImport(
+        captchaResponse = reCaptcha.dynamicImport(
             provider.lower()
         ).solveCaptcha(
             captchaType,
@@ -552,10 +483,6 @@ class CloudScraper(Session):
             payload['data-sitekey'],
             provider_params
         )
-
-        # ------------------------------------------------------------------------------- #
-        # Parse and handle the response of solved captcha.
-        # ------------------------------------------------------------------------------- #
 
         dataPayload = OrderedDict([
             ('r', payload.get('name="r" value', '')),
@@ -583,45 +510,41 @@ class CloudScraper(Session):
     # ------------------------------------------------------------------------------- #
 
     def Challenge_Response(self, resp, **kwargs):
-        if self.is_Captcha_Challenge(resp):
+        if self.is_reCaptcha_Challenge(resp):
             # ------------------------------------------------------------------------------- #
             # double down on the request as some websites are only checking
-            # if cfuid is populated before issuing Captcha.
+            # if cfuid is populated before issuing reCaptcha.
             # ------------------------------------------------------------------------------- #
 
-            if self.doubleDown:
-                resp = self.decodeBrotli(
-                    self.perform_request(resp.request.method, resp.url, **kwargs)
-                )
+            resp = self.decodeBrotli(
+                super(CloudScraper, self).request(resp.request.method, resp.url, **kwargs)
+            )
 
-            if not self.is_Captcha_Challenge(resp):
+            if not self.is_reCaptcha_Challenge(resp):
                 return resp
 
             # ------------------------------------------------------------------------------- #
-            # if no captcha provider raise a runtime error.
+            # if no reCaptcha provider raise a runtime error.
             # ------------------------------------------------------------------------------- #
 
-            if not self.captcha or not isinstance(self.captcha, dict) or not self.captcha.get('provider'):
+            if not self.recaptcha or not isinstance(self.recaptcha, dict) or not self.recaptcha.get('provider'):
                 self.simpleException(
-                    CloudflareCaptchaProvider,
-                    "Cloudflare Captcha detected, unfortunately you haven't loaded an anti Captcha provider "
-                    "correctly via the 'captcha' parameter."
+                    CloudflareReCaptchaProvider,
+                    "Cloudflare reCaptcha detected, unfortunately you haven't loaded an anti reCaptcha provider "
+                    "correctly via the 'recaptcha' parameter."
                 )
 
             # ------------------------------------------------------------------------------- #
             # if provider is return_response, return the response without doing anything.
             # ------------------------------------------------------------------------------- #
 
-            if self.captcha.get('provider') == 'return_response':
+            if self.recaptcha.get('provider') == 'return_response':
                 return resp
 
-            # ------------------------------------------------------------------------------- #
-            # Submit request to parser wrapper to solve captcha
-            # ------------------------------------------------------------------------------- #
-
-            submit_url = self.captcha_Challenge_Response(
-                self.captcha.get('provider'),
-                self.captcha,
+            self.recaptcha['proxies'] = self.proxies
+            submit_url = self.reCaptcha_Challenge_Response(
+                self.recaptcha.get('provider'),
+                self.recaptcha,
                 resp.text,
                 resp.url
             )
@@ -695,12 +618,6 @@ class CloudScraper(Session):
                 **cloudflare_kwargs
             )
 
-            if challengeSubmitResponse.status_code == 400:
-                self.simpleException(
-                    CloudflareSolveError,
-                    'Invalid challenge answer detected, Cloudflare broken?'
-                )
-
             # ------------------------------------------------------------------------------- #
             # Return response if Cloudflare is doing content pass through instead of 3xx
             # else request with redirect URL also handle protocol scheme change http -> https
@@ -768,12 +685,8 @@ class CloudScraper(Session):
                     'browser',
                     'debug',
                     'delay',
-                    'doubleDown',
-                    'captcha',
                     'interpreter',
-                    'source_address'
-                    'requestPreHook',
-                    'requestPostHook'
+                    'recaptcha'
                 ] if field in kwargs
             }
         )
@@ -825,7 +738,7 @@ if ssl.OPENSSL_VERSION_INFO < (1, 1, 1):
     print(
         "DEPRECATION: The OpenSSL being used by this python install ({}) does not meet the minimum supported "
         "version (>= OpenSSL 1.1.1) in order to support TLS 1.3 required by Cloudflare, "
-        "You may encounter an unexpected Captcha or cloudflare 1020 blocks.".format(
+        "You may encounter an unexpected reCaptcha or cloudflare 1020 blocks.".format(
             ssl.OPENSSL_VERSION
         )
     )

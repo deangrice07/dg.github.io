@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,18 +14,20 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# gogo dave, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 09:11+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: Japanese (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -219,24 +218,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]SETTINGS[/B] : プロバイダ"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : ダウンロード"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : ダウンロード"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : 表示タイプ"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : 表示タイプ"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : プロバイダリストを消去..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : プロバイダリストを消去..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : metadataを消去..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : metadataを消去..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : キャッシュを消去..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : キャッシュを消去..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -292,12 +291,12 @@ msgid "Queue item"
 msgstr "キューに入れる"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Covenantで視聴済"
+msgid "Watched in Numbers"
+msgstr "Flixnetで視聴済"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Covenantで未視聴"
+msgid "Unwatched in Numbers"
+msgstr "Flixnetで未視聴"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -572,8 +571,8 @@ msgid "No stream available"
 msgstr "ストリームが存在しません"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Covenantでの再生は許可されていません"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Flixnetでの再生は許可されていません"
 
 msgctxt "#32403"
 msgid "Download"

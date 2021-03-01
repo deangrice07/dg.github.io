@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,18 +14,22 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# teemue, 2017
+# teemue, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 15:46+0000\n"
+"Last-Translator: teemue\n"
+"Language-Team: Finnish (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 msgctxt "#32001"
 msgid "Movies"
 msgstr "Elokuvat"
@@ -218,24 +219,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]ASETUKSET[/B]: Tarjoajat"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B]: Lataukset"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B]: Lataukset"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B]: Näkymät"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B]: Näkymät"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B]: Tyhjennä tarjoajat..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B]: Tyhjennä tarjoajat..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B]: Tyhjennä metadata..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B]: Tyhjennä metadata..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B]: Tyhjennä välimuisti..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B]: Tyhjennä välimuisti..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -291,12 +292,12 @@ msgid "Queue item"
 msgstr "Lisää toistojonoon"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Merkkaa katsotuksi Covenant"
+msgid "Watched in Numbers"
+msgstr "Merkkaa katsotuksi Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Merkkaa katsomattomaksi Covenant"
+msgid "Unwatched in Numbers"
+msgstr "Merkkaa katsomattomaksi Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -571,8 +572,8 @@ msgid "No stream available"
 msgstr "Syötettä ei saatavilla"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Toisto Covenant ulkopuolella ei ole sallittus"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Toisto Numbers ulkopuolella ei ole sallittus"
 
 msgctxt "#32403"
 msgid "Download"
@@ -691,12 +692,12 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-PALVELU"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Määritä Debrid-palvelut ResolveURL-asetuksissa."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Määritä Debrid-palvelut URLResolver-asetuksissa."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL-asetukset"
+msgid "URLResolver Settings"
+msgstr "URLResolver-asetukset"
 
 msgctxt "#32541"
 msgid "Library"
@@ -704,7 +705,7 @@ msgstr "Kirjasto"
 
 msgctxt "#32542"
 msgid ""
-"Exodus folders will be imported to library if they are added to media "
+"Copyright (C) 2017 Numbers folders will be imported to library if they are added to media "
 "sources."
 msgstr "Lisää ylläolevat Exoduksen kansiot medialähteisiin"
 
@@ -761,24 +762,24 @@ msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 msgctxt "#32556"
-msgid "[B]EXODUS[/B] : Library"
-msgstr "[B]EXODUS[/B]: Kirjasto"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B]: Kirjasto"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]KIRJASTO[/B]: Asetukset"
 
 msgctxt "#32558"
-msgid "[B]EXODUS[/B] : Update library..."
-msgstr "[B]EXODUS[/B]: Päivitä kirjasto..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B]: Päivitä kirjasto..."
 
 msgctxt "#32559"
-msgid "[B]EXODUS[/B] : Movie folder..."
-msgstr "[B]EXODUS[/B]: Elokuvakansio..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B]: Elokuvakansio..."
 
 msgctxt "#32560"
-msgid "[B]EXODUS[/B] : TV folder..."
-msgstr "[B]EXODUS[/B]: TV-sarjojen kansio..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B]: TV-sarjojen kansio..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."

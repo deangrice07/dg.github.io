@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.dg" name="[COLOR ghostwhite]DG MODULE[/COLOR]" version="1.0.0" provider-name="DGs">
+<addon id="script.module.dg" name="[COLOR white][B]DG Module[/B][/COLOR]" version="1.0.1" provider-name="[COLOR white][B]DG[/B][/COLOR]">
     <requires>
-        <import addon="xbmc.python" version="2.25.0"/>
+        <import addon="xbmc.python" version="2.1.1" />
         <import addon="script.module.beautifulsoup4"/>
     </requires>
     <extension point="xbmc.python.module" library="lib" />
     <extension point="xbmc.addon.metadata">
-        <summary lang="en">DG is a team of individuals that does what it can to provide others, you the best in entertainment.</summary>
-        <description lang="en">Many come, Many go. The true and dedicated are here.</description>
         <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+        <summary lang="en">DG Module</summary>
         <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
+          <icon>icon.png</icon>
         </assets>
     </extension>
 </addon>
@@ -35,22 +31,19 @@
 	</extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.0" name="[COLOR ghostwhite]DG ARTWORK[/COLOR]" provider-name="DG">
-    <requires>
-        <import addon="xbmc.python" version="2.25.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">DG is a team of individuals that does what it can to provide others, you the best in entertainment.</summary>
-        <description lang="en">Many come, Many go. The true and dedicated are here.</description>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+<addon id="script.dg.artwork" version="1.0.1" name="[COLOR white][B]DG Artwork[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>DG Artwork</summary>
+		<description>Themes for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
         <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-    </extension>
+	      <icon>icon.png</icon>
+		</assets>
+	</extension>
 </addon>
 
  <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.14" provider-name="Grice Advice">
@@ -141,22 +134,19 @@
   </extension>
 </addon>
 
-<addon id="script.dg.metadata" version="1.0.0" name="[COLOR ghostwhite]DG METADATA[/COLOR]" provider-name="DG">
-    <requires>
-        <import addon="xbmc.python" version="2.25.0"/>
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">DG is a team of individuals that does what it can to provide others, you the best in entertainment.</summary>
-        <description lang="en">Many come, Many go. The true and dedicated are here.</description>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+<addon id="script.dg.metadata" version="1.0.1" name="[COLOR white][B]DG Metadata[/B][/COLOR]" provider-name="[COLOR white][B]DG[/B][/COLOR]">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>DG Metadata</summary>
+		<description>Metadata for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
         <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-    </extension>
+	      <icon>icon.png</icon>
+		</assets>
+	</extension>
 </addon>
 
 <addon id="script.module.metahandler"
@@ -199,36 +189,44 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLOR ghostwhite][B]DG[/B][/COLOR]" provider-name="DG" version="1.0.9">
-    <requires>
-        <import addon="xbmc.python" version="2.25.0"/>
-        <import addon="script.module.dg" />
-        <import addon="script.dg.artwork" />
-        <import addon="script.dg.metadata" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.resolveurl" />
-        <import addon="script.module.metahandler" />
-        <import addon="plugin.video.youtube" optional="true" />
-        <import addon="script.module.inputstreamhelper" version="0.3.3"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="dg.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py" start="startup" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">DG is a team of individuals that does what it can to provide others, you the best in entertainment.</summary>
-        <description lang="en">Many come, Many go. The true and dedicated are here.</description>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-        <assets>
-            <icon>icon.gif</icon>
-            <fanart>fanart.jpg</fanart>
-            <screenshot>resources/art/ss/1.png</screenshot>
-            <screenshot>resources/art/ss/2.png</screenshot>
-            <screenshot>resources/art/ss/3.png</screenshot>
-        </assets>
-    </extension>
+<addon id="plugin.video.dg" version="1.10" name="[B][COLOR white]DG[/COLOR][/B]" provider-name="[B][COLOR white]DG[/COLOR][/B]">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="script.module.dg" />
+		<import addon="script.dg.artwork" />
+		<import addon="script.dg.metadata" />
+		<import addon="script.speedtestnet" />
+		<import addon="script.module.openscrapers" />
+		<import addon="script.module.pyqrcode" />
+		<import addon="script.module.unidecode" />
+		<import addon="script.module.resolveurl" />
+		<import addon="script.module.requests" />
+		<import addon="script.module.metahandler" />
+		<import addon="script.module.beautifulsoup4" />
+		<import addon="plugin.video.youtube" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="dg.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">[COLOR white]Movies/TV Shows/Music/Documentaries - Based on the Numbers Addon by CellarDoor TV[/COLOR]</summary>
+		<description>[COLOR white][B]|||[/B][/COLOR]DG add-on categories now require that you use your own YouTube API keys.[CR]For more information see the wiki: [COLOR lime]https://ytaddon.page.link/keys[/COLOR][CR][COLOR orangered][B]|||[/B][/COLOR]Make sure to enable InputStream Adaptive and then enable Use MPEG-DASH in YouTube add-on settings and set Video Quality to 1080p.[CR][COLOR orangered][B]|||[/B][/COLOR]Adult Password protected is only accessable through System => Settings => NuMbErS settings => Navigation:[CR]iPunheta Password is: [B][COLOR lime]PORN4ALL[/COLOR][/B]</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider. Updated and refactored by someone. Originally created by others.</disclaimer>
+		<platform>all</platform>
+		<license></license>
+		<assets>
+			<icon>icon.gif</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/media/1.png</screenshot>
+			<screenshot>resources/media/2.png</screenshot>
+			<screenshot>resources/media/3.png</screenshot>
+			<screenshot>resources/media/4.png</screenshot>
+		</assets>
+		<news>V2.0.3.2
+- The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.[CR]Please remember that NuMb3r5 is not an official part of the Kodi media player you are running, and therefore is not to be mentioned within official support channels of Kodi, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</news>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+	</extension>
 </addon>
 
 <addon id="script.module.beautifulsoup4"

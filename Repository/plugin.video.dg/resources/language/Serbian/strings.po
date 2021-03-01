@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,18 +14,23 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# Almir V, 2017
+# Bojan Bugarin, 2017
+# Jaroslav Balaz, 2017
+# Предраг Љубеновић, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 17:04+0000\n"
+"Last-Translator: Предраг Љубеновић\n"
+"Language-Team: Serbian (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -219,24 +221,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]ПОДЕШАВАЊА[/B]: Извори"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B]: Преузимања"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B]: Преузимања"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B]: Врсте приказа"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B]: Врсте приказа"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B]: Очисти добављаче…"
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B]: Очисти добављаче…"
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B]: Очисти мета-податке…"
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B]: Очисти мета-податке…"
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B]: Очисти кеш…"
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B]: Очисти кеш…"
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -292,12 +294,12 @@ msgid "Queue item"
 msgstr "Додај у ред"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Одгледано у Covenant-у"
+msgid "Watched in Numbers"
+msgstr "Одгледано у Numbers-у"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Неодгледано у Covenant-у"
+msgid "Unwatched in Numbers"
+msgstr "Неодгледано у Numbers-у"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -572,8 +574,8 @@ msgid "No stream available"
 msgstr "Није доступан ниједан стрим"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Репродукција изван Covenant-а није дозвољена"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Репродукција изван Numbers-а није дозвољена"
 
 msgctxt "#32403"
 msgid "Download"
@@ -692,12 +694,12 @@ msgid "DEBRID-SERVICE"
 msgstr "Дебрид услуга"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Подесите Дебрид услуге у подешавањима додатка ResolveURL."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Подесите Дебрид услуге у подешавањима додатка URLResolver."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "Подешавања додатка ResolveURL."
+msgid "URLResolver Settings"
+msgstr "Подешавања додатка URLResolver."
 
 msgctxt "#32541"
 msgid "Library"
@@ -705,9 +707,9 @@ msgstr "Библиотека"
 
 msgctxt "#32542"
 msgid ""
-"Covenant folders will be imported to library if they are added to media "
+"Numbers folders will be imported to library if they are added to media "
 "sources."
-msgstr "Директоријуми Covenant ће бити увезени у библиотеку ако су додати као извор садржаја."
+msgstr "Директоријуми Numbers ће бити увезени у библиотеку ако су додати као извор садржаја."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -762,24 +764,24 @@ msgid "Are you sure?"
 msgstr "Да ли сте сигурни?"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
-msgstr "[B]COVENANT[/B] : Библиотека"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Библиотека"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]БИБЛИОТЕКА[/B] : Подешавања"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
-msgstr "[B]COVENANT[/B] : Ажурирај библиотеку..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Ажурирај библиотеку..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
-msgstr "[B]COVENANT[/B] : Директоријум са филмовима..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Директоријум са филмовима..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
-msgstr "[B]COVENANT[/B] : Директоријум са ТВ серијама.."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : Директоријум са ТВ серијама.."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."

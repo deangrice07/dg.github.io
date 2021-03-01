@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+ ███▄    █  █    ██  ███▄ ▄███▓ ▄▄▄▄   ▓█████  ██▀███    ██████ 
+ ██ ▀█   █  ██  ▓██▒▓██▒▀█▀ ██▒▓█████▄ ▓█   ▀ ▓██ ▒ ██▒▒██    ▒ 
+▓██  ▀█ ██▒▓██  ▒██░▓██    ▓██░▒██▒ ▄██▒███   ▓██ ░▄█ ▒░ ▓██▄   
+▓██▒  ▐▌██▒▓▓█  ░██░▒██    ▒██ ▒██░█▀  ▒▓█  ▄ ▒██▀▀█▄    ▒   ██▒
+▒██░   ▓██░▒▒█████▓ ▒██▒   ░██▒░▓█  ▀█▓░▒████▒░██▓ ▒██▒▒██████▒▒
+░ ▒░   ▒ ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░░▒▓███▀▒░░ ▒░ ░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░
+░ ░░   ░ ▒░░░▒░ ░ ░ ░  ░      ░▒░▒   ░  ░ ░  ░  ░▒ ░ ▒░░ ░▒  ░ ░
+   ░   ░ ░  ░░░ ░ ░ ░      ░    ░    ░    ░     ░░   ░ ░  ░  ░  
+         ░    ░            ░    ░         ░  ░   ░           ░  
+                                     ░                          
 
-    -Mofidied by DG
-    -Copyright (C) 2019 lambda
-
+    NuMb3r5 Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,23 +28,62 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import urlparse
-import sys
-import urllib
+import sys,urllib,urlparse
+
 import xbmcgui
-from resources.lib.modules import control, log_utils
-
-params = dict(urlparse.parse_qsl(sys.argv[2].replace('?', '')))
-
-mode = params.get('mode')
-
-subid = params.get('subid')
+def play_trailer(id,tv_movie):
+    import requests,xbmcplugin
+    logging.warning('playing shadow Trailer:'+id)
+    if tv_movie=='tv':
+        url_t='https://api.themoviedb.org/3/find/%s?api_key=1248868d7003f60f2386595db98455ef&language=en-US&external_source=tvdb_id'%id
+        logging.warning(url_t)
+        html_t=requests.get(url_t).json()
+        id=html_t['tv_results'][0]['id']
+        url_t='http://api.themoviedb.org/3/tv/%s/videos?api_key=1248868d7003f60f2386595db98455ef'%id
+        logging.warning(url_t)
+        html_t=requests.get(url_t).json()
+        if len(html_t['results'])==0:
+            xbmc.executebuiltin((u'Notification(%s,%s)' % (sys.argv[0], 'No trailer')))
+            return 
+    else:
+        url_t='http://api.themoviedb.org/3/movie/%s/videos?api_key=1248868d7003f60f2386595db98455ef'%id
+        logging.warning(url_t)
+        html_t=requests.get(url_t).json()
+        if len(html_t['results'])==0:
+            xbmc.executebuiltin((u'Notification(%s,%s)' % (sys.argv[0], 'No trailer')))
+            return 
+        if 'results' not in html_t:
+            
+            xbmc.executebuiltin((u'Notification(%s,%s)' % (sys.argv[0],'No trailer')))
+            sys.exit(1)
+        
+    if len(html_t['results'])>1:
+        all_nm=[]
+        all_lk=[]
+        for items in html_t['results']:
+            all_nm.append(items['name']+","+str(items['size']))
+            all_lk.append(items['key'])
+        
+        ret = xbmcgui.Dialog().select("Choose trailer", all_nm)
+        if ret!=-1:
+            video_id=(all_lk[ret])
+        else:
+            s=stop_play()
+            if s=='forceexit':
+                sys.exit(1)
+            else:
+                return 0
+    else:
+        video_id=(html_t['results'][0]['key'])
+    
+        
+    playback_url = 'plugin://plugin.video.youtube/?action=play_video&videoid=%s' % video_id
+    item = xbmcgui.ListItem(path=playback_url)
+    xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+      
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 action = params.get('action')
-
-docu_category = params.get('docuCat')
-
-docu_watch = params.get('docuPlay')
 
 name = params.get('name')
 
@@ -74,295 +119,523 @@ source = params.get('source')
 
 content = params.get('content')
 
-windowedtrailer = params.get('windowedtrailer')
-windowedtrailer = int(windowedtrailer) if windowedtrailer in ("0", "1") else 0
+docu_category = params.get('docuCat')
 
+docu_watch = params.get('docuPlay')
+
+windowedtrailer = params.get('windowedtrailer')
+windowedtrailer = int(windowedtrailer) if windowedtrailer in ("0","1") else 0
 
 if action == None:
     from resources.lib.indexers import navigator
     from resources.lib.modules import cache
+    from resources.lib.modules import control
     cache.cache_version_check()
+    if control.setting('startup.sync.trakt.status') == 'true':
+        from resources.lib.modules import trakt
+        trakt.syncTraktStatus()
     navigator.navigator().root()
 
-elif action == '247movies':
-    from resources.lib.indexers import lists
-    lists.indexer().root_247movies()
+if action == 'boxsetsNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().root()
+    
+elif action == 'actionNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().action()
+    
+elif action == 'actionliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().action(lite=True)
 
-elif action == '247tvshows':
-    from resources.lib.indexers import lists
-    lists.indexer().root_247tvshows()
+elif action == 'adventureNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().adventure()
+    
+elif action == 'adventureliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().adventure(lite=True)
+    
+elif action == 'animationNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().animation()
+    
+elif action == 'animationliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().animation(lite=True)
+    
+elif action == 'comedyNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().comedy()
+    
+elif action == 'comedyliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().comedy(lite=True)
+    
+elif action == 'crimeNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().crime()
+    
+elif action == 'crimeliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().crime(lite=True)
+    
+elif action == 'dramaNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().drama()
+    
+elif action == 'dramaliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().drama(lite=True)
+    
+elif action == 'familyNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().family()
+    
+elif action == 'familyliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().family(lite=True)
+    
+elif action == 'fantasyNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().fantasy()
+    
+elif action == 'fantasyliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().fantasy(lite=True)
 
-elif action == 'iptv':
-    from resources.lib.indexers import lists
-    lists.indexer().root_iptv()
+elif action == 'horrorNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().horror()
+    
+elif action == 'horrorliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().horror(lite=True)
+    
+elif action == 'mysteryNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().mystery()
+    
+elif action == 'mysteryliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().mystery(lite=True)
+    
+elif action == 'romanceNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().romance()
+    
+elif action == 'romanceliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().romance(lite=True)
+    
+elif action == 'scifiNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().scifi()
+    
+elif action == 'scifiliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().scifi(lite=True)
+    
+elif action == 'thrillerNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().thriller()
+    
+elif action == 'thrillerliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().thriller(lite=True)
+    
+elif action == 'westernNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().western()
+    
+elif action == 'westernliteNavigator':
+    from resources.lib.indexers import bxsets
+    bxsets.navigator().western(lite=True)
 
-elif action == 'yss':
-    from resources.lib.indexers import lists
-    lists.indexer().root_yss()
+elif action == 'boxsetKingsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().boxsetKings()
 
-elif action == 'weak':
-    from resources.lib.indexers import lists
-    lists.indexer().root_weak()
+elif action == 'docuMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().documain()    
 
-elif action == 'daddylive':
-    from resources.lib.indexers import lists
-    lists.indexer().root_daddylive()
+elif action == 'musicMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().musicmain()
 
-elif action == 'sportsbay':
-    from resources.lib.indexers import lists
-    lists.indexer().root_sportsbay()
+elif action == 'musicradioMainNavigator2':
+    from resources.lib.indexers import navigator
+    navigator.navigator().musicradiomain()
+           
+elif action == 'sportsMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().sportsmain()                   
 
-elif action == 'sports24':
-    from resources.lib.indexers import lists
-    lists.indexer().root_sports24()
+elif action == 'collectionsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collections()
 
-elif action == 'gratis':
-    from resources.lib.indexers import lists
-    lists.indexer().root_gratis()
+elif action == 'collectionActors':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionActors()
 
-elif action == 'base':
-    from resources.lib.indexers import lists
-    lists.indexer().root_base()
+elif action == 'collectionBoxset':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionBoxset()
 
-elif action == 'waste':
-    from resources.lib.indexers import lists
-    lists.indexer().root_waste()
+elif action == 'collectionBoxsetKids':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionBoxsetKids()
 
-elif action == 'whitehat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_whitehat()
+elif action == 'collectionBest':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionBest()
 
-elif action == 'arconai':
-    from resources.lib.indexers import lists
-    lists.indexer().root_arconai()
+elif action == 'collectionHolidays':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionHolidays()
 
-elif action == 'iptv_lodge':
-    from resources.lib.indexers import lists
-    lists.indexer().root_iptv_lodge()
+elif action == 'collectionLifetime':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionLifetime()
 
-elif action == 'stratus':
-    from resources.lib.indexers import lists
-    lists.indexer().root_stratus()
+elif action == 'collectionTrakt':
+    from resources.lib.indexers import navigator
+    navigator.navigator().collectionTrakt()        
 
-elif action == 'distro':
-    from resources.lib.indexers import lists
-    lists.indexer().root_distro()
+elif action == 'collections':
+    from resources.lib.indexers import collections
+    collections.collections().get(url)    
 
-elif action == 'xumo':
-    from resources.lib.indexers import lists
-    lists.indexer().root_xumo()
+elif action == 'movies2':
+    from resources.lib.indexers import movies2
+    movies2.movies().get(url)
 
-elif action == 'bumble':
-    from resources.lib.indexers import lists
-    lists.indexer().root_bumble()
+elif action == 'boxsetgenres':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().boxsetgenres()        
 
-elif action == 'pluto':
-    from resources.lib.indexers import lists
-    lists.indexer().root_pluto()
+elif action == 'movieFavourites':
+    from resources.lib.indexers import movies
+    movies.movies().favourites()    
 
-elif action == 'tubi':
-    from resources.lib.indexers import lists
-    lists.indexer().root_tubi()
+elif action == 'newsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().news()
 
-elif action == 'spanish':
-    from resources.lib.indexers import lists
-    lists.indexer().root_spanish()
+elif action == 'movieNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().movies()
 
-elif action == 'spanish2':
-    from resources.lib.indexers import lists
-    lists.indexer().root_spanish2()
+elif action == 'movieliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().movies(lite=True)
 
-elif action == 'gitNavigator':
-    from resources.lib.indexers import lists
-    lists.indexer().root_git()
+elif action == 'mymovieNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mymovies()
 
-elif action == 'bp':
-    from resources.lib.indexers import lists
-    lists.indexer().root_bp()
+elif action == 'mymovieliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mymovies(lite=True)
 
-elif action == 'arabic':
-    from resources.lib.indexers import lists
-    lists.indexer().root_arabic()
+elif action == 'docuHeaven':
+    from resources.lib.indexers import docu
+    if not docu_category == None:
+        docu.documentary().docu_list(docu_category)
+    elif not docu_watch == None:
+        docu.documentary().docu_play(docu_watch)
+    else:
+        docu.documentary().root()    
 
-elif action == 'arabic2':
-    from resources.lib.indexers import lists
-    lists.indexer().root_arabic2()
+elif action == 'tvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().tvshows()
 
-elif action == 'india':
-    from resources.lib.indexers import lists
-    lists.indexer().root_india()
+elif action == 'tvliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().tvshows(lite=True)
 
-elif action == 'chile':
-    from resources.lib.indexers import lists
-    lists.indexer().root_chile()
+elif action == 'mytvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mytvshows()
 
-elif action == 'colombia':
-    from resources.lib.indexers import lists
-    lists.indexer().root_colombia()
+elif action == 'mytvliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mytvshows(lite=True)
 
-elif action == 'argentina':
-    from resources.lib.indexers import lists
-    lists.indexer().root_argentina()
+elif action == 'kidzoneNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().kidzone()
+    
+elif action == 'kidsboxsetsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().kidsboxsets()
+    
+elif action == 'waltdisneyNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().waltdisney()
+    
+elif action == 'kidsmoviesNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().kidsmovies()
 
-elif action == 'spain':
-    from resources.lib.indexers import lists
-    lists.indexer().root_spain()
+elif action == 'movieNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().movies()
 
-elif action == 'iptv_git':
-    from resources.lib.indexers import lists
-    lists.indexer().root_iptv_git()
+elif action == 'movieliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().movies(lite=True)
 
-elif action == 'cctv':
-    from resources.lib.indexers import lists
-    lists.indexer().root_cctv()
+elif action == 'mymovieNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mymovies()
 
-elif action == 'titan':
-    from resources.lib.indexers import lists
-    lists.indexer().root_titan()
+elif action == 'mymovieliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mymovies(lite=True)
 
-elif action == 'porn':
-    from resources.lib.indexers import lists
-    lists.indexer().root_porn()
+elif action == 'randomNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().random()
 
-elif action == 'faith':
-    from resources.lib.indexers import lists
-    lists.indexer().root_faith()
+elif action == 'randomMoviesNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().randomflix()
 
-elif action == 'lust':
-    from resources.lib.indexers import lists
-    lists.indexer().root_lust()
+elif action == 'justLegoNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().justlego()
 
-elif action == 'greyhat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_greyhat()
+elif action == 'gamersNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().gamers()    
 
-elif action == 'absolution':
-    from resources.lib.indexers import lists
-    lists.indexer().root_absolution()
+elif action == 'fitnessMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().fitnessmain()
 
-elif action == 'eyecandy':
-    from resources.lib.indexers import lists
-    lists.indexer().root_eyecandy()
+elif action == 'musicRandomMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().musicrandommain()        
 
-elif action == 'purplehat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_purplehat()
+elif action == 'docMainNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().docmain()            
+    
+elif action == 'superheroNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().superhero()
 
-elif action == 'retribution':
-    from resources.lib.indexers import lists
-    lists.indexer().root_retribution()
+elif action == 'animemovieNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().animemovies()
 
-elif action == 'kiddo':
-    from resources.lib.indexers import lists
-    lists.indexer().root_kiddo()
+elif action == 'animetvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().animetvshows()
 
-elif action == 'redhat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_redhat()
+elif action == 'animeGenres':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().animegenres()
 
-elif action == 'greenhat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_greenhat()
+elif action == 'kidstvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().kidstvshows()
 
-elif action == 'yellowhat':
-    from resources.lib.indexers import lists
-    lists.indexer().root_yellowhat()
+elif action == 'mytvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mytvshows()
 
-elif action == 'plist':
-    from resources.lib.indexers import lists
-    lists.indexer().root_personal()
+elif action == 'mytvliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mytvshows(lite=True)
+    
+elif action == 'teentvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().teentv()
+    
+elif action == 'toddlerNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().toddlertv()   
+    
+elif action == 'tvNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().tvshows()
 
-elif action == 'blackhat':
+elif action == 'tvliteNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().tvshows(lite=True)
+
+elif action == 'requestsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().requests()
+
+elif action == 'systemNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().system()
+
+elif action == 'allsettingsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().allsettings()
+
+elif action == 'alltoolsNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().alltools()
+
+elif action == 'jenNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().jenaddons()
+
+elif action == 'meditativemind':
     from resources.lib.indexers import lists
-    lists.indexer().root_blackhat()
+    lists.indexer().root_meditativemind()    
+
+elif action == 'technohead':
+    from resources.lib.indexers import lists
+    lists.indexer().root_technohead()
+
+elif action == 'musicchoice':
+    from resources.lib.indexers import lists
+    lists.indexer().root_musicchoice() 
+
+elif action == 'musicchannels':
+    from resources.lib.indexers import lists
+    lists.indexer().root_musicchannels()       
+
+elif action == 'musicvideos':
+    from resources.lib.indexers import lists
+    lists.indexer().root_musicvideos()    
+
+elif action == 'nowmusic':
+    from resources.lib.indexers import lists
+    lists.indexer().root_nowmusic()
+
+elif action == 'worldradio':
+    from resources.lib.indexers import lists
+    lists.indexer().root_worldradio()
+
+elif action == 'ukradio':
+    from resources.lib.indexers import lists
+    lists.indexer().root_ukradio()
+
+elif action == 'mcaudio':
+    from resources.lib.indexers import lists
+    lists.indexer().root_mcaudio()                    
+
+elif action == 'screensaver':
+    from resources.lib.indexers import lists
+    lists.indexer().root_screensaver()
 
 elif action == 'food':
     from resources.lib.indexers import lists
-    lists.indexer().root_food()
+    lists.indexer().root_food()                    
 
-elif action == 'ncaa':
+elif action == '247':
     from resources.lib.indexers import lists
-    lists.indexer().root_ncaa()
+    lists.indexer().root_247()
 
-elif action == 'ncaab':
+elif action == 'jentools':
     from resources.lib.indexers import lists
-    lists.indexer().root_ncaab()
+    lists.indexer().root_jentools()
 
-elif action == 'lfl':
+elif action == 'builds':
     from resources.lib.indexers import lists
-    lists.indexer().root_lfl()
+    lists.indexer().root_builds()
 
-elif action == 'xfl':
+elif action == 'jenlist1':
     from resources.lib.indexers import lists
-    lists.indexer().root_xfl()
+    lists.indexer().root_personal()                            
 
-elif action == 'misc_sports':
+elif action == 'learningtv':
     from resources.lib.indexers import lists
-    lists.indexer().root_misc_sports()
+    lists.indexer().root_learningtv()
 
-elif action == 'boxing':
+elif action == 'knowledge':
     from resources.lib.indexers import lists
-    lists.indexer().root_boxing()
+    lists.indexer().root_knowledge()
 
-elif action == 'tennis':
+elif action == 'gamersplayground':
     from resources.lib.indexers import lists
-    lists.indexer().root_tennis()
+    lists.indexer().root_gamersplayground()
 
-elif action == 'mlb':
+elif action == 'gamerslibrary':
     from resources.lib.indexers import lists
-    lists.indexer().root_mlb()
+    lists.indexer().root_gamerslibrary()        
 
-elif action == 'nfl':
+elif action == 'justlegobrickfilms':
     from resources.lib.indexers import lists
-    lists.indexer().root_nfl()
+    lists.indexer().root_justlegobrickfilms()
 
-elif action == 'nhl':
+elif action == 'justlegofootball':
     from resources.lib.indexers import lists
-    lists.indexer().root_nhl()
+    lists.indexer().root_justlegofootball()
 
-elif action == 'nba':
+elif action == 'justlegogamers':
     from resources.lib.indexers import lists
-    lists.indexer().root_nba()
+    lists.indexer().root_justlegogamers()
+
+elif action == 'justlegolittletoys':
+    from resources.lib.indexers import lists
+    lists.indexer().root_justlegolittletoys()
+
+elif action == 'justlegoparody':
+    from resources.lib.indexers import lists
+    lists.indexer().root_justlegoparody()                    
+
+elif action == 'documentaries':
+    from resources.lib.indexers import lists
+    lists.indexer().root_documentaries() 
+
+elif action == 'russell':
+    from resources.lib.indexers import lists
+    lists.indexer().root_russell()
+
+elif action == 'docutube':
+    from resources.lib.indexers import lists
+    lists.indexer().root_docutube()    
+
+elif action == 'athleanx':
+    from resources.lib.indexers import lists
+    lists.indexer().root_athleanx()    
+
+elif action == 'eyecandy':
+    from resources.lib.indexers import lists
+    lists.indexer().root_eyecandy()    
 
 elif action == 'ufc':
     from resources.lib.indexers import lists
     lists.indexer().root_ufc()
 
-elif action == 'fifa':
+elif action == 'jens':
     from resources.lib.indexers import lists
-    lists.indexer().root_fifa()
+    lists.indexer().root_jens()            
 
-elif action == 'wwe':
+elif action == 'radio':
     from resources.lib.indexers import lists
-    lists.indexer().root_wwe()
+    lists.indexer().root_radio()           
 
-elif action == 'motogp':
+elif action == 'eimportalmovies':
     from resources.lib.indexers import lists
-    lists.indexer().root_motogp()
+    lists.indexer().root_eimportalmovies()
 
-elif action == 'f1':
+elif action == 'eimportalshows':
     from resources.lib.indexers import lists
-    lists.indexer().root_f1()
+    lists.indexer().root_eimportalshows()
 
-elif action == 'pga':
+elif action == 'accountsrd':
     from resources.lib.indexers import lists
-    lists.indexer().root_pga()
+    lists.indexer().root_accountsrd()
 
-elif action == 'nascar':
+elif action == 'speedtest':
     from resources.lib.indexers import lists
-    lists.indexer().root_nascar()
+    lists.indexer().root_speedtest()
 
-elif action == 'cricket':
+elif action == 'xxx':
     from resources.lib.indexers import lists
-    lists.indexer().root_cricket()
-
-elif action == 'sports_channels':
-    from resources.lib.indexers import lists
-    lists.indexer().root_sports_channels()
-
-elif action == 'sreplays':
-    from resources.lib.indexers import lists
-    lists.indexer().root_sreplays()
+    lists.indexer().root_iPunheta()    
 
 elif action == 'directory':
     from resources.lib.indexers import lists
@@ -378,11 +651,7 @@ elif action == 'xdirectory':
 
 elif action == 'developer':
     from resources.lib.indexers import lists
-    lists.indexer().developer()
-
-elif action == 'tvtuner':
-    from resources.lib.indexers import lists
-    lists.indexer().tvtuner(url)
+    lists.indexer().developer()                
 
 elif 'youtube' in str(action):
     from resources.lib.indexers import lists
@@ -390,104 +659,7 @@ elif 'youtube' in str(action):
 
 elif action == 'browser':
     from resources.lib.indexers import lists
-    sports.resolver().browser(url)
-
-elif action == 'docuNavigator':
-    from resources.lib.indexers import docu
-    docu.documentary().root()
-
-elif action == 'docuHeaven':
-    from resources.lib.indexers import docu
-    if not docu_category == None:
-        docu.documentary().docu_list(docu_category)
-    elif not docu_watch == None:
-        docu.documentary().docu_play(docu_watch)
-    else:
-        docu.documentary().root()
-
-elif action == "furkNavigator":
-    from resources.lib.indexers import navigator
-    navigator.navigator().furk()
-
-elif action == "furkMetaSearch":
-    from resources.lib.indexers import furk
-    furk.furk().furk_meta_search(url)
-
-elif action == "furkSearch":
-    from resources.lib.indexers import furk
-    furk.furk().search()
-
-elif action == "furkUserFiles":
-    from resources.lib.indexers import furk
-    furk.furk().user_files()
-
-elif action == "furkSearchNew":
-    from resources.lib.indexers import furk
-    furk.furk().search_new()
-
-elif action == 'bluehat':
-    from resources.lib.indexers import navigator
-    navigator.navigator().bluehat()
-
-elif action == 'whitehat':
-    from resources.lib.indexers import navigator
-    navigator.navigator().whitehat()
-
-elif action == 'movieNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().movies()
-
-elif action == 'fluxNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().iptv_fluxus()
-
-elif action == 'stratusNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().iptv_stratus()
-
-elif action == 'lodgeNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().iptv_tvlodge()
-
-elif action == 'movieliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().movies(lite=True)
-
-elif action == 'mymovieNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mymovies()
-
-elif action == 'mymovieliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mymovies(lite=True)
-
-elif action == 'nav_add_addons':
-    from resources.lib.indexers import navigator
-    navigator.navigator().add_addons()
-
-elif action == 'tvNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().tvshows()
-
-elif action == 'traktlist':
-    from resources.lib.indexers import navigator
-    navigator.navigator().traktlist()
-
-elif action == 'imdblist':
-    from resources.lib.indexers import navigator
-    navigator.navigator().imdblist()
-
-elif action == 'tvliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().tvshows(lite=True)
-
-elif action == 'mytvNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mytvshows()
-
-elif action == 'mytvliteNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().mytvshows(lite=True)
+    sports.resolver().browser(url)                                   
 
 elif action == 'downloadNavigator':
     from resources.lib.indexers import navigator
@@ -524,7 +696,6 @@ elif action == 'clearMetaCache':
 elif action == 'clearCacheSearch':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCacheSearch()
-
 elif action == 'infoCheck':
     from resources.lib.indexers import navigator
     navigator.navigator().infoCheck('')
@@ -581,22 +752,6 @@ elif action == 'movieUserlists':
     from resources.lib.indexers import movies
     movies.movies().userlists()
 
-elif action == 'channels':
-    from resources.lib.indexers import channels
-    channels.channels().get()
-
-elif action == 'swiftNavigator':
-    from resources.lib.indexers import swift
-    swift.swift().root()
-
-elif action == 'swiftCat':
-    from resources.lib.indexers import swift
-    swift.swift().swiftCategory(url)
-
-elif action == 'swiftPlay':
-    from resources.lib.indexers import swift
-    swift.swift().swiftPlay(url)
-
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().get(url)
@@ -628,6 +783,14 @@ elif action == 'tvGenres':
 elif action == 'tvNetworks':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().networks()
+
+elif action == 'tvNetworksKids':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().networkskids()
+
+elif action == 'tvNetworksPremium':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().networkspremium()            
 
 elif action == 'tvLanguages':
     from resources.lib.indexers import tvshows
@@ -703,7 +866,16 @@ elif action == 'tvPlaycount':
 
 elif action == 'trailer':
     from resources.lib.modules import trailer
-    trailer.trailer().play(name, url, windowedtrailer)
+    import logging
+    logging.warning('season:'+str(season))
+
+    tv_movie='tv'
+    item=tvdb
+    if season==None:
+        tv_movie='movie'
+        item=tmdb
+    play_trailer(item,tv_movie)
+    #trailer.trailer().play(name, url, windowedtrailer)
 
 elif action == 'traktManager':
     from resources.lib.modules import trakt
@@ -713,19 +885,32 @@ elif action == 'authTrakt':
     from resources.lib.modules import trakt
     trakt.authTrakt()
 
+elif action == 'urlResolver':
+    try:
+        import resolveurl
+    except:
+        pass
+    resolveurl.display_settings()
+
 elif action == 'ResolveUrlTorrent':
     from resources.lib.modules import control
-    control.openSettings(query, "script.module.resolveurl")
+    control.openSettings(query, "script.module.resolveurl")    
 
 elif action == 'download':
     import json
     from resources.lib.modules import sources
     from resources.lib.modules import downloader
-    try:
-        downloader.download(name, image, sources.sources(
-        ).sourcesResolve(json.loads(source)[0], True))
-    except:
-        pass
+    try: downloader.download(name, image, sources.sources().sourcesResolve(json.loads(source)[0], True))
+    except: pass
+
+elif action == 'docuHeaven':
+    from resources.lib.indexers import docu
+    if not docu_category == None:
+        docu.documentary().docu_list(docu_category)
+    elif not docu_watch == None:
+        docu.documentary().docu_play(docu_watch)
+    else:
+        docu.documentary().root()    
 
 elif action == 'play':
     from resources.lib.indexers import lists
@@ -733,8 +918,7 @@ elif action == 'play':
         lists.player().play(url, content)
     else:
         from resources.lib.modules import sources
-        sources.sources().play(title, year, imdb, tvdb, season,
-                               episode, tvshowtitle, premiered, meta, select)
+        sources.sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 
 elif action == 'play1':
     from resources.lib.indexers import lists
@@ -742,8 +926,7 @@ elif action == 'play1':
         lists.player().play(url, content)
     else:
         from resources.lib.modules import sources
-        sources.sources().play(title, year, imdb, tvdb, season,
-                               episode, tvshowtitle, premiered, meta, select)
+        sources.sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 
 elif action == 'addItem':
     from resources.lib.modules import sources
@@ -761,6 +944,10 @@ elif action == 'clearSources':
     from resources.lib.modules import sources
     sources.sources().clearSources()
 
+elif action == 'clearCacheProviders':
+    from resources.lib.modules import sources
+    sources.sources().clearCacheProviders()    
+
 elif action == 'random':
     rtype = params.get('rtype')
     if rtype == 'movie':
@@ -769,13 +956,11 @@ elif action == 'random':
         r = sys.argv[0]+"?action=play"
     elif rtype == 'episode':
         from resources.lib.indexers import episodes
-        rlist = episodes.episodes().get(tvshowtitle, year, imdb, tvdb,
-                                        season, create_directory=False)
+        rlist = episodes.episodes().get(tvshowtitle, year, imdb, tvdb, season, create_directory=False)
         r = sys.argv[0]+"?action=play"
     elif rtype == 'season':
         from resources.lib.indexers import episodes
-        rlist = episodes.seasons().get(tvshowtitle, year, imdb,
-                                       tvdb, create_directory=False)
+        rlist = episodes.seasons().get(tvshowtitle, year, imdb, tvdb, create_directory=False)
         r = sys.argv[0]+"?action=random&rtype=episode"
     elif rtype == 'show':
         from resources.lib.indexers import tvshows
@@ -785,6 +970,8 @@ elif action == 'random':
     from random import randint
     import json
     try:
+        from resources.lib.modules import control
+        from resources.lib.dialogs import notification
         rand = randint(1, len(rlist))-1
         for p in ['title', 'year', 'imdb', 'tvdb', 'season', 'episode', 'tvshowtitle', 'premiered', 'select']:
             if rtype == "show" and p == "tvshowtitle":
@@ -803,19 +990,21 @@ elif action == 'random':
             r += '&meta='+urllib.quote_plus("{}")
         if rtype == "movie":
             try:
-                control.infoDialog(rlist[rand]['title'], control.lang(
-                    32536).encode('utf-8'), time=30000)
+                notification.infoDialog(title=rlist[rand]['title'], msg=control.lang(32536).encode('utf-8'), timer=10000, style='ERROR')
             except:
                 pass
         elif rtype == "episode":
             try:
-                control.infoDialog(rlist[rand]['tvshowtitle']+" - Season "+rlist[rand]['season'] +
-                                   " - "+rlist[rand]['title'], control.lang(32536).encode('utf-8'), time=30000)
+                notification.infoDialog(
+                    title=rlist[rand]['tvshowtitle'] + " - Season " + rlist[rand]['season'] + " - " + rlist[rand]['title'],
+                    msg=control.lang(32536).encode('utf-8'),
+                    timer=10000, style='ERROR')
             except:
                 pass
         control.execute('RunPlugin(%s)' % r)
     except:
-        control.infoDialog(control.lang(32537).encode('utf-8'), time=8000)
+        from resources.lib.dialogs import notification
+        notification.infoDialog(msg=control.lang(32537).encode('utf-8'), timer=8000)
 
 elif action == 'movieToLibrary':
     from resources.lib.modules import libtools
@@ -825,10 +1014,6 @@ elif action == 'moviesToLibrary':
     from resources.lib.modules import libtools
     libtools.libmovies().range(url)
 
-elif action == 'moviesToLibrarySilent':
-    from resources.lib.modules import libtools
-    libtools.libmovies().silent(url)
-
 elif action == 'tvshowToLibrary':
     from resources.lib.modules import libtools
     libtools.libtvshows().add(tvshowtitle, year, imdb, tvdb)
@@ -836,10 +1021,6 @@ elif action == 'tvshowToLibrary':
 elif action == 'tvshowsToLibrary':
     from resources.lib.modules import libtools
     libtools.libtvshows().range(url)
-
-elif action == 'tvshowsToLibrarySilent':
-    from resources.lib.modules import libtools
-    libtools.libtvshows().silent(url)
 
 elif action == 'updateLibrary':
     from resources.lib.modules import libtools
@@ -849,73 +1030,18 @@ elif action == 'service':
     from resources.lib.modules import libtools
     libtools.libepisodes().service()
 
-elif action == 'urlResolver':
-    try:
-        import resolveurl
-    except:
-        pass
-    resolveurl.display_settings()
+elif action == 'syncTraktStatus':
+    from resources.lib.modules import trakt
+    trakt.syncTraktStatus()    
 
-elif action == 'newsNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().news()
+elif action == 'ShowChangelog':
+    from resources.lib.modules import changelog
+    changelog.get()
 
-elif action == 'collectionsNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collections()
+elif action == 'pairTools':
+    from resources.lib.dialogs import pairing
+    pairing.Pair_Dialog()
 
-elif action == 'collectionActors':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collectionActors()
-
-elif action == 'collectionBoxset':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collectionBoxset()
-
-elif action == 'collectionBoxsetKids':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collectionBoxsetKids()
-
-elif action == 'collectionKids':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collectionKids()
-
-elif action == 'collectionSuperhero':
-    from resources.lib.indexers import navigator
-    navigator.navigator().collectionSuperhero()
-
-elif action == 'collections':
-    from resources.lib.indexers import collections
-    collections.collections().get(url)
-
-elif action == 'holidaysNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().holidays()
-
-elif action == 'halloweenNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().halloween()
-
-elif action == 'bugReports':
-    from resources.lib.reports import bugreports
-    bugreports.BugReporter()
-
-elif action == 'kidsgreyNavigator':
-    from resources.lib.indexers import navigator
-    navigator.navigator().kidsgrey()
-
-elif action == 'debridkids':
-    from resources.lib.indexers import lists
-    lists.indexer().root_debridkids()
-
-elif action == 'waltdisney':
-    from resources.lib.indexers import lists
-    lists.indexer().root_waltdisney()
-
-elif action == 'learning':
-    from resources.lib.indexers import lists
-    lists.indexer().root_learning()
-
-elif action == 'songs':
-    from resources.lib.indexers import lists
-    lists.indexer().root_songs()                    
+elif action == 'logViewer':
+    from resources.lib.dialogs import logviewer
+    logviewer.LogViewer(logfile='kodi.log')        

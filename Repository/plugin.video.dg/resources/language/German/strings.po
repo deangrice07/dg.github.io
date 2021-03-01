@@ -1,6 +1,6 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
+# Translators:
+# Addon id: plugin.video.numbers
+# Addon Provider: Numbers
 # Translators:
 # Translators:
 # Translators:
@@ -17,18 +17,24 @@
 # Translators:
 # Translators:
 # Translators:
+# Kr1ss, 2017
+# Viper2k4, 2017
+# Christian Klippel, 2015
+# eidermar, 2016
+# lambda81, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 13:23+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: German (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 
 msgctxt "#32001"
 msgid "Movies"
@@ -219,24 +225,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]EINSTELLUNGEN[/B] : Indexseiten"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Downloads"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Downloads"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Anzeige-Typen"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Anzeige-Typen"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Indexseiten-Cache leeren..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Indexseiten-Cache leeren..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Metadaten-Cache leeren..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Metadaten-Cache leeren..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Cache leeren..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Cache leeren..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -291,12 +297,12 @@ msgid "Queue item"
 msgstr "Eintrag zur Warteschlange hinzufügen"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "In Covenant Angesehen"
+msgid "Watched in Numbers"
+msgstr "In Numbers Angesehen"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "In Covenant Ungesehen"
+msgid "Unwatched in Numbers"
+msgstr "In Numbers Ungesehen"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -583,8 +589,8 @@ msgid "No stream available"
 msgstr "Keine Streams verfügbar"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Eine Wiedergabe außerhalb von Covenant ist nicht erlaubt"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Eine Wiedergabe außerhalb von Numbers ist nicht erlaubt"
 
 msgctxt "#32403"
 msgid "Download"
@@ -703,20 +709,20 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-DIENSTE"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Konfiguriere Debrid-Dienste in den ResolveURL-Einstellungen."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Konfiguriere Debrid-Dienste in den URLResolver-Einstellungen."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL-Einstellungen"
+msgid "URLResolver Settings"
+msgstr "URLResolver-Einstellungen"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "Bibliothek"
 
 msgctxt "#32542"
-msgid "Covenant folders will be imported to library if they are added to media sources."
-msgstr "Covenant-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
+msgid "Numbers folders will be imported to library if they are added to media sources."
+msgstr "Numbers-Ordner werden in die Bibliothek importiert, wenn sie zu Medienquellen hinzugefügt werden."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -771,24 +777,24 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
-msgstr "[B]COVENANT[/B] : Bibliothek"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Bibliothek"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]BIBLIOTHEK[/B] : Einstellungen"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
-msgstr "[B]COVENANT[/B] : Bibliothek aktualisieren..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Bibliothek aktualisieren..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
-msgstr "[B]COVENANT[/B] : Film-Ordner..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Film-Ordner..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
-msgstr "[B]COVENANT[/B] : Serien-Ordner..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : Serien-Ordner..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."

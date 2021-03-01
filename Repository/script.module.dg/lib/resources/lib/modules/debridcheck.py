@@ -5,15 +5,16 @@
 ##--                                        Please retain this credit                                        --##
 
 
+import xbmc, xbmcgui
 import os
+import json
 import time
 import datetime
-import simplejson as json
 import requests
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
 from threading import Thread
-from resources.lib.modules import control, utils
+from resources.lib.modules import control
 
 
 __r_url__ = control.addon('script.module.resolveurl')
@@ -21,6 +22,28 @@ rd_enabled = (__r_url__.getSetting('RealDebridResolver_enabled') == 'true' and _
 ad_enabled = (__r_url__.getSetting('AllDebridResolver_enabled') == 'true' and __r_url__.getSetting('AllDebridResolver_token') != '')
 pm_enabled = (__r_url__.getSetting('PremiumizeMeResolver_enabled') == 'true' and __r_url__.getSetting('PremiumizeMeResolver_token') != '')
 progressDialog = control.progressDialogBG
+
+def chunks(l, n):
+    """
+    Yield successive n-sized chunks from l.
+    """
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+def to_utf8(obj):
+    try:
+        import copy
+        if isinstance(obj, unicode):
+            obj = obj.encode('utf-8', 'ignore')
+        elif isinstance(obj, dict):
+            obj = copy.deepcopy(obj)
+            for key, val in obj.items():
+                obj[key] = to_utf8(val)
+        elif obj is not None and hasattr(obj, "__iter__"):
+            obj = obj.__class__([to_utf8(x) for x in obj])
+        else: pass
+    except: pass
+    return obj
 
 class RDapi:
     def __init__(self):
@@ -42,8 +65,8 @@ class RDapi:
         if 'bad_token' in response or 'Bad Request' in response:
             self.refreshToken()
             response = self._get(original_url)
-        try: resp = utils.json_loads_as_str(response)
-        except: resp = utils.byteify(response)
+        try: resp = to_utf8(json.loads(response))
+        except: resp = to_utf8(response)
         #from resources.lib.modules import log_utils
         #log_utils.log('RDapi-' + str(resp))
         return resp
@@ -80,13 +103,15 @@ class ADapi:
 
     def _post(self, url, data={}):
         result = None
-        if self.token == '': return None
-        url = self.base_url + url + '?agent=%s&apikey=%s' % (self.user_agent, self.token)
-        resp = requests.post(url, data=data).json()
-        if resp.get('status') == 'success':
-            if 'data' in resp:
-                resp = resp['data']['magnets']
-        return resp
+        try:
+            if self.token == '': return None
+            url = self.base_url + url + '?agent=%s&apikey=%s' % (self.user_agent, self.token)
+            result = requests.post(url, data=data).json()
+            if result.get('status') == 'success':
+                if 'data' in result:
+                    result = result['data']
+        except: pass
+        return result
 
 class PMapi:
     def __init__(self):
@@ -104,9 +129,8 @@ class PMapi:
         headers = {'Authorization': 'Bearer %s' % self.token}
         if not 'token' in url: url = self.base_url + url
         response = requests.post(url, data=data, headers=headers).text
-        try: resp = utils.json_loads_as_str(response)
-        except: resp = utils.byteify(response)
-        return resp
+        try: return to_utf8(json.loads(response))
+        except: return to_utf8(response)
 
 class DebridCheck:
     def __init__(self):
@@ -120,7 +144,6 @@ class DebridCheck:
         self.rd_process_results = []
         self.ad_cached_hashes = []
         self.ad_hashes_unchecked = []
-        self.ad_query_threads = []
         self.ad_process_results = []
         self.pm_cached_hashes = []
         self.pm_hashes_unchecked = []
@@ -145,23 +168,24 @@ class DebridCheck:
             self.pm_hashes_unchecked = [i for i in self.hash_list if not any([h for h in self.cached_hashes if str(h[0]) == i and str(h[1]) =='pm'])]
             if self.pm_hashes_unchecked: self.starting_debrids.append(('Premiumize.me', self.PM_cache_checker))
         if self.starting_debrids:
-            for i in list(range(len(self.starting_debrids))):
+            for i in range(len(self.starting_debrids)):
                 self.main_threads.append(Thread(target=self.starting_debrids[i][1]))
                 self.starting_debrids_display.append((self.main_threads[i].getName(), self.starting_debrids[i][0]))
             [i.start() for i in self.main_threads]
-            [i.join() for i in self.main_threads]
             self.debrid_check_dialog()
+            [i.join() for i in self.main_threads]
+            # self.debrid_check_dialog()
         control.sleep(500)
         return self.rd_cached_hashes, self.ad_cached_hashes, self.pm_cached_hashes
 
     def debrid_check_dialog(self):
         timeout = 20
         progressDialog.create('Checking debrid cache, please wait..')
-        #progressDialog.update(0)
+        progressDialog.update(0)
         start_time = time.time()
-        for i in list(range(0, 200)):
+        for i in range(0, 200):
             try:
-                if control.monitor.abortRequested(): return sys.exit()
+                if xbmc.abortRequested == True: return sys.exit()
                 alive_threads = [x.getName() for x in self.main_threads if x.is_alive() is True]
                 remaining_debrids = [x[1] for x in self.starting_debrids_display if x[0] in alive_threads]
                 current_time = time.time()
@@ -182,17 +206,14 @@ class DebridCheck:
         control.sleep(200)
 
     def RD_cache_checker(self):
-        hash_chunk_list = list(utils.chunks(self.rd_hashes_unchecked, 100))
+        hash_chunk_list = list(chunks(self.rd_hashes_unchecked, 100))
         for item in hash_chunk_list: self.rd_query_threads.append(Thread(target=self._rd_lookup, args=(item,)))
         [i.start() for i in self.rd_query_threads]
         [i.join() for i in self.rd_query_threads]
         self._add_to_local_cache(self.rd_process_results, 'rd')
 
     def AD_cache_checker(self):
-        hash_chunk_list = list(utils.chunks(self.ad_hashes_unchecked, 100))
-        for item in hash_chunk_list: self.ad_query_threads.append(Thread(target=self._ad_lookup, args=(item,)))
-        [i.start() for i in self.ad_query_threads]
-        [i.join() for i in self.ad_query_threads]
+        self._ad_lookup(self.hash_list)
         self._add_to_local_cache(self.ad_process_results, 'ad')
 
     def PM_cache_checker(self):
@@ -214,7 +235,7 @@ class DebridCheck:
 
     def _ad_lookup(self, hash_list):
         try:
-            ad_cache = ADapi().check_cache(hash_list)
+            ad_cache = ADapi().check_cache(hash_list)['magnets']
             if isinstance(ad_cache, list):
                 for i in ad_cache:
                     cached = 'False'

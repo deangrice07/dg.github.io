@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,18 +14,25 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# Calin Gabriel Mihai, 2017
+# Cojocaru Nicolae - Gheorhe, 2015
+# lambda81, 2016
+# Marian Temisan, 2017
+# Patrick K, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 09:11+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: Romanian (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
 msgctxt "#32001"
 msgid "Movies"
 msgstr "Filme"
@@ -218,24 +222,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]SETĂRI[/B] : Furnizori"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Descărcări"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Descărcări"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Tip vizualizare"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Tip vizualizare"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Curățare furnizori..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Curățare furnizori..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Curățare metadata..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Curățare metadata..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Curățare cache..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Curățare cache..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -291,12 +295,12 @@ msgid "Queue item"
 msgstr "Pune în lista de așteptare"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Vizionat în Covenant"
+msgid "Watched in Numbers"
+msgstr "Vizionat în Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Nevizionat în Covenant"
+msgid "Unwatched in Numbers"
+msgstr "Nevizionat în Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -571,8 +575,8 @@ msgid "No stream available"
 msgstr "Nu există surse"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Redarea afară din Covenant nu este permisă"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Redarea afară din Numbers nu este permisă"
 
 msgctxt "#32403"
 msgid "Download"

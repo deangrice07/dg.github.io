@@ -1,6 +1,3 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
 # Translators:
 # Translators:
@@ -17,17 +14,19 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
+# Petar Stefanov, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-05-30 09:11+0000\n"
+"Last-Translator: Viper2k4\n"
+"Language-Team: Bulgarian (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
@@ -219,24 +218,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]Настройки[/B] : Доставчици"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Изтеглени"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Изтеглени"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Видове Изглед"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Видове Изглед"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Изчисти доставчици..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Изчисти доставчици..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Изчисти метаданни ..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Изчисти метаданни ..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Изчисти кеш..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Изчисти кеш..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -292,12 +291,12 @@ msgid "Queue item"
 msgstr "Изчакващ елемент"
 
 msgctxt "#32066"
-msgid "Watched in The Crew"
-msgstr "Гледан в The Crew"
+msgid "Watched in Numbers"
+msgstr "Гледан в Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in The Crew"
-msgstr "Не гледан в The Crew"
+msgid "Unwatched in Numbers"
+msgstr "Не гледан в Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -572,8 +571,8 @@ msgid "No stream available"
 msgstr "Няма налично видео"
 
 msgctxt "#32402"
-msgid "Playback outside The Crew is not allowed"
-msgstr "Възпроизвеждане извън The Crew не е разрешено"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Възпроизвеждане извън Numbers не е разрешено"
 
 msgctxt "#32403"
 msgid "Download"

@@ -1,34 +1,27 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
 # Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
+# Anton G, 2016
+# Anton G, 2016
+# djkidy123, 2016
+# djkidy123, 2016
+# frunc, 2017
+# lambda81, 2016
+# lambda81, 2016
+# Mario Mijic, 2017
+# Zvonimir Brajković, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-10-31 22:27+0100\n"
+"Last-Translator: gogo\n"
+"Language-Team: Croatian (http://www.transifex.com/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
 msgctxt "#32001"
 msgid "Movies"
 msgstr "Filmovi"
@@ -218,24 +211,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]POSTAVKE[/B] : Izvori"
 
 msgctxt "#32048"
-msgid "[B]The Crew[/B] : Downloads"
-msgstr "[B]The Crew[/B] : Preuzimanja"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Preuzimanja"
 
 msgctxt "#32049"
-msgid "[B]The Crew[/B] : Viewtypes"
-msgstr "[B]The Crew[/B] : Vrsta prikaza"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Vrsta prikaza"
 
 msgctxt "#32050"
-msgid "[B]The Crew[/B] : Clear providers..."
-msgstr "[B]The Crew[/B] : Obriši izvore..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Obriši izvore..."
 
 msgctxt "#32051"
-msgid "[B]The Crew[/B] : Clear metadata..."
-msgstr "[B]The Crew[/B] : Obriši metapodatke..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Obriši metapodatke..."
 
 msgctxt "#32052"
-msgid "[B]The Crew[/B] : Clear cache..."
-msgstr "[B]The Crew[/B] : Obriši predmemoriju..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Obriši predmemoriju..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -290,12 +283,12 @@ msgid "Queue item"
 msgstr "Dodaj u red čekanja"
 
 msgctxt "#32066"
-msgid "Watched in The Crew"
-msgstr "Gledano u The Crewu"
+msgid "Watched in Numbers"
+msgstr "Gledano u Flixnetu"
 
 msgctxt "#32067"
-msgid "Unwatched in The Crew"
-msgstr "Neodgledano u The Crewu"
+msgid "Unwatched in Numbers"
+msgstr "Neodgledano u Flixnetu"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -582,8 +575,8 @@ msgid "No stream available"
 msgstr "Nema dostupnih strujanja"
 
 msgctxt "#32402"
-msgid "Playback outside The Crew is not allowed"
-msgstr "Reprodukcija izvan The Crewa nije dopuštena"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Reprodukcija izvan Flixneta nije dopuštena"
 
 msgctxt "#32403"
 msgid "Download"
@@ -702,11 +695,11 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-USLUGA"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
+msgid "Configure Debrid Services in URLResolver Settings."
 msgstr "Podesi Debrid usluge u postavkama URL razrješitelja."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
+msgid "URLResolver Settings"
 msgstr "Postavke URL razrješitelja"
 
 msgctxt "#32541"
@@ -714,8 +707,8 @@ msgid "Library"
 msgstr "Videoteka"
 
 msgctxt "#32542"
-msgid "The Crew folders will be imported to library if they are added to media sources."
-msgstr "The Crew mape će se uvesti u videoteku ako su dodane u medijske izvore."
+msgid "Numbers folders will be imported to library if they are added to media sources."
+msgstr "Numbers mape će se uvesti u videoteku ako su dodane u medijske izvore."
 
 msgctxt "#32543"
 msgid "Movies"
@@ -770,24 +763,24 @@ msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
 
 msgctxt "#32556"
-msgid "[B]The Crew[/B] : Library"
-msgstr "[B]The Crew[/B] : Videoteka"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Videoteka"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]VIDEOTEKA[/B] : Postavke"
 
 msgctxt "#32558"
-msgid "[B]The Crew[/B] : Update library..."
-msgstr "[B]The Crew[/B] : Nadopuni videoteku..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Nadopuni videoteku..."
 
 msgctxt "#32559"
-msgid "[B]The Crew[/B] : Movie folder..."
-msgstr "[B]The Crew[/B] : Mapa filmova..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Mapa filmova..."
 
 msgctxt "#32560"
-msgid "[B]The Crew[/B] : TV folder..."
-msgstr "[B]The Crew[/B] : Mapa TV serija..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : Mapa TV serija..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."
@@ -918,8 +911,8 @@ msgid "New search..."
 msgstr "Nova pretraga..."
 
 msgctxt "#32604"
-msgid "[B]The Crew[/B] : Clear search history..."
-msgstr "[B]The Crew[/B] : Obriši povijest pretrage..."
+msgid "[B]Numbers[/B] : Clear search history..."
+msgstr "[B]Numbers[/B] : Obriši povijest pretrage..."
 
 msgctxt "#32605"
 msgid "Click to clear search history"
@@ -932,7 +925,3 @@ msgstr "Prem"
 msgctxt "#32607"
 msgid "Normal"
 msgstr "Normalno"
-
-msgctxt "#32608"
-msgid "Auto Updating Trakt Library"
-msgstr ""

@@ -1,6 +1,6 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
+# Addon Name: Numbers
+# Addon id: plugin.video.numbers
+# Addon Provider: Numbers
 # Translators:
 # Translators:
 # Translators:
@@ -8,27 +8,29 @@
 # Translators:
 # Translators:
 # Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
+# Itay Mizi, 2015
+# SagaMi, 2016
+# lambda81, 2015
+# lambda81, 2016
+# lidor malich, 2015
+# SagaMi, 2016
+# Yaron Shahrabani, 2016
+# ‫לידור מליח‬‎, 2016י
+# Noam Guterman, 2017
+# A. Dambledore, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-10-29 07:49+0200\n"
+"Last-Translator: A. Dambledore\n"
+"Language-Team: Eng2Heb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: he_IL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgctxt "#32001"
 msgid "Movies"
@@ -219,23 +221,23 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]הגדרות[/B] : ספקים"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
+msgid "[B]Numbers[/B] : Downloads"
 msgstr "[B]קובננט[/B] : הורדות"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
+msgid "[B]Numbers[/B] : Viewtypes"
 msgstr "[B]קובננט[/B] : סוגים לצפייה"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
+msgid "[B]Numbers[/B] : Clear providers..."
 msgstr "[B]קובננט[/B] : ניקוי ספקים..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
+msgid "[B]Numbers[/B] : Clear metadata..."
 msgstr "[B]קובננט[/B] : ניקוי מטא-דאטה..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
+msgid "[B]Numbers[/B] : Clear cache..."
 msgstr "[B]קובננט[/B] : ניקוי מטמון..."
 
 msgctxt "#32053"
@@ -291,11 +293,11 @@ msgid "Queue item"
 msgstr "הוספה לתור"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
+msgid "Watched in Numbers"
 msgstr "נצפה בקובננט"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
+msgid "Unwatched in Numbers"
 msgstr "לא נצפה בקובננט"
 
 msgctxt "#32068"
@@ -583,7 +585,7 @@ msgid "No stream available"
 msgstr "אין מקור להזרמה"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
+msgid "Playback outside Numbers is not allowed"
 msgstr "ניגון מחוץ לקובננט אסור"
 
 msgctxt "#32403"
@@ -703,19 +705,19 @@ msgid "DEBRID-SERVICE"
 msgstr "שירות ריל-דבריד"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "קבע את תצורת שירותי ריל-דבריד בהגדרות ResolveURL."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "קבע את תצורת שירותי ריל-דבריד בהגדרות URLResolver."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "הגדרות ResolveURL"
+msgid "URLResolver Settings"
+msgstr "הגדרות URLResolver"
 
 msgctxt "#32541"
 msgid "Library"
 msgstr "ספרייה"
 
 msgctxt "#32542"
-msgid "Covenant folders will be imported to library if they are added to media sources."
+msgid "Numbers folders will be imported to library if they are added to media sources."
 msgstr "התיקיות של קובננט ייובאו לספריה אם הן יתווספו למקורות מדיה."
 
 msgctxt "#32543"
@@ -771,7 +773,7 @@ msgid "Are you sure?"
 msgstr "האם להחיל את השינויים?"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
+msgid "[B]Numbers[/B] : Library"
 msgstr "[B]קובננט[/B] : ספרייה"
 
 msgctxt "#32557"
@@ -779,15 +781,15 @@ msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]ספריה[/B]: הגדרות"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
+msgid "[B]Numbers[/B] : Update library..."
 msgstr "[B]קובננט[/B] : עדכון ספרייה..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
+msgid "[B]Numbers[/B] : Movie folder..."
 msgstr "[B]קובננט[/B] : תיקיית סרטים..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
+msgid "[B]Numbers[/B] : TV folder..."
 msgstr "[B]קובננט[/B] : תיקיית סדרות..."
 
 msgctxt "#32561"
@@ -919,7 +921,7 @@ msgid "New search..."
 msgstr "חיפוש חדש..."
 
 msgctxt "#32604"
-msgid "[B]COVENANT[/B] : Clear search history..."
+msgid "[B]Numbers[/B] : Clear search history..."
 msgstr "[B]קובננט[/B] : ניקוי היסטוריית חיפוש..."
 
 msgctxt "#32605"

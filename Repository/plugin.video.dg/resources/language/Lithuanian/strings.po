@@ -1,34 +1,18 @@
-# Addon Name: The Crew
-# Addon id: plugin.video.The Crew
-# Addon Provider: The Crew
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
-# Translators:
+# Algimantas Margevičius, 2017
+
 msgid ""
 msgstr ""
-"Project-Id-Version: The Crew\n"
+"Project-Id-Version: Numbers\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-08-01 02:03+0000\n"
-"Last-Translator: lambda81\n"
-"Language-Team: English (http://www.transifex.com/)\n"
+"PO-Revision-Date: 2017-09-26 14:27+0300\n"
+"Last-Translator: Algimantas Margevičius <algimantas@margevicius.lt>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/)\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n" : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.3\n"
 
 msgctxt "#32001"
@@ -220,24 +204,24 @@ msgid "[B]SETTINGS[/B] : Providers"
 msgstr "[B]NUSTATYMAI[/B] : Tiekėjai"
 
 msgctxt "#32048"
-msgid "[B]COVENANT[/B] : Downloads"
-msgstr "[B]COVENANT[/B] : Atsiuntimai"
+msgid "[B]Numbers[/B] : Downloads"
+msgstr "[B]Numbers[/B] : Atsiuntimai"
 
 msgctxt "#32049"
-msgid "[B]COVENANT[/B] : Viewtypes"
-msgstr "[B]COVENANT[/B] : Rodinio tipai"
+msgid "[B]Numbers[/B] : Viewtypes"
+msgstr "[B]Numbers[/B] : Rodinio tipai"
 
 msgctxt "#32050"
-msgid "[B]COVENANT[/B] : Clear providers..."
-msgstr "[B]COVENANT[/B] : Išvalyti tiekėjus..."
+msgid "[B]Numbers[/B] : Clear providers..."
+msgstr "[B]Numbers[/B] : Išvalyti tiekėjus..."
 
 msgctxt "#32051"
-msgid "[B]COVENANT[/B] : Clear metadata..."
-msgstr "[B]COVENANT[/B] : Išvalyti metaduomenis..."
+msgid "[B]Numbers[/B] : Clear metadata..."
+msgstr "[B]Numbers[/B] : Išvalyti metaduomenis..."
 
 msgctxt "#32052"
-msgid "[B]COVENANT[/B] : Clear cache..."
-msgstr "[B]COVENANT[/B] : Išvalyti podėlį..."
+msgid "[B]Numbers[/B] : Clear cache..."
+msgstr "[B]Numbers[/B] : Išvalyti podėlį..."
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
@@ -298,12 +282,12 @@ msgid "Queue item"
 msgstr "Įdėti į eilę"
 
 msgctxt "#32066"
-msgid "Watched in Covenant"
-msgstr "Žiūrėta per Covenant"
+msgid "Watched in Numbers"
+msgstr "Žiūrėta per Numbers"
 
 msgctxt "#32067"
-msgid "Unwatched in Covenant"
-msgstr "Nežiūrėta per Covenant"
+msgid "Unwatched in Numbers"
+msgstr "Nežiūrėta per Numbers"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
@@ -590,8 +574,8 @@ msgid "No stream available"
 msgstr "Neprieinamas joks srautas"
 
 msgctxt "#32402"
-msgid "Playback outside Covenant is not allowed"
-msgstr "Atkūrimas ne per Covenant neleidžiamas"
+msgid "Playback outside Numbers is not allowed"
+msgstr "Atkūrimas ne per Numbers neleidžiamas"
 
 msgctxt "#32403"
 msgid "Download"
@@ -710,12 +694,12 @@ msgid "DEBRID-SERVICE"
 msgstr "DEBRID-PASLAUGA"
 
 msgctxt "#32539"
-msgid "Configure Debrid Services in ResolveURL Settings."
-msgstr "Debrid paslaugų nustatymus konfigūruokit ResolveURL nustatymuose."
+msgid "Configure Debrid Services in URLResolver Settings."
+msgstr "Debrid paslaugų nustatymus konfigūruokit URLResolver nustatymuose."
 
 msgctxt "#32540"
-msgid "ResolveURL Settings"
-msgstr "ResolveURL nustatymai"
+msgid "URLResolver Settings"
+msgstr "URLResolver nustatymai"
 
 msgctxt "#32541"
 msgid "Library"
@@ -723,10 +707,10 @@ msgstr "Biblioteka"
 
 msgctxt "#32542"
 msgid ""
-"Covenant folders will be imported to library if they are added to media "
+"Numbers folders will be imported to library if they are added to media "
 "sources."
 msgstr ""
-"Pridėjus Covenant aplankus į media šaltinius jie bus importuoti į "
+"Pridėjus Numbers aplankus į media šaltinius jie bus importuoti į "
 "biblioteką. "
 
 msgctxt "#32543"
@@ -782,24 +766,24 @@ msgid "Are you sure?"
 msgstr "Ar esate tikri?"
 
 msgctxt "#32556"
-msgid "[B]COVENANT[/B] : Library"
-msgstr "[B]COVENANT[/B] : Biblioteka"
+msgid "[B]Numbers[/B] : Library"
+msgstr "[B]Numbers[/B] : Biblioteka"
 
 msgctxt "#32557"
 msgid "[B]LIBRARY[/B] : Settings"
 msgstr "[B]LIBRARY[/B] : nustatymai"
 
 msgctxt "#32558"
-msgid "[B]COVENANT[/B] : Update library..."
-msgstr "[B]COVENANT[/B] : Atnaujinti biblioteką..."
+msgid "[B]Numbers[/B] : Update library..."
+msgstr "[B]Numbers[/B] : Atnaujinti biblioteką..."
 
 msgctxt "#32559"
-msgid "[B]COVENANT[/B] : Movie folder..."
-msgstr "[B]COVENANT[/B] : Filmų aplankas..."
+msgid "[B]Numbers[/B] : Movie folder..."
+msgstr "[B]Numbers[/B] : Filmų aplankas..."
 
 msgctxt "#32560"
-msgid "[B]COVENANT[/B] : TV folder..."
-msgstr "[B]COVENANT[/B] : TV aplankas..."
+msgid "[B]Numbers[/B] : TV folder..."
+msgstr "[B]Numbers[/B] : TV aplankas..."
 
 msgctxt "#32561"
 msgid "[B]TRAKT[/B] : Import Collection..."
