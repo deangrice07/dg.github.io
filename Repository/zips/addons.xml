@@ -211,7 +211,7 @@
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">[COLOR white]Movies/TV Shows/Music/Documentaries - Based on the Numbers Addon by CellarDoor TV[/COLOR]</summary>
-		<description>[COLOR white][B]|||[/B][/COLOR]DG add-on categories now require that you use your own YouTube API keys.[CR]For more information see the wiki: [COLOR lime]https://ytaddon.page.link/keys[/COLOR]
+		<description>[COLOR white][B]|||[/B][/COLOR]DG add-on categories now require that you use your own YouTube API keys.[CR]For more information see the wiki: [COLOR lime]https://ytaddon.page.link/keys[/COLOR][CR][COLOR orangered][B]|||[/B][/COLOR]Make sure to enable InputStream Adaptive and then enable Use MPEG-DASH in YouTube add-on settings and set Video Quality to 1080p.[CR][COLOR orangered][B]|||[/B][/COLOR]Adult Password protected is only accessable through System => Settings => NuMbErS settings => Navigation:[CR]iPunheta Password is: [B][COLOR lime]PORN4ALL[/COLOR][/B]</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider. Updated and refactored by someone. Originally created by others.</disclaimer>
 		<platform>all</platform>
 		<license></license>
