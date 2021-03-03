@@ -57,25 +57,25 @@ class navigator:
 
     def root(self):
         if self.getMenuEnabled('navi.movies') == True:
-            self.addDirectoryItem(32001, 'movieNavigator', 'movies_ticket.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32001, 'movieNavigator', 'movies_ticket.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.tvshows') == True:
-            self.addDirectoryItem(32002, 'tvNavigator', 'tv_apple.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32002, 'tvNavigator', 'tv_apple.gif', 'DefaultTVShows.png')
         if self.getMenuEnabled('navi.kidzone') == True:    
-            self.addDirectoryItem(70004, 'kidzoneNavigator', 'kids_cartoons.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(70004, 'kidzoneNavigator', 'kids_cartoons.gif', 'DefaultTVShows.png')
         if self.getMenuEnabled('navi.collections') == True: 
-            self.addDirectoryItem(32711, 'collectionsNavigator', 'collections.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32711, 'collectionsNavigator', 'collections.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.tvNetworks') == True:
-            self.addDirectoryItem(32708, 'tvNetworks', 'home_networks.png', 'DefaultTVShows.png')
+            self.addDirectoryItem(32708, 'tvNetworks', 'home_networks.gif', 'DefaultTVShows.png')
         if self.getMenuEnabled('navi.boxsetKings') == True:     
-            self.addDirectoryItem(32709, 'boxsetKingsNavigator', 'boxsets.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32709, 'boxsetKingsNavigator', 'boxsets.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.docu') == True:         
-            self.addDirectoryItem(32700, 'docuMainNavigator', 'doc_heaven.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32700, 'docuMainNavigator', 'doc_heaven.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.247') == True:         
-            self.addDirectoryItem(32713, '247', '247.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32713, '247', '247.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.music') == False: 
             self.addDirectoryItem(32727, 'musicMainNavigator', 'home_music.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.fitness') == True: 
-            self.addDirectoryItem(32728, 'athleanx', 'fitness_builtscience.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32728, 'athleanx', 'fitness_builtscience.gif', 'DefaultMovies.png')
 #        if self.getMenuEnabled('navi.screensaver') == True:     
 #            self.addDirectoryItem(32729, 'screensaver', 'home_screensaver.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.knowledge') == True:     
