@@ -79,7 +79,7 @@ class navigator:
 #        if self.getMenuEnabled('navi.screensaver') == True:     
 #            self.addDirectoryItem(32729, 'screensaver', 'home_screensaver.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.knowledge') == True:     
-            self.addDirectoryItem(32730, 'knowledge', 'learning_coding.png', 'DefaultMovies.png')
+            self.addDirectoryItem(32730, 'knowledge', 'learning_coding.gif', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.ufc') == False:     
             self.addDirectoryItem(32731, 'ufc', 'home_sports.png', 'DefaultMovies.png')
         if self.getMenuEnabled('navi.food') == False:     
