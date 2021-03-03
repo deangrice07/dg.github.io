@@ -46,7 +46,7 @@
 	</extension>
 </addon>
 
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.15" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.16" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
