@@ -596,7 +596,7 @@ msgid "No stream available[CR]Please try again later"
 msgstr ""
 
 msgctxt "#32402"
-msgid "Playback outside NuMb3r5 is not allowed"
+msgid "Playback outside DG is not allowed"
 msgstr ""
 
 msgctxt "#32403"
@@ -708,7 +708,7 @@ msgid "Play Random"
 msgstr ""
 
 msgctxt "#32536"
-msgid "NuMb3r5 random choice[CR]Please wait..."
+msgid "DG random choice[CR]Please wait..."
 msgstr ""
 
 msgctxt "#32537"
@@ -732,7 +732,7 @@ msgid "[COLORwhite][B]LIBRARY[/B][/COLOR]"
 msgstr ""
 
 msgctxt "#32542"
-msgid "[COLORpalegreen]NuMb3r5 folders will be imported to library if they are added to media sources.[/COLOR]"
+msgid "[COLORpalegreen]DG folders will be imported to library if they are added to media sources.[/COLOR]"
 msgstr ""
 
 msgctxt "#32543"
@@ -920,7 +920,7 @@ msgid "Getting genre information from Trakt"
 msgstr ""
 
 msgctxt "#32600"
-msgid "NuMb3r5 will find your links"
+msgid "DG will find your links"
 msgstr ""
 
 msgctxt "#32601"
@@ -1212,7 +1212,7 @@ msgid "Torrent Providers"
 msgstr ""
 
 msgctxt "#70003"
-msgid "[B][COLOR white]• [/COLOR][/B][B][COLOR white]NuMb3r5[/COLOR][/B][B][COLOR white] •[/COLOR][/B]"
+msgid "[B][COLOR white]• [/COLOR][/B][B][COLOR white]DG[/COLOR][/B][B][COLOR white] •[/COLOR][/B]"
 msgstr ""
 
 msgctxt "#70004"
