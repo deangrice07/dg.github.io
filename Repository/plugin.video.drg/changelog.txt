@@ -1,8 +1,0 @@
-[COLOR ghostwhite][B]v.1.0.2[/B]
-* Updated Artwork
-* Updated Modules
-* added new fan art loading screens
-
-[COLOR ghostwhite][B]v1.0.1[/B]
-* Trialing new add-on based on 'Magnetics' add-on Shadow
-* New artwork
