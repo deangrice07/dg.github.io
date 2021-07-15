@@ -1,0 +1,11 @@
+<builds>
+
+       <build name = "Grizzard Western">
+            <version>1.0</version>
+            <url>http://thechains24.com/BUILDS/19%20builds/blkwidow19.zip</url>
+            <icon>https://i.imgur.com/jZFAog3.jpg</icon>
+            <fanart>https://i.imgur.com/jZFAog3.jpg</fanart>
+            <description>Black Widow.</description>
+        </build>
+
+</builds>

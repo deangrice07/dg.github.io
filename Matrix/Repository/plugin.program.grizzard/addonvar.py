@@ -7,10 +7,10 @@ from urllib.parse import parse_qs
 addon_id = xbmcaddon.Addon().getAddonInfo('id')
 
 '''#####-----Build File---- -#####'''
-buildfile = 'http://thechains24.com/BUILDS/19%20builds/19%20builds.txt'
+buildfile = 'https://deangrice07.github.io/dg.github.io/Matrix/wiz/builds.txt'
 
 '''#####-----Notifications File-----#####'''
-notify_url  = 'http://thechains24.com/BUILDS/notify.txt'
+notify_url  = 'https://deangrice07.github.io/dg.github.io/Matrix/wiz/notify.txt'
 
 '''#####-----Excludes-----#####'''
 EXCLUDES  = [addon_id, 'packages', 'Addons33.db', 'kodi.log']
@@ -24,7 +24,7 @@ addon_name      = addoninfo('name')
 addon_icon      = addoninfo("icon")
 addon_fanart    = addoninfo("fanart")
 addon_profile   = translatePath(addoninfo('profile'))
-addon_path      = translatePath(addoninfo('path'))	
+addon_path      = translatePath(addoninfo('path'))
 setting         = addon.getSetting
 setting_true    = lambda x: bool(True if setting(str(x)) == "true" else False)
 setting_set     = addon.setSetting
