@@ -1,6 +1,6 @@
 # Addon Name: DG
-# Addon id: plugin.video.dg
-# Addon Provider: Grice Advice
+# Addon id: plugin.video.DG
+# Addon Provider: host505
 # Translators: lambda81
 # Translators: host505
 # Translators:
@@ -368,7 +368,7 @@ msgid "Provider Source:"
 msgstr ""
 
 msgctxt "#32085"
-msgid "DGScrapers Settings"
+msgid "Open DG Scrapers Settings"
 msgstr ""
 
 msgctxt "#32086"
@@ -464,7 +464,7 @@ msgid "[B]DG[/B] : Clean Settings file"
 msgstr ""
 
 msgctxt "#32109"
-msgid "[B]DGscrapers[/B] : Clean Settings file"
+msgid "[B]Oathscrapers[/B] : Clean Settings file"
 msgstr ""
 
 msgctxt "#32110"
@@ -480,7 +480,7 @@ msgid "Enable metadata on source list"
 msgstr ""
 
 msgctxt "#32113"
-msgid "Sort by size if available"
+msgid "Sort torrents by size"
 msgstr ""
 
 msgctxt "#32114"
@@ -488,7 +488,7 @@ msgid "Verify torrents cache"
 msgstr ""
 
 msgctxt "#32115"
-msgid "Supported services: Real-Debrid, AllDebrid,[CR]   Premiumize, Debrid-Link"
+msgid "WiP - Supported services: Real-Debrid, AllDebrid, Premiumize"
 msgstr ""
 
 msgctxt "#32116"
@@ -536,79 +536,7 @@ msgid "Remove uncached torrents if cached exist"
 msgstr ""
 
 msgctxt "#32127"
-msgid "Min Resolution"
-msgstr ""
-
-msgctxt "#32128"
-msgid "Get episodes ratings from Trakt (slow)"
-msgstr ""
-
-msgctxt "#32129"
-msgid "Enable extra & hq artwork"
-msgstr ""
-
-msgctxt "#32130"
-msgid "Personal Fanart.tv API key required to be entered on Accounts tab"
-msgstr ""
-
-msgctxt "#32131"
-msgid "Filename when available"
-msgstr ""
-
-msgctxt "#32132"
-msgid "Simplified info"
-msgstr ""
-
-msgctxt "#32133"
-msgid "Min movie size (GB)"
-msgstr ""
-
-msgctxt "#32134"
-msgid "Max movie size (GB)"
-msgstr ""
-
-msgctxt "#32135"
-msgid "Min episode size (GB)"
-msgstr ""
-
-msgctxt "#32136"
-msgid "Max episode size (GB)"
-msgstr ""
-
-msgctxt "#32137"
-msgid "Enable size filtering"
-msgstr ""
-
-msgctxt "#32138"
-msgid "Items per page"
-msgstr ""
-
-msgctxt "#32139"
-msgid "WARNING: Enable only if you were asked to.[CR]Possible memory leaks."
-msgstr ""
-
-msgctxt "#32140"
-msgid "Log file is empty.[CR]Please enable debugging in add-on\'s settings and restart Kodi.[CR]Reproduce the problem and try uploading again.[CR]DISABLE debugging afterwards."
-msgstr ""
-
-msgctxt "#32141"
-msgid "Your log file was uploaded to:[CR][CR]    [B]%s[/B]"
-msgstr ""
-
-msgctxt "#32142"
-msgid "Sorting Options"
-msgstr ""
-
-msgctxt "#32143"
-msgid "Primal sorting parameter"
-msgstr ""
-
-msgctxt "#32144"
-msgid "Resolution"
-msgstr ""
-
-msgctxt "#32145"
-msgid "Premium"
+msgid "Min Quality"
 msgstr ""
 
 msgctxt "#32200"
@@ -848,11 +776,11 @@ msgid "Background"
 msgstr ""
 
 msgctxt "#32338"
-msgid "Sources Filters"
+msgid "Sources Filters and Sorting Options"
 msgstr ""
 
 msgctxt "#32339"
-msgid "Max Resolution"
+msgid "Max Quality"
 msgstr ""
 
 msgctxt "#32340"
@@ -1220,7 +1148,7 @@ msgid "Protected Link. Please enter account credentials in the settings."
 msgstr ""
 
 msgctxt "#32580"
-msgid "Recently Released"
+msgid "Films/TV Movies"
 msgstr ""
 
 msgctxt "#32581"
@@ -1228,7 +1156,7 @@ msgid "Results Limit"
 msgstr ""
 
 msgctxt "#32582"
-msgid "Personal API keys provide quicker API responses.[CR]Please support the metadata sites however you can (tmdb, tvdb, trakt, fanart.tv)"
+msgid "Personal API keys provide quicker API responses.[CR]Please support the metadata sites however you can (tmdb, tvdb, fanart.tv)"
 msgstr ""
 
 msgctxt "#32583"
@@ -1248,7 +1176,7 @@ msgid "Recently watched"
 msgstr ""
 
 msgctxt "#32587"
-msgid "Extra source info"
+msgid "Show Extra Source Info"
 msgstr ""
 
 msgctxt "#32588"

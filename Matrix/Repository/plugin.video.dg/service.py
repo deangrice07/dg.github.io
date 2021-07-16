@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    TheOath Add-on
+    dg Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,9 +33,9 @@ if control.setting('autoTraktOnStart') == 'true':
     syncTraktLibrary()
 
 if int(control.setting('schedTraktTime')) > 0:
-    log_utils.log('###############################################################')
-    log_utils.log('#################### STARTING TRAKT SCHEDULING ################')
-    log_utils.log('#################### SCHEDULED TIME FRAME '+ control.setting('schedTraktTime')  + ' HOURS ################')
+    log_utils.log('###############################################################', log_utils.LOGNOTICE)
+    log_utils.log('#################### STARTING TRAKT SCHEDULING ################', log_utils.LOGNOTICE)
+    log_utils.log('#################### SCHEDULED TIME FRAME '+ control.setting('schedTraktTime')  + ' HOURS ################', log_utils.LOGNOTICE)
     timeout = 3600 * int(control.setting('schedTraktTime'))
     schedTrakt = threading.Timer(timeout, syncTraktLibrary)
     schedTrakt.start()
