@@ -2,18 +2,18 @@
 <settings>
 <!-- General-0 -->
     <category label="General">
-        <setting id="package.folder" label="Choose Module Scraper" type="action" option="close" action="RunPlugin(plugin://script.module.oathscrapers/?action=ScraperChoice)" default="DGscrapers" />
+        <setting id="package.folder" label="Choose Module Scraper" type="action" option="close" action="RunPlugin(plugin://script.module.dgscrapers/?action=ScraperChoice)" default="DGscrapers" />
         <setting type="sep" />
-        <setting label="Enable All Providers (for current Module Scraper)" type="action" action="RunPlugin(plugin://script.module.oathscrapers/?action=ToggleProviderAll&amp;setting=true&amp;query=0.2)" option="close"/>
+        <setting label="Enable All Providers (for current Module Scraper)" type="action" action="RunPlugin(plugin://script.module.dgscrapers/?action=ToggleProviderAll&amp;setting=true&amp;query=0.2)" option="close"/>
         <setting type="sep" />
-        <setting label="Disable All Providers" type="action" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAll&amp;setting=false&amp;query=0.4)" option="close"/>
-        <setting label="Enable All Providers" type="action" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAll&amp;setting=true&amp;query=0.5)" option="close"/>
-        <setting label="Disable All Hosters" type="action" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllHosters&amp;setting=false&amp;query=0.6)" option="close" />
-        <setting label="Enable All Hosters" type="action" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllHosters&amp;setting=true&amp;query=0.7)" option="close" />
-        <setting label="Disable All Foreign Providers" type="action" option="close" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllForeign&amp;setting=false&amp;query=0.8)" />
-        <setting label="Enable All Foreign Providers" type="action" option="close" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllForeign&amp;setting=true&amp;query=0.9)" />
-        <setting label="Disable All Torrent Providers" type="action" option="close" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllTorrent&amp;setting=false&amp;query=0.10)"/>
-        <setting label="Enable All Torrent Providers" type="action" option="close" action="RunPlugin(plugin://script.module.oathscrapers/?action=toggleAllTorrent&amp;setting=true&amp;query=0.11)"/>
+        <setting label="Disable All Providers" type="action" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAll&amp;setting=false&amp;query=0.4)" option="close"/>
+        <setting label="Enable All Providers" type="action" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAll&amp;setting=true&amp;query=0.5)" option="close"/>
+        <setting label="Disable All Hosters" type="action" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllHosters&amp;setting=false&amp;query=0.6)" option="close" />
+        <setting label="Enable All Hosters" type="action" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllHosters&amp;setting=true&amp;query=0.7)" option="close" />
+        <setting label="Disable All Foreign Providers" type="action" option="close" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllForeign&amp;setting=false&amp;query=0.8)" />
+        <setting label="Enable All Foreign Providers" type="action" option="close" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllForeign&amp;setting=true&amp;query=0.9)" />
+        <setting label="Disable All Torrent Providers" type="action" option="close" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllTorrent&amp;setting=false&amp;query=0.10)"/>
+        <setting label="Enable All Torrent Providers" type="action" option="close" action="RunPlugin(plugin://script.module.dgscrapers/?action=toggleAllTorrent&amp;setting=true&amp;query=0.11)"/>
     </category>
 
 <!-- Providers/Hosters-1 -->
