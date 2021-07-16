@@ -28,7 +28,7 @@
         <source />
         <disclaimer lang="en_GB">The author of this add-on does not host any of the content which is found and has no affiliation with any of the content providers. This add-on simply searches websites for content. Use at your own risk![CR]This project uses the TMDb, Trakt, Fanart.tv APIs, but is not affiliated nor endorsed by any of their respective ogranisations.[CR]Please support these ogranisations however you can.</disclaimer>
         <assets>
-            <icon>icon.gif</icon>
+            <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
         </assets>
         <news>
