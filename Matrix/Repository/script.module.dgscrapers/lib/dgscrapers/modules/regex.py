@@ -24,21 +24,21 @@ import os
 import sys
 #import urllib
 #import urllib2
+import xbmc
+import xbmcaddon
 import traceback
 #import cookielib
-from kodi_six import xbmc, xbmcaddon
 
 import six
 from six.moves import urllib_parse, urllib_request, http_cookiejar
 
+profile = functions_dir = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
+
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
 
-from oathscrapers.modules import client
-from oathscrapers.modules import control
+from dgscrapers.modules import client, control
 
-
-profile = functions_dir = control.transPath(xbmcaddon.Addon().getAddonInfo('profile'))
 
 def fetch(regex):
     try:
@@ -226,17 +226,17 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                         if len(page_split)>1:
                             header_in_page=page_split[1]
 
-#                            if 
+#                            if
 #                            proxy = urllib_request.ProxyHandler({ ('https' ? proxytouse[:5]=="https":"http") : proxytouse})
 #                            opener = urllib_request.build_opener(proxy)
 #                            urllib_request.install_opener(opener)
 
-                            
-                        
+
+
 #                        print 'urllib_request.getproxies',urllib_request.getproxies()
                         current_proxies=urllib_request.ProxyHandler(urllib_request.getproxies())
-        
-        
+
+
                         #print 'getting pageUrl',pageUrl
                         req = urllib_request.Request(pageUrl)
                         if 'proxy' in m:
@@ -251,8 +251,8 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                                 #req.set_proxy(proxytouse, 'http')
                             opener = urllib_request.build_opener(proxy)
                             urllib_request.install_opener(opener)
-                            
-                        
+
+
                         req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
                         proxytouse=None
 
@@ -287,21 +287,21 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             for h in header_in_page:
                                 n,v=h.split('=')
                                 req.add_header(n,v)
-                        
+
                         if not cookieJar==None:
 #                            print 'cookieJarVal',cookieJar
                             cookie_handler = urllib_request.HTTPCookieProcessor(cookieJar)
                             opener = urllib_request.build_opener(cookie_handler, urllib_request.HTTPBasicAuthHandler(), urllib_request.HTTPHandler())
                             opener = urllib_request.install_opener(opener)
 #                            print 'noredirect','noredirect' in m
-                            
+
                             if 'noredirect' in m:
                                 opener = urllib_request.build_opener(cookie_handler,NoRedirection, urllib_request.HTTPBasicAuthHandler(), urllib_request.HTTPHandler())
                                 opener = urllib_request.install_opener(opener)
                         elif 'noredirect' in m:
                             opener = urllib_request.build_opener(NoRedirection, urllib_request.HTTPBasicAuthHandler(), urllib_request.HTTPHandler())
                             opener = urllib_request.install_opener(opener)
-                            
+
 
                         if 'connection' in m:
 #                            print '..........................connection//////.',m['connection']
@@ -336,7 +336,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             #       post=post.replace('$LiveStreamRecaptcha','&manual_recaptcha_challenge_field='+captcha_challenge+'&recaptcha_response_field='+catpcha_word+'&id='+idfield)
                         link=''
                         try:
-                            
+
                             if post:
                                 response = urllib_request.urlopen(req,post)
                             else:
@@ -348,12 +348,12 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                                 link = f.read()
                             else:
                                 link=response.read()
-                            
-                        
-                        
+
+
+
                             if 'proxy' in m and not current_proxies is None:
                                 urllib_request.install_opener(urllib_request.build_opener(current_proxies))
-                            
+
                             link=javascriptUnEscape(link)
                             #print repr(link)
                             #print link This just print whole webpage in LOG
@@ -366,7 +366,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
     #                        print link
 
                             response.close()
-                        except: 
+                        except:
                             pass
                         cachedPages[m['page']] = link
                         #print link
@@ -386,7 +386,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
 
                 if  '$doregex' in m['expres']:
                     m['expres']=getRegexParsed(regexs, m['expres'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
-                  
+
                 if not m['expres']=='':
                     #print 'doing it ',m['expres']
                     if '$LiveStreamCaptcha' in m['expres']:
@@ -410,13 +410,13 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
 
                         try:
                             url = url.replace(u"$doregex[" + k + "]", val)
-                        except: url = url.replace("$doregex[" + k + "]", six.ensure_text(val))
+                        except: url = url.replace("$doregex[" + k + "]", control.six_decode(val))
                     else:
                         if 'listrepeat' in m:
                             listrepeat=m['listrepeat']
                             ret=re.findall(m['expres'],link)
                             return listrepeat,ret, m,regexs
-                             
+
                         val=''
                         if not link=='':
                             #print 'link',link
@@ -426,7 +426,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             except: traceback.print_exc()
                         elif m['page']=='' or m['page']==None:
                             val=m['expres']
-                            
+
                         if rawPost:
 #                            print 'rawpost'
                             val=urllib_parse.quote_plus(val)
@@ -436,7 +436,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             val=HTMLParser.HTMLParser().unescape(val)
                         try:
                             url = url.replace("$doregex[" + k + "]", val)
-                        except: url = url.replace("$doregex[" + k + "]", six.ensure_text(val))
+                        except: url = url.replace("$doregex[" + k + "]", control.six_decode(val))
                         #print 'ur',url
                         #return val
                 else:

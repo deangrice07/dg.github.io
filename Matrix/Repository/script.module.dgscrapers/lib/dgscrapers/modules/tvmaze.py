@@ -26,8 +26,8 @@ from six.moves import urllib_parse
 
 import requests
 
-from oathscrapers.modules import cache
-from oathscrapers.modules import client
+from dgscrapers.modules import cache
+from dgscrapers.modules import client, control
 
 
 class tvMaze:

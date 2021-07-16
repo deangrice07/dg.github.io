@@ -17,14 +17,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    
+
 '''
 
 import re
 import sys
 import six
 
-from oathscrapers.modules import jsunpack
+from dgscrapers.modules import jsunpack
 
 
 Juice = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
@@ -46,10 +46,10 @@ def run(e):
 
     while f < len(e):
         try:
-            s = Juice.index(e[f]);f+=1; 
-            o = Juice.index(e[f]);f+=1; 
-            u = Juice.index(e[f]);f+=1; 
-            a = Juice.index(e[f]);f+=1; 
+            s = Juice.index(e[f]);f+=1;
+            o = Juice.index(e[f]);f+=1;
+            u = Juice.index(e[f]);f+=1;
+            a = Juice.index(e[f]);f+=1;
             n = s << 2 | o >> 4; r = (15 & o) << 4 | u >> 2; i = (3 & u) << 6 | a
             t += chr(n)
             if 64 != u: t += chr(r)
@@ -63,7 +63,7 @@ def run(e):
         t = six.ensure_text(t)
     except:
         t = None
-    
+
     return t
 
 

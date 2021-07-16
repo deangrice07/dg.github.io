@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     Exodus Add-on
-    ///Updated for TheOath///
+    ///Updated for dg///
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@
 from __future__ import absolute_import
 
 import hashlib
+import os
 import re
 import time
-import os
+import xbmc
+
 from ast import literal_eval as evaluate
 import six
 
@@ -39,11 +41,12 @@ elif six.PY3:
     str = unicode = basestring = str
 
 cache_table = 'cache'
-data_path = control.transPath(control.addon('plugin.video.dg').getAddonInfo('profile'))
+data_path = xbmc.translatePath(control.addon('plugin.video.dg').getAddonInfo('profile'))
 
 def get(function_, duration, *args, **table):
 
     try:
+
         response = None
 
         f = repr(function_)
@@ -51,9 +54,11 @@ def get(function_, duration, *args, **table):
 
         a = hashlib.md5()
         for i in args:
-            a.update(six.ensure_binary(i, errors='replace'))
+            a.update(str(i))
         a = str(a.hexdigest())
+
     except Exception:
+
         pass
 
     try:
@@ -62,6 +67,7 @@ def get(function_, duration, *args, **table):
         table = 'rel_list'
 
     try:
+
         control.makeFile(control.dataPath)
         dbcon = db.connect(control.cacheFile)
         dbcur = dbcon.cursor()
@@ -78,25 +84,31 @@ def get(function_, duration, *args, **table):
         update = (abs(t2 - t1) / 3600) >= int(duration)
         if not update:
             return response
+
     except Exception:
+
         pass
 
     try:
+
         r = function_(*args)
         if (r is None or r == []) and response is not None:
             return response
         elif r is None or r == []:
             return r
+
     except Exception:
         return
 
     try:
+
         r = repr(r)
         t = int(time.time())
         dbcur.execute("CREATE TABLE IF NOT EXISTS {} (""func TEXT, ""args TEXT, ""response TEXT, ""added TEXT, ""UNIQUE(func, args)"");".format(table))
         dbcur.execute("DELETE FROM {0} WHERE func = '{1}' AND args = '{2}'".format(table, f, a))
         dbcur.execute("INSERT INTO {} Values (?, ?, ?, ?)".format(table), (f, a, r, t))
         dbcon.commit()
+
     except Exception:
         pass
 
@@ -105,6 +117,7 @@ def get(function_, duration, *args, **table):
     except Exception:
         return evaluate(r)
 
+
 def timeout(function_, *args):
     try:
         key = _hash_function(function_, args)
@@ -112,6 +125,7 @@ def timeout(function_, *args):
         return int(result['date'])
     except Exception:
         return None
+
 
 def cache_get(key):
     # type: (str, str) -> dict or None
@@ -141,6 +155,7 @@ def cache_insert(key, value):
         )
 
     cursor.connection.commit()
+
 
 def cache_clear():
     try:
@@ -260,7 +275,7 @@ def _get_function_name(function_instance):
 
 def _generate_md5(*args):
     md5_hash = hashlib.md5()
-    [md5_hash.update(six.ensure_binary(arg, errors='replace')) for arg in args]
+    [md5_hash.update(str(arg)) for arg in args]
     return str(md5_hash.hexdigest())
 
 

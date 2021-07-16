@@ -25,8 +25,8 @@ import re
 
 from six.moves import urllib_parse
 
-from oathscrapers.modules import client
-from oathscrapers.modules import utils
+from dgscrapers.modules import client
+from dgscrapers.modules import utils
 
 
 def request(url, check, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, XHR=False, limit=None, referer=None, cookie=None, compression=True, output='', timeout='30'):

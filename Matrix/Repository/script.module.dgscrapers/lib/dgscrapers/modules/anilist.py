@@ -18,10 +18,10 @@
 #import urlparse, urllib
 from six.moves import urllib_parse
 
-from oathscrapers.modules import cache
-from oathscrapers.modules import client
-from oathscrapers.modules import cleantitle
-from oathscrapers.modules import utils
+from dgscrapers.modules import cache
+from dgscrapers.modules import client
+from dgscrapers.modules import cleantitle
+from dgscrapers.modules import utils
 
 
 def _getAniList(url):

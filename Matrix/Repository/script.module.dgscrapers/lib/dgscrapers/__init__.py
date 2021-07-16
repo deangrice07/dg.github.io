@@ -3,20 +3,15 @@
 import pkgutil
 import os
 
-try:
-    from .modules import cfscrape
-    cfScraper = cfscrape.create_scraper()
-except: pass
+from . import sources_dgscrapers
 
-from six.moves.urllib_parse import parse_qs, urljoin, urlparse, urlencode, quote, unquote, quote_plus, unquote_plus
 
 try:
-    from kodi_six import xbmcaddon
+    import xbmcaddon
     __addon__ = xbmcaddon.Addon(id='script.module.dgscrapers')
 except:
     __addon__ = None
     pass
-
 
 def sources():
     try:

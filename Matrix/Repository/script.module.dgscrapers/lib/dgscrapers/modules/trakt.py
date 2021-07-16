@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    ///Updated for TheOath///
+    ///Updated for dg///
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,17 +22,19 @@
 import re
 import time
 import base64
+#import urllib
+#import urlparse
 
 import six
 from six.moves import urllib_parse
 import simplejson as json
 
-from oathscrapers.modules import cache
-from oathscrapers.modules import cleandate
-from oathscrapers.modules import client
-from oathscrapers.modules import control
-from oathscrapers.modules import log_utils
-from oathscrapers.modules import utils
+from dgscrapers.modules import cache
+from dgscrapers.modules import cleandate
+from dgscrapers.modules import client
+from dgscrapers.modules import control
+from dgscrapers.modules import log_utils
+from dgscrapers.modules import utils
 
 if six.PY2:
     str = unicode
@@ -40,13 +42,13 @@ elif six.PY3:
     str = unicode = basestring = str
 
 BASE_URL = 'https://api.trakt.tv'
-V2_API_KEY = control.addon('plugin.video.theoath').getSetting('trakt.client_id')
-CLIENT_SECRET = control.addon('plugin.video.theoath').getSetting('trakt.client_secret')
+V2_API_KEY = control.addon('plugin.video.dg').getSetting('trakt.client_id')
+CLIENT_SECRET = control.addon('plugin.video.dg').getSetting('trakt.client_secret')
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
 if V2_API_KEY == "" or CLIENT_SECRET == "":
-    V2_API_KEY = base64.b64decode("OGQ5Njg1M2Y0MGQ1MWJkMDY2MWI2Mzc4ZjUzYzM0ZTM2YzVjZTQzZjM0MmI0YTg0NWI3Nzk4N2Q0NjZjMjY0ZQ==")
-    CLIENT_SECRET = base64.b64decode("NTg2ZDAzNGJhNzM3OGU2ZDY4Y2NjODE5ZWE4M2M5ZmU5N2I5ODg1Yjk2YTQ1ZGQ2OTQ1OWI3OWNkZGU0MmU4OQ==")
+    V2_API_KEY = base64.b64decode("MjYzMTc5OTIyNDdhYWQwMjg4ODBiNDJjOTY4NWNmYWYxYzgxZmQ2YmE2M2FkYTk1ZGVmNWQ2Mjc5YmY4OGNmZA==")
+    CLIENT_SECRET = base64.b64decode("NTRhNjk0NGEwZGFhZDk0YzFiZjQzNGM2YWRjYTEyYWUyNzhiM2ExNjY1YmYwM2FjMTE3OGEzNTQ0YzU5OGJhMw==")
 
 def __getTrakt(url, post=None):
     try:
@@ -55,48 +57,45 @@ def __getTrakt(url, post=None):
         headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': 2}
 
         if getTraktCredentialsInfo():
-            headers.update({'Authorization': 'Bearer %s' % control.addon('plugin.video.theoath').getSetting('trakt.token')})
+            headers.update({'Authorization': 'Bearer %s' % control.addon('plugin.video.dg').getSetting('trakt.token')})
 
         result = client.request(url, post=post, headers=headers, output='extended', error=True)
-        result = utils.byteify(result)
 
         resp_code = result[1]
         resp_header = result[2]
         result = result[0]
 
-        if resp_code in ['423', '500', '502', '503', '504', '520', '521', '522', '524']:
-            log_utils.log('Trakt Error: %s' % str(resp_code))
-            control.infoDialog('Trakt Error: ' + str(resp_code), sound=True)
-            return
-        elif resp_code in ['429']:
-            log_utils.log('Trakt Rate Limit Reached: %s' % str(resp_code))
-            control.infoDialog('Trakt Rate Limit Reached: ' + str(resp_code), sound=True)
+        if resp_code in ['500', '502', '503', '504', '520', '521', '522', '524']:
+            log_utils.log('Temporary Trakt Error: %s' % resp_code, log_utils.LOGWARNING)
+            control.infoDialog('Trakt Error: ' + str(resp_code), sound=True, icon='WARNING')
             return
         elif resp_code in ['404']:
-            log_utils.log('Object Not Found : %s' % str(resp_code))
+            log_utils.log('Object Not Found : %s' % resp_code, log_utils.LOGWARNING)
+            return
+        elif resp_code in ['429']:
+            log_utils.log('Trakt Rate Limit Reached: %s' % resp_code, log_utils.LOGWARNING)
             return
 
         if resp_code not in ['401', '405']:
             return result, resp_header
 
         oauth = urllib_parse.urljoin(BASE_URL, '/oauth/token')
-        opost = {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'redirect_uri': REDIRECT_URI, 'grant_type': 'refresh_token', 'refresh_token': control.addon('plugin.video.theoath').getSetting('trakt.refresh')}
+        opost = {'client_id': V2_API_KEY, 'client_secret': CLIENT_SECRET, 'redirect_uri': REDIRECT_URI, 'grant_type': 'refresh_token', 'refresh_token': control.addon('plugin.video.dg').getSetting('trakt.refresh')}
 
         result = client.request(oauth, post=json.dumps(opost), headers=headers)
         result = utils.json_loads_as_str(result)
 
         token, refresh = result['access_token'], result['refresh_token']
         print('Info - ' + str(token))
-        control.addon('plugin.video.theoath').setSetting(id='trakt.token', value=token)
-        control.addon('plugin.video.theoath').setSetting(id='trakt.refresh', value=refresh)
+        control.addon('plugin.video.dg').setSetting(id='trakt.token', value=token)
+        control.addon('plugin.video.dg').setSetting(id='trakt.refresh', value=refresh)
 
         headers['Authorization'] = 'Bearer %s' % token
 
         result = client.request(url, post=post, headers=headers, output='extended', error=True)
-        result = utils.byteify(result)
         return result[0], result[2]
-    except:
-        log_utils.log('getTrakt Error', 1)
+    except Exception as e:
+        log_utils.log('Unknown Trakt Error: %s' % e, log_utils.LOGWARNING)
         pass
 
 def getTraktAsJson(url, post=None):
@@ -113,15 +112,15 @@ def authTrakt():
     try:
         if getTraktCredentialsInfo() == True:
             if control.yesnoDialog(control.lang(32511) + '[CR]' + control.lang(32512), heading='Trakt'):
-                control.addon('plugin.video.theoath').setSetting(id='trakt.user', value='')
-                control.addon('plugin.video.theoath').setSetting(id='trakt.authed', value='')
-                control.addon('plugin.video.theoath').setSetting(id='trakt.token', value='')
-                control.addon('plugin.video.theoath').setSetting(id='trakt.refresh', value='')
+                control.addon('plugin.video.dg').setSetting(id='trakt.user', value='')
+                control.addon('plugin.video.dg').setSetting(id='trakt.authed', value='')
+                control.addon('plugin.video.dg').setSetting(id='trakt.token', value='')
+                control.addon('plugin.video.dg').setSetting(id='trakt.refresh', value='')
             raise Exception()
 
         result = getTraktAsJson('/oauth/device/code', {'client_id': V2_API_KEY})
         verification_url = control.lang(32513) % result['verification_url']
-        user_code = six.ensure_text(control.lang(32514) % result['user_code'])
+        user_code = six.ensure_str(control.lang(32514) % result['user_code'])
         expires_in = int(result['expires_in'])
         device_code = result['device_code']
         interval = result['interval']
@@ -156,25 +155,25 @@ def authTrakt():
         authed = '' if user == '' else str('yes')
 
         print('info - ' + token)
-        control.addon('plugin.video.theoath').setSetting(id='trakt.user', value=user)
-        control.addon('plugin.video.theoath').setSetting(id='trakt.authed', value=authed)
-        control.addon('plugin.video.theoath').setSetting(id='trakt.token', value=token)
-        control.addon('plugin.video.theoath').setSetting(id='trakt.refresh', value=refresh)
+        control.addon('plugin.video.dg').setSetting(id='trakt.user', value=user)
+        control.addon('plugin.video.dg').setSetting(id='trakt.authed', value=authed)
+        control.addon('plugin.video.dg').setSetting(id='trakt.token', value=token)
+        control.addon('plugin.video.dg').setSetting(id='trakt.refresh', value=refresh)
         raise Exception()
     except:
-        control.openSettings('4.1')
+        control.openSettings('2.1')
 
 
 def getTraktCredentialsInfo():
-    user = control.addon('plugin.video.theoath').getSetting('trakt.user').strip()
-    token = control.addon('plugin.video.theoath').getSetting('trakt.token')
-    refresh = control.addon('plugin.video.theoath').getSetting('trakt.refresh')
+    user = control.addon('plugin.video.dg').getSetting('trakt.user').strip()
+    token = control.addon('plugin.video.dg').getSetting('trakt.token')
+    refresh = control.addon('plugin.video.dg').getSetting('trakt.refresh')
     if (user == '' or token == '' or refresh == ''): return False
     return True
 
 
 def getTraktIndicatorsInfo():
-    indicators = control.addon('plugin.video.theoath').getSetting('indicators') if getTraktCredentialsInfo() == False else control.addon('plugin.video.theoath').getSetting('indicators.alt')
+    indicators = control.addon('plugin.video.dg').getSetting('indicators') if getTraktCredentialsInfo() == False else control.addon('plugin.video.dg').getSetting('indicators.alt')
     indicators = True if indicators == '1' else False
     return indicators
 
@@ -201,15 +200,15 @@ def getTraktAddonEpisodeInfo():
     else: return False
 
 
-def manager(name, imdb, tmdb, content):
+def manager(name, imdb, tvdb, content):
     try:
-        post = {"movies": [{"ids": {"imdb": imdb}}]} if content == 'movie' else {"shows": [{"ids": {"tmdb": tmdb}}]}
+        post = {"movies": [{"ids": {"imdb": imdb}}]} if content == 'movie' else {"shows": [{"ids": {"tvdb": tvdb}}]}
 
-        items = [(control.lang(32516), '/sync/collection')]
-        items += [(control.lang(32517), '/sync/collection/remove')]
-        items += [(control.lang(32518), '/sync/watchlist')]
-        items += [(control.lang(32519), '/sync/watchlist/remove')]
-        items += [(control.lang(32520), '/users/me/lists/%s/items')]
+        items = [(six.ensure_str(control.lang(32516)), '/sync/collection')]
+        items += [(six.ensure_str(control.lang(32517)), '/sync/collection/remove')]
+        items += [(six.ensure_str(control.lang(32518)), '/sync/watchlist')]
+        items += [(six.ensure_str(control.lang(32519)), '/sync/watchlist/remove')]
+        items += [(six.ensure_str(control.lang(32520)), '/users/me/lists/%s/items')]
 
         result = getTraktAsJson('/users/me/lists')
         lists = [(i['name'], i['ids']['slug']) for i in result]
@@ -220,26 +219,26 @@ def manager(name, imdb, tmdb, content):
             lists[i] = ((six.ensure_str(control.lang(32522) % lists[i][0])), '/users/me/lists/%s/items/remove' % lists[i][1])
         items += lists
 
-        select = control.selectDialog([i[0] for i in items], control.lang(32515))
+        select = control.selectDialog([i[0] for i in items], six.ensure_str(control.lang(32515)))
 
         if select == -1:
             return
         elif select == 4:
-            t = control.lang(32520)
+            t = six.ensure_str(control.lang(32520))
             k = control.keyboard('', t) ; k.doModal()
             new = k.getText() if k.isConfirmed() else None
             if (new == None or new == ''): return
             result = __getTrakt('/users/me/lists', post={"name": new, "privacy": "private"})[0]
 
             try: slug = utils.json_loads_as_str(result)['ids']['slug']
-            except: return control.infoDialog(control.lang(32515), heading=str(name), sound=True, icon='ERROR')
+            except: return control.infoDialog(six.ensure_str(control.lang(32515)), heading=str(name), sound=True, icon='ERROR')
             result = __getTrakt(items[select][1] % slug, post=post)[0]
         else:
             result = __getTrakt(items[select][1], post=post)[0]
 
         icon = control.infoLabel('ListItem.Icon') if not result == None else 'ERROR'
 
-        control.infoDialog(control.lang(32515), heading=str(name), sound=True, icon=icon)
+        control.infoDialog(six.ensure_str(control.lang(32515)), heading=str(name), sound=True, icon=icon)
     except:
         return
 
@@ -249,8 +248,6 @@ def slug(name):
     name = name.lower()
     name = re.sub('[^a-z0-9_]', '-', name)
     name = re.sub('--+', '-', name)
-    if name.endswith('-'):
-        name = name.rstrip('-')
     return name
 
 
@@ -320,12 +317,12 @@ def getWatchedActivity():
 
 
 def cachesyncMovies(timeout=0):
-    indicators = cache.get(syncMovies, timeout, control.addon('plugin.video.theoath').getSetting('trakt.user').strip())
+    indicators = cache.get(syncMovies, timeout, control.addon('plugin.video.dg').getSetting('trakt.user').strip())
     return indicators
 
 
 def timeoutsyncMovies():
-    timeout = cache.timeout(syncMovies, control.addon('plugin.video.theoath').getSetting('trakt.user').strip())
+    timeout = cache.timeout(syncMovies, control.addon('plugin.video.dg').getSetting('trakt.user').strip())
     return timeout
 
 
@@ -341,13 +338,12 @@ def syncMovies(user):
 
 
 def cachesyncTVShows(timeout=0):
-    indicators = cache.get(syncTVShows, timeout, control.addon('plugin.video.theoath').getSetting('trakt.user').strip())
+    indicators = cache.get(syncTVShows, timeout, control.addon('plugin.video.dg').getSetting('trakt.user').strip())
     return indicators
 
 
 def timeoutsyncTVShows():
-    timeout = cache.timeout(syncTVShows, control.addon('plugin.video.theoath').getSetting('trakt.user').strip())
-    if not timeout: timeout = 0
+    timeout = cache.timeout(syncTVShows, control.addon('plugin.video.dg').getSetting('trakt.user').strip())
     return timeout
 
 
@@ -378,7 +374,7 @@ def syncTraktStatus():
     try:
         cachesyncMovies()
         cachesyncTVShows()
-        control.infoDialog(control.lang(32092))
+        control.infoDialog(six.ensure_str(control.lang(32092)))
     except:
         control.infoDialog('Trakt sync failed')
         pass
@@ -394,33 +390,32 @@ def markMovieAsNotWatched(imdb):
     return __getTrakt('/sync/history/remove', {"movies": [{"ids": {"imdb": imdb}}]})[0]
 
 
-def markTVShowAsWatched(imdb):
-    return __getTrakt('/sync/history', {"shows": [{"ids": {"imdb": imdb}}]})[0]
+def markTVShowAsWatched(tvdb):
+    return __getTrakt('/sync/history', {"shows": [{"ids": {"tvdb": tvdb}}]})[0]
 
 
-def markTVShowAsNotWatched(imdb):
-    return __getTrakt('/sync/history/remove', {"shows": [{"ids": {"imdb": imdb}}]})[0]
+def markTVShowAsNotWatched(tvdb):
+    return __getTrakt('/sync/history/remove', {"shows": [{"ids": {"tvdb": tvdb}}]})[0]
 
 
-def markEpisodeAsWatched(imdb, season, episode):
+def markEpisodeAsWatched(tvdb, season, episode):
     season, episode = int('%01d' % int(season)), int('%01d' % int(episode))
-    return __getTrakt('/sync/history', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"imdb": imdb}}]})[0]
+    return __getTrakt('/sync/history', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})[0]
 
 
-def markEpisodeAsNotWatched(imdb, season, episode):
+def markEpisodeAsNotWatched(tvdb, season, episode):
     season, episode = int('%01d' % int(season)), int('%01d' % int(episode))
-    return __getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"imdb": imdb}}]})[0]
+    return __getTrakt('/sync/history/remove', {"shows": [{"seasons": [{"episodes": [{"number": episode}], "number": season}], "ids": {"tvdb": tvdb}}]})[0]
 
 
-def scrobbleMovie(imdb, watched_percent, action):
+def scrobbleMovie(imdb, watched_percent):
     if not imdb.startswith('tt'): imdb = 'tt' + imdb
-    return __getTrakt('/scrobble/%s' % action, {"movie": {"ids": {"imdb": imdb}}, "progress": watched_percent})[0]
+    return __getTrakt('/scrobble/pause', {"movie": {"ids": {"imdb": imdb}}, "progress": watched_percent})[0]
 
 
-def scrobbleEpisode(imdb, season, episode, watched_percent, action):
-    if not imdb.startswith('tt'): imdb = 'tt' + imdb
+def scrobbleEpisode(tvdb, season, episode, watched_percent):
     season, episode = int('%01d' % int(season)), int('%01d' % int(episode))
-    return __getTrakt('/scrobble/%s' % action, {"show": {"ids": {"imdb": imdb}}, "episode": {"season": season, "number": episode}, "progress": watched_percent})[0]
+    return __getTrakt('/scrobble/pause', {"show": {"ids": {"tvdb": tvdb}}, "episode": {"season": season, "number": episode}, "progress": watched_percent})[0]
 
 
 def getMovieTranslation(id, lang, full=False):
@@ -473,7 +468,7 @@ def getTVShowSummary(id, full=True):
         return
 
 
-def getPeople(id, content_type, full=False):
+def getPeople(id, content_type, full=True):
     try:
         url = '/%s/%s/people' % (content_type, id)
         if full: url += '?extended=full'

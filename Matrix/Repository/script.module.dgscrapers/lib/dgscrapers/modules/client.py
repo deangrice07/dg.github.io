@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    ///Updated for TheOath///
+    ///Updated for dg///
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,11 +20,11 @@
 
 from __future__ import absolute_import, division, print_function
 
-import re, sys, gzip, time, random, base64
+import re, sys, gzip, time, random, base64, traceback
 
 import simplejson as json
 
-from dgscrapers.modules import cache, control, dom_parser, log_utils
+from dgscrapers.modules import cache, dom_parser, log_utils, control
 
 import six
 from six.moves import range as x_range
@@ -68,14 +68,14 @@ elif six.PY3:
 
 
 def request(url, close=True, redirect=True, error=False, verify=True, proxy=None, post=None, headers=None, mobile=False, XHR=False,
-            limit=None, referer=None, cookie=None, compression=False, output='', timeout='30', username=None, password=None, as_bytes=False):
+            limit=None, referer=None,cookie=None, compression=False, output='', timeout='30', username=None, password=None, as_bytes=False):
 
     """
     Re-adapted from Twilight0's tulip module => https://github.com/Twilight0/script.module.tulip
     """
 
     try:
-        url = six.ensure_text(url, errors='ignore')
+        url = url.decode('utf-8')
     except Exception:
         pass
 
@@ -314,7 +314,7 @@ def request(url, close=True, redirect=True, error=False, verify=True, proxy=None
 
             if not as_bytes:
 
-                result = six.ensure_text(result, errors='ignore')
+                result = six.ensure_text(result)
 
             return result, headers, content, cookie
 
@@ -366,14 +366,16 @@ def request(url, close=True, redirect=True, error=False, verify=True, proxy=None
             response.close()
 
         if not as_bytes:
-
-            result = six.ensure_text(result, errors='ignore')
+            result = six.ensure_text(result)
 
         return result
 
-    except:
+    except Exception as reason:
 
-        log_utils.log('Client request failed on url: ' + url + ' | Reason', 1)
+        _, __, tb = sys.exc_info()
+
+        print(traceback.print_tb(tb))
+        log_utils.log('Client module failed, reason of failure: ' + repr(reason))
 
         return
 
@@ -455,9 +457,6 @@ def replaceHTMLCodes(txt):
     txt = txt.replace("&gt;", ">")
     txt = txt.replace("&#38;", "&")
     txt = txt.replace("&nbsp;", "")
-    txt = txt.replace('&#8230;', '...')
-    txt = txt.replace('&#8217;', '\'')
-    txt = txt.replace('&#8211;', '-')
     txt = txt.strip()
     return txt
 
@@ -549,10 +548,11 @@ class Cfcookie:
             self.cookie = None
             self._get_cookie(netloc, ua, timeout)
             if self.cookie is None:
-                log_utils.log('%s returned an error. Could not collect tokens.' % netloc)
+                log_utils.log('%s returned an error. Could not collect tokens.' % netloc, log_utils.LOGDEBUG)
             return self.cookie
         except Exception as e:
-            log_utils.log('%s returned an error. Could not collect tokens - Error: %s.' % (netloc, str(e)))
+            log_utils.log('%s returned an error. Could not collect tokens - Error: %s.' % (netloc, str(e)),
+                          log_utils.LOGDEBUG)
             return self.cookie
 
     def _get_cookie(self, netloc, ua, timeout):

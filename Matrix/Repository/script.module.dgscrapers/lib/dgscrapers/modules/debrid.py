@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from oathscrapers.modules import log_utils
+from dgscrapers.modules import log_utils
 
 try:
     import resolveurl
@@ -45,6 +45,6 @@ def resolver(url, debrid):
         _host, _media_id = debrid_resolver.get_host_and_id(url)
         stream_url = debrid_resolver.get_media_url(_host, _media_id)
         return stream_url
-    except:
-        log_utils.log('%s Resolve Failure' % debrid, 1)
+    except Exception as e:
+        log_utils.log('%s Resolve Failure: %s' % (debrid, e), log_utils.LOGWARNING)
         return None

@@ -2,7 +2,7 @@
 
 """
     Exodus Add-on
-    ///Updated for Thedg///
+    ///Updated for dg///
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,28 +19,25 @@
 """
 
 import base64
+#import urlparse
+#import urllib
 import hashlib
 import re
-from kodi_six import xbmc
+
 import six
 from six.moves import urllib_parse
 
-from dgscrapers.modules import cleantitle
 from dgscrapers.modules import client
 from dgscrapers.modules import directstream
 from dgscrapers.modules import trakt
 from dgscrapers.modules import pyaes
 
-RES_4K = [' 4k', ' hd4k', ' 4khd', ' uhd', ' ultrahd', ' ultra hd', ' 2160', ' 2160p', ' hd2160', ' 2160hd']
-RES_1080 = [' 1080', ' 1080p', ' 1080i', ' hd1080', ' 1080hd', ' m1080p', ' fullhd', ' full hd', ' 1o8o', ' 1o8op']
-RES_720 = [' 720', ' 720p', ' 720i', ' hd720', ' 720hd', ' 72o', ' 72op']
-RES_SD = [' 576', ' 576p', ' 576i', ' sd576', ' 576sd', ' 480', ' 480p', ' 480i', ' sd480', ' 480sd', ' 360', ' 360p', ' 360i', ' sd360', ' 360sd', ' 240', ' 240p', ' 240i', ' sd240', ' 240sd']
-SCR = [' scr', ' screener', ' dvdscr', ' dvd scr', ' r5', ' r6']
-CAM = [' camrip', ' tsrip', ' hdcam', ' hd cam', ' cam rip', ' hdts', ' dvdcam', ' dvdts', ' cam', ' telesync', ' ts']
-
-def supported_video_extensions():
-    supported_video_extensions = xbmc.getSupportedMedia('video').split('|')
-    return [i for i in supported_video_extensions if i != '' and i != '.zip']
+RES_4K = [' 4k ', ' hd4k ', ' 4khd ', ' uhd ', ' ultrahd ', ' ultra hd ', ' 2160 ', ' 2160p ', ' hd2160 ', ' 2160hd ']
+RES_1080 = [' 1080 ', ' 1080p ', ' 1080i ', ' hd1080 ', ' 1080hd ', ' m1080p ', ' fullhd ', ' full hd ']
+RES_720 = [' 720 ', ' 720p ', ' 720i ', ' hd720 ', ' 720hd ', ' hd ']
+RES_SD = [' 576 ', ' 576p ', ' 576i ', ' sd576 ', ' 576sd ', ' 480 ', ' 480p ', ' 480i ', ' sd480 ', ' 480sd ', ' 360 ', ' 360p ', ' 360i ', ' sd360 ', ' 360sd ', ' 240 ', ' 240p ', ' 240i ', ' sd240 ', ' 240sd ']
+SCR = [' scr ', ' screener ', ' dvdscr ', ' dvd scr ', ' r5 ', ' r6 ']
+CAM = [' camrip ', ' tsrip ', ' hdcam ', ' hd cam ', ' cam rip ', ' hdts ', ' dvdcam ', ' dvdts ', ' cam ', ' telesync ', ' ts ']
 
 def get_qual(term):
     if any(i in term for i in RES_4K):
@@ -55,8 +52,6 @@ def get_qual(term):
         return 'scr'
     elif any(i in term for i in CAM):
         return 'cam'
-    else:
-        return 'sd'
 
 def is_anime(content, type, type_id):
     try:
@@ -65,17 +60,33 @@ def is_anime(content, type, type_id):
     except:
         return False
 
-def get_release_quality(release_name, release_link=''):
+def get_release_quality(release_name, release_link=None):
 
-    if not release_name and not release_link: return 'sd', []
+    #if release_name is None: return
+
+    try: release_name = six.ensure_str(release_name)
+    except: pass
 
     try:
-        term = ' '.join((cleantitle.get_title(release_name), cleantitle.get_title(release_link)))
+        quality = None
 
-        quality = get_qual(term)
+        fmt = re.sub('[^A-Za-z0-9]+', ' ', release_name)
+        fmt = fmt.lower()
+
+        quality = get_qual(fmt)
+
         if not quality:
-            quality = 'sd'
+            if release_link:
+                try: release_link = six.ensure_str(release_link)
+                except: pass
+                release_link = client.replaceHTMLCodes(release_link)
+                release_link = urllib_parse.unquote(release_link)
+                release_link = re.sub('[^A-Za-z0-9 ]+', ' ', release_link)
+                release_link = release_link.lower()
 
+                quality = get_qual(release_link)
+
+            else: quality = 'sd'
         info = []
         #if '3d' in fmt or '.3D.' in release_name: info.append('3D')
         #if any(i in ['hevc', 'h265', 'h.265', 'x265'] for i in fmt): info.append('HEVC')
@@ -84,14 +95,15 @@ def get_release_quality(release_name, release_link=''):
     except:
         return 'sd', []
 
+
 def getFileType(url):
 
     try:
-        url = six.ensure_str(url)
         url = client.replaceHTMLCodes(url)
         url = urllib_parse.unquote(url)
+        url = re.sub('[^A-Za-z0-9]+', ' ', url)
+        url = six.ensure_str(url)
         url = url.lower()
-        url = re.sub('[^a-z0-9 ]+', ' ', url)
     except:
         url = str(url)
     type = ''
@@ -180,12 +192,6 @@ def getFileType(url):
         type += ' SUBS /'
     if any(i in url for i in [' dub ', ' dubbed ', ' dublado ']):
         type += ' DUB /'
-    if ' repack ' in url:
-        type += ' REPACK /'
-    if ' proper ' in url:
-        type += ' PROPER /'
-    if ' nuked ' in url:
-        type += ' NUKED /'
     type = type.rstrip('/')
     return type
 
@@ -251,10 +257,10 @@ def label_to_quality(label):
 
 def strip_domain(url):
     try:
-        url = six.ensure_str(url)
         if url.lower().startswith('http') or url.startswith('/'):
             url = re.findall('(?://.+?|)(/.+)', url)[0]
         url = client.replaceHTMLCodes(url)
+        url = six.ensure_str(url)
         return url
     except:
         return
@@ -262,11 +268,11 @@ def strip_domain(url):
 
 def is_host_valid(url, domains):
     try:
-        url = six.ensure_str(url).lower()
-        if any(x in url for x in ['.rar.', '.zip.', '.iso.']) or any(url.endswith(x) for x in ['.rar', '.zip', '.idx', '.sub', '.srt']):
-            return False, ''
-        if any(x in url for x in ['sample', 'trailer', 'zippyshare', 'facebook', 'youtu']):
-            return False, ''
+        if any(x in url.lower() for x in ['.rar.', '.zip.', '.iso.']) or any(url.lower().endswith(x) for x in ['.rar', '.zip']):
+            raise Exception()
+
+        if any(x in url.lower() for x in ['youtube', 'sample', 'trailer', 'zippyshare', 'facebook']):
+            raise Exception()
         host = __top_domain(url)
         hosts = [domain.lower() for domain in domains if host and host in domain.lower()]
 
@@ -307,14 +313,6 @@ def aliases_to_array(aliases, filter=None):
 
 def append_headers(headers):
     return '|%s' % '&'.join(['%s=%s' % (key, urllib_parse.quote_plus(headers[key])) for key in headers])
-
-
-def _size(siz):
-    if siz in ['0', 0, '', None]: return 0.0, ''
-    div = 1 if siz.lower().endswith(('gb', 'gib')) else 1024
-    float_size = float(re.sub('[^0-9|/.|/,]', '', siz.replace(',', '.'))) / div
-    str_size = str('%.2f GB' % float_size)
-    return float_size, str_size
 
 
 def get_size(url):

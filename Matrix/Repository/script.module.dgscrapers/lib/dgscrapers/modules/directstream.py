@@ -20,7 +20,7 @@
 import re, os, binascii#, httplib, urllib, urlparse
 import simplejson as json
 from six.moves import urllib_parse
-from oathscrapers.modules import client
+from dgscrapers.modules import client
 
 
 def google(url):

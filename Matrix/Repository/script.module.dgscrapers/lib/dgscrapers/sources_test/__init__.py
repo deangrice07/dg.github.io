@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+import six
 import os
-from six import iteritems
 from . import en
 
 
@@ -17,5 +17,5 @@ hoster_providers = en.__all__
 ##--All Providers--##
 total_providers = {'en': hoster_providers}
 all_providers = []
-for key, value in iteritems(total_providers):
+for key, value in six.iteritems(total_providers):
     all_providers += value
