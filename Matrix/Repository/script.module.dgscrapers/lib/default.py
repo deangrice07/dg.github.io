@@ -116,15 +116,15 @@ elif action == "toggleAllTorrent":
     control.openSettings(query, "script.module.dgscrapers")
 
 
-# elif action == "Defaults":
-    # sourceList = ['123fox','123hbo','123movieshubz','animetoon','azmovies','bnwmovies','cartoonhd',
-    # 'extramovies','fmovies','freefmovies','freeputlockers','gostream','Hdmto','hdpopcorns',
-    # 'kattv','l23movies','iwaatch','openloadmovie','primewire','putlocker','reddit','rlsbb','scenerls',
-    # 'seehd','series9','seriesfree','seriesonline','solarmoviez','tvbox','vidics','watchseries',
-    # 'xwatchseries','vdonip','downflix','ymovies','ddlspot','filmxy','kickass2','sezonlukdizi']
-    # for i in sourceList:
-        # source_setting = 'provider.' + i
-        # control.setSetting(source_setting, params['setting'])
-    # control.sleep(200)
-    # control.openSettings(query, "script.module.dgscrapers")
+elif action == "Defaults":
+     sourceList = ['123fox','123hbo','123movieshubz','animetoon','azmovies','bnwmovies','cartoonhd',
+	 'extramovies','fmovies','freefmovies','freeputlockers','gostream','Hdmto','hdpopcorns',
+     'kattv','l23movies','iwaatch','openloadmovie','primewire','putlocker','reddit','rlsbb','scenerls',
+     'seehd','series9','seriesfree','seriesonline','solarmoviez','tvbox','vidics','watchseries',
+     'xwatchseries','vdonip','downflix','ymovies','ddlspot','filmxy','kickass2','sezonlukdizi']
+	 for i in sourceList:
+         source_setting = 'provider.' + i
+         control.setSetting(source_setting, params['setting'])
+     control.sleep(200)
+     control.openSettings(query, "script.module.dgscrapers")
 

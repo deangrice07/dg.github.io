@@ -12,7 +12,7 @@ from six.moves.urllib_parse import parse_qs, urljoin, urlparse, urlencode, quote
 
 try:
     from kodi_six import xbmcaddon
-    __addon__ = xbmcaddon.Addon(id='script.module.oathscrapers')
+    __addon__ = xbmcaddon.Addon(id='script.module.dgscrapers')
 except:
     __addon__ = None
     pass
@@ -24,7 +24,7 @@ def sources():
         if __addon__ is not None:
             provider = __addon__.getSetting('package.folder')
         else:
-            provider = 'oathscrapers'
+            provider = 'dgscrapers'
         sourceFolder = getScraperFolder(provider)
         sourceFolderLocation = os.path.join(os.path.dirname(__file__), sourceFolder)
         sourceSubFolders = [x[1] for x in os.walk(sourceFolderLocation)][0]
