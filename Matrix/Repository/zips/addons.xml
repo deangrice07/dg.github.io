@@ -32,7 +32,7 @@
 	</extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.0" name="DG Artwork" provider-name="Grice Advice">
+<addon id="script.dg.artwork" version="1.0.1" name="DG Artwork" provider-name="Grice Advice">
 	<requires>
 		<!--<import addon="xbmc.python" version="2.19.0"/>-->
 	</requires>
