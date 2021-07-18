@@ -1,0 +1,11 @@
+This will filter out source links for known groups that put up garbage like incomplete pack files, single foreign audio tracks, and some hard coded subs!
+
+The current list of known undesirables are as follows....
+UNDESIREABLES = ['400p.octopus', '720p.octopus', '1080p.octopus', 'alexfilm', 'baibako',
+'bonus.disc', 'courage.bambey', '.cbr', '.cbz', 'coldfilm', 'dilnix', 'dlrip', 'dutchreleaseteam',
+'e.book.collection', 'empire.minutemen', 'eniahd', '.exe', 'extras.only', 'gears.media',
+'gearsmedia', 'hamsterstudio', 'hdrezka', 'hdtvrip', 'idea.film', 'ideafilm', 'jaskier', 'kb.1080p',
+'kb.720p', 'kb.400p', 'kerob', 'kinokopilka', 'kravec', 'kuraj.bambey', 'lakefilm', 'lostfilm',
+'megapeer', 'minutemen.empire', 'omskbird', 'newstudio', 'paravozik', 'profix.media', 'rifftrax',
+'exkinoray', 'sample', 'soundtrack', 'subtitle.only', 'teaser', 'trailer', 'tumbler.studio', 'tvshows',
+'vostfr', 'webdlrip', 'webhdrip', 'wish666']

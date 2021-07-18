@@ -1,50 +1,39 @@
 # -*- coding: utf-8 -*-
-
 """
-    Covenant Add-on
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	Venom Add-on
 """
 
-from resources.lib.modules import log_utils
+from resources.lib.modules.control import setting as getSetting
 
-try:
-    import resolveurl
-
-    debrid_resolvers = [resolver() for resolver in resolveurl.relevant_resolvers(order_matters=True) if resolver.isUniversal()]
-
-    if len(debrid_resolvers) == 0:
-        # Support Rapidgator accounts! Unfortunately, `sources.py` assumes that rapidgator.net is only ever
-        # accessed via a debrid service, so we add rapidgator as a debrid resolver and everything just works.
-        # As a bonus(?), rapidgator links will be highlighted just like actual debrid links
-        debrid_resolvers = [resolver() for resolver in resolveurl.relevant_resolvers(order_matters=True,include_universal=False) if 'rapidgator.net' in resolver.domains]
-
-except:
-    debrid_resolvers = []
-
+def debrid_resolvers(order_matters=True):
+	try:
+		ad_enabled = getSetting('alldebrid.token') != '' and getSetting('alldebrid.enable') == 'true'
+		pm_enabled = getSetting('premiumize.token') != '' and getSetting('premiumize.enable') == 'true'
+		rd_enabled = getSetting('realdebrid.token') != '' and getSetting('realdebrid.enable') == 'true'
+		premium_resolvers = []
+		if ad_enabled:
+			from resources.lib.debrid import alldebrid
+			premium_resolvers.append(alldebrid.AllDebrid())
+		if pm_enabled:
+			from resources.lib.debrid import premiumize
+			premium_resolvers.append(premiumize.Premiumize())
+		if rd_enabled:
+			from resources.lib.debrid import realdebrid
+			premium_resolvers.append(realdebrid.RealDebrid())
+		if order_matters:
+			premium_resolvers.sort(key=lambda x: get_priority(x))
+		return premium_resolvers
+	except:
+		from resources.lib.modules import log_utils
+		log_utils.error()
 
 def status():
-    return debrid_resolvers != []
+	return debrid_resolvers() != []
 
-
-def resolver(url, debrid):
-    try:
-        debrid_resolver = [resolver for resolver in debrid_resolvers if resolver.name == debrid][0]
-        debrid_resolver.login()
-        _host, _media_id = debrid_resolver.get_host_and_id(url)
-        stream_url = debrid_resolver.get_media_url(_host, _media_id)
-        return stream_url
-    except:
-        log_utils.log('%s Resolve Failure' % debrid, 1)
-        return None
+def get_priority(cls):
+	try:
+		return int(getSetting((cls.__class__.__name__ + '.priority').lower()))
+	except:
+		from resources.lib.modules import log_utils
+		log_utils.error()
+		return 10

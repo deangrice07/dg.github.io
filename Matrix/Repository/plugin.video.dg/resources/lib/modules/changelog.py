@@ -1,14 +1,20 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
+"""
+	Venom Add-on
+"""
 
-import os
-from resources.lib.modules import control, log_utils
+from resources.lib.modules.control import addonPath, addonId, getVenomVersion, joinPath
+from resources.lib.windows.textviewer import TextViewerXML
+
 
 def get():
-    try:
-        changelogfile = os.path.join(control.addonPath, 'changelog.txt')
-        head = 'TheOath  -- Changelog --'
-        control.textViewer(changelogfile, head)
-    except:
-        control.infoDialog('Error opening changelog', sound=True)
-        log_utils.log('changeloglog_view_fail', 1)
-
+	venom_path = addonPath(addonId())
+	venom_version = getVenomVersion()
+	changelogfile = joinPath(venom_path, 'changelog.txt')
+	r = open(changelogfile)
+	text = r.read()
+	r.close()
+	heading = '[B]DG -  v%s - ChangeLog[/B]' % venom_version
+	windows = TextViewerXML('textviewer.xml', venom_path, heading=heading, text=text)
+	windows.run()
+	del windows

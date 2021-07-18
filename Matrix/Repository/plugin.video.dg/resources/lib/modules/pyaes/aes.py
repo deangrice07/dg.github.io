@@ -19,40 +19,28 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
 # This is a pure-Python implementation of the AES algorithm and AES common
 # modes of operation.
-
 # See: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-
 # Honestly, the best description of the modes of operations are the wonderful
 # diagrams on Wikipedia. They explain in moments what my words could never
 # achieve. Hence the inline documentation here is sparer than I'd prefer.
 # See: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
-
 # Also useful, PyCrypto, a crypto library implemented in C with Python bindings:
 # https://www.dlitz.net/software/pycrypto/
-
-
 # Supported key sizes:
 #   128-bit
 #   192-bit
 #   256-bit
-
-
 # Supported modes of operation:
 #   ECB - Electronic Codebook
 #   CBC - Cipher-Block Chaining
 #   CFB - Cipher Feedback
 #   OFB - Output Feedback
 #   CTR - Counter
-
-
 # See the README.md for API details and general information.
 
-
-import copy
-import struct
+import copy,struct
 
 __all__ = ["AES", "AESModeOfOperationCTR", "AESModeOfOperationCBC", "AESModeOfOperationCFB",
            "AESModeOfOperationECB", "AESModeOfOperationOFB", "AESModesOfOperation", "Counter"]
@@ -61,8 +49,10 @@ __all__ = ["AES", "AESModeOfOperationCTR", "AESModeOfOperationCBC", "AESModeOfOp
 def _compact_word(word):
     return (word[0] << 24) | (word[1] << 16) | (word[2] << 8) | word[3]
 
+
 def _string_to_bytes(text):
     return list(ord(c) for c in text)
+
 
 def _bytes_to_string(binary):
     return "".join(chr(b) for b in binary)
