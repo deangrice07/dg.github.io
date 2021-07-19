@@ -86,7 +86,7 @@ class AddonCheckUpdate:
 		try:
 			import re
 			import requests
-			repo_xml = requests.get('https://raw.githubusercontent.com/123dg/repository.dg/main/matrix/zips/addons.xml')
+			repo_xml = requests.get('https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml')
 			if not repo_xml.status_code == 200:
 				return control.log('[ plugin.video.dg ]  Could not connect to remote repo XML: status code = %s' % repo_xml.status_code, LOGINFO)
 			repo_version = re.findall(r'<addon id=\"plugin.video.dg\".+version=\"(\d*.\d*.\d*)\"', repo_xml.text)[0]
