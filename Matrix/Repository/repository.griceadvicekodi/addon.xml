@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.17" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.18" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -8,6 +8,11 @@
             <info compressed="false">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml</info>
             <checksum>https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/</datadir>
+            </dir>
+            <dir>
+            <info compressed="false">https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml</info>
+            <checksum>https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://deangrice07.github.io/dg.github.io/Repository/zips/</datadir>
             </dir>
             <dir>
 		    <info compressed="false">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml</info>
@@ -30,6 +35,16 @@
             <checksum>https://raw.githubusercontent.com/a4k-openproject/repository.openscrapers/master/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/a4k-openproject/repository.openscrapers/master/zips/</datadir>
             </dir>
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/</datadir>
+		</dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/</datadir>
+		</dir>
            </extension>
         <extension point="xbmc.addon.metadata">
             <summary>Install all of the latest Grice Advice Kodi Content</summary>

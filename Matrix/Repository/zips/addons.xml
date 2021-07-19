@@ -32,44 +32,7 @@
 	</extension>
 </addon>
 
-<addon id="script.dg.artwork" version="1.0.1" name="DG Artwork" provider-name="Grice Advice">
-	<requires>
-		<!--<import addon="xbmc.python" version="2.19.0"/>-->
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the DG Addon</summary>
-		<description></description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="script.module.orion" version="4.5.3" name="Orion" provider-name="Orion">
-	<requires>
-		<import addon="xbmc.addon" version="17.0.000" />
-		<import addon="repository.orion" version="1.0.0" optional="true" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="lib/addon.py">
-		<provides>executable</provides>
-	</extension>
-	<extension point="xbmc.python.module" library="lib" /> <!-- Must be placed after xbmc.python.pluginsource, otherwise the addon does not show in the repository. -->
-	<extension point="xbmc.service" library="lib/service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Torrent, Usenet, and Hoster Providers</summary>
-		<description lang="en">Orion is a system for caching search and scraping results for later reuse. Metadata and links on Orion are maintained by the community. Searches are cached so that subsequent users can quickly access the results without having to go through a lengthy scraping process themselves. The Orion Kodi addon does not provide any search or playback features, but it can easily be integrated into any other addon, website, or standalone program with minimal effort.</description>
-		<disclaimer lang="en">Orion does not create, host, or distribute any files or videos. Orion is a caching service providing low-level API access to a community-maintained storage of textual data. All metadata and links available through Orion are scraped, processed, and submitted by community users. Due to the volume, velocity, and complexity of the data, Orion cannot inspect or validate the content submitted by users. Data on Orion may therefore be inaccurate, out-dated, or in other ways unusable. Orion does not guarantee the validity or integrity of the data available through its API and does not take liability for any of the data submitted by its users. Users take the risk and are responsible for the manner in which they utilize the Orion API.</disclaimer>
-		<platform>all</platform>
-		<license>GPL 3.0</license>
-		<website>https://orionoid.com</website>
-		<forum>https://support.orionoid.com</forum>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-		</assets>
-	</extension>
-</addon>
-
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.17" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.18" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -78,6 +41,11 @@
             <info compressed="false">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml</info>
             <checksum>https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/</datadir>
+            </dir>
+            <dir>
+            <info compressed="false">https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml</info>
+            <checksum>https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://deangrice07.github.io/dg.github.io/Repository/zips/</datadir>
             </dir>
             <dir>
 		    <info compressed="false">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml</info>
@@ -100,6 +68,16 @@
             <checksum>https://raw.githubusercontent.com/a4k-openproject/repository.openscrapers/master/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/a4k-openproject/repository.openscrapers/master/zips/</datadir>
             </dir>
+            <dir>
+			<info compressed="false">https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/mr-kodi/repository.myaccounts/master/zips/</datadir>
+		</dir>
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/</datadir>
+		</dir>
            </extension>
         <extension point="xbmc.addon.metadata">
             <summary>Install all of the latest Grice Advice Kodi Content</summary>
@@ -111,31 +89,37 @@
         </extension>
 </addon>
 
-<addon id="script.module.dgscrapers" name="[COLORwhite]DG Scrapers[/COLOR]" version="1.0.0" provider-name="DG">
-    <requires>
-        <!--<import addon="xbmc.python" version="2.20.0" />-->
-        <import addon="script.module.beautifulsoup4" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.six" />
-        <import addon="script.module.simplejson" />
-    </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.python.pluginsource" library="lib/default.py">
-        <provides>executable</provides>
-    </extension>
-        <extension point="xbmc.addon.metadata">
-            <platform>all</platform>
-            <summary lang="en">DG Scrapers Module</summary>
-            <description>Working On Matrix</description>
-                <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart></fanart>
-    </assets>
-    <news></news>
-    </extension>
+<addon id="script.module.fenomscrapers" name="FenomScrapers Module" version="1.4.2" provider-name="Mr-Kodi">
+	<requires>
+		<import addon="script.module.requests" />
+		<import addon="script.module.myaccounts" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="lib/default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.service" library="lib/service.py" start="startup" />
+	<extension point="xbmc.python.module" library="lib" /> <!-- Must be placed after xbmc.python.pluginsource, otherwise the addon does not show in the repository. -->
+	<extension point="xbmc.addon.metadata">
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en">FenomScrapers Module</summary>
+		<description>Scrape common video host for URL's to be playable in Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum></forum>
+		<website>https://github.com/Mr-Kodi/repository.fenomscrapers</website>
+		<source>https://github.com/Mr-Kodi/repository.fenomscrapers</source>
+		<disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.png</fanart>
+			<screenshot></screenshot>
+		</assets>
+		<news>
+[B][COLOR red]Update - v1.4.1 - May 26, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] 7torrents scraper is back and no longer behind Cloudflare, for now.[/I]
+[COLOR yellow]--[/COLOR][I] btdig scraper removed, reCaptcha.[/I]
+		</news>
+	</extension>
 </addon>
 
 <addon id="plugin.video.deegee" name="DeeGee" provider-name="Grice Advice" version="0.0.1">
@@ -167,53 +151,217 @@
     </extension>
 </addon>
 
-<addon id="script.dg.metadata" version="1.0.0" name="[COLORwhite]DG Metadata[/COLOR]" provider-name="DG">
+<addon id="context.dg" name="DG - Global Context Menu Items" provider-name="dg" version="1.0.0">
 	<requires>
-		<!--<import addon="xbmc.python" version="2.19.0"/>-->
+		<import addon="script.module.requests" version="2.19.1" />
 	</requires>
-	<extension point="xbmc.python.module" library="lib" />
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<item library="contextSettings.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - CM Settings</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.settings)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true)
+				</visible>
+			</item>
+			<item library="traktManager.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Trakt Manager</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.traktManager)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="clearProviders.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Clear Providers</label>
+				<visible>
+					[!String.IsEmpty(Window(home).Property(context.dg.clearProviders)) +
+					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]] |
+					[String.Contains(Container.FolderPath,videodb://) +
+					[String.Contains(Container.ListItem.Path,Window(home).Property(dg.movieLib.path)) | String.Contains(Container.ListItem.Path,Window(home).Property(dg.tvLib.path))] +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]]
+				</visible>
+			</item>
+			<item library="clearBookmark.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Clear Item Bookmark</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.clearBookmark)) +
+					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					ListItem.IsResumable +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="rescrape.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Rescrape Item</label>
+				<visible>
+					[!String.IsEmpty(Window(home).Property(context.dg.rescrape)) +
+					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]]
+				</visible>
+			</item>
+			<item library="libRescrape.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Rescrape Lib Item</label>
+				<visible>
+					String.Contains(Container.FolderPath,videodb://) +
+					[String.Contains(Container.ListItem.Path,Window(home).Property(dg.movieLib.path)) | String.Contains(Container.ListItem.Path,Window(home).Property(dg.tvLib.path))] +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="playFromHere.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Play from here</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.playFromHere)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.dbtype,episode)
+				</visible>
+			</item>
+			<item library="autoPlay.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Auto Play</label>
+				<visible>
+					String.IsEmpty(Window(home).Property(dg.autoPlay.enabled)) +
+					!String.IsEmpty(Window(home).Property(context.dg.autoPlay)) +
+					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="sourceSelect.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Source Select</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(dg.autoPlay.enabled)) +
+					!String.IsEmpty(Window(home).Property(context.dg.sourceSelect)) +
+					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="findSimilar.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Find Similar</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.findSimilar)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,movie)]
+				</visible>
+			</item>
+			<item library="browseSeries.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Browse Series</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.browseSeries)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,tvshow)]
+				</visible>
+			</item>
+			<item library="browseEpisodes.py">
+				<label>[B][COLOR white]DG[/COLOR][/B] - Browse Episodes</label>
+				<visible>
+					!String.IsEmpty(Window(home).Property(context.dg.browseEpisodes)) +
+					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
+					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.dbtype,episode)
+				</visible>
+			</item>
+		</menu>
+	</extension>
+	<extension point="xbmc.service" library="service.py" />
 	<extension point="xbmc.addon.metadata">
-		<summary>Metadata for the DG Addon</summary>
-		<description>Metadata for DG are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<summary lang="en">dg - This Addon is currently in beta. Please be aware there may be bugs present</summary>
+		<description lang="en">Adds Global Contextual Menu Items for dg menu items throughout Kodi</description>
 		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum></forum>
+		<website>https://github.com/123dg/context.dg</website>
+		<source>https://github.com/123dg/context.dg</source>
+		<disclaimer lang="en"></disclaimer>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot></screenshot>
+		</assets>
+		<news>
+[B][COLOR red]Update - v1.1.9 - June 12, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] "Trakt Manager" updated for changed to dg addon.[/I]
+		</news>
 	</extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLORwhite]DG[/COLOR]" provider-name="DG" version="1.0.0">
-    <requires>
-        <!--<import addon="xbmc.python" version="2.20.0" />-->
-        <import addon="script.dg.artwork" />
-        <import addon="script.dg.metadata" />
-        <import addon="script.module.resolveurl" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.beautifulsoup4" />
-        <import addon="script.module.dgscrapers" />
-        <import addon="script.module.six" />
-        <import addon="script.module.simplejson" />
-        <import addon="script.module.openscrapers" optional="true" />
-        <import addon="plugin.video.youtube" optional="true" />
-    </requires>
-    <extension library="dg.py" point="xbmc.python.pluginsource">
-        <provides>video</provides>
-    </extension>
-    <extension library="service.py" point="xbmc.service" start="startup" />
-    <extension point="xbmc.addon.metadata">
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-        <summary lang="en_GB">DG</summary>
-        <description lang="en_GB">Working On Matrix</description>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <forum />
-        <website />
-        <source />
-        <disclaimer lang="en_GB">The author of this add-on does not host any of the content which is found and has no affiliation with any of the content providers. This add-on simply searches websites for content. Use at your own risk!</disclaimer>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-        <news>
-- See Changelog on Tools menu
-        </news>
-    </extension>
+<addon id="plugin.video.dg" name="[COLOR white]DG[/COLOR]" provider-name="DG" version="1.0.0">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0" />
+		<import addon="context.dg" />
+		<import addon="script.module.myaccounts" />
+		<import addon="script.module.fenomscrapers" />
+		<import addon="script.module.requests" />
+		<import addon="script.module.beautifulsoup4" />
+		<import addon="script.module.metahandler" optional="true" />
+		<import addon="plugin.video.youtube" optional="true" />
+	</requires>
+	<extension library="dg.py" point="xbmc.python.pluginsource">
+		<provides>video</provides>
+	</extension>
+	<extension library="service.py" point="xbmc.service" start="startup" />
+	<extension library="resources/lib/" point="xbmc.python.module" />
+	<extension point="xbmc.addon.metadata">
+		<reuselanguageinvoker>true</reuselanguageinvoker>
+		<summary lang="en">[B][COLOR white]DG[/COLOR][/B] - We do not host any of the contents streamed</summary>
+		<description lang="en">[B][COLOR white]DG[/COLOR][/B][CR] This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.[CR]The author does not host any of the content in this addon and takes no responsibility for content found</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum />
+		<website></website>
+		<source></source>
+		<disclaimer lang="en">The author of this addon does not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot001.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot002.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot003.jpg</screenshot>
+		</assets>
+		<news>
+		</news>
+	</extension>
+</addon>
+
+<addon id="script.module.myaccounts" version="1.1.1" name="My Accounts" provider-name="Venom, Fen">
+	<requires>
+		<import addon="script.module.requests" version="2.19.1" />
+	</requires>
+	<extension point="xbmc.python.script" library="lib/default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.service" library="lib/service.py" start="startup" />
+	<extension point="xbmc.python.module" library="lib" /> <!-- Must be placed after xbmc.python.pluginsource, otherwise the addon does not show in the repository. -->
+	<extension point="xbmc.addon.metadata">
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en">My Accounts Module</summary>
+		<description>Single placeholder for all your accounts.</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum></forum>
+		<website>https://github.com/Mr-Kodi/repository.myaccounts</website>
+		<source>https://github.com/Mr-Kodi/repository.myaccounts</source>
+		<disclaimer lang="en">The author is not responsible for the use of this addon. [CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.png</fanart>
+			<screenshot></screenshot>
+		</assets>
+		<news>
+[B][COLOR red]Update - v1.1.1 - June 18, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Trakt improvements to account auth for better server error capturing.[/I]
+[COLOR yellow]--[/COLOR][I] Trakt expire duration was not properly saved to user settings.
+    This is now fixed.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed entry point import issue.[/I]
+		</news>
+	</extension>
 </addon>
 </addons>
