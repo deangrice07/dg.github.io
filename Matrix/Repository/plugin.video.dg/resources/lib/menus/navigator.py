@@ -33,8 +33,8 @@ class Navigator:
 		downloads = True if control.setting('downloads') == 'true' and (len(control.listDir(control.setting('movie.download.path'))[0]) > 0 or len(control.listDir(control.setting('tv.download.path'))[0]) > 0) else False
 		if downloads: self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 		if control.getMenuEnabled('navi.prem.services'): self.addDirectoryItem('Premium Services', 'premiumNavigator', 'premium.png', 'DefaultFolder.png')
-		if control.getMenuEnabled('navi.news'): self.addDirectoryItem(32013, 'tools_ShowNews', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
-		if control.getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog', 'icon.png', 'DefaultAddonsUpdates.png', isFolder=False)
+		# if control.getMenuEnabled('navi.news'): self.addDirectoryItem(32013, 'tools_ShowNews', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
+# 		if control.getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog', 'icon.png', 'DefaultAddonsUpdates.png', isFolder=False)
 		self.endDirectory()
 
 	def furk(self):
