@@ -2,10 +2,10 @@
 
        <build name = "Grizzard Western">
             <version>1.0</version>
-            <url>http://thechains24.com/BUILDS/19%20builds/blkwidow19.zip</url>
-            <icon>https://i.imgur.com/jZFAog3.jpg</icon>
-            <fanart>https://i.imgur.com/jZFAog3.jpg</fanart>
-            <description>Black Widow.</description>
+            <url>https://archive.org/download/griceadvicewestern/griceadvicewestern.zip</url>
+            <icon>https://i.postimg.cc/L5K6qn8b/Startup-Intro.jpg</icon>
+            <fanart>https://i.postimg.cc/c1Xb4PkQ/Screen-Shot-2021-07-19-at-6-18-37-pm.png</fanart>
+            <description>Grizzard Western Build</description>
         </build>
 
 </builds>
