@@ -32,7 +32,7 @@
 	</extension>
 </addon>
 
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.19" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.20" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -79,7 +79,7 @@
             <description>Download and Install Addons From Grice Advice</description>
             <platform>all</platform>
             <assets>
-            <icon>icon.gif</icon>
+            <icon>icon.png</icon>
             </assets>
         </extension>
 </addon>
