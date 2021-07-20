@@ -8,4 +8,12 @@
             <description>Grizzard Western Build</description>
         </build>
 
+	<build name = "Grizzard Deep Ocean">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadvicedeepocean/griceadvicedeepocean.zip</url>
+            <icon>https://i.postimg.cc/HnMJGbDt/fanart.jpg</icon>
+            <fanart>https://i.postimg.cc/Sxdnpy5H/Startup-Intro.jpg</fanart>
+            <description>Grizzard Deep Ocean Build</description>
+        </build>
+
 </builds>
