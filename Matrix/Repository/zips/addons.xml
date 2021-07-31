@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.grizzard" name="[COLORghostwhite]Grizzard Wizard[/COLOR]" version="1.0.1" provider-name="Grice Advice">
+<addon id="plugin.program.grizzard" name="[COLORghostwhite]Grizzard Wizard[/COLOR]" version="1.0.2" provider-name="Grice Advice">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>

@@ -7,7 +7,7 @@
             <fanart>https://i.postimg.cc/c1Xb4PkQ/Screen-Shot-2021-07-19-at-6-18-37-pm.png</fanart>
             <description>Grizzard Western Build</description>
         </build>
-	
+
 	<build name = "Grizzard Deep Ocean">
             <version>1.0</version>
             <url>https://archive.org/download/griceadvicedeepocean/griceadvicedeepocean.zip</url>
@@ -16,5 +16,12 @@
             <description>Grizzard Deep Ocean Build</description>
         </build>
 
-</builds>
+        <build name = "Grizzard F1">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadvicef1_202107/griceadviceF1.zip</url>
+            <icon>https://i.postimg.cc/T1XJDJsB/splash1.png</icon>
+            <fanart>https://i.postimg.cc/gcvDP1Xp/splash1.png</fanart>
+            <description>Grizzard F1 Build</description>
+        </build>
 
+</builds>
