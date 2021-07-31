@@ -24,4 +24,12 @@
             <description>Grizzard F1 Build</description>
         </build>
 
+	<build name = "Grizzard Galaxy">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadvicegalaxy_202107/griceadvicegalaxy.zip</url>
+            <icon>https://i.postimg.cc/bN4Dbp37/Screen-Shot-2021-07-31-at-7-48-26-pm.png</icon>
+            <fanart>https://i.postimg.cc/qRg4jC7j/Screen-Shot-2021-07-31-at-7-50-07-pm.png</fanart>
+            <description>Grizzard Galaxy Build</description>
+        </build>
+
 </builds>
