@@ -32,7 +32,7 @@
 	</extension>
 </addon>
 
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.20" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.21" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -259,7 +259,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLOR white]DG[/COLOR]" provider-name="DG" version="1.0.1">
+<addon id="plugin.video.dg" name="[COLOR white]DG[/COLOR]" provider-name="DG" version="1.0.2">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="context.dg" />
@@ -286,7 +286,7 @@
 		<source></source>
 		<disclaimer lang="en">The author of this addon does not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
 		<assets>
-			<icon>icon.png</icon>
+			<icon>icon.gif</icon>
 			<fanart>fanart.jpg</fanart>
 			<screenshot>resources/screenshots/screenshot001.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot002.jpg</screenshot>
