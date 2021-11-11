@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
 		if not strm_read.startswith('plugin://plugin.video.dg'):
 			import xbmcgui
-			xbmcgui.Dialog().notification(heading='dg', message='.strm file failure')
+			xbmcgui.Dialog().notification(heading='DG', message='.strm file failure')
 		params = dict(parse_qsl(strm_read.replace('?','')))
 		title = params.get('title', '')
 		systitle = quote_plus(title)

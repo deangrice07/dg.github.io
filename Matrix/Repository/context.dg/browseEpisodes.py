@@ -32,4 +32,4 @@ if __name__ == '__main__':
 	xbmc.executebuiltin('ActivateWindow(Videos,plugin://plugin.video.dg/?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&meta=%s&season=%s&episode=%s,return)' % (systvshowtitle, year, imdb, tmdb, tvdb, sysmeta, season, episode))
 
 # # to browse full episode list
-	# xbmc.executebuiltin('ActivateWindow(Videos,plugin://plugin.video.dg/?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&meta=%s&season=%s,return)' % (systvshowtitle, year, imdb, tmdb, tvdb, sysmeta, season))
+	# xbmc.executebuiltin('ActivateWindow(Videos,plugin://plugin.video.venom/?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&meta=%s&season=%s,return)' % (systvshowtitle, year, imdb, tmdb, tvdb, sysmeta, season))

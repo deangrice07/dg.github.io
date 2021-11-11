@@ -34,6 +34,7 @@ if __name__ == '__main__':
 		art['clearlogo'] = meta.get('clearlogo', '')
 		art['clearart'] = meta.get('clearart', '')
 		art['landscape'] = meta.get('landscape', '')
+		art['tvshow.poster'] = meta.get('tvshow_poster', '')
 		sysart = quote_plus(jsdumps(art))
 
 	xbmc.executebuiltin('ActivateWindow(Videos,plugin://plugin.video.dg/?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&art=%s,return)' % (systvshowtitle, year, imdb, tmdb, tvdb, sysart))

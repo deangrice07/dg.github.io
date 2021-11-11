@@ -1,25 +1,24 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
+"""
+	Venom Add-on
+"""
 
-import os, xbmcgui
-from resources.lib.modules import control
-
-def get():
-        changelogfile = os.path.join(control.addonPath, 'changelog.txt')
-        r = open(changelogfile)
-        text = r.read()
-        id = 10147
-        control.execute('ActivateWindow(%d)' % id)
-        control.sleep(500)
-        win = xbmcgui.Window(id)
-        retry = 50
-        while (retry > 0):
-            try:
-                control.sleep(10)
-                retry -= 1
-                win.getControl(1).setLabel('[COLOR gold]FSM [/COLOR] --Changelog--')
-                win.getControl(5).setText(text)
-                return
-            except:
-                pass
+from resources.lib.modules.control import addonPath, addonVersion, joinPath, existsPath
+from resources.lib.windows.textviewer import TextViewerXML
 
 
+def get(name):
+	nameDict = {'DG': 'plugin.video.dg', 'MyAccounts': 'script.module.myaccounts', 'FenomScrapers': 'script.module.fenomscrapers'}
+	addon_path = addonPath(nameDict[name])
+	addon_version = addonVersion(nameDict[name])
+	changelog_file = joinPath(addon_path, 'changelog.txt')
+	if not existsPath(changelog_file):
+		from resources.lib.modules.control import notification
+		return notification(message='ChangeLog File not found.')
+	f = open(changelog_file, 'r', encoding='utf-8', errors='ignore')
+	text = f.read()
+	f.close()
+	heading = '[B]%s -  v%s - ChangeLog[/B]' % (name, addon_version)
+	windows = TextViewerXML('textviewer.xml', addonPath('plugin.video.dg'), heading=heading, text=text)
+	windows.run()
+	del windows

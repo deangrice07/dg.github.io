@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="context.dg" name="DG - Global Context Menu Items" provider-name="dg" version="1.0.1">
+<addon id="context.dg" name="DG - Global Context Menu Items" provider-name="DG" version="1.0.3">
 	<requires>
 		<import addon="script.module.requests" version="2.19.1" />
 	</requires>
@@ -10,7 +10,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.settings)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true)
+					String.IsEqual(ListItem.Property(isDG_widget),true)
 				</visible>
 			</item>
 			<item library="traktManager.py">
@@ -18,7 +18,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.traktManager)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season) | String.IsEqual(ListItem.dbtype,movie)]
 				</visible>
 			</item>
@@ -27,7 +27,7 @@
 				<visible>
 					[!String.IsEmpty(Window(home).Property(context.dg.clearProviders)) +
 					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]] |
 					[String.Contains(Container.FolderPath,videodb://) +
 					[String.Contains(Container.ListItem.Path,Window(home).Property(dg.movieLib.path)) | String.Contains(Container.ListItem.Path,Window(home).Property(dg.tvLib.path))] +
@@ -39,7 +39,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.clearBookmark)) +
 					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					ListItem.IsResumable +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
 				</visible>
@@ -49,7 +49,7 @@
 				<visible>
 					[!String.IsEmpty(Window(home).Property(context.dg.rescrape)) +
 					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]]
 				</visible>
 			</item>
@@ -66,7 +66,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.playFromHere)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					String.IsEqual(ListItem.dbtype,episode)
 				</visible>
 			</item>
@@ -76,7 +76,7 @@
 					String.IsEmpty(Window(home).Property(dg.autoPlay.enabled)) +
 					!String.IsEmpty(Window(home).Property(context.dg.autoPlay)) +
 					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
 				</visible>
 			</item>
@@ -86,7 +86,7 @@
 					!String.IsEmpty(Window(home).Property(dg.autoPlay.enabled)) +
 					!String.IsEmpty(Window(home).Property(context.dg.sourceSelect)) +
 					String.StartsWith(ListItem.FolderPath,plugin://plugin.video.dg/?action=play) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie)]
 				</visible>
 			</item>
@@ -95,7 +95,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.findSimilar)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,movie)]
 				</visible>
 			</item>
@@ -104,7 +104,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.browseSeries)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					[String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,tvshow)]
 				</visible>
 			</item>
@@ -113,7 +113,7 @@
 				<visible>
 					!String.IsEmpty(Window(home).Property(context.dg.browseEpisodes)) +
 					String.StartsWith(ListItem.path,plugin://plugin.video.dg/) +
-					String.IsEqual(ListItem.Property(isdg_widget),true) +
+					String.IsEqual(ListItem.Property(isDG_widget),true) +
 					String.IsEqual(ListItem.dbtype,episode)
 				</visible>
 			</item>
@@ -121,22 +121,16 @@
 	</extension>
 	<extension point="xbmc.service" library="service.py" />
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">dg - This Addon is currently in beta. Please be aware there may be bugs present</summary>
-		<description lang="en">Adds Global Contextual Menu Items for dg menu items throughout Kodi</description>
+		<summary lang="en">DG - This Addon is currently in beta. Please be aware there may be bugs present</summary>
+		<description lang="en">Adds Global Contextual Menu Items for DG menu items throughout Kodi</description>
 		<platform>all</platform>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
 		<forum></forum>
-		<website>https://github.com/123dg/context.dg</website>
-		<source>https://github.com/123dg/context.dg</source>
 		<disclaimer lang="en"></disclaimer>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
 			<screenshot></screenshot>
 		</assets>
-		<news>
-[B][COLOR red]Update - v1.1.9 - June 12, 2021[/COLOR][/B]
-[COLOR yellow]--[/COLOR][I] "Trakt Manager" updated for changed to dg addon.[/I]
-		</news>
 	</extension>
 </addon>

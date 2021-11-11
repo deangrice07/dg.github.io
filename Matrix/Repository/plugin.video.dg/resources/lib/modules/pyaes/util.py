@@ -35,7 +35,6 @@ def _get_byte(c):
 try:
     xrange
 except:
-
     def to_bufferable(binary):
         if isinstance(binary, bytes):
             return binary
@@ -51,10 +50,7 @@ def append_PKCS7_padding(data):
 def strip_PKCS7_padding(data):
     if len(data) % 16 != 0:
         raise ValueError("invalid length")
-
     pad = _get_byte(data[-1])
-
-    if pad > 16:
-        raise ValueError("invalid padding byte")
-
+    if not pad or pad > 16:
+        return data
     return data[:-pad]
