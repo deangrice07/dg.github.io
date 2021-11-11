@@ -1,7 +1,7 @@
 # Kodi Media Center language file
-# Addon Name: Venom - Global Context Menu Items
-# Addon id: context.venom
-# Addon Provider: 123Venom
+# Addon Name: DG - Global Context Menu Items
+# Addon id: context.dg
+# Addon Provider: DG
 msgid ""
 msgstr ""
 
