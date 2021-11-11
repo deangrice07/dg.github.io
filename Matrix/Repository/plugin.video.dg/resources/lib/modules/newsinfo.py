@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-	Venom Add-on
+	dg Add-on
 """
 
 from urllib.request import urlopen, Request
 from resources.lib.modules.control import addonPath, addonId, joinPath
 from resources.lib.windows.textviewer import TextViewerXML
 
-venom_path = addonPath(addonId())
+dg_path = addonPath(addonId())
 news_file = 'https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/wiz/newsinfo.txt'
-local_news = joinPath(venom_path, 'newsinfo.txt')
+local_news = joinPath(dg_path, 'newsinfo.txt')
 
 
 def news():
@@ -37,6 +37,6 @@ def news_local():
 	showText('[B]News and Info[/B]', compfile)
 
 def showText(heading, text):
-	windows = TextViewerXML('textviewer.xml', venom_path, heading=heading, text=text)
+	windows = TextViewerXML('textviewer.xml', dg_path, heading=heading, text=text)
 	windows.run()
 	del windows
