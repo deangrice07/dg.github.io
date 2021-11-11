@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.unidecode" name="unidecode" version="1.1.1" provider-name="Tomaz Solc (Tomaz.solc@tablix.org)">
+<addon id="plugin.program.grizzard" name="[COLORghostwhite]Grizzard Wizard[/COLOR]" version="1.0.2" provider-name="Grice Advice">
 	<requires>
-		<import addon="xbmc.python" version="2.14.0"/>
+		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
-	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" />
 	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">Grizzard is a Wizard for installing builds on Kodi 19 Matrix.</summary>
+		<description lang="en_GB">Kodi 19 Wizard</description>
+		<disclaimer lang="en_GB">This Addon contains no content</disclaimer>
+		<language>en</language>
 		<platform>all</platform>
-		<summary lang="en">ASCII transliterations of Unicode text by Sean M. Burke and Tomaz Solc</summary>
-		<description lang="en">ASCII transliterations of Unicode text by Sean M. Burke and Tomaz Solc</description>
-		<disclaimer lang="en">Code taken from https://pypi.org/project/Unidecode</disclaimer>
 		<license>GPL-2.0-or-later</license>
-		<website>https://pypi.org/project/Unidecode</website>
-		<source>https://pypi.org/project/Unidecode</source>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<source></source>
+		<news>
+0.1 - Initial Release
+		</news>
+		<assets>
+				<icon>resources/icon.png</icon>
+				<fanart>resources/fanart.jpg</fanart>
+				<banner></banner>
+				<clearlogo></clearlogo>
+				<screenshot></screenshot>
+		</assets>
 	</extension>
 </addon>
 
@@ -22,9 +38,9 @@
     </requires>
 	 <extension point="xbmc.addon.repository" name="Grice Advice Kodi Repo">
             <dir>
-            <info compressed="false">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml</info>
-            <checksum>https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/</datadir>
+            <info compressed="false">https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml</info>
+            <checksum>https://deangrice07.github.io/dg.github.io/Repository/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://deangrice07.github.io/dg.github.io/Repository/zips/</datadir>
             </dir>
             <dir>
 		    <info compressed="false">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml</info>
@@ -68,33 +84,6 @@
         </extension>
 </addon>
 
-<addon id="script.module.dgiptv" name="DG IPTV HD" version="1.0" provider-name="RACC">
-  <requires>
-    <import addon="xbmc.python" version="2.26.0"/>
-    <import addon="script.module.pycryptodome" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.kodi-six" />
-    <import addon="script.module.future" />
-    <import addon="script.module.routing" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <reuselanguageinvoker>true</reuselanguageinvoker>
-    <summary lang="en_gb">DG IPTV (SwiftStreamz)</summary>
-    <description lang="en_gb">SwiftStreamz IPTV</description>
-    <disclaimer lang="en_gb"></disclaimer>
-    <language></language>
-    <platform>all</platform>
-    <license>GPL-3.0</license>
-    <forum></forum>
-    <website></website>
-    <email></email>
-    <source></source>
-  </extension>
-</addon>
-
 <addon id="script.module.dgscrapers" name="DG Module" version="1.0.0" provider-name="dev name">
     <requires>
         <!--<import addon="xbmc.python" version="2.20.0" />-->
@@ -120,35 +109,6 @@
         <fanart></fanart>
     </assets>
     <news></news>
-    </extension>
-</addon>
-
-<addon id="plugin.video.deegee" name="DeeGee" provider-name="Grice Advice" version="0.0.1">
-    <requires>
-	    <import addon="script.module.six" version="0.0.1"/>
-		<import addon="script.module.requests"/>
-        <import addon="script.module.resolveurl"/>
-    </requires>
-    <extension library="default.py" point="xbmc.python.pluginsource">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-        <summary lang="en">Welcome to DeeGee</summary>
-        <description lang="en">“DeeGee”</description>
-        <platform>all</platform>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-        <forum />
-        <website />
-        <source />
-        <disclaimer lang="en">The author of this add-on does not host any of the content which is found and has no affiliation with any of the content providers. This add-on simply searches websites for content. Use at your own risk!</disclaimer>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-        <news>
-
-        </news>
     </extension>
 </addon>
 
@@ -318,21 +278,6 @@
 			<screenshot></screenshot>
 		</assets>
 	</extension>
-</addon>
-
-<addon id="plugin.program.griceadviceguiwiz" name="[COLOR ghostwhite]Grice Advice GUI Wizard[/COLOR]" version="1.0.2" provider-name="[COLOR ghostwhite]Grice Advice[/COLOR]">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.service" library="startup.py" start="startup" />
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Grice Advice Wizard</summary>
-    <description lang="en">In this wizard you will find the latest Grice Advice Wizard and Builds.</description>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="plugin.video.dg" name="[COLORghostwhite]DG[/COLOR]" provider-name="Grizzard" version="1.0.3">
