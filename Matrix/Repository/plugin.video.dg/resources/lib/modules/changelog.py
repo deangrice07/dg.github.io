@@ -1,20 +1,25 @@
-# -*- coding: utf-8 -*-
-"""
-	dg Add-on
-"""
+# -*- coding: UTF-8 -*-
 
-from resources.lib.modules.control import addonPath, addonId, getdgVersion, joinPath
-from resources.lib.windows.textviewer import TextViewerXML
-
+import os, xbmcgui
+from resources.lib.modules import control
 
 def get():
-	dg_path = addonPath(addonId())
-	dg_version = getdgVersion()
-	changelogfile = joinPath(dg_path, 'changelog.txt')
-	r = open(changelogfile)
-	text = r.read()
-	r.close()
-	heading = '[B]DG -  v%s - ChangeLog[/B]' % dg_version
-	windows = TextViewerXML('textviewer.xml', dg_path, heading=heading, text=text)
-	windows.run()
-	del windows
+        changelogfile = os.path.join(control.addonPath, 'changelog.txt')
+        r = open(changelogfile)
+        text = r.read()
+        id = 10147
+        control.execute('ActivateWindow(%d)' % id)
+        control.sleep(500)
+        win = xbmcgui.Window(id)
+        retry = 50
+        while (retry > 0):
+            try:
+                control.sleep(10)
+                retry -= 1
+                win.getControl(1).setLabel('[COLOR gold]FSM [/COLOR] --Changelog--')
+                win.getControl(5).setText(text)
+                return
+            except:
+                pass
+
+

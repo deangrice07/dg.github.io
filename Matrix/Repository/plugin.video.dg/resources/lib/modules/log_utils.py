@@ -1,95 +1,147 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+    FSM shared module
+    Copyright (C) 2016 FSM
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
+import cProfile
+import simplejson as json
+import os
+import pstats
+import time
 from datetime import datetime
-import inspect
-import unicodedata
-from resources.lib.modules.control import transPath, setting as getSetting, lang, joinPath, existsPath
+import xbmc
 
-LOGDEBUG = 0
-# ###--from here down methods print when dg logging set to "Normal".
-LOGINFO = 1
-LOGWARNING = 2
-LOGERROR = 3
-LOGFATAL = 4
-LOGNONE = 5 # not used
+import six
 
-debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
-DEBUGPREFIX = '[COLOR white][ DG: %s ][/COLOR]'
-LOGPATH = transPath('special://logpath/')
+from resources.lib.modules import control
+
+LOGDEBUG = xbmc.LOGDEBUG
+LOGERROR = xbmc.LOGERROR
+LOGFATAL = xbmc.LOGFATAL
+LOGINFO = xbmc.LOGINFO
+LOGNONE = xbmc.LOGNONE
+LOGNOTICE = xbmc.LOGNOTICE if int(control.getKodiVersion()) < 19 else xbmc.LOGINFO
+LOGWARNING = xbmc.LOGWARNING
+
+name = control.addonInfo('name')
+DEBUGPREFIX = '[ FSM DEBUG ]'
+LOGPATH = control.transPath('special://logpath/')
 
 
-def log(msg, caller=None, level=LOGINFO):
-	debug_enabled = getSetting('debug.enabled') == 'true'
-	if not debug_enabled: return
-	debug_level = getSetting('debug.level')
-	if level == LOGDEBUG and debug_level != '1': return
-	debug_location = getSetting('debug.location')
-	if isinstance(msg, int): msg = lang(msg) # for strings.po translations
-	try:
-		if not msg.isprintable(): # ex. "\n" is not a printable character so returns False on those cases
-			msg = '%s (NORMALIZED by log_utils.log())' % normalize(msg)
-		if isinstance(msg, bytes):
-			msg = '%s (ENCODED by log_utils.log())' % msg.decode('utf-8', errors='replace')
+def log(msg, level=LOGNOTICE):
+    debug_enabled = control.setting('addon_debug')
+    debug_log = control.setting('debug.location')
 
-		if caller is not None and level != LOGERROR:
-			func = inspect.currentframe().f_back.f_code
-			line_number = inspect.currentframe().f_back.f_lineno
-			caller = "%s.%s()" % (caller, func.co_name)
-			msg = 'From func name: %s Line # :%s\n                       msg : %s' % (caller, line_number, msg)
-		elif caller is not None and level == LOGERROR:
-			msg = 'From func name: %s.%s() Line # :%s\n                       msg : %s' % (caller[0], caller[1], caller[2], msg)
+    print(DEBUGPREFIX + ' Debug Enabled?: ' + str(debug_enabled))
+    print(DEBUGPREFIX + ' Debug Log?: ' + str(debug_log))
 
-		if debug_location == '1':
-			log_file = joinPath(LOGPATH, 'dg.log')
-			if not existsPath(log_file):
-				f = open(log_file, 'w')
-				f.close()
-			with open(log_file, 'a', encoding='utf-8') as f:
-				line = '[%s %s] %s: %s' % (datetime.now().date(), str(datetime.now().time())[:8], DEBUGPREFIX % debug_list[level], msg)
-				f.write(line.rstrip('\r\n') + '\n')
-				# f.writelines([line1, line2]) ## maybe an option for the 2 lines without using "\n"
-		else:
-			import xbmc
-			xbmc.log('%s: %s' % (DEBUGPREFIX % debug_list[level], msg), level)
-	except Exception as e:
-		import traceback
-		traceback.print_exc()
-		import xbmc
-		xbmc.log('[ plugin.video.dg ] log_utils.log() Logging Failure: %s' % (e), LOGERROR)
+    if not control.setting('addon_debug') == 'true':
+        return
 
-def error(message=None, exception=True):
-	try:
-		import sys
-		if exception:
-			type, value, traceback = sys.exc_info()
-			addon = 'plugin.video.dg'
-			filename = (traceback.tb_frame.f_code.co_filename)
-			filename = filename.split(addon)[1]
-			name = traceback.tb_frame.f_code.co_name
-			linenumber = traceback.tb_lineno
-			errortype = type.__name__
-			errormessage = value or value.message
-			if str(errormessage) == '': return
-			if message: message += ' -> '
-			else: message = ''
-			message += str(errortype) + ' -> ' + str(errormessage)
-			caller = [filename, name, linenumber]
-		else:
-			caller = None
-		del(type, value, traceback) # So we don't leave our local labels/objects dangling
-		log(msg=message, caller=caller, level=LOGERROR)
-	except Exception as e:
-		import xbmc
-		xbmc.log('[ plugin.video.dg ] log_utils.error() Logging Failure: %s' % (e), LOGERROR)
+    try:
+        if isinstance(msg, six.text_type):
+            msg = '%s (ENCODED)' % (six.ensure_str(msg))
 
-def normalize(msg):
-	try:
-		# msg = ''.join(c for c in unicodedata.normalize('NFKD', py_tools.ensure_text(py_tools.ensure_str(msg))) if unicodedata.category(c) != 'Mn')
-		msg = ''.join(c for c in unicodedata.normalize('NFKD', msg) if unicodedata.category(c) != 'Mn')
-		return str(msg)
-	except:
-		error()
-		return msg
+        if not control.setting('debug.location') == '0':
+            log_file = os.path.join(LOGPATH, 'exodus.log')
+            if not os.path.exists(log_file):
+                f = open(log_file, 'w')
+                f.close()
+            with open(log_file, 'a') as f:
+                line = '[%s %s] %s: %s' % (datetime.now().date(), str(datetime.now().time())[:8], DEBUGPREFIX, msg)
+                f.write(line.rstrip('\r\n')+'\n')
+        else:
+            print('%s: %s' % (DEBUGPREFIX, msg))
+    except Exception as e:
+        try:
+            xbmc.log('Logging Failure: %s' % (e), level)
+        except Exception:
+            pass
+
+
+class Profiler(object):
+    def __init__(self, file_path, sort_by='time', builtins=False):
+        self._profiler = cProfile.Profile(builtins=builtins)
+        self.file_path = file_path
+        self.sort_by = sort_by
+
+    def profile(self, f):
+        def method_profile_on(*args, **kwargs):
+            try:
+                self._profiler.enable()
+                result = self._profiler.runcall(f, *args, **kwargs)
+                self._profiler.disable()
+                return result
+            except Exception as e:
+                log('Profiler Error: %s' % (e), LOGWARNING)
+                return f(*args, **kwargs)
+
+        def method_profile_off(*args, **kwargs):
+            return f(*args, **kwargs)
+
+        if _is_debugging():
+            return method_profile_on
+        else:
+            return method_profile_off
+
+    def __del__(self):
+        self.dump_stats()
+
+    def dump_stats(self):
+        if self._profiler is not None:
+            s = six.BytesIO
+            params = (self.sort_by,) if isinstance(self.sort_by, six.string_types) else self.sort_by
+            ps = pstats.Stats(self._profiler, stream=s).sort_stats(*params)
+            ps.print_stats()
+            if self.file_path is not None:
+                with open(self.file_path, 'w') as f:
+                    f.write(s.getvalue())
+
+
+def trace(method):
+    def method_trace_on(*args, **kwargs):
+        start = time.time()
+        result = method(*args, **kwargs)
+        end = time.time()
+        log('{name!r} time: {time:2.4f}s args: |{args!r}| kwargs: |{kwargs!r}|'.format(
+            name=method.__name__, time=end - start, args=args, kwargs=kwargs), LOGDEBUG)
+        return result
+
+    def method_trace_off(*args, **kwargs):
+        return method(*args, **kwargs)
+
+    if _is_debugging():
+        return method_trace_on
+    else:
+        return method_trace_off
+
+
+def _is_debugging():
+    command = {'jsonrpc': '2.0', 'id': 1, 'method': 'Settings.getSettings',
+               'params': {'filter': {'section': 'system', 'category': 'logging'}}}
+    js_data = execute_jsonrpc(command)
+    for item in js_data.get('result', {}).get('settings', {}):
+        if item['id'] == 'debug.showloginfo':
+            return item['value']
+
+    return False
+
+
+def execute_jsonrpc(command):
+    if not isinstance(command, six.string_types):
+        command = json.dumps(command)
+    response = control.jsonrpc(command)
+    return json.loads(response)

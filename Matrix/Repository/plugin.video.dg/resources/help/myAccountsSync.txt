@@ -1,5 +1,0 @@
-
-If you changed account information in the [B]"My Accounts"[/B] addon outside of Venom you need to
-sync the new account information back to Venom with the [B]"sync(re) with My Accounts"[/B] option.
-If you made changed via the [B]"Open My Accounts Addon"[/B] here in Venom's settings, or Venom's
-UI, then this process is done for you.  A visible notification will alert you of the auto sync process.

@@ -47,7 +47,6 @@ class navigator:
         self.addDirectoryItem('Kids', 'kidsNavigator', 'kids.png', 'DefaultMovies.png')
         self.addDirectoryItem('Docs', 'docsNavigator', 'docs.png', 'DefaultMovies.png')
         self.addDirectoryItem('1-Click Zone', 'xmlsNavigator', '1click.png', 'DefaultTVShows.png')
-        self.addDirectoryItem('Fitness', 'fitnessNavigator', 'fitness.png', 'DefaultTVShows.png')
 
         if not control.setting('lists.widget') == '0':
             self.addDirectoryItem(32003, 'mymovieNavigator', 'mymovies.png', 'DefaultVideoPlaylists.png')

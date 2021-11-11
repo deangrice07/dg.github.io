@@ -1,2 +1,17 @@
+[B][COLOR gold]v13.0.0[/COLOR][/B]
+- Dependency fix[
 
-[B][COLOR red]Update - v1.0.0 - July 19, 2021[/COLOR][/B] Initial release based on the Venom Add-on. All credits go to him.
+B][COLOR gold]v12.0.0[/COLOR][/B]
+- Dependency fix
+
+[B][COLOR gold]v11.0.0[/COLOR][/B]
+- Small fixes
+
+[B][COLOR gold]v10.0.2[/COLOR][/B]
+- Slight name change
+
+[B][COLOR gold]v10.0.1[/COLOR][/B]
+- Dependency correction
+
+[B][COLOR gold]v10.0.0[/COLOR][/B]
+- Rebased code

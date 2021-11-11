@@ -1,91 +1,67 @@
 # -*- coding: utf-8 -*-
-"""
-	Venom Add-on
-"""
 
-try: from sqlite3 import dbapi2 as db
-except: from pysqlite2 import dbapi2 as db
+'''
+    FSM Add-on
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'''
+
+
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
+
 from resources.lib.modules import control
 
 
-def clearViews():
-	try:
-		skin = control.skin
-		control.hide()
-		if not control.yesnoDialog(control.lang(32056), '', ''): return
-		control.makeFile(control.dataPath)
-		dbcon = db.connect(control.viewsFile)
-		dbcur = dbcon.cursor()
-		try:
-			dbcur.execute('''DROP TABLE IF EXISTS views''')
-			dbcur.execute('''VACUUM''')
-			dbcur.execute('''CREATE TABLE IF NOT EXISTS views (skin TEXT, view_type TEXT, view_id TEXT, UNIQUE(skin, view_type));''')
-			dbcur.connection.commit()
-		except:
-			from resources.lib.modules import log_utils
-			log_utils.error()
-		finally:
-			dbcur.close() ; dbcon.close()
-		try:
-			kodiDB = control.transPath('special://home/userdata/Database')
-			kodiViewsDB = control.joinPath(kodiDB, 'ViewModes6.db')
-			dbcon = db.connect(kodiViewsDB)
-			dbcur = dbcon.cursor()
-			dbcur.execute('''DELETE FROM view WHERE path LIKE "plugin://plugin.video.dg/%"''')
-			dbcur.connection.commit()
-		except:
-			from resources.lib.modules import log_utils
-			log_utils.error()
-		finally:
-			dbcur.close() ; dbcon.close()
-		skinName = control.addon(skin).getAddonInfo('name')
-		skinIcon = control.addon(skin).getAddonInfo('icon')
-		control.notification(title=skinName, message=32087, icon=skinIcon)
-	except:
-		from resources.lib.modules import log_utils
-		log_utils.error()
-
 def addView(content):
-	try:
-		skin = control.skin
-		record = (skin, content, str(control.getCurrentViewId()))
-		control.makeFile(control.dataPath)
-		dbcon = db.connect(control.viewsFile)
-		dbcur = dbcon.cursor()
-		dbcur.execute('''CREATE TABLE IF NOT EXISTS views (skin TEXT, view_type TEXT, view_id TEXT, UNIQUE(skin, view_type));''')
-		dbcur.execute('''DELETE FROM views WHERE (skin=? AND view_type=?)''', (record[0], record[1]))
-		dbcur.execute('''INSERT INTO views Values (?, ?, ?)''', record)
-		dbcur.connection.commit()
-		viewName = control.infoLabel('Container.Viewmode')
-		skinName = control.addon(skin).getAddonInfo('name')
-		skinIcon = control.addon(skin).getAddonInfo('icon')
-		control.notification(title=skinName, message=viewName, icon=skinIcon)
-	except:
-		from resources.lib.modules import log_utils
-		log_utils.error()
-	finally:
-		dbcur.close() ; dbcon.close()
+    try:
+        skin = control.skin
+        record = (skin, content, str(control.getCurrentViewId()))
+        control.makeFile(control.dataPath)
+        dbcon = database.connect(control.viewsFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("CREATE TABLE IF NOT EXISTS views (""skin TEXT, ""view_type TEXT, ""view_id TEXT, ""UNIQUE(skin, view_type)"");")
+        dbcur.execute("DELETE FROM views WHERE skin = '%s' AND view_type = '%s'" % (record[0], record[1]))
+        dbcur.execute("INSERT INTO views Values (?, ?, ?)", record)
+        dbcon.commit()
+
+        viewName = control.infoLabel('Container.Viewmode')
+        skinName = control.addon(skin).getAddonInfo('name')
+        skinIcon = control.addon(skin).getAddonInfo('icon')
+
+        control.infoDialog(viewName, heading=skinName, sound=True, icon=skinIcon)
+    except:
+        return
+
 
 def setView(content, viewDict=None):
-	for i in range(0, 200):
-		if control.condVisibility('Container.Content(%s)' % content):
-			try:
-				skin = control.skin
-				record = (skin, content)
-				dbcon = db.connect(control.viewsFile)
-				dbcur = dbcon.cursor()
-				view = dbcur.execute('''SELECT * FROM views WHERE (skin=? AND view_type=?)''', (record[0], record[1])).fetchone()
-				if not view: raise Exception()
-				view = view[2]
-				return control.execute('Container.SetViewMode(%s)' % str(view))
-			except:
-				try:
-					if skin not in viewDict: return
-					else: return control.execute('Container.SetViewMode(%s)' % str(viewDict[skin]))
-				except:
-					from resources.lib.modules import log_utils
-					log_utils.error()
-					return
-			finally:
-				dbcur.close() ; dbcon.close()
-		control.sleep(100)
+    for i in list(range(0, 200)):
+        if control.condVisibility('Container.Content(%s)' % content):
+            try:
+                skin = control.skin
+                record = (skin, content)
+                dbcon = database.connect(control.viewsFile)
+                dbcur = dbcon.cursor()
+                dbcur.execute("SELECT * FROM views WHERE skin = '%s' AND view_type = '%s'" % (record[0], record[1]))
+                view = dbcur.fetchone()
+                view = view[2]
+                if view == None: raise Exception()
+                return control.execute('Container.SetViewMode(%s)' % str(view))
+            except:
+                try: return control.execute('Container.SetViewMode(%s)' % str(viewDict[skin]))
+                except: return
+
+        control.sleep(100)
+
+

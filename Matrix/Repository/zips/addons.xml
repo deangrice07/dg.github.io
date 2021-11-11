@@ -32,7 +32,7 @@
 	</extension>
 </addon>
 
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.21" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.22" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -84,37 +84,32 @@
         </extension>
 </addon>
 
-<addon id="script.module.fenomscrapers" name="FenomScrapers Module" version="1.4.2" provider-name="Mr-Kodi">
-	<requires>
-		<import addon="script.module.requests" />
-		<import addon="script.module.myaccounts" version="1.0.0" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="lib/default.py">
-		<provides>executable</provides>
-	</extension>
-	<extension point="xbmc.service" library="lib/service.py" start="startup" />
-	<extension point="xbmc.python.module" library="lib" /> <!-- Must be placed after xbmc.python.pluginsource, otherwise the addon does not show in the repository. -->
-	<extension point="xbmc.addon.metadata">
-		<reuselanguageinvoker>false</reuselanguageinvoker>
-		<summary lang="en">FenomScrapers Module</summary>
-		<description>Scrape common video host for URL's to be playable in Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum></forum>
-		<website>https://github.com/Mr-Kodi/repository.fenomscrapers</website>
-		<source>https://github.com/Mr-Kodi/repository.fenomscrapers</source>
-		<disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.png</fanart>
-			<screenshot></screenshot>
-		</assets>
-		<news>
-[B][COLOR red]Update - v1.4.1 - May 26, 2021[/COLOR][/B]
-[COLOR yellow]--[/COLOR][I] 7torrents scraper is back and no longer behind Cloudflare, for now.[/I]
-[COLOR yellow]--[/COLOR][I] btdig scraper removed, reCaptcha.[/I]
-		</news>
-	</extension>
+<addon id="script.module.dgscrapers" name="DG Scrapers Module" version="1.0" provider-name="Grizzard">
+    <requires>
+        <!--<import addon="xbmc.python" version="2.20.0" />-->
+        <import addon="script.module.beautifulsoup4" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.six" />
+        <import addon="script.module.kodi-six" />
+        <import addon="script.module.simplejson" />
+    </requires>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.python.pluginsource" library="lib/default.py">
+        <provides>executable</provides>
+        <extension point="xbmc.addon.metadata">
+    </extension>
+            <platform>all</platform>
+            <summary lang="en">DG Scrapers Module</summary>
+            <description>Scrape common video host for URL's to be playable in Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
+            <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+    <news></news>
+    </extension>
 </addon>
 
 <addon id="context.dg" name="DG - Global Context Menu Items" provider-name="dg" version="1.0.1">
@@ -259,75 +254,72 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLOR white]DG[/COLOR]" provider-name="DG" version="1.0.2">
-	<requires>
-		<import addon="xbmc.python" version="3.0.0" />
-		<import addon="context.dg" />
-		<import addon="script.module.myaccounts" />
-		<import addon="script.module.fenomscrapers" />
-		<import addon="script.module.requests" />
-		<import addon="script.module.beautifulsoup4" />
-		<import addon="script.module.metahandler" optional="true" />
-		<import addon="plugin.video.youtube" optional="true" />
-	</requires>
-	<extension library="dg.py" point="xbmc.python.pluginsource">
-		<provides>video</provides>
-	</extension>
-	<extension library="service.py" point="xbmc.service" start="startup" />
-	<extension library="resources/lib/" point="xbmc.python.module" />
-	<extension point="xbmc.addon.metadata">
-		<reuselanguageinvoker>true</reuselanguageinvoker>
-		<summary lang="en">[B][COLOR white]DG[/COLOR][/B] - We do not host any of the contents streamed</summary>
-		<description lang="en">[B][COLOR white]DG[/COLOR][/B][CR] This addon does not form part of the Kodi Media Centre. Please do not seek assistance with this addon from any of the Official Kodi Support Channels.[CR]The author does not host any of the content in this addon and takes no responsibility for content found</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum />
-		<website></website>
-		<source></source>
-		<disclaimer lang="en">The author of this addon does not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<assets>
-			<icon>icon.gif</icon>
-			<fanart>fanart.jpg</fanart>
-			<screenshot>resources/screenshots/screenshot001.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot002.jpg</screenshot>
-			<screenshot>resources/screenshots/screenshot003.jpg</screenshot>
-		</assets>
-		<news>
-		</news>
-	</extension>
+<addon id="script.module.dgresolve" name="DG Resolve" version="1.0" provider-name="Grizzard">
+    <requires>
+        <!-- <import addon="xbmc.python" version="3.0.0" /> -->
+        <import addon="script.module.six" />
+        <import addon="script.module.kodi-six" />
+        <import addon="script.module.certifi" />
+        <import addon="plugin.video.youtube" optional="true" />
+        <import addon="script.module.python.twitch" optional="true" />
+        <import addon="plugin.googledrive" optional="true" />
+    </requires>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.python.pluginsource" library="lib/default.py">
+        <provides>executable</provides>
+        <extension point="xbmc.addon.metadata">
+    </extension>
+        <platform>all</platform>
+        <summary lang="en">created this fork because theres no other way to set resolver default for my own add-ons, all credit to gujal, Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
+        <summary lang="en_GB">created this fork because theres no other way to set resolver default for my own add-ons, all credit to gujal, Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
+        <summary lang="es_ES">Resolver enlaces a videos de sitios populares para poder reproducirlos en XBMC/Kodi.</summary>
+        <summary lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju.</summary>
+        <summary lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi.</summary>
+        <description lang="en">created this fork because theres no other way to set resolver default for my own add-ons, all credit to gujal. Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
+        <description lang="en_GB">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
+        <description lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi, απλοποίηση της ανάπτυξης των προσθέτων που χρησιμοποιούν πολλαπλούς εξυπηρετητές για υλικό βίντεο</description>
+        <description lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju, pojednostavnjuje razvoj priključaka za video dodatke koji zahtjevaju višestruke video izvore.</description>
+        <disclaimer lang="en_GB">This script only resolves video content from legitimate file lockers without prejudice. If this script is being used by 3rd parties to resolve content that you feel infringes upon your Intellectual Property then please take your complaints to the actual website or developer linking to such content and not here. This script in no way searches for any content whatsoever.</disclaimer>
+        <disclaimer lang="el_GR">Το ανωτέρο σενάριο το μόνο που κάνει είναι να επιλύει οπτικοακουστικό περιεχόμενο από νόμιμες πηγές χωρίς προκατάληψη. Εάν το ανωτέρο σενάριο χρησιμοποιηθεί από τρίτους ώστε να επιλύσει περιεχόμενο το οποίο σας προκαλεί αντίδραση ότι παραβιάζει την πνευματική σας ιδιοκτησία παρακαλώ μεταφέρετε τα παραπονά σας στον ιστότοπο τον οποίο βρίσκεται το εν λόγω περιεχόμενο η τον δημιουργό ο οποίος πραγματοποιεί την σύνδεση και όχι εδω. Το σενάριο αυτό ουδεμία περίπτωση πραγματοποιεί αναζήτηση περιεχομένου.</disclaimer>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
 </addon>
 
-<addon id="script.module.myaccounts" version="1.1.1" name="My Accounts" provider-name="Venom, Fen">
-	<requires>
-		<import addon="script.module.requests" version="2.19.1" />
-	</requires>
-	<extension point="xbmc.python.script" library="lib/default.py">
-		<provides>executable</provides>
-	</extension>
-	<extension point="xbmc.service" library="lib/service.py" start="startup" />
-	<extension point="xbmc.python.module" library="lib" /> <!-- Must be placed after xbmc.python.pluginsource, otherwise the addon does not show in the repository. -->
-	<extension point="xbmc.addon.metadata">
-		<reuselanguageinvoker>false</reuselanguageinvoker>
-		<summary lang="en">My Accounts Module</summary>
-		<description>Single placeholder for all your accounts.</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum></forum>
-		<website>https://github.com/Mr-Kodi/repository.myaccounts</website>
-		<source>https://github.com/Mr-Kodi/repository.myaccounts</source>
-		<disclaimer lang="en">The author is not responsible for the use of this addon. [CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.png</fanart>
-			<screenshot></screenshot>
-		</assets>
-		<news>
-[B][COLOR red]Update - v1.1.1 - June 18, 2021[/COLOR][/B]
-[COLOR yellow]--[/COLOR][I] Trakt improvements to account auth for better server error capturing.[/I]
-[COLOR yellow]--[/COLOR][I] Trakt expire duration was not properly saved to user settings.
-    This is now fixed.[/I]
-[COLOR yellow]--[/COLOR][I] Fixed entry point import issue.[/I]
-		</news>
-	</extension>
+<addon id="plugin.video.dg" name="[B][COLORwhite]DG[/COLOR][/B]" provider-name="DG" version="1.0.4">
+    <requires>
+        <!--<import addon="xbmc.python" version="2.20.0" />-->
+        <import addon="script.module.dgresolve" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.beautifulsoup4" />
+        <import addon="script.module.dgscrapers" />
+        <import addon="script.module.six" />
+        <import addon="script.module.simplejson" />
+        <import addon="script.module.metahandler" optional="true" />
+        <import addon="plugin.video.youtube" optional="true" />
+    </requires>
+    <extension library="dg.py" point="xbmc.python.pluginsource">
+        <provides>video executable</provides>
+    </extension>
+    <extension library="service.py" point="xbmc.service" start="startup" />
+    <extension point="xbmc.addon.metadata">
+        <reuselanguageinvoker>false</reuselanguageinvoker>
+        <summary lang="en_GB">DG</summary>
+        <description lang="en_GB">DG</description>
+        <platform>all</platform>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+        <forum />
+        <website></website>
+        <source />
+        <disclaimer lang="en_GB">The author of this add-on does not host any of the content which is found and has no affiliation with any of the content providers. This add-on simply searches websites for content. Use at your own risk!</disclaimer>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+        <news>
+        </news>
+    </extension>
 </addon>
 </addons>
