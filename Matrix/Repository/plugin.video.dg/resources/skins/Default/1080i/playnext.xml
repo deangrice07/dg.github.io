@@ -42,7 +42,7 @@
 						<width>250</width>
 						<height>141</height>
 						<texture colordiffuse="FF12A0C7">common/white.png</texture>
-						<visible>String.IsEmpty(Window().Property(venom.thumb)) + String.IsEmpty(Window().Property(venom.landscape)) + String.IsEmpty(Window().Property(venom.fanart))</visible>
+						<visible>String.IsEmpty(Window().Property(dg.thumb)) + String.IsEmpty(Window().Property(dg.landscape)) + String.IsEmpty(Window().Property(dg.fanart))</visible>
 					</control>
 					<control type="textbox">
 						<top>10</top>
@@ -55,27 +55,27 @@
 						<align>center</align>
 						<aligny>center</aligny>
 						<label>$INFO[Window().Property(tvshowtitle)]</label>
-						<visible>String.IsEmpty(Window().Property(venom.thumb)) + String.IsEmpty(Window().Property(venom.landscape)) + String.IsEmpty(Window().Property(venom.fanart))</visible>
+						<visible>String.IsEmpty(Window().Property(dg.thumb)) + String.IsEmpty(Window().Property(dg.landscape)) + String.IsEmpty(Window().Property(dg.fanart))</visible>
 					</control>
 					<control type="image">
 						<width>250</width>
 						<height>141</height>
-						<texture>$INFO[Window().Property(venom.landscape)]</texture>
+						<texture>$INFO[Window().Property(dg.landscape)]</texture>
 						<aspectratio>scale</aspectratio>
 					</control>
 					<control type="image">
 						<width>250</width>
 						<height>141</height>
-						<texture>$INFO[Window().Property(venom.fanart)]</texture>
+						<texture>$INFO[Window().Property(dg.fanart)]</texture>
 						<aspectratio>scale</aspectratio>
-						<visible>String.IsEmpty(Window().Property(venom.landscape))</visible>
+						<visible>String.IsEmpty(Window().Property(dg.landscape))</visible>
 					</control>
 					<control type="image">
 						<width>250</width>
 						<height>141</height>
-						<texture>$INFO[Window().Property(venom.thumb)]</texture>
+						<texture>$INFO[Window().Property(dg.thumb)]</texture>
 						<aspectratio>scale</aspectratio>
-						<visible>String.IsEmpty(Window().Property(venom.landscape)) + String.IsEmpty(Window().Property(venom.fanart))</visible>
+						<visible>String.IsEmpty(Window().Property(dg.landscape)) + String.IsEmpty(Window().Property(dg.fanart))</visible>
 					</control>
 					<control type="progress" id="3014">
 						<width>250</width>
@@ -103,7 +103,7 @@
 						<font>font25_title</font>
 						<textcolor>eeffffff</textcolor>
 						<shadowcolor>ff000000</shadowcolor>
-						<label>$ADDON[plugin.video.venom 32174]</label>
+						<label>$ADDON[plugin.video.dg 32174]</label>
 						<visible>!Integer.IsGreater(Player.TimeRemaining,59)</visible>
 					</control>
 					<control type="label">
@@ -114,7 +114,7 @@
 						<font>font25_title</font>
 						<textcolor>eeffffff</textcolor>
 						<shadowcolor>ff000000</shadowcolor>
-						<label>$ADDON[plugin.video.venom 32168]</label>
+						<label>$ADDON[plugin.video.dg 32168]</label>
 						<visible>Integer.IsGreater(Player.TimeRemaining,59)</visible>
 					</control>
 					<!-- Labels line2, Episode Details -->
@@ -130,8 +130,8 @@
 							<font>font12</font>
 							<textcolor>eeffffff</textcolor>
 							<shadowcolor>ff000000</shadowcolor>
-							<label>$INFO[Window().Property(venom.tvshowtitle),, - ]$INFO[Window().Property(venom.season),S,]$INFO[Window().Property(venom.episode),E, - ]$INFO[Window().Property(venom.title)]   </label>
-							<visible>!String.IsEmpty(Window().Property(venom.title))</visible>
+							<label>$INFO[Window().Property(dg.tvshowtitle),, - ]$INFO[Window().Property(dg.season),S,]$INFO[Window().Property(dg.episode),E, - ]$INFO[Window().Property(dg.title)]   </label>
+							<visible>!String.IsEmpty(Window().Property(dg.title))</visible>
 						</control>
 						<control type="label">
 							<width>auto</width>
@@ -140,8 +140,8 @@
 							<font>font12</font>
 							<textcolor>eeffffff</textcolor>
 							<shadowcolor>ff000000</shadowcolor>
-							<label>$INFO[Window().Property(venom.premiered),(,)   ]</label>
-							<visible>!String.IsEmpty(Window().Property(venom.premiered))</visible>
+							<label>$INFO[Window().Property(dg.premiered),(,)   ]</label>
+							<visible>!String.IsEmpty(Window().Property(dg.premiered))</visible>
 						</control>
 						<control type="image">
 							<description>rating icon</description>
@@ -150,17 +150,17 @@
 							<aspect>keep</aspect>
 							<texture colordiffuse="FFFF4081">common/star.png</texture>
 							<animation effect="slide" end="0,8" time="0" condition="true">Conditional</animation>
-							<visible>!String.IsEmpty(Window().Property(venom.rating))</visible>
+							<visible>!String.IsEmpty(Window().Property(dg.rating))</visible>
 						</control>
 						<control type="label">
 							<width>auto</width>
 							<height>35</height>
 							<aligny>center</aligny>
-							<label>$INFO[Window().Property(venom.rating), ,   ]</label>
+							<label>$INFO[Window().Property(dg.rating), ,   ]</label>
 							<font>font12</font>
 							<textcolor>eeffffff</textcolor>
 							<shadowcolor>ff000000</shadowcolor>
-							<visible>!String.IsEmpty(Window().Property(venom.rating))</visible>
+							<visible>!String.IsEmpty(Window().Property(dg.rating))</visible>
 						</control>
 					</control>
 
@@ -174,7 +174,7 @@
 						<usecontrolcoords>true</usecontrolcoords>
 						<control type="button" id="3011">
 							<description>Play Now button</description>
-							<label>    $ADDON[plugin.video.venom 32169]</label>
+							<label>    $ADDON[plugin.video.dg 32169]</label>
 							<shadowcolor>ff000000</shadowcolor>
 							<height>75</height>
 							<width>200</width>
@@ -193,7 +193,7 @@
 						</control>
 						<control type="button" id="3012">
 							<description>Stop playback button</description>
-							<label>    $ADDON[plugin.video.venom 32170]</label>
+							<label>    $ADDON[plugin.video.dg 32170]</label>
 							<shadowcolor>ff000000</shadowcolor>
 							<height>75</height>
 							<width min="150">auto</width>
@@ -212,7 +212,7 @@
 						</control>
 						<control type="button" id="3013">
 							<description>Close button</description>
-							<label>$ADDON[plugin.video.venom 33486]</label>
+							<label>$ADDON[plugin.video.dg 33486]</label>
 							<shadowcolor>ff000000</shadowcolor>
 							<height>75</height>
 							<width min="160">auto</width>
@@ -273,8 +273,8 @@
 							<align>right</align>
 							<textcolor>ddffffff</textcolor>
 							<shadowcolor>ff000000</shadowcolor>
-							<label>$ADDON[plugin.video.venom 32171] $INFO[Window().Property(venom.endtime)]</label>
-							<visible>!String.IsEmpty(Window.Property(venom.endtime))</visible>
+							<label>$ADDON[plugin.video.dg 32171] $INFO[Window().Property(dg.endtime)]</label>
+							<visible>!String.IsEmpty(Window.Property(dg.endtime))</visible>
 						</control>
 						<control type="label">
 							<right>0</right>

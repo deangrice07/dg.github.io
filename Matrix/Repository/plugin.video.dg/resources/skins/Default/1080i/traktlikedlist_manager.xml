@@ -38,9 +38,9 @@
 				<width>120</width>
 				<height>70</height>
 				<textoffsetx>0</textoffsetx>
-				<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+				<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 				<texturenofocus>common/button5.png</texturenofocus>
-				<label>$ADDON[plugin.video.venom 32170]</label>
+				<label>$ADDON[plugin.video.dg 32170]</label>
 				<font>font12</font>
 				<align>center</align>
 				<textcolor>white</textcolor>
@@ -63,7 +63,7 @@
 				<align>left</align>
 				<aligny>bottom</aligny>
 				<autoscroll>false</autoscroll>
-				<label>[COLOR $INFO[Window().Property(venom.highlight.color)]]Remove[/COLOR]</label>
+				<label>[COLOR $INFO[Window().Property(dg.highlight.color)]]Remove[/COLOR]</label>
 			</control>
 			<control type="textbox">
 				<left>160</left>
@@ -75,7 +75,7 @@
 				<align>left</align>
 				<aligny>bottom</aligny>
 				<autoscroll>false</autoscroll>
-				<label>[COLOR $INFO[Window().Property(venom.highlight.color)]]$INFO[Window().Property(venom.total_results)] Total Items[/COLOR]</label>
+				<label>[COLOR $INFO[Window().Property(dg.highlight.color)]]$INFO[Window().Property(dg.total_results)] Total Items[/COLOR]</label>
 			</control>
 
 			<control type="list" id="2050">
@@ -110,7 +110,7 @@
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
 						<texture>common/selected2.png</texture>
-						<visible>!String.isEmpty(ListItem.Property(venom.isSelected))</visible>
+						<visible>!String.isEmpty(ListItem.Property(dg.isSelected))</visible>
 					</control>
 					<control type="label">
 						<description>Line1 list_name-list_owner</description>
@@ -122,7 +122,7 @@
 						<textcolor>white</textcolor>
 						<align>left</align>
 						<aligny>bottom</aligny>
-						<label>[COLOR $INFO[Window().Property(venom.highlight.color)]][B]$INFO[ListItem.Property(venom.count)]  $INFO[ListItem.Property(venom.list_name)]  -  $INFO[ListItem.Property(venom.list_owner)][/B][/COLOR]</label>
+						<label>[COLOR $INFO[Window().Property(dg.highlight.color)]][B]$INFO[ListItem.Property(dg.count)]  $INFO[ListItem.Property(dg.list_name)]  -  $INFO[ListItem.Property(dg.list_owner)][/B][/COLOR]</label>
 					</control>
 					<control type="label">
 						<description>Line2 trakt_id-item_count-likes</description>
@@ -134,7 +134,7 @@
 						<textcolor>white</textcolor>
 						<align>left</align>
 						<aligny>top</aligny>
-						<label>Trakt id :  $INFO[ListItem.Property(venom.trakt_id)]   [COLOR $INFO[Window().Property(venom.highlight.color)]]|[/COLOR]   Item Count :  $INFO[ListItem.Property(venom.item_count)]   [COLOR $INFO[Window().Property(venom.highlight.color)]]|[/COLOR]   Total Likes :  $INFO[ListItem.Property(venom.likes)]</label>
+						<label>Trakt id :  $INFO[ListItem.Property(dg.trakt_id)]   [COLOR $INFO[Window().Property(dg.highlight.color)]]|[/COLOR]   Item Count :  $INFO[ListItem.Property(dg.item_count)]   [COLOR $INFO[Window().Property(dg.highlight.color)]]|[/COLOR]   Total Likes :  $INFO[ListItem.Property(dg.likes)]</label>
 					</control>
 				</itemlayout>
 				<focusedlayout height="100" width="1325">
@@ -143,7 +143,7 @@
 						<top>0</top>
 						<width>1350</width>
 						<height>100</height>
-						<texture colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/white.png</texture>
+						<texture colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/white.png</texture>
 					</control>
 					<control type="image">
 						<left>0</left>
@@ -170,7 +170,7 @@
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
 						<texture>common/selected2.png</texture>
-						<visible>!String.isEmpty(ListItem.Property(venom.isSelected))</visible>
+						<visible>!String.isEmpty(ListItem.Property(dg.isSelected))</visible>
 					</control>
 					<control type="label">
 						<description>Line1 list_name-list_owner</description>
@@ -182,7 +182,7 @@
 						<textcolor>black</textcolor>
 						<align>left</align>
 						<aligny>bottom</aligny>
-						<label>[B]$INFO[ListItem.Property(venom.count)]  $INFO[ListItem.Property(venom.list_name)]  -  $INFO[ListItem.Property(venom.list_owner)][/B]</label>
+						<label>[B]$INFO[ListItem.Property(dg.count)]  $INFO[ListItem.Property(dg.list_name)]  -  $INFO[ListItem.Property(dg.list_owner)][/B]</label>
 					</control>
 					<control type="label">
 						<description>Line2 trakt_id-item_count-likes</description>
@@ -194,7 +194,7 @@
 						<textcolor>black</textcolor>
 						<align>left</align>
 						<aligny>top</aligny>
-						<label>[B]Trakt id :  $INFO[ListItem.Property(venom.trakt_id)]   [COLOR black]|[/COLOR]   Item Count :  $INFO[ListItem.Property(venom.item_count)]   [COLOR black]|[/COLOR]   Total Likes :  $INFO[ListItem.Property(venom.likes)][/B]</label>
+						<label>[B]Trakt id :  $INFO[ListItem.Property(dg.trakt_id)]   [COLOR black]|[/COLOR]   Item Count :  $INFO[ListItem.Property(dg.item_count)]   [COLOR black]|[/COLOR]   Total Likes :  $INFO[ListItem.Property(dg.likes)][/B]</label>
 					</control>
 				</focusedlayout>
 			</control>
@@ -209,9 +209,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32179]</label>
+						<label>$ADDON[plugin.video.dg 32179]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -226,9 +226,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32180]</label>
+						<label>$ADDON[plugin.video.dg 32180]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -243,9 +243,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32190]</label>
+						<label>$ADDON[plugin.video.dg 32190]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -261,8 +261,8 @@
 						<top>0</top>
 						<width>600</width>
 						<height>175%</height>
-						<texture background="true">$INFO[Container(2050).ListItem.Property(venom.clearlogo)]</texture>
-						<!-- <visible>!String.IsEmpty(Container(2050).ListItem.Property(venom.clearlogo))</visible> -->
+						<texture background="true">$INFO[Container(2050).ListItem.Property(dg.clearlogo)]</texture>
+						<!-- <visible>!String.IsEmpty(Container(2050).ListItem.Property(dg.clearlogo))</visible> -->
 					</control>
 					<!-- <control type="textbox"> -->
 						<!-- <description>Title when no clearlogo</description> -->
@@ -271,11 +271,11 @@
 						<!-- <width>900</width> -->
 						<!-- <height>400</height> -->
 						<!-- <font>font100caps_title</font> -->
-						<!-- <textcolor>$INFO[Window().Property(venom.highlight.color)]</textcolor> -->
+						<!-- <textcolor>$INFO[Window().Property(dg.highlight.color)]</textcolor> -->
 						<!-- <align>center</align> -->
 						<!-- <aligny>bottom</aligny> -->
-						<!-- <label>$INFO[Window().Property(venom.title)]</label> -->
-						<!-- <visible>String.IsEmpty(Window().Property(venom.clearlogo))</visible> -->
+						<!-- <label>$INFO[Window().Property(dg.title)]</label> -->
+						<!-- <visible>String.IsEmpty(Window().Property(dg.clearlogo))</visible> -->
 					<!-- </control> -->
 			</control>
 
@@ -290,7 +290,7 @@
 						<align>left</align>
 						<aligny>center</aligny>
 						<aspectratio aligny="top">keep</aspectratio>
-						<texture background="true">$INFO[Window().Property(venom.trakt_icon)]</texture>
+						<texture background="true">$INFO[Window().Property(dg.trakt_icon)]</texture>
 					</control>
 			</control>
 		</control>

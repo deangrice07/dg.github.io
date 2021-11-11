@@ -39,9 +39,9 @@
 				<width>120</width>
 				<height>70</height>
 				<textoffsetx>0</textoffsetx>
-				<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+				<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 				<texturenofocus>common/button5.png</texturenofocus>
-				<label>$ADDON[plugin.video.venom 32170]</label>
+				<label>$ADDON[plugin.video.dg 32170]</label>
 				<font>font12</font>
 				<align>center</align>
 				<textcolor>white</textcolor>
@@ -65,7 +65,7 @@
 				<align>left</align>
 				<aligny>bottom</aligny>
 				<autoscroll>false</autoscroll>
-				<label>[COLOR $INFO[Window().Property(venom.highlight.color)]]Remove[/COLOR]</label>
+				<label>[COLOR $INFO[Window().Property(dg.highlight.color)]]Remove[/COLOR]</label>
 			</control>
 			<control type="textbox">
 				<visible>!Player.HasVideo</visible>
@@ -78,7 +78,7 @@
 				<align>left</align>
 				<aligny>bottom</aligny>
 				<autoscroll>false</autoscroll>
-				<label>[COLOR $INFO[Window().Property(venom.highlight.color)]]$INFO[Window().Property(venom.total_results)] Total Progress Items[/COLOR]</label>
+				<label>[COLOR $INFO[Window().Property(dg.highlight.color)]]$INFO[Window().Property(dg.total_results)] Total Progress Items[/COLOR]</label>
 			</control>
 
 			<control type="list" id="2050">
@@ -113,7 +113,7 @@
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
 						<texture>common/selected2.png</texture>
-						<visible>!String.isEmpty(ListItem.Property(venom.isSelected))</visible>
+						<visible>!String.isEmpty(ListItem.Property(dg.isSelected))</visible>
 					</control>
 					<control type="label">
 						<description>Line1 movie title</description>
@@ -125,7 +125,7 @@
 						<textcolor>white</textcolor>
 						<align>left</align>
 						<aligny>bottom</aligny>
-						<label>[COLOR $INFO[Window().Property(venom.highlight.color)]][B]$INFO[ListItem.Property(venom.count)]  $INFO[ListItem.Property(venom.title)]    [I]$INFO[ListItem.Property(venom.progress)][/I][/B][/COLOR]</label>
+						<label>[COLOR $INFO[Window().Property(dg.highlight.color)]][B]$INFO[ListItem.Property(dg.count)]  $INFO[ListItem.Property(dg.title)]    [I]$INFO[ListItem.Property(dg.progress)][/I][/B][/COLOR]</label>
 					</control>
 					<control type="label">
 						<description>Line2 year-genre-mpaa</description>
@@ -137,7 +137,7 @@
 						<textcolor>white</textcolor>
 						<align>left</align>
 						<aligny>top</aligny>
-						<label>$INFO[ListItem.Property(venom.year)]   [COLOR $INFO[Window().Property(venom.highlight.color)]]|[/COLOR]   $INFO[ListItem.Property(venom.genre)]   [COLOR $INFO[Window().Property(venom.highlight.color)]]|[/COLOR]   $INFO[ListItem.Property(venom.mpaa)]</label>
+						<label>$INFO[ListItem.Property(dg.year)]   [COLOR $INFO[Window().Property(dg.highlight.color)]]|[/COLOR]   $INFO[ListItem.Property(dg.genre)]   [COLOR $INFO[Window().Property(dg.highlight.color)]]|[/COLOR]   $INFO[ListItem.Property(dg.mpaa)]</label>
 					</control>
 				</itemlayout>
 				<focusedlayout height="100" width="1325">
@@ -146,7 +146,7 @@
 						<top>0</top>
 						<width>1350</width>
 						<height>100</height>
-						<texture colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/white.png</texture>
+						<texture colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/white.png</texture>
 					</control>
 					<control type="image">
 						<left>0</left>
@@ -173,7 +173,7 @@
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
 						<texture>common/selected2.png</texture>
-						<visible>!String.isEmpty(ListItem.Property(venom.isSelected))</visible>
+						<visible>!String.isEmpty(ListItem.Property(dg.isSelected))</visible>
 					</control>
 					<control type="label">
 						<description>Line1 movie title</description>
@@ -185,7 +185,7 @@
 						<textcolor>black</textcolor>
 						<align>left</align>
 						<aligny>bottom</aligny>
-						<label>[B]$INFO[ListItem.Property(venom.count)]  $INFO[ListItem.Property(venom.title)]    [I]$INFO[ListItem.Property(venom.progress)][/I][/B]</label>
+						<label>[B]$INFO[ListItem.Property(dg.count)]  $INFO[ListItem.Property(dg.title)]    [I]$INFO[ListItem.Property(dg.progress)][/I][/B]</label>
 					</control>
 					<control type="label">
 						<description>Line2 year-genre-mpaa</description>
@@ -197,7 +197,7 @@
 						<textcolor>black</textcolor>
 						<align>left</align>
 						<aligny>top</aligny>
-						<label>[B]$INFO[ListItem.Property(venom.year)]   [COLOR black]|[/COLOR]   $INFO[ListItem.Property(venom.genre)]   [COLOR black]|[/COLOR]   $INFO[ListItem.Property(venom.mpaa)][/B]</label>
+						<label>[B]$INFO[ListItem.Property(dg.year)]   [COLOR black]|[/COLOR]   $INFO[ListItem.Property(dg.genre)]   [COLOR black]|[/COLOR]   $INFO[ListItem.Property(dg.mpaa)][/B]</label>
 					</control>
 				</focusedlayout>
 			</control>
@@ -214,9 +214,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32179]</label>
+						<label>$ADDON[plugin.video.dg 32179]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -231,9 +231,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32180]</label>
+						<label>$ADDON[plugin.video.dg 32180]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -248,9 +248,9 @@
 						<width>120</width>
 						<height>70</height>
 						<textoffsetx>0</textoffsetx>
-						<texturefocus colordiffuse="$INFO[Window().Property(venom.highlight.color)]">common/button5.png</texturefocus>
+						<texturefocus colordiffuse="$INFO[Window().Property(dg.highlight.color)]">common/button5.png</texturefocus>
 						<texturenofocus>common/button5.png</texturenofocus>
-						<label>$ADDON[plugin.video.venom 32190]</label>
+						<label>$ADDON[plugin.video.dg 32190]</label>
 						<font>font12</font>
 						<align>center</align>
 						<textcolor>white</textcolor>
@@ -266,8 +266,8 @@
 					<top>0</top>
 					<width>600</width>
 					<height>175%</height>
-					<texture background="true">$INFO[Container(2050).ListItem.Property(venom.clearlogo)]</texture>
-					<!-- <visible>!String.IsEmpty(Container(2050).ListItem.Property(venom.clearlogo))</visible> -->
+					<texture background="true">$INFO[Container(2050).ListItem.Property(dg.clearlogo)]</texture>
+					<!-- <visible>!String.IsEmpty(Container(2050).ListItem.Property(dg.clearlogo))</visible> -->
 				</control>
 				<!-- <control type="textbox"> -->
 					<!-- <description>Title when no clearlogo</description> -->
@@ -276,11 +276,11 @@
 					<!-- <width>900</width> -->
 					<!-- <height>400</height> -->
 					<!-- <font>font100caps_title</font> -->
-					<!-- <textcolor>$INFO[Window().Property(venom.highlight.color)]</textcolor> -->
+					<!-- <textcolor>$INFO[Window().Property(dg.highlight.color)]</textcolor> -->
 					<!-- <align>center</align> -->
 					<!-- <aligny>bottom</aligny> -->
-					<!-- <label>$INFO[Window().Property(venom.title)]</label> -->
-					<!-- <visible>String.IsEmpty(Window().Property(venom.clearlogo))</visible> -->
+					<!-- <label>$INFO[Window().Property(dg.title)]</label> -->
+					<!-- <visible>String.IsEmpty(Window().Property(dg.clearlogo))</visible> -->
 				<!-- </control> -->
 			</control>
 
@@ -296,8 +296,8 @@
 						<align>left</align>
 						<aligny>center</aligny>
 						<aspectratio aligny="top">keep</aspectratio>
-						<texture background="true">$INFO[Container(2050).ListItem.Property(venom.poster)]</texture>
-						<!-- <visible>!String.isEmpty(Container(2050).ListItem.Property(venom.poster))</visible> -->
+						<texture background="true">$INFO[Container(2050).ListItem.Property(dg.poster)]</texture>
+						<!-- <visible>!String.isEmpty(Container(2050).ListItem.Property(dg.poster))</visible> -->
 					</control>
 					<control type="textbox">
 						<width>486</width>
@@ -306,7 +306,7 @@
 						<align>justify</align>
 						<aligny>top</aligny>
 						<wrapmultiline>true</wrapmultiline>
-						<label>$INFO[Container(2050).ListItem.Property(venom.plot)]</label>
+						<label>$INFO[Container(2050).ListItem.Property(dg.plot)]</label>
 						<textcolor>white</textcolor>
 						<autoscroll time="2000" delay="1500" repeat="5000"></autoscroll>
 					</control>
@@ -327,8 +327,8 @@
 						<align>left</align>
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
-						<texture>$INFO[Container(2050).ListItem.Property(venom.studio),resource://resource.images.studios.coloured/,.png]</texture>
-						<visible>System.HasAddon(resource.images.studios.coloured) + System.AddonIsEnabled(resource.images.studios.coloured) + Skin.HasSetting(coloredflags) + !String.IsEmpty(Container(2050).ListItem.Property(venom.studio))</visible>
+						<texture>$INFO[Container(2050).ListItem.Property(dg.studio),resource://resource.images.studios.coloured/,.png]</texture>
+						<visible>System.HasAddon(resource.images.studios.coloured) + System.AddonIsEnabled(resource.images.studios.coloured) + Skin.HasSetting(coloredflags) + !String.IsEmpty(Container(2050).ListItem.Property(dg.studio))</visible>
 					</control>
 					<control type="image">
 						<description>White Studio icons</description>
@@ -337,8 +337,8 @@
 						<align>left</align>
 						<aligny>center</aligny>
 						<aspectratio>keep</aspectratio>
-						<texture>$INFO[Container(2050).ListItem.Property(venom.studio),resource://resource.images.studios.white/,.png]</texture>
-						<visible>System.HasAddon(resource.images.studios.white) + System.AddonIsEnabled(resource.images.studios.white) + !Skin.HasSetting(coloredflags) + !String.IsEmpty(Container(2050).ListItem.Property(venom.studio))</visible>
+						<texture>$INFO[Container(2050).ListItem.Property(dg.studio),resource://resource.images.studios.white/,.png]</texture>
+						<visible>System.HasAddon(resource.images.studios.white) + System.AddonIsEnabled(resource.images.studios.white) + !Skin.HasSetting(coloredflags) + !String.IsEmpty(Container(2050).ListItem.Property(dg.studio))</visible>
 					</control>
 					<control type="image">
 						<description>rating icon</description>
@@ -347,18 +347,18 @@
 						<aspect>keep</aspect>
 						<texture colordiffuse="FFFF4081">common/star.png</texture>
 						<animation effect="slide" end="20,35" time="0" condition="true">Conditional</animation>
-						<visible>!String.IsEmpty(Container(2050).ListItem.Property(venom.rating))</visible>
+						<visible>!String.IsEmpty(Container(2050).ListItem.Property(dg.rating))</visible>
 					</control>
 					<control type="label">
 						<width>auto</width>
 						<height>35</height>
 						<aligny>center</aligny>
-						<label>$INFO[Container(2050).ListItem.Property(venom.rating), ,   ]</label>
+						<label>$INFO[Container(2050).ListItem.Property(dg.rating), ,   ]</label>
 						<animation effect="slide" end="0,30" time="0" condition="true">Conditional</animation>
 						<font>font12</font>
 						<textcolor>eeffffff</textcolor>
 						<shadowcolor>ff000000</shadowcolor>
-						<visible>!String.IsEmpty(Container(2050).ListItem.Property(venom.rating))</visible>
+						<visible>!String.IsEmpty(Container(2050).ListItem.Property(dg.rating))</visible>
 					</control>
 			</control>
 
