@@ -289,7 +289,7 @@
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="context.dg" />
 		<import addon="script.module.myaccounts" />
-		<import addon="script.module.fenomscrapers" version="1.5.8" />
+		<import addon="script.module.fenomscrapers" version="1.5.9" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.beautifulsoup4" />
 		<import addon="script.module.metahandler" optional="true" />
