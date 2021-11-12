@@ -20,7 +20,7 @@ def clean_settings():
 		content += '\n</settings>'
 		return content
 
-	for addon_id in ('plugin.video.venom', 'script.module.fenomscrapers'):
+	for addon_id in ('plugin.video.dg', 'script.module.fenomscrapers'):
 		try:
 			removed_settings = []
 			active_settings = []
