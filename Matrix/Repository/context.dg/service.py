@@ -45,7 +45,7 @@ class AddonCheckUpdate:
 		try:
 			import re
 			import requests
-			repo_xml = requests.get('https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/context.dg/addon.xml')
+			repo_xml = requests.get('https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips/context.dg/addon.xml')
 			if not repo_xml.status_code == 200:
 				xbmc.log('[ context.dg ]  Could not connect to remote repo XML: status code = %s' % repo_xml.status_code, LOGNOTICE)
 				return
