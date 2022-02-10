@@ -1,4 +1,88 @@
 
+[B][COLOR red]Update - v2.1.2 - Jan. 10, 2022[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] TORRENTPARADISE site is back up so the scraper has returned.[/I]
+
+
+[B][COLOR red]Update - v2.1.1 - Jan. 08, 2022[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] rlsbb's "old3.proxybb.com" appears to no longer be functional so this has been disabled.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed EasyNews title check issue when meta title contains the character [B]"/"[/B], ex. [B]"Mother/Android"[/B].  This was missed in previous update[/I]
+[COLOR yellow]--[/COLOR][I] BT4G scraper has been removed.  Site is now behind Cloudflare V2 challenge and no solve available.[/I]
+[COLOR yellow]--[/COLOR][I] EXT.TO scraper has returned with a new proxy in use.[/I]
+
+
+[B][COLOR red]Update - v2.1.0 - Dec. 25, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] A number of regex optimizations, and usage reduction to scrapers.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed title check issue when meta title contains the character [B]"/"[/B], ex. [B]"Mother/Android"[/B].[/I]
+[COLOR yellow]--[/COLOR][I] Fixed yourbittorrent scraper domain change.[/I]
+[COLOR yellow]--[/COLOR][I] Improvements to torrentio scraper for foreign audio only track sources being returned.[/I]
+[COLOR yellow]--[/COLOR][I] Added missing Dutch language translation strings.[/I]
+
+
+[B][COLOR red]Update - v2.0.9 - Dec. 16, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fixed torrentz2 query change, again.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed performance issue with torrentdownloads index.[/I]
+[COLOR yellow]--[/COLOR][I] Added, updated, missing .po strings.[/I]
+[COLOR yellow]--[/COLOR][I] Moved "foreign_audio" settings check outside "for" loop in all scrapers.[/I]
+
+
+[B][COLOR red]Update - v2.0.8 - Dec. 15, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] The Undesirables list has been re-written and converted to utilize an sqlite3 database.  There is also now an additional setting option to allowing clearing of custom entries added to the database.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed torrentz2 url and search query change.[/I]
+[COLOR yellow]--[/COLOR][I] Few scraper performance tweaks.[/I]
+[COLOR yellow]--[/COLOR][I] Moved "undesirables" settings check outside "for" loop in all scrapers.[/I]
+
+
+[B][COLOR red]Update - v2.0.7 - Dec. 10, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fix for [[B]"undesirables.choice"[/B] setting becoming corrupt.  Note this will reset the list back to default.[/I]
+[COLOR yellow]--[/COLOR][I] Few small tweaks to scraper timeout values.[/I]
+[COLOR yellow]--[/COLOR][I] Added [B]"good.people"[/B] to list of undesirables.[/I]
+
+
+[B][COLOR red]Update - v2.0.6 - Dec. 09, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fixed issue where "Hindi" only audio tracks were not respecting setting to remove.[/I]
+[COLOR yellow]--[/COLOR][I] Expanded the list of abreviated language codes for better detection of single foreign audio tracks for removal.[/I]
+[COLOR yellow]--[/COLOR][I] Added [B]"casstudio.tv"[/B] to list of undesirables due to group uploads of incomplete pack files.[/I]
+[COLOR yellow]--[/COLOR][I] Added [B]"pa.web.dl"[/B] to list of undesirables due to group uploads of single Russian only language tracks.[/I]
+
+
+[B][COLOR red]Update - v2.0.5 - Nov. 28, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Removed SOLIDTORRENTS scraper due to it being a mirror of the new BITSEARCH scraper.[/I]
+[COLOR yellow]--[/COLOR][I] Removed TORRENTPARADISE scraper due to dead search query now javascript.[/I]
+[COLOR yellow]--[/COLOR][I] Added new TORRENTIO scraper.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed bogus logging error with TORRENTAPI.[/I]
+
+
+[B][COLOR red]Update - v2.0.4 - Nov. 23, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] SOLIDTORRENTS and BITCQ have been set to disabled by default due to considerable timeout issues of late.[/I]
+[COLOR yellow]--[/COLOR][I] Removed sleep state from TORRENTAPI since is still fails to solve rnadom query error responses.[/I]
+[COLOR yellow]--[/COLOR][I] Added timeout value to cfscrape calls.[/I]
+[COLOR yellow]--[/COLOR][I] Added rounding of file size to 2 decimal places in return dict.[/I]
+
+
+[B][COLOR red]Update - v2.0.3 - Nov. 19, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fixed typo in SCENERLS hoster causing scrape failures in addons.[/I]
+[COLOR yellow]--[/COLOR][I] Added BITSEARCH torrent scraper.[/I]
+
+
+[B][COLOR red]Update - v2.0.2 - Nov. 17, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Changed import method and status checking across all scrapers.[/I]
+
+
+[B][COLOR red]Update - v2.0.1 - Nov. 15, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Added [B]"audiobook"[/B] to UNDESIRABLES.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed issue where newly added UNDESIRABLE items were not be added to users custom UNDESIRABLES filter.[/I]
+
+
+[B][COLOR red]Update - v2.0.0 - Nov. 14, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] First official py3 only version for Kodi Matrix.[/I]
+[COLOR yellow]--[/COLOR][I] cfscrape updated to v1.2.59.[/I]
+
+
+[B][COLOR red]Update - v1.6.0 - Nov. 12, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fixed aliases handling.[/I]
+[COLOR yellow]--[/COLOR][I] Removed EXTRATORRENT scraper. Proxy is now cloudflare v2 challenge and dead.[/I]
+
+
 [B][COLOR red]Update - v1.5.9 - Nov. 09, 2021[/COLOR][/B]
 [COLOR yellow]--[/COLOR][I] Fixed release_title issue for TV Show "4400".[/I]
 

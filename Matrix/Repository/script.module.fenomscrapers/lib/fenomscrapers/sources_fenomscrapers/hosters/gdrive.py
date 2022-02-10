@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-# (updated 11-04-2021)
+# (updated 12-14-2021)
 '''
 	Fenomscrapers Project
 '''
 
 import re
 import requests
-try: #Py2
-	from urllib import unquote, quote_plus
-except ImportError: #Py3
-	from urllib.parse import unquote, quote_plus
+from urllib.parse import unquote, quote_plus
 from fenomscrapers.modules.control import setting as getSetting
 from fenomscrapers.modules import source_utils
 
@@ -24,19 +21,21 @@ def getResults(searchTerm):
 	return results
 
 class source:
+	priority = 1
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 1
 		self.language = ['en']
 		self.title_chk = (getSetting('gdrive.title.chk') == 'true')
-		self.movie = True
-		self.tvshow = True
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			aliases = data['aliases']
 			episode_title = data['title'] if 'tvshowtitle' in data else None
 			year = data['year']
@@ -57,7 +56,7 @@ class source:
 				name = unquote(link.rsplit("/")[-1])
 				if self.title_chk:
 					if not source_utils.check_title(title, aliases, name, hdlr, year): continue
-				name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title) # needs a decent rewrite to get this
+				name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
 
 				quality, info = source_utils.get_release_quality(name_info, link)
 				try:
@@ -69,11 +68,8 @@ class source:
 					dsize = 0
 				info = ' | '.join(info)
 
-				sources.append({'provider': 'gdrive', 'source': 'direct', 'name': name, 'name_info': name_info,
-											'quality': quality, 'language': 'en', 'url': link, 'info': info,  'direct': True, 'debridonly': False, 'size': dsize})
+				append({'provider': 'gdrive', 'source': 'direct', 'name': name, 'name_info': name_info,
+								'quality': quality, 'language': 'en', 'url': link, 'info': info,  'direct': True, 'debridonly': False, 'size': dsize})
 			except:
 				source_utils.scraper_error('GDRIVE')
 		return sources
-
-	def resolve(self, url):
-		return url

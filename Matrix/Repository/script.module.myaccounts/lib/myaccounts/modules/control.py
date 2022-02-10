@@ -9,9 +9,6 @@ import xbmcaddon
 import xbmcgui
 import xbmcvfs
 
-def getKodiVersion():
-	return int(xbmc.getInfoLabel("System.BuildVersion")[:2])
-
 addon = xbmcaddon.Addon
 addonObject = addon('script.module.myaccounts')
 addonInfo = addonObject.getAddonInfo
@@ -19,7 +16,7 @@ getLangString = xbmcaddon.Addon().getLocalizedString
 condVisibility = xbmc.getCondVisibility
 execute = xbmc.executebuiltin
 monitor = xbmc.Monitor()
-transPath = xbmc.translatePath if getKodiVersion() < 19 else xbmcvfs.translatePath
+transPath = xbmcvfs.translatePath
 joinPath = os.path.join
 
 dialog = xbmcgui.Dialog()
@@ -32,6 +29,9 @@ makeFile = xbmcvfs.mkdir
 
 progress_line = '%s[CR]%s[CR]%s'
 
+def getKodiVersion():
+	return int(xbmc.getInfoLabel("System.BuildVersion")[:2])
+
 def setting(id):
 	return xbmcaddon.Addon('script.module.myaccounts').getSetting(id)
 
@@ -40,26 +40,12 @@ def setSetting(id, value):
 
 def lang(language_id):
 	text = getLangString(language_id)
-	if getKodiVersion() < 19:
-		text = text.encode('utf-8', 'replace')
 	return text
 
 def sleep(time):  # Modified `sleep` command that honors a user exit request
 	while time > 0 and not monitor.abortRequested():
 		xbmc.sleep(min(100, time))
 		time = time - 100
-
-def check_version_numbers(current, new): # Compares version numbers and return True if new version is newer
-	current = current.split('.')
-	new = new.split('.')
-	step = 0
-	for i in current:
-		if int(new[step]) > int(i):
-			return True
-		if int(i) == int(new[step]):
-			step += 1
-			continue
-	return False
 
 def addonId():
 	return addonInfo('id')
@@ -86,20 +72,14 @@ def openSettings(query=None, id=addonInfo('id')):
 		execute('Addon.OpenSettings(%s)' % id)
 		if query is None: return
 		c, f = query.split('.')
-		if getKodiVersion() >= 18:
-			execute('SetFocus(%i)' % (int(c) - 100))
-			execute('SetFocus(%i)' % (int(f) - 80))
-		else:
-			execute('SetFocus(%i)' % (int(c) + 100))
-			execute('SetFocus(%i)' % (int(f) + 200))
+		execute('SetFocus(%i)' % (int(c) - 100))
+		execute('SetFocus(%i)' % (int(f) - 80))
 	except:
 		return
 
 def idle():
-	if getKodiVersion() >= 18 and condVisibility('Window.IsActive(busydialognocancel)'):
+	if condVisibility('Window.IsActive(busydialognocancel)'):
 		return execute('Dialog.Close(busydialognocancel)')
-	else:
-		return execute('Dialog.Close(busydialog)')
 
 def notification(title=None, message=None, icon=None, time=3000, sound=False):
 	if title == 'default' or title is None: title = addonName()

@@ -6,7 +6,6 @@
 
 import re
 from collections import namedtuple
-from fenomscrapers.modules import py_tools
 
 DomMatch = namedtuple('DOMMatch', ['attrs', 'content'])
 re_type = type(re.compile(r''))
@@ -15,7 +14,7 @@ re_type = type(re.compile(r''))
 # def parseDOM(html, name='', attrs=None, ret=False):
 	# try:
 		# if attrs:
-			# attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in py_tools.iteritems(attrs))
+			# attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in iter(attrs.items()))
 		# results = parse_dom(html, name, attrs, ret)
 		# if ret: results = [result.attrs[ret.lower()] for result in results]
 		# else: results = [result.content for result in results]
@@ -61,9 +60,9 @@ def __get_dom_elements(item, name, attrs):
 		else:
 			last_list = None
 
-			for key, value in py_tools.iteritems(attrs):
+			for key, value in iter(attrs.items()):
 				value_is_regex = isinstance(value, re_type)
-				value_is_str = isinstance(value, py_tools.string_types)
+				value_is_str = isinstance(value, str)
 				pattern = r'''(<{tag}[^>]*\s{key}=(?P<delim>['"])(.*?)(?P=delim)[^>]*>)'''.format(tag=name, key=key)
 				re_list = re.findall(pattern, item, re.M | re.S | re.I)
 				if value_is_regex:
@@ -111,17 +110,12 @@ def parse_dom(html, name='', attrs=None, req=False, exclude_comments=False):
 	try:
 		if attrs is None: attrs = {}
 		name = name.strip()
-		if isinstance(html, py_tools.text_type) or isinstance(html, DomMatch):
-			html = [html]
-		elif isinstance(html, py_tools.binary_type) and py_tools.isPY2:
-			try: html = [html.decode("utf-8")]  # Replace with chardet thingy
-			except:
-				try: html = [html.decode("utf-8", "replace")]
-				except: html = [html]
+		if isinstance(html, str) or isinstance(html, DomMatch): html = [html]
 		elif not isinstance(html, list): return ''
 
 		if not name: return ''
 		if not isinstance(attrs, dict): return ''
+
 		if req:
 			if not isinstance(req, list): req = [req]
 			req = set([key.lower() for key in req])

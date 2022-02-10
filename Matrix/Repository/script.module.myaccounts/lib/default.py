@@ -5,10 +5,7 @@
 '''
 
 import sys
-try:
-	from urlparse import parse_qsl
-except ImportError: #Py3
-	from urllib.parse import parse_qsl
+from urllib.parse import parse_qsl
 from myaccounts.modules import control
 
 control.set_active_monitor()

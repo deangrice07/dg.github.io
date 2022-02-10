@@ -20,6 +20,9 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgctxt "#32072"
+msgid "A new verison of Fenomscrapers is available from the repository. Please consider updating to v%s"
+msgstr "Een nieuwe versie van Fenomscrapers is beschikbaar in de repository. Overweeg om bij te werken naar v%s"
 
 msgctxt "#32073"
 msgid "[B]TRAKT[/B] : Authorize"

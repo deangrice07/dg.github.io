@@ -5,41 +5,32 @@
 
 from datetime import datetime
 import inspect
-from myaccounts.modules.control import getKodiVersion, transPath, setting as getSetting, lang, joinPath, existsPath
-from myaccounts.modules import py_tools
+from myaccounts.modules.control import transPath, setting as getSetting, lang, joinPath, existsPath
 
-if py_tools.isPY2:
-	LOGDEBUG = 0
-	LOGINFO = 1
-	LOGNOTICE = 2 # (2 in 18, deprecated in 19 use LOGINFO(1))
-	LOGWARNING = 3 # (3 in 18, 2 in 19)
-	LOGERROR = 4 # (4 in 18, 3 in 19)
-	LOGSEVERE = 5 # (5 in 18, deprecated in 19 use LOGFATAL(4))
-	LOGFATAL = 6 # (6 in 18, 4 in 19)
-	LOGNONE = 7 # (7 in 18, 5 in 19)
-	debug_list = ['DEBUG', 'INFO', 'NOTICE', 'WARNING', 'ERROR', 'SEVERE', 'FATAL']
-	from io import open #py2 open() does not support encoding param
-else:
-	LOGDEBUG = 0
-	LOGINFO = 1
-	LOGNOTICE = 1
-	LOGWARNING = 2
-	LOGERROR = 3
-	LOGSEVERE = 4
-	LOGFATAL = 4
-	LOGNONE = 5
-	debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
+LOGDEBUG = 0
+LOGINFO = 1
+LOGWARNING = 2
+LOGERROR = 3
+LOGFATAL = 4
+LOGNONE = 5 # not used
 
+debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
 DEBUGPREFIX = '[COLOR red][ My Accounts %s ][/COLOR]'
 LOGPATH = transPath('special://logpath/')
 
 
-def log(msg, caller=None, level=LOGNOTICE):
+def log(msg, caller=None, level=LOGINFO):
 	debug_enabled = getSetting('debug.enabled') == 'true'
 	if not debug_enabled: return
 	debug_location = getSetting('debug.location')
 
+	if isinstance(msg, int): msg = lang(msg) # for strings.po translations
 	try:
+		if not msg.isprintable(): # ex. "\n" is not a printable character so returns False on those sort of cases
+			msg = '%s (NORMALIZED by log_utils.log())' % normalize(msg)
+		if isinstance(msg, bytes):
+			msg = '%s (ENCODED by log_utils.log())' % msg.decode('utf-8', errors='replace')
+
 		if caller is not None and level != LOGERROR:
 			func = inspect.currentframe().f_back.f_code
 			line_number = inspect.currentframe().f_back.f_lineno
@@ -47,14 +38,6 @@ def log(msg, caller=None, level=LOGNOTICE):
 			msg = 'From func name: %s Line # :%s\n                       msg : %s' % (caller, line_number, msg)
 		elif caller is not None and level == LOGERROR:
 			msg = 'From func name: %s.%s() Line # :%s\n                       msg : %s' % (caller[0], caller[1], caller[2], msg)
-
-		try: msg = msg.encode('ascii', errors='ignore').decode('ascii', errors='ignore')
-		except: pass
-
-		try:
-			if isinstance(msg, py_tools.text_type):
-				msg = '%s (ENCODED)' % (py_tools.ensure_str(msg, errors='replace'))
-		except: pass
 
 		if debug_location == '1':
 			log_file = joinPath(LOGPATH, 'myaccounts.log')
@@ -76,8 +59,10 @@ def log(msg, caller=None, level=LOGNOTICE):
 			import xbmc
 			xbmc.log('%s: %s' % (DEBUGPREFIX % debug_list[level], msg, level))
 	except Exception as e:
+		import traceback
+		traceback.print_exc()
 		import xbmc
-		xbmc.log('log.log() Logging Failure: %s' % (e), LOGERROR)
+		xbmc.log('[ script.module.myaccounts ] log_utils.log() Logging Failure: %s' % (e), LOGERROR)
 
 def error(message=None, exception=True):
 	try:
@@ -90,8 +75,7 @@ def error(message=None, exception=True):
 			name = traceback.tb_frame.f_code.co_name
 			linenumber = traceback.tb_lineno
 			errortype = type.__name__
-			if py_tools.isPY3: errormessage = value
-			else: errormessage = value.message or value # sometimes value.message is null while value is not
+			errormessage = value or value.message
 			if str(errormessage) == '': return
 			if message: message += ' -> '
 			else: message = ''
@@ -99,8 +83,8 @@ def error(message=None, exception=True):
 			caller = [filename, name, linenumber]
 		else:
 			caller = None
-		log(msg=message, caller=caller, level=LOGERROR)
 		del(type, value, traceback) # So we don't leave our local labels/objects dangling
+		log(msg=message, caller=caller, level=LOGERROR)
 	except Exception as e:
 		import xbmc
 		xbmc.log('[ script.module.myaccounts ] log_utils.error() Logging Failure: %s' % (e), LOGERROR)
@@ -203,3 +187,12 @@ def copy2clip(txt):
 			p.communicate(input=txt)
 		except:
 			error('Linux: Failure to copy to clipboard')
+
+def normalize(msg):
+	try:
+		import unicodedata
+		msg = ''.join(c for c in unicodedata.normalize('NFKD', msg) if unicodedata.category(c) != 'Mn')
+		return str(msg)
+	except:
+		error()
+		return msg

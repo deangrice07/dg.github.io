@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-# modified by Venom for Fenomscrapers (updated 11-05-2021)
+# modified by Venom for Fenomscrapers (updated 12-16-2021)
 """
 	Fenomscrapers Project
 """
 
 import re
-try: #Py2
-	from urllib import unquote_plus
-except ImportError: #Py3
-	from urllib.parse import unquote_plus
+from urllib.parse import unquote_plus
 from fenomscrapers.modules import client
 from fenomscrapers.modules import cleantitle
 from fenomscrapers.modules import source_utils
@@ -16,23 +13,23 @@ from fenomscrapers.modules import workers
 
 
 class source:
+	priority = 3
+	pack_capable = True
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 3
 		self.language = ['en']
-		self.domains = ['magnetdl.com', 'torrentquest.com'] # torrentquest is mirror of magnetdl
-		self.base_link = 'https://www.magnetdl.com'
+		self.base_link = "https://www.magnetdl.com" # torrentquest is mirror of magnetdl
 		self.search_link = '/{0}/{1}'
 		self.min_seeders = 0
-		self.pack_capable = True
-		self.movie = True
-		self.tvshow = True
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			if title == 'The Fuck-It List' or title == 'The F**k-It List': title = 'The Fxxk-It List'
 			if title == 'The End of the Fucking World' or title == 'The End of the F***ing World': title = 'The End of the Fxxxing World'
 			aliases = data['aliases']
@@ -44,57 +41,57 @@ class source:
 			query = re.sub(r'[^A-Za-z0-9\s\.-]+', '', query)
 			url = '%s%s' % (self.base_link, self.search_link.format(query[0].lower(), cleantitle.geturl(query)))
 			# log_utils.log('url = %s' % url)
-
-			r = client.request(url, timeout='5')
-			if not r or '<tbody' not in r: return sources
-			r = client.parseDOM(r, 'tbody')[0]
-			results = client.parseDOM(r, 'tr')
-			posts = [i for i in results if 'magnet:' in i]
+			results = client.request(url, timeout=5)
+			if not results or '<tbody' not in results: return sources
+			rows = client.parseDOM(results, 'tr')
+			undesirables = source_utils.get_undesirables()
+			check_foreign_audio = source_utils.check_foreign_audio()
 		except:
 			source_utils.scraper_error('MAGNETDL')
 			return sources
 		try:
-			next_page = [i for i in results if 'Next Page' in i]
+			next_page = [i for i in rows if 'Next Page' in i]
 			if not next_page: raise Exception()
-			page = client.parseDOM(next_page, 'a', ret='href', attrs={'title': 'Downloads | Page 2'})[0]
-			r2 = client.request(self.base_link+page)
-			results2 = client.parseDOM(r2, 'tr')
-			posts += [i for i in results2 if 'magnet:' in i]
+			results2 = client.request(url + '/2/')
+			if not results2 or '<tbody' not in results2: raise Exception()
+			rows += client.parseDOM(results2, 'tr')
 		except: pass
 
-		for post in posts:
+		for row in rows:
 			try:
-				post = post.replace('&nbsp;', ' ')
-				links = client.parseDOM(post, 'a', ret='href')
-				magnet = [i.replace('&amp;', '&') for i in links if 'magnet:' in i][0]
-				url = unquote_plus(magnet).split('&tr')[0].replace(' ', '.')
-				if url in str(sources): continue
+				if 'magnet:' not in row: continue
+				columns = re.findall(r'<td.*?>(.+?)</td>', row, re.DOTALL)
+
+				url = unquote_plus(columns[0]).replace('&amp;', '&')
+				url = re.search(r'(magnet:.+?)&tr=', url, re.I).group(1).replace(' ', '.')
 				hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
-				name = client.parseDOM(post, 'a', ret='title')[1].replace('&ndash;', '-')
-				name = source_utils.clean_name(unquote_plus(name))
+				name = url.split('&dn=')[1].replace('&ndash;', '-')
+				name = source_utils.clean_name(name)
 
 				if not source_utils.check_title(title, aliases, name, hdlr, year): continue
 				name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
-				if source_utils.remove_lang(name_info): continue
+				if source_utils.remove_lang(name_info, check_foreign_audio): continue
+				if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
 
-				elif not episode_title: #filter for eps returned in movie query (rare but movie and show exists for Run in 2020)
+				elif not episode_title: #filter out eps returned in movie query (rare but movie and show exists for Run in 2020)
 					ep_strings = [r'[.-]s\d{2}e\d{2}([.-]?)', r'[.-]s\d{2}([.-]?)', r'[.-]season[.-]?\d{1,2}[.-]?']
-					if any(re.search(item, name.lower()) for item in ep_strings): continue
+					name_lower = name.lower()
+					if any(re.search(item, name_lower) for item in ep_strings): continue
+
 				try:
-					seeders = int(client.parseDOM(post, 'td', attrs={'class': 's'})[0].replace(',', ''))
+					seeders = int(columns[6].replace(',', ''))
 					if self.min_seeders > seeders: continue
 				except: seeders = 0
 
 				quality, info = source_utils.get_release_quality(name_info, url)
 				try:
-					size = re.search(r'((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', post).group(0)
-					dsize, isize = source_utils._size(size)
+					dsize, isize = source_utils._size(columns[5])
 					info.insert(0, isize)
 				except: dsize = 0
 				info = ' | '.join(info)
 
-				sources.append({'provider': 'magnetdl', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
-											'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+				append({'provider': 'magnetdl', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
+								'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('MAGNETDL')
 		return sources
@@ -102,18 +99,21 @@ class source:
 	def sources_packs(self, data, hostDict, search_series=False, total_seasons=None, bypass_filter=False):
 		self.sources = []
 		if not data: return self.sources
+		self.sources_append = self.sources.append
 		try:
 			self.search_series = search_series
 			self.total_seasons = total_seasons
 			self.bypass_filter = bypass_filter
 
-			self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			if self.title == 'The End of the Fucking World' or self.title == 'The End of the F***ing World': self.title = 'The End of the Fxxxing World'
 			self.aliases = data['aliases']
 			self.imdb = data['imdb']
 			self.year = data['year']
 			self.season_x = data['season']
 			self.season_xx = self.season_x.zfill(2)
+			self.undesirables = source_utils.get_undesirables()
+			self.check_foreign_audio = source_utils.check_foreign_audio()
 
 			query = re.sub(r'[^A-Za-z0-9\s\.-]+', '', self.title)
 			queries = [
@@ -124,9 +124,10 @@ class source:
 						self.search_link.format(query[0].lower(), cleantitle.geturl(query + ' Season')),
 						self.search_link.format(query[0].lower(), cleantitle.geturl(query + ' Complete'))]
 			threads = []
+			append = threads.append
 			for url in queries:
 				link = '%s%s' % (self.base_link, url)
-				threads.append(workers.Thread(self.get_sources_packs, link))
+				append(workers.Thread(self.get_sources_packs, link))
 			[i.start() for i in threads]
 			[i.join() for i in threads]
 			return self.sources
@@ -135,61 +136,56 @@ class source:
 			return self.sources
 
 	def get_sources_packs(self, url):
-		# log_utils.log('url = %s' % str(url))
 		try:
-			r = client.request(url, timeout='5')
-			if not r or '<tbody' not in r: return
-			r = client.parseDOM(r, 'tbody')[0]
-			results = client.parseDOM(r, 'tr')
-			posts = [i for i in results if 'magnet:' in i]
+			results = client.request(url, timeout=5)
+			if not results or '<tbody' not in results: return
+			rows = client.parseDOM(results, 'tr')
 		except:
 			source_utils.scraper_error('MAGNETDL')
 			return
 		try:
-			next_page = [i for i in results if 'Next Page' in i]
+			next_page = [i for i in rows if 'Next Page' in i]
 			if not next_page: raise Exception()
-			page = client.parseDOM(next_page, 'a', ret='href', attrs={'title': 'Downloads | Page 2'})[0]
-			r2 = client.request(self.base_link+page)
-			results2 = client.parseDOM(r2, 'tr')
-			posts += [i for i in results2 if 'magnet:' in i]
+			results2 = client.request(url + '/2/')
+			if not results2 or '<tbody' not in results2: raise Exception()
+			rows += client.parseDOM(results2, 'tr')
 		except: pass
 
-		for post in posts:
+		for row in rows:
 			try:
-				post = post.replace('&nbsp;', ' ')
-				links = client.parseDOM(post, 'a', ret='href')
-				magnet = [i.replace('&amp;', '&') for i in links if 'magnet:' in i][0]
-				url = unquote_plus(magnet).split('&tr')[0].replace(' ', '.')
-				if url in str(self.sources): continue
+				if 'magnet:' not in row: continue
+				columns = re.findall(r'<td.*?>(.+?)</td>', row, re.DOTALL)
+
+				url = unquote_plus(columns[0]).replace('&amp;', '&')
+				url = re.search(r'(magnet:.+?)&tr=', url, re.I).group(1).replace(' ', '.')
 				hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
-				name = client.parseDOM(post, 'a', ret='title')[1].replace('&ndash;', '-')
-				name = source_utils.clean_name(unquote_plus(name))
+				name = url.split('&dn=')[1].replace('&ndash;', '-')
+				name = source_utils.clean_name(name)
 
 				if not self.search_series:
 					if not self.bypass_filter:
-						if not source_utils.filter_season_pack(self.title, self.aliases, self.year, self.season_x, name):
-							continue
+						if not source_utils.filter_season_pack(self.title, self.aliases, self.year, self.season_x, name): continue
 					package = 'season'
 
 				elif self.search_series:
 					if not self.bypass_filter:
 						valid, last_season = source_utils.filter_show_pack(self.title, self.aliases, self.imdb, self.year, self.season_x, name, self.total_seasons)
 						if not valid: continue
-					else:
-						last_season = self.total_seasons
+					else: last_season = self.total_seasons
 					package = 'show'
 
 				name_info = source_utils.info_from_name(name, self.title, self.year, season=self.season_x, pack=package)
-				if source_utils.remove_lang(name_info): continue
+				if source_utils.remove_lang(name_info, self.check_foreign_audio): continue
+				if self.undesirables and source_utils.remove_undesirables(name_info, self.undesirables): continue
+
 				try:
-					seeders = int(client.parseDOM(post, 'td', attrs={'class': 's'})[0].replace(',', ''))
+					seeders = int(columns[6].replace(',', ''))
 					if self.min_seeders > seeders: continue
 				except: seeders = 0
 
 				quality, info = source_utils.get_release_quality(name_info, url)
 				try:
-					size = re.search(r'((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', post).group(0)
-					dsize, isize = source_utils._size(size)
+					dsize, isize = source_utils._size(columns[5])
 					info.insert(0, isize)
 				except: dsize = 0
 				info = ' | '.join(info)
@@ -197,9 +193,6 @@ class source:
 				item = {'provider': 'magnetdl', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info, 'quality': quality,
 							'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize, 'package': package}
 				if self.search_series: item.update({'last_season': last_season})
-				self.sources.append(item)
+				self.sources_append(item)
 			except:
 				source_utils.scraper_error('MAGNETDL')
-
-	def resolve(self, url):
-		return url
