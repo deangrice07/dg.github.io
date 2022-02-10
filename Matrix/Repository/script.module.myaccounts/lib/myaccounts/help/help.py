@@ -5,6 +5,10 @@
 
 from myaccounts.modules.control import addonPath, addonVersion, joinPath
 from myaccounts.windows.textviewer import TextViewerXML
+from myaccounts.modules import py_tools
+
+if py_tools.isPY2:
+	from io import open #py2 open() does not support encoding param
 
 def get(file):
 	myaccounts_path = addonPath()

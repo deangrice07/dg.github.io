@@ -5,7 +5,10 @@
 
 from fenomscrapers.modules.control import addonPath, addonVersion, joinPath
 from fenomscrapers.windows.textviewer import TextViewerXML
+from fenomscrapers.modules import py_tools
 
+if py_tools.isPY2:
+	from io import open #py2 open() does not support encoding param
 
 def get(file):
 	fenomscrapers_path = addonPath()

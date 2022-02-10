@@ -4,15 +4,18 @@
 """
 
 import re
+from fenomscrapers.modules import py_tools
 
 
 def get(title):
 	try:
 		if not title: return
-		title = re.sub(r'(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title) # fix html codes with missing semicolon between groups
+		try: title = py_tools.ensure_str(title)
+		except: pass
 		title = re.sub(r'&#(\d+);', '', title).lower()
-		title = title.replace('&quot;', '\"').replace('&amp;', '&').replace('&nbsp;', '')
-		title = re.sub(r'([<\[({].*?[})\]>])|([^\w0-9])', '', title)
+		title = re.sub(r'(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+		title = title.replace('&quot;', '\"').replace('&amp;', '&')
+		title = re.sub(r'\n|([\[({].+?[})\]])|([:;–\-"\',!_.?~$@])|\s', '', title) # stop trying to remove alpha characters "vs" or "v", they're part of a title
 		return title
 	except:
 		from fenomscrapers.modules import log_utils
@@ -22,10 +25,12 @@ def get(title):
 def get_simple(title):
 	try:
 		if not title: return
-		title = re.sub(r'(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title).lower()# fix html codes with missing semicolon between groups
+		try: title = py_tools.ensure_str(title)
+		except: pass
+		title = re.sub(r'(\d{4})', '', title).lower()
 		title = re.sub(r'&#(\d+);', '', title)
-		title = re.sub(r'(\d{4})', '', title)
-		title = title.replace('&quot;', '\"').replace('&amp;', '&').replace('&nbsp;', '')
+		title = re.sub(r'(&#[0-9]+)([^;^0-9]+)', '\\1;\\2', title)
+		title = title.replace('&quot;', '\"').replace('&amp;', '&')
 		title = re.sub(r'\n|[()[\]{}]|[:;–\-",\'!_.?~$@]|\s', '', title) # stop trying to remove alpha characters "vs" or "v", they're part of a title
 		title = re.sub(r'<.*?>', '', title) # removes tags
 		return title
@@ -37,6 +42,8 @@ def get_simple(title):
 def geturl(title):
 	if not title: return
 	try:
+		try: title = py_tools.ensure_str(title)
+		except: pass
 		title = title.lower().rstrip()
 		try: title = title.translate(None, ':*?"\'\.<>|&!,')
 		except:
@@ -53,7 +60,7 @@ def geturl(title):
 def normalize(title):
 	try:
 		import unicodedata
-		title = ''.join(c for c in unicodedata.normalize('NFKD', title) if unicodedata.category(c) != 'Mn')
+		title = ''.join(c for c in unicodedata.normalize('NFKD', py_tools.ensure_text(py_tools.ensure_str(title))) if unicodedata.category(c) != 'Mn')
 		return str(title)
 	except:
 		from fenomscrapers.modules import log_utils

@@ -11,6 +11,9 @@
 		<setting label="32009" type="action" action="RunPlugin(plugin://script.module.fenomscrapers/?action=ShowChangelog)" />
 		<setting id="checkAddonUpdates" type="bool" label="32010" default="false" />
 		<setting label="32001" type="action" action="RunPlugin(plugin://script.module.fenomscrapers/?action=ShowHelp&amp;name=updates)" />
+		<!-- Hidden -->
+        <setting id="undesirables.choice" type="text" default="" visible="false" />
+        <!-- <setting id="folder5.tv_shows_directory" type="text" default="None" visible="false" /> -->
 	</category>
 
 	<!-- Debrid Sources-1 -->
@@ -25,6 +28,7 @@
 		<setting id="provider.rapidmoviez" type="bool" label="32082" default="false" />
 		<setting id="provider.rlsbb" type="bool" label="32075" default="false" />
 		<setting id="provider.scenerls" type="bool" label="32076" default="false" />
+
 		<setting label="32044" type="lsep" />
 		<setting id="provider.easynews" type="bool" label="32065" default="false" />
 		<setting id="easynews.title.chk" type="bool" label="32083" default="true" visible="eq(-1,true)" />
@@ -35,6 +39,7 @@
 		<setting id="gdrive.title.chk" type="bool" label="32083" default="true" visible="eq(-1,true)" />
 		<setting label="32001" type="action" action="RunPlugin(plugin://script.module.fenomscrapers/?action=ShowHelp&amp;name=gdrive_titleCheck)" visible="eq(-2,true)" />
 		<setting id="provider.ororo" type="bool" label="32074" default="false" />
+
 		<setting label="32045" type="lsep" />
 		<setting id="provider.library" type="bool" label="32070" default="false" />
 	</category>
@@ -49,22 +54,20 @@
 		<setting label="32002" type="action" action="RunPlugin(plugin://script.module.fenomscrapers/?action=ShowHelp&amp;name=packScrapers)" />
 		<setting type="sep" />
 		<setting id="filter.undesirables" type="bool" label="32016" default="true" />
-        <setting id="undesirables.settings1" type="action" label="32046" default="" action="RunPlugin(plugin://script.module.fenomscrapers/?action=undesirablesSelect)" subsetting="true" enable="eq(-1,true)" />
-        <setting id="undesirables.settings2" type="action" label="32048" default="" action="RunPlugin(plugin://script.module.fenomscrapers/?action=undesirablesInput)" subsetting="true" enable="eq(-2,true)" />
-        <setting id="undesirables.settings3" type="action" label="32049" default="" action="RunPlugin(plugin://script.module.fenomscrapers/?action=undesirablesUserRemove)" subsetting="true" enable="eq(-3,true)" />
-        <setting id="undesirables.settings4" type="action" label="32140" default="" action="RunPlugin(plugin://script.module.fenomscrapers/?action=undesirablesUserRemoveAll)" subsetting="true" enable="eq(-4,true)" />
+        <setting id="undesirables.browse" type="action" label="32046" default="32047" action="RunPlugin(plugin://script.module.fenomscrapers/?action=undesirablesSelect)" subsetting="true" enable="eq(-1,true)" />
+        <setting id="undesirables.user_defined" label="32048" type="text" default="" subsetting="true" enable="eq(-2,true)" />
 		<setting label="32003" type="action" action="RunPlugin(plugin://script.module.fenomscrapers/?action=ShowHelp&amp;name=undesirablesFilter)" />
 		<setting id="filter.foreign.single.audio" type="bool" label="32017" default="true" />
 		<setting type="sep" />
 		<setting id="provider.1337x" type="bool" label="32101" default="false" />
 		<setting id="provider.7torrents" type="bool" label="32102" default="false" />
-		<setting id="provider.bitcq" type="bool" label="32137" default="false" />
-		<setting id="provider.bitlord" type="bool" label="32103" default="false" />
-		<setting id="provider.bitsearch" type="bool" label="32138" default="false" />
+		<setting id="provider.bitcq" type="bool" label="32137" default="true" />
+		<setting id="provider.bitlord" type="bool" label="32103" default="true" />
+		<setting id="provider.bt4g" type="bool" label="32132" default="false" />
 		<setting id="provider.btscene" type="bool" label="32104" default="false" />
 		<setting id="provider.ettv" type="bool" label="32105" default="false" />
+		<setting id="provider.extratorrent" type="bool" label="32106" default="false" />
 		<setting id="provider.eztv" type="bool" label="32107" default="true" />
-		<setting id="provider.ext" type="bool" label="32131" default="true" />
 		<setting id="provider.glodls" type="bool" label="32108" default="true" />
 		<setting id="provider.idope" type="bool" label="32109" default="false" />
 		<setting id="provider.isohunt2" type="bool" label="32110" default="false" />
@@ -73,13 +76,13 @@
 		<setting id="provider.magnetdl" type="bool" label="32114" default="true" />
 		<setting id="provider.nyaa" type="bool" label="32116" default="false" />
 		<setting id="provider.piratebay" type="bool" label="32117" default="true" />
+		<setting id="provider.solidtorrents" type="bool" label="32119" default="true" />
 		<setting id="provider.topnow" type="bool" label="32120" default="false" />
 		<setting id="provider.torlock" type="bool" label="32121" default="false" />
 		<setting id="provider.torrentapi" type="bool" label="32122" default="true" />
 		<setting id="provider.torrentdownload" type="bool" label="32123" default="true" />
 		<setting id="provider.torrentfunk" type="bool" label="32124" default="false" />
 		<setting id="provider.torrentgalaxy" type="bool" label="32125" default="false" />
-		<setting id="provider.torrentio" type="bool" label="32139" default="true" />
 		<setting id="provider.torrentparadise" type="bool" label="32135" default="true" />
 		<setting id="provider.torrentproject2" type="bool" label="32136" default="false" />
 		<setting id="provider.torrentz2" type="bool" label="32130" default="false" />

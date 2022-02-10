@@ -1,34 +1,37 @@
 # -*- coding: utf-8 -*-
-# modified by Venom for Fenomscrapers (updated 12-16-2021)
+# modified by Venom for Fenomscrapers (updated 11-05-2021)
 """
 	Fenomscrapers Project
 """
 
 import re
-from urllib.parse import quote_plus, unquote_plus
+try: #Py2
+	from urllib import quote_plus, unquote
+except ImportError: #Py3
+	from urllib.parse import quote_plus, unquote
 from fenomscrapers.modules import client
 from fenomscrapers.modules import source_utils
 from fenomscrapers.modules import workers
 
 
 class source:
-	priority = 6
-	pack_capable = False
-	hasMovies = False
-	hasEpisodes = True
 	def __init__(self):
+		self.priority = 6
 		self.language = ['en']
-		self.base_link = "https://eztv.re"
-		# eztv has api but it sucks. Site query returns more results vs. api (eztv db seems to be missing the imdb_id for many so they are dropped)
+		self.domains = ['eztv.re', 'eztv.tf', 'eztv.yt']
+		self.base_link = 'https://eztv.re'
+		# eztv has api but it sucks. Site query returns more results vs. api (eztv db seems to be missing the imdb_id for many so they are dopped)
 		self.search_link = '/search/%s'
 		self.min_seeders = 0
+		self.pack_capable = False
+		self.movie = False
+		self.tvshow = True
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
-		append = sources.append
 		try:
-			title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
+			title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU')
 			aliases = data['aliases']
 			episode_title = data['title']
 			year = data['year']
@@ -40,35 +43,38 @@ class source:
 			url = self.search_link % (quote_plus(query).replace('+', '-'))
 			url = '%s%s' % (self.base_link, url)
 			# log_utils.log('url = %s' % url)
-			results = client.request(url, timeout=5)
-			if not results: return sources
-			rows = client.parseDOM(results, 'tr')
+			html = client.request(url, timeout='5')
+			try:
+				tables = client.parseDOM(html, 'table', attrs={'class': 'forum_header_border'})
+				if not tables: return sources
+				for table in tables:
+					if 'magnet:' not in table: continue
+					else: break
+			except:
+				source_utils.scraper_error('EZTV')
+				return sources
+			rows = re.findall(r'<tr\s*name\s*=\s*["\']hover["\']\s*class\s*=\s*["\']forum_header_border["\']>(.+?)</tr>', table, re.DOTALL | re.I)
 			if not rows: return sources
-			undesirables = source_utils.get_undesirables()
-			check_foreign_audio = source_utils.check_foreign_audio()
 		except:
 			source_utils.scraper_error('EZTV')
 			return sources
-
 		for row in rows:
 			try:
 				try:
 					columns = re.findall(r'<td\s.+?>(.*?)</td>', row, re.DOTALL)
-					link = re.findall(r'href\s*=\s*["\'](magnet:[^"\']+)["\'].*?title\s*=\s*["\'](.+?)["\']', columns[2], re.DOTALL | re.I)[0]
+					link = re.findall(r'href\s*=\s*["\'](magnet:[^"\']+)["\'].*title\s*=\s*["\'](.+?)["\']', columns[2], re.DOTALL | re.I)[0]
 				except: continue
-
-				url = unquote_plus(client.replaceHTMLCodes(link[0])).split('&tr')[0]
+				url = str(client.replaceHTMLCodes(link[0]).split('&tr')[0])
+				try: url = unquote(url).decode('utf8')
+				except: pass
 				hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
-				name = ''.join(link[1].partition('[eztv]')[:2])
+				name = link[1].split(' [eztv]')[0].split(' Torrent:')[0]
 				name = source_utils.clean_name(name)
-
 				if not source_utils.check_title(title, aliases, name, hdlr, year): continue
 				name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
-				if source_utils.remove_lang(name_info, check_foreign_audio): continue
-				if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
-
+				if source_utils.remove_lang(name_info): continue
 				try:
-					seeders = int(re.search(r'>(\d+|\d+\,\d+)<', columns[5]).group(1).replace(',', ''))
+					seeders = int(re.search(r'<font\s*color\s*=\s*["\'].+?["\']>(\d+|\d+\,\d+)</font>', columns[5], re.I).group(1).replace(',', ''))
 					if self.min_seeders > seeders: continue
 				except: seeders = 0
 
@@ -79,8 +85,11 @@ class source:
 				except: dsize = 0
 				info = ' | '.join(info)
 
-				append({'provider': 'eztv', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
-							'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+				sources.append({'provider': 'eztv', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
+											'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('EZTV')
 		return sources
+
+	def resolve(self, url):
+		return url
