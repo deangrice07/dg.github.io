@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from json import dumps as jsdumps
@@ -151,7 +151,7 @@ class TraktEpisodeProgressManagerXML(BaseDialog):
 					listitem.setProperty('dg.year', str(item.get('year')))
 					zoneTo, formatInput = 'utc', '%Y-%m-%d'
 					if 'T' in str(item.get('premiered', '')): zoneTo, formatInput = 'local', '%Y-%m-%dT%H:%M:%S.000Z'
-					new_date = tools.Time.convert(stringTime=str(item.get('premiered', '')), formatInput=formatInput, formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo=zoneTo)
+					new_date = tools.convert_time(stringTime=str(item.get('premiered', '')), formatInput=formatInput, formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo=zoneTo)
 					listitem.setProperty('dg.premiered', new_date)
 					season = str(item.get('season'))
 					listitem.setProperty('dg.season', season)
@@ -159,7 +159,6 @@ class TraktEpisodeProgressManagerXML(BaseDialog):
 					listitem.setProperty('dg.episode', episode)
 					label = '%s  -  %sx%s' % (tvshowtitle, season, episode.zfill(2))
 					listitem.setProperty('dg.label', label)
-					# labelProgress = str(round(float(item['progress'] * 100), 1)) + '%'
 					labelProgress = str(round(float(item['progress']), 1)) + '%'
 					listitem.setProperty('dg.progress', '[' + labelProgress + ']')
 					listitem.setProperty('dg.isSelected', '')

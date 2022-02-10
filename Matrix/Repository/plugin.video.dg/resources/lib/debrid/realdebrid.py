@@ -7,12 +7,15 @@ import re
 import requests
 from sys import argv, exit as sysexit
 from threading import Thread
-from urllib.parse import quote_plus, unquote
+from urllib.parse import quote_plus
 from resources.lib.database import cache
 from resources.lib.modules import control
 from resources.lib.modules import log_utils
+from resources.lib.modules import string_tools
 from resources.lib.modules.source_utils import supported_video_extensions
 
+getLS = control.lang
+getSetting = control.setting
 FormatDateTime = "%Y-%m-%dT%H:%M:%S.%fZ"
 rest_base_url = 'https://api.real-debrid.com/rest/1.0/'
 oauth_base_url = 'https://api.real-debrid.com/oauth/v2/'
@@ -35,19 +38,20 @@ addonFanart = control.addonFanart()
 
 class RealDebrid:
 	name = "Real-Debrid"
+	sort_priority = getSetting('realdebrid.priority')
 	def __init__(self):
 		self.hosters = None
 		self.hosts = None
 		self.cache_check_results = {}
-		self.token = control.setting('realdebrid.token')
-		self.client_ID = control.setting('realdebrid.client_id')
+		self.token = getSetting('realdebrid.token')
+		self.client_ID = getSetting('realdebrid.client_id')
 		if self.client_ID == '': self.client_ID = 'X245A4XAIBGVM'
-		self.secret = control.setting('realdebrid.secret')
+		self.secret = getSetting('realdebrid.secret')
 		self.device_code = ''
 		self.auth_timeout = 0
 		self.auth_step = 0
-		self.server_notifications = control.setting('realdebrid.server.notifications')
-		self.store_to_cloud = control.setting('realdebrid.saveToCloud') == 'true'
+		self.server_notifications = getSetting('realdebrid.server.notifications')
+		self.store_to_cloud = getSetting('realdebrid.saveToCloud') == 'true'
 
 	def _get(self, url, fail_check=False, token_ck=False):
 		try:
@@ -61,7 +65,7 @@ class RealDebrid:
 				url += "?auth_token=%s" % self.token
 			else:
 				url += "&auth_token=%s" % self.token
-			response = requests.get(url, timeout=30)
+			response = requests.get(url, timeout=45) # cache checkiing of show packs results in random timeout at 30
 			if 'Temporarily Down For Maintenance' in response.text:
 				if self.server_notifications: control.notification(message='Real-Debrid Temporarily Down For Maintenance', icon=rd_icon)
 				log_utils.log('Real-Debrid Temporarily Down For Maintenance', level=log_utils.LOGWARNING)
@@ -134,8 +138,8 @@ class RealDebrid:
 		response = requests.get(url).json()
 		line = '%s\n%s'
 		progressDialog = control.progressDialog
-		progressDialog.create(control.lang(40055))
-		progressDialog.update(-1, line % (control.lang(32513) % 'https://real-debrid.com/device', control.lang(32514) % response['user_code']))
+		progressDialog.create(getLS(40055))
+		progressDialog.update(-1, line % (getLS(32513) % 'https://real-debrid.com/device', getLS(32514) % response['user_code']))
 		self.auth_timeout = int(response['expires_in'])
 		self.auth_step = int(response['interval'])
 		self.device_code = response['device_code']
@@ -159,12 +163,12 @@ class RealDebrid:
 			days_remaining = (expires - datetime.today()).days
 			expires = expires.strftime("%A, %B %d, %Y")
 			items = []
-			items += [control.lang(40035) % userInfo['email']]
-			items += [control.lang(40036) % userInfo['username']]
-			items += [control.lang(40037) % userInfo['type'].capitalize()]
-			items += [control.lang(40041) % expires]
-			items += [control.lang(40042) % days_remaining]
-			items += [control.lang(40038) % userInfo['points']]
+			items += [getLS(40035) % userInfo['email']]
+			items += [getLS(40036) % userInfo['username']]
+			items += [getLS(40037) % userInfo['type'].capitalize()]
+			items += [getLS(40041) % expires]
+			items += [getLS(40042) % days_remaining]
+			items += [getLS(40038) % userInfo['points']]
 			return control.selectDialog(items, 'Real-Debrid')
 		except:
 			log_utils.error()
@@ -183,18 +187,18 @@ class RealDebrid:
 			torrent_files = self.user_torrents()
 			if not torrent_files: return
 			# torrent_files = [i for i in torrent_files if i['status'] == 'downloaded']
-			folder_str, deleteMenu = control.lang(40046).upper(), control.lang(40050)
+			folder_str, deleteMenu = getLS(40046).upper(), getLS(40050)
 			for count, item in enumerate(torrent_files, 1):
 				try:
 					cm = []
 					isFolder = True if item['status'] == 'downloaded' else False
 					status = '[COLOR %s]%s[/COLOR]' % (control.getHighlightColor(), item['status'].capitalize())
-					folder_name = control.strip_non_ascii_and_unprintable(item['filename'])
+					folder_name = string_tools.strip_non_ascii_and_unprintable(item['filename'])
 					label = '%02d | [B]%s[/B] - %s | [B]%s[/B] | [I]%s [/I]' % (count, status, str(item['progress']) + '%', folder_str, folder_name)
 					url = '%s?action=rd_BrowseUserTorrents&id=%s' % (sysaddon, item['id']) if isFolder else None
 					cm.append((deleteMenu % 'Torrent', 'RunPlugin(%s?action=rd_DeleteUserTorrent&id=%s&name=%s)' %
 							(sysaddon, item['id'], quote_plus(folder_name))))
-					item = control.item(label=label)
+					item = control.item(label=label, offscreen=True)
 					item.addContextMenuItems(cm)
 					item.setArt({'icon': rd_icon, 'poster': rd_icon, 'thumb': rd_icon, 'fanart': addonFanart, 'banner': rd_icon})
 					item.setInfo(type='video', infoLabels='')
@@ -224,7 +228,7 @@ class RealDebrid:
 			log_utils.log('Real-Debrid Error:  browse_user_torrents failed', __name__, log_utils.LOGWARNING)
 			return
 		file_str, downloadMenu, renameMenu, deleteMenu, clearFinishedMenu = \
-				control.lang(40047).upper(), control.lang(40048), control.lang(40049), control.lang(40050), control.lang(40051)
+				getLS(40047).upper(), getLS(40048), getLS(40049), getLS(40050), getLS(40051)
 		for count, item in enumerate(pack_info, 1):
 			try:
 				cm = []
@@ -240,7 +244,7 @@ class RealDebrid:
 							(sysaddon, quote_plus(name), quote_plus(rd_icon), url_link)))
 				cm.append((deleteMenu % 'Torrent', 'RunPlugin(%s?action=rd_DeleteUserTorrent&id=%s&name=%s)' %
 							(sysaddon, item['id'], quote_plus(name))))
-				item = control.item(label=label)
+				item = control.item(label=label, offscreen=True)
 				item.addContextMenuItems(cm)
 				item.setArt({'icon': rd_icon, 'poster': rd_icon, 'thumb': rd_icon, 'fanart': addonFanart, 'banner': rd_icon})
 				item.setInfo(type='video', infoLabels='')
@@ -252,7 +256,7 @@ class RealDebrid:
 
 	def delete_user_torrent(self, media_id, name):
 		try:
-			if not control.yesnoDialog(control.lang(40050) % '?\n' + name, '', ''): return
+			if not control.yesnoDialog(getLS(40050) % '?\n' + name, '', ''): return
 			ck_token = self._get('user', token_ck=True) # check token, and refresh if needed
 			url = torrents_delete_url + "/%s&auth_token=%s" % (media_id, self.token)
 			response = requests.delete(rest_base_url + url).text
@@ -286,14 +290,14 @@ class RealDebrid:
 		if not my_downloads: return
 		extensions = supported_video_extensions()
 		my_downloads = [i for i in my_downloads if i['download'].lower().endswith(tuple(extensions))]
-		downloadMenu, deleteMenu = control.lang(40048), control.lang(40050)
+		downloadMenu, deleteMenu = getLS(40048), getLS(40050)
 		for count, item in enumerate(my_downloads, 1):
 			if page > 1: count += (page-1) * 50
 			try: 
 				cm = []
 				try: datetime_object = datetime.strptime(item['generated'], FormatDateTime).date()
 				except TypeError: datetime_object = datetime(*(time.strptime(item['generated'], FormatDateTime)[0:6])).date()
-				name = control.strip_non_ascii_and_unprintable(item['filename'])
+				name = string_tools.strip_non_ascii_and_unprintable(item['filename'])
 				size = float(int(item['filesize'])) / 1073741824
 				label = '%02d | %.2f GB | %s  | [I]%s [/I]' % (count, size, datetime_object, name)
 				url_link = item['download']
@@ -302,7 +306,7 @@ class RealDebrid:
 								(sysaddon, quote_plus(name), quote_plus(rd_icon), url_link)))
 				cm.append((deleteMenu % 'File', 'RunPlugin(%s?action=rd_DeleteDownload&id=%s&name=%s)' %
 								(sysaddon, item['id'], name)))
-				item = control.item(label=label)
+				item = control.item(label=label, offscreen=True)
 				item.addContextMenuItems(cm)
 				item.setArt({'icon': rd_icon, 'poster': rd_icon, 'thumb': rd_icon, 'fanart': addonFanart, 'banner': rd_icon})
 				item.setInfo(type='video', infoLabels='')
@@ -315,11 +319,11 @@ class RealDebrid:
 		else: next = False
 		if next:
 			try:
-				nextMenu = control.lang(32053)
+				nextMenu = getLS(32053)
 				url = '%s?action=rd_MyDownloads&query=%s' % (sysaddon, page)
 				page = '  [I](%s)[/I]' % page
 				nextMenu = '[COLOR skyblue]' + nextMenu + page + '[/COLOR]'
-				item = control.item(label=nextMenu)
+				item = control.item(label=nextMenu, offscreen=True)
 				icon = control.addonNext()
 				item.setArt({'icon': rd_icon, 'poster': rd_icon, 'thumb': rd_icon, 'fanart': addonFanart, 'banner': rd_icon})
 				control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
@@ -330,7 +334,7 @@ class RealDebrid:
 
 	def delete_download(self, media_id, name):
 		try:
-			if not control.yesnoDialog(control.lang(40050) % '?\n' + name, '', ''): return
+			if not control.yesnoDialog(getLS(40050) % '?\n' + name, '', ''): return
 			ck_token = self._get('user', token_ck=True) # check token, and refresh if needed
 			url = downloads_delete_url + "/%s&auth_token=%s" % (media_id, self.token)
 			response = requests.delete(rest_base_url + url).text
@@ -342,66 +346,36 @@ class RealDebrid:
 		except:
 			log_utils.error('Real-Debrid Error: DELETE DOWNLOAD %s : ' % name)
 
-	# @timeIt
-	# def check_cache_list(self, hashList):
-		# if isinstance(hashList, list):
-			# hashList = [hashList[x : x + 100] for x in range(0, len(hashList), 100)]
-			# ck_token = self._get('user', token_ck=True) # check token, and refresh if needed, before blasting threads at it
-			# threads = []
-			# for section in hashList:
-				# threads.append(Thread(target=self.check_hash_thread, args=(section,)))
-			# [i.start() for i in threads]
-			# [i.join() for i in threads]
-			# return self.cache_check_results
-		# else:
-			# hashString = "/" + hashList
-			# return self._get("torrents/instantAvailability" + hashString)
-
-	# @timeIt
-	def check_cache_list(self, hashList): # this method avoids the user call and uses the last hash list item
+	def check_cache(self, hashList):
+		# log_utils.log('len() of hashList sent=%s' % len(hashList))
 		if isinstance(hashList, list):
-			hashList = [hashList[x : x + 100] for x in range(0, len(hashList), 100)]
-			lastHash = hashList.pop(-1)
-			self.check_hash_thread(lastHash) # check lastHash list, and refresh if needed, before blasting threads at it
-			threads = []
-			for section in hashList:
-				threads.append(Thread(target=self.check_hash_thread, args=(section,)))
-			[i.start() for i in threads]
-			[i.join() for i in threads]
-			return self.cache_check_results
+			hashString = '/' + '/'.join(hashList)
 		else:
 			hashString = "/" + hashList
-			return self._get("torrents/instantAvailability" + hashString)
-
-	def check_hash_thread(self, hashes):
-		try:
-			hashString = '/' + '/'.join(hashes)
-			response = self._get("torrents/instantAvailability" + hashString)
-			if not response: return
-			self.cache_check_results.update(response)
-		except:
-			log_utils.error()
+		response = self._get("torrents/instantAvailability" + hashString)
+		# log_utils.log('len() of hashList received=%s' % len(response))
+		return response
 
 	def resolve_magnet(self, magnet_url, info_hash, season, episode, title):
 		from resources.lib.modules.source_utils import seas_ep_filter, extras_filter
+		from resources.lib.cloud_scrapers.cloud_utils import cloud_check_title
 		try:
 			torrent_id = None
 			rd_url = None
 			match = False
+			reason = ''
 			extensions = supported_video_extensions()
 			extras_filtering_list = extras_filter()
 			info_hash = info_hash.lower()
+			if not season: compare_title = re.sub(r'[^A-Za-z0-9]+', '.', title.replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
 			torrent_files = self._get(check_cache_url + '/' + info_hash)
 			if not info_hash in torrent_files: return None
 			torrent_id = self.add_magnet(magnet_url) # add_magent() returns id
 			torrent_files = torrent_files[info_hash]['rd']
-			# log_utils.log('torrent_files=%s' % torrent_files, __name__)
 			torrent_files = [item for item in torrent_files if self.video_only(item, extensions)]
-			# log_utils.log('torrent_files=%s' % torrent_files, __name__)
 			if not season:
 				m2ts_check = self.m2ts_check(torrent_files)
-				if m2ts_check:
-					m2ts_key, torrent_files = self.m2ts_key_value(torrent_files) 
+				if m2ts_check: m2ts_key, torrent_files = self.m2ts_key_value(torrent_files) 
 			for item in torrent_files:
 				try:
 					correct_file_check = False
@@ -412,64 +386,59 @@ class RealDebrid:
 								log_utils.log('Real-Debrid: Can not resolve .m2ts season disk episode', level=log_utils.LOGDEBUG)
 								continue
 							correct_file_check = seas_ep_filter(season, episode, value)
-							# log_utils.log('correct_file_check=%s' % correct_file_check)
 							if correct_file_check: break
-						if not correct_file_check: continue
+						if not correct_file_check:
+							reason = value + '  :no matching video filename'
+							continue
 					elif not m2ts_check:
-						compare_title = re.sub(r'[^A-Za-z0-9]+', '.', title.replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
-						# log_utils.log('compare_title=%s' % compare_title)
 						for value in item_values:
 							filename = re.sub(r'[^A-Za-z0-9]+', '.', value.replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
-							# log_utils.log('filename=%s' % filename)
 							filename_info = filename.replace(compare_title, '') 
 							if any(x in filename_info for x in extras_filtering_list): continue
-							correct_file_check = re.search(compare_title, filename)
+							aliases = self.get_aliases(title)
+							correct_file_check = cloud_check_title(title, aliases, filename)
 							if correct_file_check: break
-						if not correct_file_check: continue
+						if not correct_file_check:
+							reason = filename + '  :no matching video filename'
+							continue
 					torrent_keys = item.keys()
 					if len(torrent_keys) == 0: continue
 					torrent_keys = ','.join(torrent_keys)
 					self.add_torrent_select(torrent_id, torrent_keys)
 					torrent_info = self.torrent_info(torrent_id)
-					# log_utils.log('torrent_info=%s' % torrent_info, __name__)
 					if 'error' in torrent_info: continue
 					selected_files = [(idx, i) for idx, i in enumerate([i for i in torrent_info['files'] if i['selected'] == 1])]
 					if season:
 						correct_files = []
+						append = correct_files.append
 						correct_file_check = False
 						for value in selected_files:
 							correct_file_check = seas_ep_filter(season, episode, value[1]['path'])
-							# log_utils.log('correct_file_check=%s' % correct_file_check)
 							if correct_file_check:
-								correct_files.append(value[1])
+								append(value[1])
 								break
 						if len(correct_files) == 0: continue
 						episode_title = re.sub(r'[^A-Za-z0-9]+', '.', title.replace("\'", '').replace('&', 'and').replace('%', '.percent')).lower()
 						for i in correct_files:
 							compare_link = seas_ep_filter(season, episode, i['path'], split=True)
-							# log_utils.log('compare_link=%s' % compare_link)
 							compare_link = re.sub(episode_title, '', compare_link)
-							# log_utils.log('compare_link=%s' % compare_link)
 							if any(x in compare_link for x in extras_filtering_list): continue
 							else:
 								match = True
 								break
 						if match:
 							index = [i[0] for i in selected_files if i[1]['path'] == correct_files[0]['path']][0]
-							# log_utils.log('index=%s' % index)
 							break
 					elif m2ts_check:
 						match, index = True, [i[0] for i in selected_files if i[1]['id'] == m2ts_key][0]
 					else:
 						match = False
-						compare_title = re.sub(r'[^A-Za-z0-9]+', '.', title.replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
-						# log_utils.log('compare_title=%s' % compare_title)
 						for value in selected_files:
-							filename = re.sub(r'[^A-Za-z0-9]+', '.', value[1]['path'].replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
-							# log_utils.log('filename=%s' % filename)
+							filename = re.sub(r'[^A-Za-z0-9]+', '.', value[1]['path'].rsplit('/', 1)[1].replace('\'', '').replace('&', 'and').replace('%', '.percent')).lower()
 							filename_info = filename.replace(compare_title, '') 
 							if any(x in filename_info for x in extras_filtering_list): continue
-							match = re.search(compare_title, filename)
+							aliases = self.get_aliases(title)
+							match = cloud_check_title(title, aliases, filename)
 							if match:
 								index = value[0]
 								break
@@ -478,14 +447,13 @@ class RealDebrid:
 					log_utils.error()
 			if match:
 				rd_link = torrent_info['links'][index]
-				# log_utils.log('rd_link=%s' % rd_link, __name__)
 				file_url = self.unrestrict_link(rd_link)
 				if file_url.endswith('rar'): file_url = None
 				if not any(file_url.lower().endswith(x) for x in extensions): file_url = None
 				if not self.store_to_cloud: self.delete_torrent(torrent_id)
 				return file_url
 			else:
-				log_utils.log('Real-Debrid: FAILED TO RESOLVE MAGNET : %s' % magnet_url, __name__, log_utils.LOGWARNING)
+				log_utils.log('Real-Debrid: FAILED TO RESOLVE MAGNET : "%s": %s' % (magnet_url, reason), __name__, log_utils.LOGWARNING)
 			self.delete_torrent(torrent_id)
 		except:
 			log_utils.error('Real-Debrid: Error RESOLVE MAGNET %s : ' % magnet_url)
@@ -495,9 +463,8 @@ class RealDebrid:
 	def display_magnet_pack(self, magnet_url, info_hash):
 		try:
 			torrent_id = None
-			rd_url = None
-			match = False
 			video_only_items = []
+			append = video_only_items.append
 			list_file_items = []
 			info_hash = info_hash.lower()
 			extensions = supported_video_extensions()
@@ -511,12 +478,11 @@ class RealDebrid:
 				if not video_only: continue
 				torrent_keys = item.keys()
 				if len(torrent_keys) == 0: continue
-				video_only_items.append(torrent_keys)
+				append(torrent_keys)
 			video_only_items = max(video_only_items, key=len)
 			torrent_keys = ','.join(video_only_items)
 			self.add_torrent_select(torrent_id, torrent_keys)
 			torrent_info = self.torrent_info(torrent_id)
-			# log_utils.log('torrent_info=%s' % torrent_info) # torrent_info['links'] is often "[]" because it stalled
 			list_file_items = [dict(i, **{'link':torrent_info['links'][idx]}) for idx, i in enumerate([i for i in torrent_info['files'] if i['selected'] == 1])]
 			list_file_items = [{'link': i['link'], 'filename': i['path'].replace('/', ''), 'size': float(i['bytes']) / 1073741824} for i in list_file_items]
 			self.delete_torrent(torrent_id)
@@ -529,13 +495,13 @@ class RealDebrid:
 		return self._get(torrents_active_url)
 
 	def add_uncached_torrent(self, magnet_url, pack=False):
-		def _return_failed(message=control.lang(33586)):
+		def _return_failed(message=getLS(33586)):
 			try: control.progressDialog.close()
 			except: pass
 			self.delete_torrent(torrent_id)
 			control.hide()
 			control.sleep(500)
-			control.okDialog(title=control.lang(40018), message=message)
+			control.okDialog(title=getLS(40018), message=message)
 			return False
 		control.busy()
 		try:
@@ -552,23 +518,23 @@ class RealDebrid:
 		status = torrent_info['status']
 		line = '%s\n%s\n%s'
 		if status == 'magnet_conversion':
-			line1 = control.lang(40013)
+			line1 = getLS(40013)
 			line2 = torrent_info['filename']
-			line3 = control.lang(40012) % str(torrent_info['seeders'])
+			line3 = getLS(40012) % str(torrent_info['seeders'])
 			timeout = 100
-			control.progressDialog.create(control.lang(40018), line % (line1, line2, line3))
+			control.progressDialog.create(getLS(40018), line % (line1, line2, line3))
 			while status == 'magnet_conversion' and timeout > 0:
 				control.progressDialog.update(timeout, line % (line1, line2, line3))
 				if control.monitor.abortRequested(): return sysexit()
 				try:
-					if control.progressDialog.iscanceled(): return _return_failed(control.lang(40014))
+					if control.progressDialog.iscanceled(): return _return_failed(getLS(40014))
 				except: pass
 				timeout -= interval
 				control.sleep(1000 * interval)
 				torrent_info = self.torrent_info(torrent_id)
 				status = torrent_info['status']
 				if any(x in status for x in stalled): return _return_failed()
-				line3 = control.lang(40012) % str(torrent_info['seeders'])
+				line3 = getLS(40012) % str(torrent_info['seeders'])
 			try: control.progressDialog.close()
 			except: pass
 		if status == 'downloaded':
@@ -578,18 +544,19 @@ class RealDebrid:
 		if any(x in status for x in stalled): return _return_failed(status)
 		if status == 'waiting_files_selection': 
 			video_files = []
+			append = video_files.append
 			all_files = torrent_info['files']
 			for item in all_files:
-				if any(item['path'].lower().endswith(x) for x in extensions): video_files.append(item)
+				if any(item['path'].lower().endswith(x) for x in extensions): append(item)
 			if pack:
 				try:
 					if len(video_files) == 0: return _return_failed()
-					video_files = sorted(video_files, key=lambda x: x['path'])
+					video_files.sort(key=lambda x: x['path'])
 					torrent_keys = [str(i['id']) for i in video_files]
-					if not torrent_keys: return _return_failed(control.lang(40014))
+					if not torrent_keys: return _return_failed(getLS(40014))
 					torrent_keys = ','.join(torrent_keys)
 					self.add_torrent_select(torrent_id, torrent_keys)
-					control.okDialog(title='default', message=control.lang(40017) % control.lang(40058))
+					control.okDialog(title='default', message=getLS(40017) % getLS(40058))
 					control.hide()
 					return True # returning true here causes "success" to be returned and resolve runs on  non valid link
 				except: return _return_failed()
@@ -604,19 +571,19 @@ class RealDebrid:
 			status = torrent_info['status']
 			if status == 'downloaded':
 				control.hide()
-				control.notification(message=control.lang(32057), icon=rd_icon)
+				control.notification(message=getLS(32057), icon=rd_icon)
 				return True
 			file_size = round(float(video['bytes']) / (1000 ** 3), 2)
-			line1 = '%s...' % (control.lang(40017) % control.lang(40058))
+			line1 = '%s...' % (getLS(40017) % getLS(40058))
 			line2 = torrent_info['filename']
 			line3 = status
-			control.progressDialog.create(control.lang(40018), line % (line1, line2, line3))
+			control.progressDialog.create(getLS(40018), line % (line1, line2, line3))
 			while not status == 'downloaded':
 				control.sleep(1000 * interval)
 				torrent_info = self.torrent_info(torrent_id)
 				status = torrent_info['status']
 				if status == 'downloading':
-					line3 = control.lang(40011) % (file_size, round(float(torrent_info['speed']) / (1000**2), 2), torrent_info['seeders'], torrent_info['progress'])
+					line3 = getLS(40011) % (file_size, round(float(torrent_info['speed']) / (1000**2), 2), torrent_info['seeders'], torrent_info['progress'])
 				else:
 					line3 = status
 				control.progressDialog.update(int(float(torrent_info['progress'])), line % (line1, line2, line3))
@@ -624,7 +591,7 @@ class RealDebrid:
 				try:
 					if control.progressDialog.iscanceled():
 						if control.yesnoDialog('Delete RD download also?', 'No will continue the download', 'but close dialog'):
-							return _return_failed(control.lang(40014))
+							return _return_failed(getLS(40014))
 						else:
 							control.progressDialog.close()
 							control.hide()
@@ -736,6 +703,19 @@ class RealDebrid:
 					key = int([k for k,v in iter(item.items()) if v['filesize'] == max_filesize][0])
 		return key, [dict_item,]
 
+	def get_aliases(self, title):
+		try: from sqlite3 import dbapi2 as database
+		except ImportError: from pysqlite2 import dbapi2 as database
+		aliases = []
+		try:
+			dbcon = database.connect(control.providercacheFile, timeout=60)
+			dbcur = dbcon.cursor()
+			fetch = dbcur.execute('''SELECT * FROM rel_aliases WHERE title=?''', (title,)).fetchone()
+			aliases = eval(fetch[1])
+		except:
+			log_utils.error()
+		return aliases
+
 	def valid_url(self, host):
 		try:
 			self.hosts = self.get_hosts()
@@ -765,9 +745,9 @@ class RealDebrid:
 
 	def refresh_token(self):
 		try:
-			self.client_ID = control.setting('realdebrid.client_id')
-			self.secret = control.setting('realdebrid.secret')
-			self.device_code = control.setting('realdebrid.refresh')
+			self.client_ID = getSetting('realdebrid.client_id')
+			self.secret = getSetting('realdebrid.secret')
+			self.device_code = getSetting('realdebrid.refresh')
 			if not self.client_ID or not self.secret or not self.device_code: return False # avoid if previous refresh attempt revoked accnt, loops twice.
 			log_utils.log('Refreshing Expired Real Debrid Token: | %s | %s |' % (self.client_ID, self.device_code), level=log_utils.LOGDEBUG)
 			success, error = self.get_token()
@@ -826,6 +806,6 @@ class RealDebrid:
 			control.setSetting('realdebrid.token', '')
 			control.setSetting('realdebrid.refresh', '')
 			control.setSetting('realdebrid.username', '')
-			control.dialog.ok(control.lang(40058), control.lang(32320))
+			control.dialog.ok(getLS(40058), getLS(32320))
 		except:
 			log_utils.error()

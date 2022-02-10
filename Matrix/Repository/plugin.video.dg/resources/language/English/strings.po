@@ -91,7 +91,7 @@ msgid "Browse Progress"
 msgstr ""
 
 msgctxt "#32017"
-msgid "check IMDb Movie meta"
+msgid "check IMDb meta"
 msgstr ""
 
 msgctxt "#32018"
@@ -175,7 +175,7 @@ msgid "Progress"
 msgstr ""
 
 msgctxt "#32038"
-msgid "Episodes"
+msgid "ENTER CUSTOM TITLE"
 msgstr ""
 
 msgctxt "#32039"
@@ -219,7 +219,7 @@ msgid "[B]SETTINGS[/B] : Downloads"
 msgstr ""
 
 msgctxt "#32049"
-msgid "[B]DG[/B] : Viewtypes"
+msgid "[B]VENOM[/B] : Viewtypes"
 msgstr ""
 
 msgctxt "#32050"
@@ -355,7 +355,7 @@ msgid "Trakt: Scrobble Reset"
 msgstr ""
 
 msgctxt "#32083"
-msgid "Clean Settings file: [B]DG[/B] and [B]FENOMSCRAPERS[/B]"
+msgid "Clean Settings file: [B]VENOM[/B] and [B]FENOMSCRAPERS[/B]"
 msgstr ""
 
 msgctxt "#32084"
@@ -859,11 +859,11 @@ msgid "Rescrape Item - Source Select"
 msgstr ""
 
 msgctxt "#32209"
-msgid "Rescrape Item with All Providers - AutoPlay"
+msgid "Rescrape Item with [COLOR %s][B]All Providers[/B][/COLOR] - AutoPlay"
 msgstr ""
 
 msgctxt "#32210"
-msgid "Rescrape Item with All Providers - Source Select"
+msgid "Rescrape Item with [COLOR %s][B]All Providers[/B][/COLOR] - Source Select"
 msgstr ""
 
 msgctxt "#32211"
@@ -887,6 +887,62 @@ msgid "Coming Soon (IMDb)"
 msgstr ""
 
 msgctxt "#32216"
+msgid "Rescrape Item with [COLOR %s][B]Custom Query[/B][/COLOR] - Source Select"
+msgstr ""
+
+msgctxt "#32217"
+msgid "Rescrape Item with [COLOR %s][B]Custom Query and All Providers[/B][/COLOR] - Source Select"
+msgstr ""
+
+msgctxt "#32218"
+msgid "[B]Loyalty:[/B] %s"
+msgstr ""
+
+msgctxt "#32219"
+msgid "[B]Data Used:[/B] %s"
+msgstr ""
+
+msgctxt "#32220"
+msgid "[B]Data Remaining:[/B] %s"
+msgstr ""
+
+msgctxt "#32221"
+msgid "Error retrieving EasyNews Account Info"
+msgstr ""
+
+msgctxt "#32222"
+msgid "Enter search Term"
+msgstr ""
+
+msgctxt "#32223"
+msgid "Enable AllDebrid Menu"
+msgstr ""
+
+msgctxt "#32224"
+msgid "Enable EasyNews Menu"
+msgstr ""
+
+msgctxt "#32225"
+msgid "Enable Premiumize.me Menu"
+msgstr ""
+
+msgctxt "#32226"
+msgid "Enable Real-Debrid Menu"
+msgstr ""
+
+msgctxt "#32227"
+msgid "Require Year in source for known Reboot shows"
+msgstr ""
+
+msgctxt "#32228"
+msgid ""
+msgstr ""
+
+msgctxt "#32229"
+msgid "Prioritize HEVC to top"
+msgstr ""
+
+msgctxt "#32230"
 msgid ""
 msgstr ""
 
@@ -922,7 +978,7 @@ msgid "Authorization..."
 msgstr ""
 
 msgctxt "#32307"
-msgid "Password"
+msgid "password"
 msgstr ""
 
 msgctxt "#32308"
@@ -994,7 +1050,7 @@ msgid "In Theaters"
 msgstr ""
 
 msgctxt "#32325"
-msgid ""
+msgid "Episode"
 msgstr ""
 
 msgctxt "#32326"
@@ -1002,7 +1058,7 @@ msgid "Episodes"
 msgstr ""
 
 msgctxt "#32327"
-msgid ""
+msgid "Easy News"
 msgstr ""
 
 msgctxt "#32328"
@@ -1010,7 +1066,7 @@ msgid "Playback Canceled"
 msgstr ""
 
 msgctxt "#32329"
-msgid "My Lists"
+msgid "My Lists (My Movies, My TV Shows)"
 msgstr ""
 
 msgctxt "#32330"
@@ -1138,7 +1194,7 @@ msgid "Providers Language"
 msgstr ""
 
 msgctxt "#32361"
-msgid "[B]DG[/B] : Reset View Types"
+msgid "[B]VENOM[/B] : Reset View Types"
 msgstr ""
 
 msgctxt "#32362"
@@ -1254,15 +1310,15 @@ msgid "Remove HDR sources"
 msgstr ""
 
 msgctxt "#32390"
-msgid ""
+msgid "Accounts(Meta)"
 msgstr ""
 
 msgctxt "#32391"
-msgid ""
+msgid "Certification Country (MPAA)"
 msgstr ""
 
 msgctxt "#32392"
-msgid ""
+msgid "Certification prefix"
 msgstr ""
 
 msgctxt "#32393"
@@ -1646,43 +1702,43 @@ msgid "Certificates (TMDb)"
 msgstr ""
 
 msgctxt "#32488"
-msgid ""
+msgid "Optional"
 msgstr ""
 
 msgctxt "#32489"
-msgid ""
+msgid "[B]Account:[/B] %s"
 msgstr ""
 
 msgctxt "#32490"
-msgid ""
+msgid "[B]Monthly Limit:[/B] %s GB"
 msgstr ""
 
 msgctxt "#32491"
-msgid ""
+msgid "[B]Current Month:[/B]"
 msgstr ""
 
 msgctxt "#32492"
-msgid ""
+msgid "[B]Days Remaining:[/B] %s"
 msgstr ""
 
 msgctxt "#32493"
-msgid ""
+msgid "[B]Data Used:[/B] %s"
 msgstr ""
 
 msgctxt "#32494"
-msgid ""
+msgid "[B]Data Remaining:[/B] %s"
 msgstr ""
 
 msgctxt "#32495"
-msgid ""
+msgid "[B]Current Subscription:[/B]"
 msgstr ""
 
 msgctxt "#32496"
-msgid ""
+msgid "[B]Resets On:[/B] %s"
 msgstr ""
 
 msgctxt "#32497"
-msgid ""
+msgid "[B]Renewal Needed On:[/B] %s"
 msgstr ""
 
 msgctxt "#32498"
@@ -1918,7 +1974,7 @@ msgid "Are you sure?"
 msgstr ""
 
 msgctxt "#32556"
-msgid "[B]DG[/B] : Library"
+msgid "[B]VENOM[/B] : Library"
 msgstr ""
 
 msgctxt "#32557"
@@ -1926,15 +1982,15 @@ msgid "[B]LIBRARY[/B] : Settings"
 msgstr ""
 
 msgctxt "#32558"
-msgid "[B]DG[/B] : Update library..."
+msgid "[B]VENOM[/B] : Update library..."
 msgstr ""
 
 msgctxt "#32559"
-msgid "[B]DG[/B] : Movie folder..."
+msgid "[B]VENOM[/B] : Movie folder..."
 msgstr ""
 
 msgctxt "#32560"
-msgid "[B]DG[/B] : TV folder..."
+msgid "[B]VENOM[/B] : TV folder..."
 msgstr ""
 
 msgctxt "#32561"
@@ -2090,11 +2146,11 @@ msgid ""
 msgstr ""
 
 msgctxt "#32603"
-msgid "New search..."
+msgid "[COLOR %s][I]New search...[/I][/COLOR]"
 msgstr ""
 
 msgctxt "#32604"
-msgid "[B]DG[/B] : Clear search history..."
+msgid "[B]VENOM[/B] : Clear search history..."
 msgstr ""
 
 msgctxt "#32605"
@@ -2242,7 +2298,7 @@ msgid "Provider filters"
 msgstr ""
 
 msgctxt "#32643"
-msgid "[B]DG[/B]: Settings"
+msgid "[B]VENOM[/B]: Settings"
 msgstr ""
 
 msgctxt "#32644"
@@ -2374,7 +2430,7 @@ msgid "[B]TRAKT[/B] : Import TV Liked List..."
 msgstr ""
 
 msgctxt "#32676"
-msgid "[B]DG[/B] : Clean library..."
+msgid "[B]VENOM[/B] : Clean library..."
 msgstr ""
 
 msgctxt "#32677"
@@ -3482,11 +3538,11 @@ msgid "%s Marked As Unwatched On Trakt"
 msgstr ""
 
 msgctxt "#35504"
-msgid ""
+msgid "%s Failed to Mark As Watched On Trakt"
 msgstr ""
 
 msgctxt "#35505"
-msgid ""
+msgid "%s Failed to Mark As Unwatched On Trakt"
 msgstr ""
 
 msgctxt "#35506"
@@ -4145,7 +4201,7 @@ msgid "PlayNext default action"
 msgstr ""
 
 msgctxt "#40066"
-msgid ""
+msgid "[B]Plan:[/B] %s"
 msgstr ""
 
 msgctxt "#40067"

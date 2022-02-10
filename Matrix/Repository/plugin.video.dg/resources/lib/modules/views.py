@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 try: from sqlite3 import dbapi2 as db

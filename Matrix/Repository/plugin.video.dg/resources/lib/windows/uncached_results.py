@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from json import dumps as jsdumps

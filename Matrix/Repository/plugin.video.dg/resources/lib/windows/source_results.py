@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from json import dumps as jsdumps
 from urllib.parse import quote_plus
-from resources.lib.modules.control import joinPath, transPath, dialog, getSourceHighlightColor, notification
+from resources.lib.modules.control import joinPath, transPath, dialog, getSourceHighlightColor, notification, setting as getSetting
 from resources.lib.modules.source_utils import getFileType
 from resources.lib.modules import tools
 from resources.lib.windows.base import BaseDialog
@@ -23,6 +23,7 @@ class SourceResultsXML(BaseDialog):
 		self.cm = None
 		self.make_items()
 		self.set_properties()
+		self.dnlds_enabled = True if getSetting('downloads') == 'true' and (getSetting('movie.download.path') != '' or getSetting('tv.download.path') != '') else False
 
 	def onInit(self):
 		super(SourceResultsXML, self).onInit()
@@ -77,7 +78,7 @@ class SourceResultsXML(BaseDialog):
 				if 'cached (pack)' in source_dict:
 					cm_list += [('[B]Browse Debrid Pack[/B]', 'showDebridPack')]
 				source = chosen_source.getProperty('dg.source')
-				if not 'UNCACHED' in source:
+				if not 'UNCACHED' in source and self.dnlds_enabled:
 					cm_list += [('[B]Download[/B]', 'download')]
 				if re_match(r'^CACHED.*TORRENT', source):
 					debrid = chosen_source.getProperty('dg.debrid')
@@ -181,18 +182,13 @@ class SourceResultsXML(BaseDialog):
 	def set_properties(self):
 		if self.meta is None: return
 		try:
-			# self.setProperty('dg.mediatype', self.meta.get('mediatype', ''))
 			self.setProperty('dg.season', str(self.meta.get('season', '')))
 			if self.meta.get('season_poster'):	self.setProperty('dg.poster', self.meta.get('season_poster', ''))
 			else: self.setProperty('dg.poster', self.meta.get('poster', ''))
-			# self.setProperty('dg.fanart', self.meta.get('fanart', ''))
-			# self.setProperty('dg.clearart', self.meta.get('clearart', ''))
 			self.setProperty('dg.clearlogo', self.meta.get('clearlogo', ''))
-			# title = self.meta.get('tvshowtitle') if self.meta.get('tvshowtitle') else self.meta.get('title')
-			# self.setProperty('dg.title', title) # was going to use this for missing clearlogo
 			self.setProperty('dg.plot', self.meta.get('plot', ''))
 			self.setProperty('dg.year', str(self.meta.get('year', '')))
-			new_date = tools.Time.convert(stringTime=str(self.meta.get('premiered', '')), formatInput='%Y-%m-%d', formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo='utc')
+			new_date = tools.convert_time(stringTime=str(self.meta.get('premiered', '')), formatInput='%Y-%m-%d', formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo='utc')
 			self.setProperty('dg.premiered', new_date)
 			if self.meta.get('mpaa'): self.setProperty('dg.mpaa', self.meta.get('mpaa'))
 			else: self.setProperty('dg.mpaa', 'NA ')

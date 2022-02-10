@@ -4,7 +4,9 @@
 """
 
 def lang(i, lang):
-	if lang == 'bg':
+	if lang == 'en': return i
+
+	elif lang == 'bg':
 		i = i.replace('Action', u'\u0415\u043a\u0448\u044a\u043d')
 		i = i.replace('Adventure', u'\u041f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435')
 		i = i.replace('Animation', u'\u0410\u043d\u0438\u043c\u0430\u0446\u0438\u044f')

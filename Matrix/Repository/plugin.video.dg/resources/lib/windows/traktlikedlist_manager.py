@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from resources.lib.modules.control import getHighlightColor, joinPath, artPath

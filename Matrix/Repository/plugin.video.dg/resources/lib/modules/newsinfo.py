@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from urllib.request import urlopen, Request
@@ -8,7 +8,7 @@ from resources.lib.modules.control import addonPath, addonId, joinPath
 from resources.lib.windows.textviewer import TextViewerXML
 
 dg_path = addonPath(addonId())
-news_file = 'https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/wiz/newsinfo.txt'
+news_file = 'https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/plugin.video.dg/newsinfo.txt'
 local_news = joinPath(dg_path, 'newsinfo.txt')
 
 

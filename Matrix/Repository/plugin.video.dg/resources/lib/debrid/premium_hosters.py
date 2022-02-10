@@ -3,7 +3,7 @@
 	Venom Add-on
 """
 
-hostprDict = ['4shared.com', 'vidcloud.r', 'fastfile.cc', 'rapidu.net', 'sky.fm', 'upload.ac', 'filer.net', 'goloady.com',
+hostprDict = ('4shared.com', 'vidcloud.r', 'fastfile.cc', 'rapidu.net', 'sky.fm', 'upload.ac', 'filer.net', 'goloady.com',
 							'backin.net', 'uploadboy.com', 'exload.com', 'turbo.to', 'takefile.link', '2shared.com', 'oboom.com',
 							'wupfile.com', 'filerio.com', 'israbox.ch', 'filespace.com', 'uppit.com', 'hitf.cc', 'uploadboy.me',
 							'earn4files.com', 'uploadcloud.pro', 'rarefile.net', 'redbunker.net', 'archive.org', 'dailymotion.com',
@@ -33,14 +33,14 @@ hostprDict = ['4shared.com', 'vidcloud.r', 'fastfile.cc', 'rapidu.net', 'sky.fm'
 							'letsupload.org', 'dl4free.com', 'filefox.cc', 'tenvoi.com', 'vidoza.org', 'ddl.to', 'file.al', 'cloudvideo.tv', 'dfiles.e',
 							'uploadc.ch', 'douploads.com', 'mexa.sh', 'katfile.com', 'worldbytez.com', 'sendspace.com', 'uploaded.to',
 							'letsupload.cc', 'di.fm', 'letsupload.co', 'clipwatching.com', 'turbobit.cloud', 'fboom.me', 'brupload.net', 'soundcloud.com',
-							'prefiles.com', 'wdupload.com', 'easybytez.com', 'file-up.org']
+							'prefiles.com', 'wdupload.com', 'easybytez.com', 'file-up.org')
 
-sourcecfDict = ['maxrls', 'rapidmoviez', 'rlsbb', 'scenerls', 'extratorrent', 'limetorrents', 'torrentgalaxy']
+sourcecfDict = ('maxrls', 'rapidmoviez', 'rlsbb', 'scenerls', 'extratorrent', 'limetorrents', 'torrentgalaxy')
 
-# hostcapDict = ['flashx.tv', 'flashx.to', 'flashx.sx', 'flashx.bz', 'flashx.cc', 'hugefiles.cc', 'hugefiles.net', 'jetload.net', 'jetload.tv',
+# hostcapDict = ('flashx.tv', 'flashx.to', 'flashx.sx', 'flashx.bz', 'flashx.cc', 'hugefiles.cc', 'hugefiles.net', 'jetload.net', 'jetload.tv',
 							# 'jetload.to', 'kingfiles.net', 'streamin.to', 'thevideo.me', 'torba.se', 'uptobox.com', 'uptostream.com', 'vidup.io',
-							# 'vidup.me', 'vidup.tv', 'vshare.eu', 'vshare.io', 'vev.io']
+							# 'vidup.me', 'vidup.tv', 'vshare.eu', 'vshare.io', 'vev.io')
 
-# hostblockDict = ['divxme.com', 'divxstage.eu', 'estream.to', 'facebook.com', 'oload.download', 'oload.fun', 'oload.icu', 'oload.info',
+# hostblockDict = ('divxme.com', 'divxstage.eu', 'estream.to', 'facebook.com', 'oload.download', 'oload.fun', 'oload.icu', 'oload.info',
 							# 'oload.life', 'oload.space', 'oload.stream', 'oload.tv', 'oload.win', 'openload.co', 'openload.io', 'openload.pw', 'rapidvideo.com',
-							# 'rapidvideo.is', 'rapidvid.to', 'streamango.com', 'streamcherry.com', 'twitch.tv', 'youtube.com', 'zippyshare.com']
+							# 'rapidvideo.is', 'rapidvid.to', 'streamango.com', 'streamcherry.com', 'twitch.tv', 'youtube.com', 'zippyshare.com')

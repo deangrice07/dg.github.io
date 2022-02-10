@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+	Venom Add-on
+"""
 
 from datetime import datetime, timedelta
 import xbmc
-from resources.lib.windows.base import BaseDialog
-from resources.lib.modules.control import getSourceHighlightColor, setting as getSetting
+from resources.lib.modules.control import getSourceHighlightColor, setting as getSetting, playerWindow
 from resources.lib.modules import tools
+from resources.lib.windows.base import BaseDialog
 
 monitor = xbmc.Monitor()
 
@@ -42,6 +45,7 @@ class StillWatchingXML(BaseDialog):
 		if control_id == 3012: # Stop playback
 			xbmc.executebuiltin('PlayerControl(Playlist.Clear)')
 			xbmc.executebuiltin('PlayerControl(Stop)')
+			playerWindow.clearProperty('dg.preResolved_nextUrl')
 			self.close()
 		if control_id == 3013: # Cancel/Close xml dialog
 			self.close()
@@ -101,7 +105,7 @@ class StillWatchingXML(BaseDialog):
 			self.setProperty('dg.tvshowtitle', self.meta.get('tvshowtitle'))
 			self.setProperty('dg.title', self.meta.get('title'))
 			self.setProperty('dg.year', str(self.meta.get('year', '')))
-			new_date = tools.Time.convert(stringTime=str(self.meta.get('premiered', '')), formatInput='%Y-%m-%d', formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo='utc')
+			new_date = tools.convert_time(stringTime=str(self.meta.get('premiered', '')), formatInput='%Y-%m-%d', formatOutput='%m-%d-%Y', zoneFrom='utc', zoneTo='utc')
 			self.setProperty('dg.premiered', new_date)
 			self.setProperty('dg.season', str(self.meta.get('season', '')))
 			self.setProperty('dg.episode', str(self.meta.get('episode', '')))

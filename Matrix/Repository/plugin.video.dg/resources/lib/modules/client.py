@@ -73,6 +73,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 
 		try: headers.update(headers)
 		except: headers = {}
+
 		if 'User-Agent' in headers: pass
 		elif mobile is not True: headers['User-Agent'] = cache.get(randomagent, 12)
 		else: headers['User-Agent'] = 'Apple-iPhone/701.341'
@@ -86,15 +87,6 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 		elif cookie: headers['Cookie'] = cookie
 		if 'Accept-Encoding' in headers: pass
 		elif compression and limit is None: headers['Accept-Encoding'] = 'gzip'
-
-		# if redirect is False:
-			# class NoRedirection(urllib2.HTTPErrorProcessor):
-				# def http_response(self, request, response):
-					# return response
-			# opener = urllib2.build_opener(NoRedirection)
-			# urllib2.install_opener(opener)
-			# try: del headers['Referer']
-			# except: pass
 
 		if redirect is False:
 			class NoRedirectHandler(urllib2.HTTPRedirectHandler):
@@ -150,8 +142,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 								return None
 						except:
 							log_utils.error()
-
-					elif 'cf-browser-verification' in cf_result:
+					elif 'cf-browser-verification' in str(cf_result):
 						netloc = '%s://%s' % (urlparse(url).scheme, urlparse(url).netloc)
 						ua = headers['User-Agent']
 						cf = cache.get(cfcookie().get, 168, netloc, ua, timeout)
@@ -209,11 +200,14 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 			if limit == '0': result = response.read(224 * 1024)
 			elif limit is not None: result = response.read(int(limit) * 1024)
 			else: result = response.read(5242880)
+
 		try: encoding = response.headers["Content-Encoding"]
 		except: encoding = None
+
 		if encoding == 'gzip': result = gzip.GzipFile(fileobj=BytesIO(result)).read()
 		if not as_bytes:
-			result = result.decode('utf-8')
+			# result = result.decode('utf-8') # UnicodeDecodeError -> 'utf-8' codec can't decode byte 0xe5
+			result = result.decode(encoding='utf-8', errors='ignore')
 
 		if not as_bytes and 'sucuri_cloudproxy_js' in result: # who da fuck?
 			su = sucuri().get(result)
@@ -233,6 +227,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
 			ua = headers['User-Agent']
 			headers['Cookie'] = cache.get(bfcookie().get, 168, netloc, ua, timeout)
 			result = _basic_request(url, headers=headers, post=post, method='POST', timeout=timeout, limit=limit)
+
 		if output == 'extended':
 			try:
 				response_headers = dict([(item[0].title(), item[1]) for item in list(response.info().items())]) # behaves differently 18 to 19. 18 I had 3 "Set-Cookie:" it combined all 3 values into 1 key. In 19 only the last keys value was present.
@@ -404,6 +399,7 @@ class cfcookie:
 				passval = re.findall(r'name\s*=\s*["\']pass["\']\s*value\s*=\s*["\'](.*?)["\']', result, re.I)[0]
 				query = '%s/cdn-cgi/l/chk_jschl?pass=%s&jschl_vc=%s&jschl_answer=%s' % (netloc, quote_plus(passval), jschl, answer)
 				sleep(6)
+
 			cookies = cookiejar.LWPCookieJar()
 			handlers = [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
 			opener = urllib2.build_opener(*handlers)
@@ -413,7 +409,6 @@ class cfcookie:
 				_add_request_header(req, headers)
 				response = urllib2.urlopen(req, timeout=int(timeout))
 			except: pass
-
 			cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
 			if 'cf_clearance' in cookie: self.cookie = cookie
 		except:

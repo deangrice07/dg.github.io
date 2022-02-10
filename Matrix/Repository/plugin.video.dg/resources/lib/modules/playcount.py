@@ -5,16 +5,15 @@
 
 from resources.lib.modules.control import setting as getSetting, refresh as containerRefresh, addonInfo, progressDialogBG, monitor, condVisibility, execute
 from resources.lib.modules import trakt
-
 tmdb_api_key = '3320855e65a9758297fec4f7c9717698'
 omdb_api_key = 'd4daa2b'
-# tvdb_api_key = '7R8SZZX90UA9YMBU' # still valid key
 tvdb_api_key = '06cff30690f9b9622957044f2159ffae'
 traktIndicators = trakt.getTraktIndicatorsInfo()
 if not traktIndicators:
 	try:
-		if not condVisibility('System.HasAddon(script.module.metahandler)'): execute('InstallAddon(script.module.metahandler)')
+		if not condVisibility('System.HasAddon(script.module.metahandler)'): execute('InstallAddon(script.module.metahandler)', wait=True)
 	except: pass
+
 
 def getMovieIndicators(refresh=False):
 	try:
@@ -51,10 +50,12 @@ def getTVShowIndicators(refresh=False):
 def getSeasonIndicators(imdb, refresh=False):
 	try:
 		if traktIndicators:
+			timeoutsyncSeasons = trakt.timeoutsyncSeasons(imdb)
+			if timeoutsyncSeasons is None: return # if no entry means no completed season watched so do not make needless requests 
 			if not refresh: timeout = 720
-			if trakt.getEpisodesWatchedActivity() < trakt.timeoutsyncSeason(imdb=imdb): timeout = 720
+			elif trakt.getEpisodesWatchedActivity() < timeoutsyncSeasons: timeout = 720
 			else: timeout = 0
-			indicators = trakt.cachesyncSeason(imdb=imdb, timeout=timeout)
+			indicators = trakt.cachesyncSeasons(imdb=imdb, timeout=timeout)[0]
 			return indicators
 		else:
 			from metahandler import metahandlers
@@ -79,11 +80,11 @@ def getMovieOverlay(indicators, imdb):
 		log_utils.error()
 		return '4'
 
-def getTVShowOverlay(indicators, imdb, tvdb):
+def getTVShowOverlay(indicators, imdb, tvdb): # tvdb no longer used
 	if not indicators: return '4'
 	try:
 		if traktIndicators:
-			playcount = [i[0] for i in indicators if i[0] == tvdb and len(i[2]) >= int(i[1])]
+			playcount = [i[0] for i in indicators if i[0] == imdb and len(i[2]) >= int(i[1])]
 			playcount = 5 if len(playcount) > 0 else 4
 			return str(playcount)
 		else:
@@ -94,7 +95,7 @@ def getTVShowOverlay(indicators, imdb, tvdb):
 		log_utils.error()
 		return '4'
 
-def getSeasonOverlay(indicators, imdb, tvdb, season):
+def getSeasonOverlay(indicators, imdb, tvdb, season): # tvdb no longer used
 	if not indicators: return '4'
 	try:
 		if traktIndicators:
@@ -109,11 +110,11 @@ def getSeasonOverlay(indicators, imdb, tvdb, season):
 		log_utils.error()
 		return '4'
 
-def getEpisodeOverlay(indicators, imdb, tvdb, season, episode):
+def getEpisodeOverlay(indicators, imdb, tvdb, season, episode): # tvdb no longer used
 	if not indicators: return '4'
 	try:
 		if traktIndicators:
-			playcount = [i[2] for i in indicators if i[0] == tvdb]
+			playcount = [i[2] for i in indicators if i[0] == imdb]
 			playcount = playcount[0] if len(playcount) > 0 else []
 			playcount = [i for i in playcount if int(season) == int(i[0]) and int(episode) == int(i[1])]
 			playcount = 5 if len(playcount) > 0 else 4
@@ -132,16 +133,18 @@ def getShowCount(indicators, imdb, tvdb):
 	if not imdb.startswith('tt'): return None
 	try:
 		if traktIndicators:
-			if indicators and tvdb in str(indicators):
+			if indicators and imdb in str(indicators):
 				for indicator in indicators:
-					if indicator[0] == tvdb:
+					if indicator[0] == imdb:
 						total = indicator[1]
 						watched = len(indicator[2])
 						unwatched = total - watched
 						return {'total': total, 'watched': watched, 'unwatched': unwatched}
-			else:
-				result = trakt.showCount(imdb) # TMDb has "total_episodes" now so return None for unwatched shows and use that
+			elif not indicators: # service sync provides so should always have value, leave for fallback
+				result = trakt.showCount(imdb)
 				return result
+			else: # TMDb has "total_aired_episodes" now so return None and it will be used when indicators is populated but imdb id not found(means show has never been watched)
+				return None
 		else:
 			return None # this code below for metahandler does not aply here nor does the addon offer a means to return such counts
 			if not indicators: return None
@@ -156,19 +159,14 @@ def getShowCount(indicators, imdb, tvdb):
 		log_utils.error()
 		return None
 
-def getSeasonCount(imdb, season=None, season_special=False):
+def getSeasonCount(imdb, season=None):
 	if not imdb.startswith('tt'): return None
 	try:
-		if not traktIndicators: return None
-		result = trakt.seasonCount(imdb=imdb)
+		if not traktIndicators: return None # metahandler does not currently provide counts
+		result = trakt.seasonCount(imdb)
 		if not result: return None
 		if not season: return result
-		else:
-			if getSetting('tv.specials') == 'true' and season_special: result = result[int(season)]
-			else:
-				if int(season) > len(result): return None
-				result = result[int(season) - 1]
-			return result
+		else: return result.get(int(season))
 	except:
 		from resources.lib.modules import log_utils
 		log_utils.error()
@@ -180,8 +178,6 @@ def markMovieDuringPlayback(imdb, watched):
 			if int(watched) == 5: trakt.markMovieAsWatched(imdb)
 			else: trakt.markMovieAsNotWatched(imdb)
 			trakt.cachesyncMovies()
-			# if trakt.getTraktAddonMovieInfo():
-				# trakt.markMovieAsNotWatched(imdb)
 		else:
 			from metahandler import metahandlers
 			metaget = metahandlers.MetaData(tmdb_api_key, omdb_api_key, tvdb_api_key)
@@ -196,9 +192,7 @@ def markEpisodeDuringPlayback(imdb, tvdb, season, episode, watched):
 		if traktIndicators:
 			if int(watched) == 5: trakt.markEpisodeAsWatched(imdb, tvdb, season, episode)
 			else: trakt.markEpisodeAsNotWatched(imdb, tvdb, season, episode)
-			trakt.cachesyncTVShows()
-			# if trakt.getTraktAddonEpisodeInfo():
-				# trakt.markEpisodeAsNotWatched(imdb, tvdb, season, episode)
+			trakt.cachesyncTV(imdb) # updates all watched shows, as well as season indicators and counts for given imdb_id show
 		else:
 			from metahandler import metahandlers
 			metaget = metahandlers.MetaData(tmdb_api_key, omdb_api_key, tvdb_api_key)
@@ -232,10 +226,8 @@ def episodes(name, imdb, tvdb, season, episode, watched):
 		else:
 			from metahandler import metahandlers
 
-
 			from resources.lib.modules import log_utils
 			log_utils.log('name=%s' % name)
-
 
 			metaget = metahandlers.MetaData(tmdb_api_key, omdb_api_key, tvdb_api_key)
 			show_meta = metaget.get_meta('tvshow', name=name, imdb_id=imdb)
@@ -261,8 +253,6 @@ def episodes(name, imdb, tvdb, season, episode, watched):
 			log_utils.log('watched_episodes=%s' % watched_episodes)
 
 			# tvshowsUpdate(imdb=imdb, tvdb=tvdb) # control.refresh() done in this function
-
-
 	except:
 		from resources.lib.modules import log_utils
 		log_utils.error()
@@ -290,7 +280,6 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
 			metaget.get_meta('tvshow', name='', imdb_id=imdb)
 
 			items = episodes.Episodes().get(tvshowtitle, '0', imdb, tvdb, {}, create_directory=False)
-
 
 			for i in range(len(items)):
 				items[i]['season'] = int(items[i]['season'])

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	DG Add-on
 """
 
 from datetime import datetime, timedelta
@@ -18,30 +18,32 @@ from resources.lib.modules import tools
 from resources.lib.modules import trakt
 from resources.lib.modules import views
 
+getLS = control.lang
+getSetting = control.setting
+
 
 class Movies:
 	def __init__(self, notifications=True):
 		self.list = []
-		control.homeWindow.clearProperty('dg.preResolved_nextUrl') # helps solve issue where "onPlaybackStopped()" callback fails to happen
-		self.page_limit = control.setting('page.item.limit')
-		self.search_page_limit = control.setting('search.page.limit')
+		self.page_limit = getSetting('page.item.limit')
+		self.search_page_limit = getSetting('search.page.limit')
 		self.notifications = notifications
 		self.date_time = datetime.now()
 		self.today_date = (self.date_time).strftime('%Y-%m-%d')
-		self.hidecinema = control.setting('hidecinema') == 'true'
-		self.trakt_user = control.setting('trakt.username').strip()
+		self.hidecinema = getSetting('hidecinema') == 'true'
+		self.trakt_user = getSetting('trakt.username').strip()
 		self.traktCredentials = trakt.getTraktCredentialsInfo()
 		self.lang = control.apiLanguage()['trakt']
-		self.imdb_user = control.setting('imdb.user').replace('ur', '')
-		self.tmdb_key = control.setting('tmdb.api.key')
+		self.imdb_user = getSetting('imdb.user').replace('ur', '')
+		self.tmdb_key = getSetting('tmdb.api.key')
 		if self.tmdb_key == '' or self.tmdb_key is None:
 			self.tmdb_key = '3320855e65a9758297fec4f7c9717698'
-		self.tmdb_session_id = control.setting('tmdb.session_id')
+		self.tmdb_session_id = getSetting('tmdb.session_id')
 		# self.user = str(self.imdb_user) + str(self.tmdb_key)
 		self.user = str(self.tmdb_key)
-		self.enable_fanarttv = control.setting('enable.fanarttv') == 'true'
-		self.prefer_tmdbArt = control.setting('prefer.tmdbArt') == 'true'
-		self.unairedcolor = control.getColor(control.setting('movie.unaired.identify'))
+		self.enable_fanarttv = getSetting('enable.fanarttv') == 'true'
+		self.prefer_tmdbArt = getSetting('prefer.tmdbArt') == 'true'
+		self.unairedcolor = control.getColor(getSetting('movie.unaired.identify'))
 		self.highlight_color = control.getHighlightColor()
 		self.tmdb_link = 'https://api.themoviedb.org'
 		self.tmdb_popular_link = 'https://api.themoviedb.org/3/movie/popular?api_key=%s&language=en-US&region=US&page=1'
@@ -66,7 +68,7 @@ class Movies:
 		self.imdb_comingsoon_link = 'https://www.imdb.com/movies-coming-soon/'
 		self.year_link = 'https://www.imdb.com/search/title/?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=%s&start=1' % ('%s', '%s', self.page_limit)
 		if self.hidecinema:
-			hidecinema_rollback = str(int(control.setting('hidecinema.rollback')) * 30)
+			hidecinema_rollback = str(int(getSetting('hidecinema.rollback')) * 30)
 			self.mostpopular_link = 'https://www.imdb.com/search/title/?title_type=feature,tv_movie&num_votes=1000,&production_status=released&groups=top_1000&release_date=,date[%s]&sort=moviemeter,asc&count=%s&start=1' % (hidecinema_rollback, self.page_limit )
 			self.mostvoted_link = 'https://www.imdb.com/search/title/?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=,date[%s]&sort=num_votes,desc&count=%s&start=1' % (hidecinema_rollback, self.page_limit )
 			self.featured_link = 'https://www.imdb.com/search/title/?title_type=feature,tv_movie&num_votes=1000,&production_status=released&release_date=,date[%s]&sort=moviemeter,asc&count=%s&start=1' % (hidecinema_rollback, self.page_limit )
@@ -282,8 +284,8 @@ class Movies:
 	def sort(self, type='movies'):
 		try:
 			if not self.list: return
-			attribute = int(control.setting('sort.%s.type' % type))
-			reverse = int(control.setting('sort.%s.order' % type)) == 1
+			attribute = int(getSetting('sort.%s.type' % type))
+			reverse = int(getSetting('sort.%s.order' % type)) == 1
 			if attribute == 0: reverse = False # Sorting Order is not enabled when sort method is "Default"
 			if attribute > 0:
 				if attribute == 1:
@@ -310,33 +312,32 @@ class Movies:
 			log_utils.error()
 
 	def imdb_sort(self, type='movies'):
-		sort = int(control.setting('sort.%s.type' % type))
+		sort = int(getSetting('sort.%s.type' % type))
 		imdb_sort = 'list_order' if type == 'movies.watchlist' else 'moviemeter'
 		if sort == 1: imdb_sort = 'alpha'
-		if sort == 2: imdb_sort = 'user_rating'
-		if sort == 3: imdb_sort = 'num_votes'
-		if sort == 4: imdb_sort = 'release_date'
-		if sort in (5, 6): imdb_sort = 'date_added'
-		imdb_sort_order = ',asc' if (int(control.setting('sort.%s.order' % type)) == 0 or sort == 0) else ',desc'
+		elif sort == 2: imdb_sort = 'user_rating'
+		elif sort == 3: imdb_sort = 'num_votes'
+		elif sort == 4: imdb_sort = 'release_date'
+		elif sort in (5, 6): imdb_sort = 'date_added'
+		imdb_sort_order = ',asc' if (int(getSetting('sort.%s.order' % type)) == 0 or sort == 0) else ',desc'
 		sort_string = imdb_sort + imdb_sort_order
 		return sort_string
 
 	def tmdb_DiscoverSort(self):
-		sort = int(control.setting('sort.movies.type'))
+		sort = int(getSetting('sort.movies.type'))
 		tmdb_sort = 'popularity' # default sort=0
-		# if sort == 1: tmdb_sort = 'original_title'
 		if sort == 1: tmdb_sort = 'title'
-		if sort == 2: tmdb_sort = 'vote_average'
-		if sort == 3: tmdb_sort = 'vote_count'
-		if sort in (4, 5, 6): tmdb_sort = 'primary_release_date'
-		tmdb_sort_order = '.asc' if (int(control.setting('sort.movies.order')) == 0) else '.desc'
+		elif sort == 2: tmdb_sort = 'vote_average'
+		elif sort == 3: tmdb_sort = 'vote_count'
+		elif sort in (4, 5, 6): tmdb_sort = 'primary_release_date'
+		tmdb_sort_order = '.asc' if (int(getSetting('sort.movies.order')) == 0) else '.desc'
 		sort_string = tmdb_sort + tmdb_sort_order
 		if sort == 2: sort_string = sort_string + '&vote_count.gte=500'
 		return sort_string
 
 	def search(self):
 		from resources.lib.menus import navigator
-		navigator.Navigator().addDirectoryItem(32603, 'movieSearchnew', 'search.png', 'DefaultAddonsSearch.png', isFolder=False)
+		navigator.Navigator().addDirectoryItem(getLS(32603) % self.highlight_color, 'movieSearchnew', 'search.png', 'DefaultAddonsSearch.png', isFolder=False)
 		try: from sqlite3 import dbapi2 as database
 		except ImportError: from pysqlite2 import dbapi2 as database
 		try:
@@ -363,7 +364,7 @@ class Movies:
 		navigator.Navigator().endDirectory()
 
 	def search_new(self):
-		k = control.keyboard('', control.lang(32010))
+		k = control.keyboard('', getLS(32010))
 		k.doModal()
 		q = k.getText() if k.isConfirmed() else None
 		if not q: return control.closeAll()
@@ -388,7 +389,7 @@ class Movies:
 		self.get(url)
 
 	def person(self):
-		k = control.keyboard('', control.lang(32010))
+		k = control.keyboard('', getLS(32010))
 		k.doModal()
 		q = k.getText().strip() if k.isConfirmed() else None
 		if not q: return control.closeAll()
@@ -473,7 +474,7 @@ class Movies:
 			items = [(i['name'], i['url']) for i in items]
 			message = 32663
 			if 'themoviedb' in url: message = 32681
-			select = control.selectDialog([i[0] for i in items], control.lang(message))
+			select = control.selectDialog([i[0] for i in items], getLS(message))
 			list_name = items[select][0]
 			if select == -1: return
 			link = items[select][1]
@@ -523,14 +524,14 @@ class Movies:
 			if not contains: self.list.append(userlists[i])
 		if self.tmdb_session_id != '': # TMDb Favorites
 			url = self.tmdb_link + '/3/account/{account_id}/favorite/movies?api_key=%s&session_id=%s&sort_by=created_at.asc&page=1' % ('%s', self.tmdb_session_id) 
-			self.list.insert(0, {'name': control.lang(32026), 'url': url, 'image': 'tmdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'tmdbmovies'})
+			self.list.insert(0, {'name': getLS(32026), 'url': url, 'image': 'tmdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'tmdbmovies'})
 		if self.tmdb_session_id != '': # TMDb Watchlist
 			url = self.tmdb_link + '/3/account/{account_id}/watchlist/movies?api_key=%s&session_id=%s&sort_by=created_at.asc&page=1' % ('%s', self.tmdb_session_id)
-			self.list.insert(0, {'name': control.lang(32033), 'url': url, 'image': 'tmdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'tmdbmovies'})
+			self.list.insert(0, {'name': getLS(32033), 'url': url, 'image': 'tmdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'tmdbmovies'})
 		if self.imdb_user != '': # imdb Watchlist
-			self.list.insert(0, {'name': control.lang(32033), 'url': self.imdbwatchlist_link, 'image': 'imdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'movies'})
+			self.list.insert(0, {'name': getLS(32033), 'url': self.imdbwatchlist_link, 'image': 'imdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'movies'})
 		if self.imdb_user != '': # imdb My Ratings
-			self.list.insert(0, {'name': control.lang(32025), 'url': self.imdbratings_link, 'image': 'imdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'movies'})
+			self.list.insert(0, {'name': getLS(32025), 'url': self.imdbratings_link, 'image': 'imdb.png', 'icon': 'DefaultVideoPlaylists.png', 'action': 'movies'})
 		self.addDirectory(self.list, queue=True)
 		return self.list
 
@@ -541,7 +542,7 @@ class Movies:
 			index = int(q['page']) - 1
 			self.list = traktsync.fetch_collection('movies_collection')
 			self.sort() # sort before local pagination
-			if control.setting('trakt.paginate.lists') == 'true' and self.list:
+			if getSetting('trakt.paginate.lists') == 'true' and self.list:
 				paginated_ids = [self.list[x:x + int(self.page_limit)] for x in range(0, len(self.list), int(self.page_limit))]
 				self.list = paginated_ids[index]
 			try:
@@ -566,7 +567,7 @@ class Movies:
 			index = int(q['page']) - 1
 			self.list = traktsync.fetch_watch_list('movies_watchlist')
 			self.sort(type='movies.watchlist') # sort before local pagination
-			if control.setting('trakt.paginate.lists') == 'true' and self.list:
+			if getSetting('trakt.paginate.lists') == 'true' and self.list:
 				paginated_ids = [self.list[x:x + int(self.page_limit)] for x in range(0, len(self.list), int(self.page_limit))]
 				self.list = paginated_ids[index]
 			try:
@@ -676,7 +677,7 @@ class Movies:
 		if not self.list: return
 		self.sort() # sort before local pagination
 		total_pages = 1
-		if control.setting('trakt.paginate.lists') == 'true':
+		if getSetting('trakt.paginate.lists') == 'true':
 			paginated_ids = [self.list[x:x + int(self.page_limit)] for x in range(0, len(self.list), int(self.page_limit))]
 			total_pages = len(paginated_ids)
 			self.list = paginated_ids[index]
@@ -879,8 +880,9 @@ class Movies:
 			self.list = metacache.fetch(self.list, self.lang, self.user)
 			for r in range(0, total, 40):
 				threads = []
+				append = threads.append
 				for i in range(r, r + 40):
-					if i < total: threads.append(Thread(target=self.super_info, args=(i,)))
+					if i < total: append(Thread(target=self.super_info, args=(i,)))
 				[i.start() for i in threads]
 				[i.join() for i in threads]
 			if self.meta:
@@ -951,21 +953,21 @@ class Movies:
 			control.hide() ; control.notification(title=32001, message=33049)
 		from resources.lib.modules.player import Bookmarks
 		sysaddon, syshandle = argv[0], int(argv[1])
-		play_mode = control.setting('play.mode')
-		rescrape_useDefault = control.setting('rescrape.default') == 'true'
-		rescrape_method = control.setting('rescrape.default2')
+		play_mode = getSetting('play.mode')
+		rescrape_useDefault = getSetting('rescrape.default') == 'true'
+		rescrape_method = getSetting('rescrape.default2')
 		is_widget = 'plugin' not in control.infoLabel('Container.PluginName')
-		settingFanart = control.setting('fanart') == 'true'
+		settingFanart = getSetting('fanart') == 'true'
 		addonPoster, addonFanart, addonBanner = control.addonPoster(), control.addonFanart(), control.addonBanner()
-		indicators = getMovieIndicators(refresh=True)
-		if play_mode == '1': playbackMenu = control.lang(32063)
-		else: playbackMenu = control.lang(32064)
-		if trakt.getTraktIndicatorsInfo(): watchedMenu, unwatchedMenu = control.lang(32068), control.lang(32069)
-		else: watchedMenu, unwatchedMenu = control.lang(32066), control.lang(32067)
-		playlistManagerMenu, queueMenu = control.lang(35522), control.lang(32065)
-		traktManagerMenu, addToLibrary = control.lang(32070), control.lang(32551)
-		nextMenu, clearSourcesMenu = control.lang(32053), control.lang(32611)
-		rescrapeMenu, findSimilarMenu = control.lang(32185), control.lang(32184)
+		indicators = getMovieIndicators() # refresh not needed now due to service sync
+		if play_mode == '1': playbackMenu = getLS(32063)
+		else: playbackMenu = getLS(32064)
+		if trakt.getTraktIndicatorsInfo(): watchedMenu, unwatchedMenu = getLS(32068), getLS(32069)
+		else: watchedMenu, unwatchedMenu = getLS(32066), getLS(32067)
+		playlistManagerMenu, queueMenu = getLS(35522), getLS(32065)
+		traktManagerMenu, addToLibrary = getLS(32070), getLS(32551)
+		nextMenu, clearSourcesMenu = getLS(32053), getLS(32611)
+		rescrapeMenu, findSimilarMenu = getLS(32185), getLS(32184)
 
 		for i in items:
 			try:
@@ -980,8 +982,8 @@ class Movies:
 				except: pass
 				if i.get('traktHistory') is True: # uses Trakt lastplayed
 					try:
-						air_datetime = tools.Time.convert(stringTime=i.get('lastplayed', ''), zoneFrom='utc', zoneTo='local', formatInput='%Y-%m-%dT%H:%M:%S.000Z', formatOutput='%b %d %Y %I:%M %p')
-						labelProgress = labelProgress + '[COLOR %s]  [%s][/COLOR]' % (self.highlight_color, air_datetime.replace(' 0', ' ').replace(':00 ', ''))
+						air_datetime = tools.convert_time(stringTime=i.get('lastplayed', ''), zoneFrom='utc', zoneTo='local', formatInput='%Y-%m-%dT%H:%M:%S.000Z', formatOutput='%b %d %Y %I:%M %p', remove_zeroes=True)
+						labelProgress = labelProgress + '[COLOR %s]  [%s][/COLOR]' % (self.highlight_color, air_datetime)
 					except: pass
 				sysname, systitle = quote_plus(label), quote_plus(title)
 				meta = dict((k, v) for k, v in iter(i.items()) if v is not None and v != '')
@@ -1002,13 +1004,15 @@ class Movies:
 				art = {}
 				art.update({'icon': icon, 'thumb': thumb, 'banner': banner, 'poster': poster, 'fanart': fanart, 'landscape': landscape, 'clearlogo': meta.get('clearlogo', ''),
 								'clearart': meta.get('clearart', ''), 'discart': meta.get('discart', ''), 'keyart': meta.get('keyart', '')})
-				for k in ('poster2', 'poster3', 'fanart2', 'fanart3', 'banner2', 'banner3', 'trailer'): meta.pop(k, None)
+				for k in ('metacache', 'poster2', 'poster3', 'fanart2', 'fanart3', 'banner2', 'banner3', 'trailer'): meta.pop(k, None)
 				meta.update({'poster': poster, 'fanart': fanart, 'banner': banner})
+				sysmeta, sysart = quote_plus(jsdumps(meta)), quote_plus(jsdumps(art))
+				url = '%s?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s' % (sysaddon, systitle, year, imdb, tmdb, sysmeta)
+				sysurl = quote_plus(url)
 ####-Context Menu and Overlays-####
 				cm = []
 				try:
-					overlay = int(getMovieOverlay(indicators, imdb))
-					watched = (overlay == 5)
+					watched = getMovieOverlay(indicators, imdb) == '5'
 					if self.traktCredentials:
 						cm.append((traktManagerMenu, 'RunPlugin(%s?action=tools_traktManager&name=%s&imdb=%s&watched=%s&unfinished=%s)' % (sysaddon, sysname, imdb, watched, unfinished)))
 					if watched:
@@ -1019,9 +1023,6 @@ class Movies:
 						cm.append((watchedMenu, 'RunPlugin(%s?action=playcount_Movie&name=%s&imdb=%s&query=5)' % (sysaddon, sysname, imdb)))
 						meta.update({'playcount': 0, 'overlay': 4})
 				except: pass
-				sysmeta, sysart = quote_plus(jsdumps(meta)), quote_plus(jsdumps(art))
-				url = '%s?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s' % (sysaddon, systitle, year, imdb, tmdb, sysmeta)
-				sysurl = quote_plus(url)
 				cm.append((playlistManagerMenu, 'RunPlugin(%s?action=playlist_Manager&name=%s&url=%s&meta=%s&art=%s)' % (sysaddon, sysname, sysurl, sysmeta, sysart)))
 				cm.append((queueMenu, 'RunPlugin(%s?action=playlist_QueueItem&name=%s)' % (sysaddon, sysname)))
 				cm.append((addToLibrary, 'RunPlugin(%s?action=library_movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
@@ -1039,7 +1040,7 @@ class Movies:
 					if rescrape_method == '3':
 						cm.append((rescrapeMenu, 'PlayMedia(%s?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s&rescrape=true&all_providers=true&select=0)' % (sysaddon, systitle, year, imdb, tmdb, sysmeta)))
 				cm.append((clearSourcesMenu, 'RunPlugin(%s?action=cache_clearSources)' % sysaddon))
-				cm.append(('[COLOR ghostwhite]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
+				cm.append(('[COLOR red]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
 ####################################
 				if trailer: meta.update({'trailer': trailer}) # removed temp so it's not passed to CM items, only infoLabels for skin
 				else: meta.update({'trailer': '%s?action=play_Trailer&type=%s&name=%s&year=%s&imdb=%s' % (sysaddon, 'movie', sysname, year, imdb)})
@@ -1048,7 +1049,7 @@ class Movies:
 				item.setArt(art)
 				item.setUniqueIDs({'imdb': imdb, 'tmdb': tmdb})
 				item.setProperty('IsPlayable', 'true')
-				if is_widget: item.setProperty('isdg_widget', 'true')
+				if is_widget: item.setProperty('isDG_widget', 'true')
 				resumetime = Bookmarks().get(name=label, imdb=imdb, tmdb=tmdb, year=str(year), runtime=runtime, ck=True)
 				# item.setProperty('TotalTime', str(meta['duration'])) # Adding this property causes the Kodi bookmark CM items to be added
 				item.setProperty('ResumeTime', str(resumetime))
@@ -1100,8 +1101,8 @@ class Movies:
 		sysaddon, syshandle = argv[0], int(argv[1])
 		addonThumb = control.addonThumb()
 		artPath = control.artPath()
-		queueMenu, playRandom, addToLibrary = control.lang(32065), control.lang(32535), control.lang(32551)
-		likeMenu, unlikeMenu = control.lang(32186), control.lang(32187)
+		queueMenu, playRandom, addToLibrary = getLS(32065), getLS(32535), getLS(32551)
+		likeMenu, unlikeMenu = getLS(32186), getLS(32187)
 		for i in items:
 			try:
 				content = i.get('content', '')
@@ -1130,10 +1131,10 @@ class Movies:
 				cm.append((playRandom, 'RunPlugin(%s?action=play_Random&rtype=movie&url=%s)' % (sysaddon, quote_plus(i['url']))))
 				if queue: cm.append((queueMenu, 'RunPlugin(%s?action=playlist_QueueItem)' % sysaddon))
 				try:
-					if control.setting('library.service.update') == 'true':
+					if getSetting('library.service.update') == 'true':
 						cm.append((addToLibrary, 'RunPlugin(%s?action=library_moviesToLibrary&url=%s&name=%s)' % (sysaddon, quote_plus(i['context']), name)))
 				except: pass
-				cm.append(('[COLOR ghostwhite]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
+				cm.append(('[COLOR red]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
 
 				item = control.item(label=name, offscreen=True)
 				item.setProperty('IsPlayable', 'false')
@@ -1149,7 +1150,7 @@ class Movies:
 			url = items[0].get('next', '')
 			if url == '': raise Exception()
 			url_params = dict(parse_qsl(urlsplit(url).query))
-			nextMenu = control.lang(32053)
+			nextMenu = getLS(32053)
 			page = '  [I](%s)[/I]' % url_params.get('page')
 			nextMenu = '[COLOR skyblue]' + nextMenu + page + '[/COLOR]'
 			icon = control.addonNext()

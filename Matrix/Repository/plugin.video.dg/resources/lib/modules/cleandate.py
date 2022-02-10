@@ -40,3 +40,17 @@ def iso_2_utc(iso_ts):
 	try: seconds = delta.total_seconds()  # works only on 2.7
 	except: seconds = delta.seconds + delta.days * 24 * 3600  # close enough
 	return seconds
+
+def datetime_from_string(string_date, format="%Y-%m-%d", date_only=True): # date or datetime object from string
+	try:
+		if not string_date: return None
+		try:
+			if date_only: res = datetime.strptime(string_date, format).date()
+			else: res = datetime.strptime(string_date, format)
+		except TypeError:
+			if date_only: res = datetime(*(time.strptime(string_date, format)[0:6])).date()
+			else: res = datetime(*(time.strptime(string_date, format)[0:6]))
+		return res
+	except:
+		from resources.lib.modules import log_utils
+		log_utils.error()

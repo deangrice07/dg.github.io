@@ -11,21 +11,26 @@ from urllib.parse import quote_plus
 from resources.lib.database import cache
 from resources.lib.modules import control
 from resources.lib.modules import log_utils
+from resources.lib.modules import string_tools
 from resources.lib.modules.source_utils import supported_video_extensions
 
+getLS = control.lang
+getSetting = control.setting
 base_url = 'https://api.alldebrid.com/v4/'
 user_agent = 'Venom%20for%20Kodi'
 ad_icon = control.joinPath(control.artPath(), 'alldebrid.png')
 addonFanart = control.addonFanart()
+invalid_extensions = ('.bmp', '.gif', '.jpg', '.nfo', '.part', '.png', '.rar', '.sample.', '.srt', '.txt', '.zip')
 
 
 class AllDebrid:
 	name = "AllDebrid"
+	sort_priority = getSetting('alldebrid.priority')
 	def __init__(self):
-		self.token = control.setting('alldebrid.token')
+		self.token = getSetting('alldebrid.token')
 		self.timeout = 15
-		self.server_notifications = control.setting('alldebrid.server.notifications')
-		self.store_to_cloud = control.setting('alldebrid.saveToCloud') == 'true'
+		self.server_notifications = getSetting('alldebrid.server.notifications')
+		self.store_to_cloud = getSetting('alldebrid.saveToCloud') == 'true'
 
 	def _get(self, url, url_append=''):
 		response = None
@@ -33,7 +38,6 @@ class AllDebrid:
 			if self.token == '': return None
 			url = base_url + url + '?agent=%s&apikey=%s' % (user_agent, self.token) + url_append
 			response = requests.get(url, timeout=self.timeout)
-			# log_utils.log('response.status_code =%s' % response.status_code)
 			if 'Response [500]' in str(response):
 				log_utils.log('AllDebrid: Status code 500 – Internal Server Error', __name__, log_utils.LOGWARNING)
 				return None
@@ -110,8 +114,8 @@ class AllDebrid:
 		response = response['data']
 		line = '%s\n%s'
 		progressDialog = control.progressDialog
-		progressDialog.create(control.lang(40056))
-		progressDialog.update(-1, line % (control.lang(32513) % 'https://alldebrid.com/pin/', control.lang(32514) % response['pin']))
+		progressDialog.create(getLS(40056))
+		progressDialog.update(-1, line % (getLS(32513) % 'https://alldebrid.com/pin/', getLS(32514) % response['pin']))
 		self.check_url = response.get('check_url')
 		control.sleep(2000)
 		while not self.token:
@@ -147,13 +151,13 @@ class AllDebrid:
 			status = 'Premium' if account_info['isPremium'] else 'Not Active'
 			expires = datetime.fromtimestamp(account_info['premiumUntil'])
 			days_remaining = (expires - datetime.today()).days
-			heading = control.lang(40059).upper()
+			heading = getLS(40059).upper()
 			items = []
-			items += [control.lang(40036) % username]
-			items += [control.lang(40035) % email]
-			items += [control.lang(40037) % status]
-			items += [control.lang(40041) % expires]
-			items += [control.lang(40042) % days_remaining]
+			items += [getLS(40036) % username]
+			items += [getLS(40035) % email]
+			items += [getLS(40037) % status]
+			items += [getLS(40041) % expires]
+			items += [getLS(40042) % days_remaining]
 			return control.selectDialog(items, 'AllDebrid')
 		except:
 			log_utils.error()
@@ -217,7 +221,7 @@ class AllDebrid:
 	def delete_transfer(self, transfer_id, folder_name=None, silent=True):
 		try:
 			if not silent:
-				if not control.yesnoDialog(control.lang(40050) % '?\n' + folder_name, '', ''): return
+				if not control.yesnoDialog(getLS(40050) % '?\n' + folder_name, '', ''): return
 			url = 'magnet/delete'
 			url_append = '&id=%s' % transfer_id
 			response = self._get(url, url_append)
@@ -234,7 +238,7 @@ class AllDebrid:
 	def restart_transfer(self, transfer_id, folder_name=None, silent=True):
 		try:
 			if not silent:
-				if not control.yesnoDialog(control.lang(40007) % '\n' + folder_name, '', ''): return
+				if not control.yesnoDialog(getLS(40007) % '\n' + folder_name, '', ''): return
 			url = 'magnet/restart'
 			url_append = '&id=%s' % transfer_id
 			response = self._get(url, url_append)
@@ -258,7 +262,7 @@ class AllDebrid:
 			if self.server_notifications: control.notification(message='Request Failure-Empty Content', icon=ad_icon)
 			log_utils.log('AllDebrid: Request Failure-Empty Content', __name__, log_utils.LOGDEBUG)
 			return
-		folder_str, deleteMenu, restartMenu = control.lang(40046).upper(), control.lang(40050), control.lang(40008)
+		folder_str, deleteMenu, restartMenu = getLS(40046).upper(), getLS(40050), getLS(40008)
 		for count, item in enumerate(transfer_files, 1):
 			try:
 				status_code = item['statusCode'] 
@@ -269,7 +273,7 @@ class AllDebrid:
 					try: percent = str(round(float(downloaded) / size * 100, 1))
 					except: percent = '0'
 				else: active = False
-				folder_name = control.strip_non_ascii_and_unprintable(item['filename'])
+				folder_name = string_tools.strip_non_ascii_and_unprintable(item['filename'])
 				id = item['id']
 				status_str = '[COLOR %s]%s[/COLOR]' % (control.getHighlightColor(), item['status'].capitalize())
 				if active: label = '%02d | [B]%s[/B] - %s | [B]%s[/B]' % (count, status_str, str(percent) + '%', folder_name)
@@ -284,7 +288,7 @@ class AllDebrid:
 				cm.append((deleteMenu % 'Transfer', 'RunPlugin(%s?action=ad_DeleteTransfer&id=%s&name=%s)' % (sysaddon, id, folder_name)))
 				if status_code in (6, 7, 9, 10):
 					cm.append((restartMenu, 'RunPlugin(%s?action=ad_RestartTransfer&id=%s&name=%s)' % (sysaddon, id, folder_name)))
-				item = control.item(label=label)
+				item = control.item(label=label, offscreen=True)
 				item.addContextMenuItems(cm)
 				item.setArt({'icon': ad_icon, 'poster': ad_icon, 'thumb': ad_icon, 'fanart': addonFanart, 'banner': ad_icon})
 				item.setInfo(type='video', infoLabels='')
@@ -296,20 +300,21 @@ class AllDebrid:
 
 	def user_cloud_to_listItem(self, folder_id=None):
 		sysaddon, syshandle = argv[0], int(argv[1])
-		folder_str, deleteMenu = control.lang(40046).upper(), control.lang(40050)
+		folder_str, deleteMenu = getLS(40046).upper(), getLS(40050)
 		cloud_dict = self.user_cloud()['magnets']
 		cloud_dict = [i for i in cloud_dict if i['statusCode'] == 4]
+
 		for count, item in enumerate(cloud_dict, 1):
 			try:
 				cm = []
-				folder_name = control.strip_non_ascii_and_unprintable(item['filename'])
+				folder_name = string_tools.strip_non_ascii_and_unprintable(item['filename'])
 				id = item['id']
 				status_str = '[COLOR %s]%s[/COLOR]' % (control.getHighlightColor(), item['status'].capitalize())
 				label = '%02d | [B]%s[/B] | [B]%s[/B] | [I]%s [/I]' % (count, status_str, folder_str, folder_name)
 				url = '%s?action=ad_BrowseUserCloud&source=%s' % (sysaddon, quote_plus(jsdumps(item)))
 				cm.append((deleteMenu % 'Transfer', 'RunPlugin(%s?action=ad_DeleteTransfer&id=%s&name=%s)' %
 					(sysaddon, id, folder_name)))
-				item = control.item(label=label)
+				item = control.item(label=label, offscreen=True)
 				item.addContextMenuItems(cm)
 				item.setArt({'icon': ad_icon, 'poster': ad_icon, 'thumb': ad_icon, 'fanart': addonFanart, 'banner': ad_icon})
 				item.setInfo(type='video', infoLabels='')
@@ -326,13 +331,26 @@ class AllDebrid:
 		links = torrent_folder['links']
 		# links = [i for i in links if i['filename'].lower().endswith(tuple(extensions))]
 		status_code = torrent_folder['statusCode'] 
-		file_str, downloadMenu, deleteMenu = control.lang(40047).upper(), control.lang(40048), control.lang(40050)
+		file_str, downloadMenu, deleteMenu = getLS(40047).upper(), getLS(40048), getLS(40050)
 		for count, item in enumerate(links, 1):
 			try:
 				cm = []
 				url_link = item['link']
-				name = control.strip_non_ascii_and_unprintable(item['filename'])
-				if any(value in name for value in ('.rar', '.zip', '.iso', '.part', '.png', '.jpg', '.bmp', '.gif', '.txt')): continue
+				name = string_tools.strip_non_ascii_and_unprintable(item['filename'])
+				if name.lower().endswith(invalid_extensions): continue
+
+				if not name.lower().endswith(tuple(extensions)):
+					files = item['files']
+					entry = files[0].get('e')
+					name = entry[0].get('n') if isinstance(entry, list) else entry.get('n')
+					def entry_loop(entry):
+						entry = entry.get('e')
+						name = entry[0].get('n') if isinstance(entry, list) else entry.get('n')
+						if not name.lower().endswith(tuple(extensions)):
+							return entry_loop(entry)
+						else: return string_tools.strip_non_ascii_and_unprintable(name)
+					if not name.lower().endswith(tuple(extensions)):
+						name = entry_loop(entry)
 				size = item['size']
 				display_size = float(int(size)) / 1073741824
 				label = '%02d | [B]%s[/B] | %.2f GB | [I]%s [/I]' % (count, file_str, display_size, name)
@@ -340,7 +358,7 @@ class AllDebrid:
 				else: url = ''
 				cm.append((downloadMenu, 'RunPlugin(%s?action=download&name=%s&image=%s&url=%s&caller=alldebrid)' %
 								(sysaddon, quote_plus(name), quote_plus(ad_icon), url_link)))
-				item = control.item(label=label)
+				item = control.item(label=label, offscreen=True)
 				item.addContextMenuItems(cm)
 				item.setArt({'icon': ad_icon, 'poster': ad_icon, 'thumb': ad_icon, 'fanart': addonFanart, 'banner': ad_icon})
 				item.setInfo(type='video', infoLabels='')
@@ -357,14 +375,16 @@ class AllDebrid:
 			media_id = None
 			failed_reason = 'Unknown'
 			correct_files = []
+			append = correct_files.append
 			extensions = supported_video_extensions()
 			extras_filtering_list = extras_filter()
 			transfer_id = self.create_transfer(magnet_url)
 			transfer_info = self.list_transfer(transfer_id)
-			# log_utils.log('transfer_info=%s' % transfer_info)
+			# log_utils.log('transfer_info=%s' % str(transfer_info))
+
 			# valid_results = [i for i in transfer_info.get('links') if any(i.get('filename').lower().endswith(x) for x in extensions) and not i.get('link', '') == ''] #.m2ts file extension is not in "filename" so this fails
-			invalids = ('.rar', '.zip', '.iso', '.part', '.png', '.jpg', '.bmp', '.gif', '.txt', '.srt')
-			valid_results = [i for i in transfer_info.get('links') if not any(i.get('filename').lower().endswith(x) for x in invalids) and not i.get('link', '') == '']
+			valid_results = [i for i in transfer_info.get('links') if not any(i.get('filename').lower().endswith(x) for x in invalid_extensions) and not i.get('link', '') == '']
+
 			if len(valid_results) == 0:
 				failed_reason = 'No valid video extension found'
 				raise Exception()
@@ -376,7 +396,7 @@ class AllDebrid:
 						failed_reason = '.m2ts season disk incapable of determining episode'
 						continue
 					if seas_ep_filter(season, episode, item['filename']):
-						correct_files.append(item)
+						append(item)
 					if len(correct_files) == 0:
 						failed_reason = 'no matching episode found'
 						continue
@@ -389,7 +409,6 @@ class AllDebrid:
 							break
 			else:
 				media_id = max(valid_results, key=lambda x: x.get('size')).get('link', None)
-				# log_utils.log('media_id=%s' % media_id)
 			if not self.store_to_cloud: self.delete_transfer(transfer_id)
 			if not media_id:
 				log_utils.log('AllDebrid: FAILED TO RESOLVE MAGNET %s : (%s)' % (magnet_url, failed_reason), __name__, log_utils.LOGWARNING)
@@ -410,9 +429,10 @@ class AllDebrid:
 			transfer_id = self.create_transfer(magnet_url)
 			transfer_info = self.list_transfer(transfer_id)
 			end_results = []
+			append = end_results.append
 			for item in transfer_info.get('links'):
 				if any(item.get('filename').lower().endswith(x) for x in extensions) and not item.get('link', '') == '':
-					end_results.append({'link': item['link'], 'filename': item['filename'], 'size': item['size']})
+					append({'link': item['link'], 'filename': item['filename'], 'size': float(item['size']) / 1073741824})
 			self.delete_transfer(transfer_id)
 			return end_results
 		except:
@@ -421,13 +441,13 @@ class AllDebrid:
 			return None
 
 	def add_uncached_torrent(self, magnet_url, pack=False):
-		def _return_failed(message=control.lang(33586)):
+		def _return_failed(message=getLS(33586)):
 			try: control.progressDialog.close()
 			except: pass
 			self.delete_transfer(transfer_id)
 			control.hide()
 			control.sleep(500)
-			control.okDialog(title=control.lang(40018), message=message)
+			control.okDialog(title=getLS(40018), message=message)
 			return False
 		control.busy()
 		transfer_id = self.create_transfer(magnet_url)
@@ -436,14 +456,14 @@ class AllDebrid:
 		if not transfer_info: return _return_failed()
 		# if pack:
 			# control.hide()
-			# control.okDialog(title='default', message=control.lang(40017) % control.lang(40059))
+			# control.okDialog(title='default', message=getLS(40017) % getLS(40059))
 			# return True
 		interval = 5
 		line = '%s\n%s\n%s'
-		line1 = '%s...' % (control.lang(40017) % control.lang(40059))
+		line1 = '%s...' % (getLS(40017) % getLS(40059))
 		line2 = transfer_info['filename']
 		line3 = transfer_info['status']
-		control.progressDialog.create(control.lang(40018), line % (line1, line2, line3))
+		control.progressDialog.create(getLS(40018), line % (line1, line2, line3))
 		while not transfer_info['statusCode'] == 4:
 			control.sleep(1000 * interval)
 			transfer_info = self.list_transfer(transfer_id)
@@ -452,11 +472,11 @@ class AllDebrid:
 			if transfer_info['statusCode'] == 1:
 				download_speed = round(float(transfer_info['downloadSpeed']) / (1000**2), 2)
 				progress = int(float(transfer_info['downloaded']) / file_size * 100) if file_size > 0 else 0
-				line3 = control.lang(40016) % (download_speed, transfer_info['seeders'], progress, round(float(file_size) / (1000 ** 3), 2))
+				line3 = getLS(40016) % (download_speed, transfer_info['seeders'], progress, round(float(file_size) / (1000 ** 3), 2))
 			elif transfer_info['statusCode'] == 3:
 				upload_speed = round(float(transfer_info['uploadSpeed']) / (1000 ** 2), 2)
 				progress = int(float(transfer_info['uploaded']) / file_size * 100) if file_size > 0 else 0
-				line3 = control.lang(40015) % (upload_speed, progress, round(float(file_size) / (1000 ** 3), 2))
+				line3 = getLS(40015) % (upload_speed, progress, round(float(file_size) / (1000 ** 3), 2))
 			else:
 				line3 = transfer_info['status']
 				progress = 0
@@ -465,7 +485,7 @@ class AllDebrid:
 			try:
 				if control.progressDialog.iscanceled():
 					if control.yesnoDialog('Delete AD download also?', 'No will continue the download', 'but close dialog'):
-						return _return_failed(control.lang(40014))
+						return _return_failed(getLS(40014))
 					else:
 						control.progressDialog.close()
 						control.hide()
@@ -491,11 +511,12 @@ class AllDebrid:
 		url = 'hosts'
 		hosts_dict = {'AllDebrid': []}
 		hosts = []
+		extend = hosts.extend
 		try:
 			result = cache.get(self._get, 168, url)
 			result = result['hosts']
 			for k, v in result.items():
-				try: hosts.extend(v['domains'])
+				try: extend(v['domains'])
 				except: pass
 			hosts_dict['AllDebrid'] = list(set(hosts))
 		except:

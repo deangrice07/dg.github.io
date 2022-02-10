@@ -18,8 +18,7 @@ def google(url, ref=None):
 							'Accept': '*/*', 'Host': 'lh3.googleusercontent.com', 'Accept-Language': 'en-US,en;q=0.8,de;q=0.6,es;q=0.4',
 							'Accept-Encoding': 'identity;q=1, *;q=0', 'Referer': ref,
 							'Connection': 'Keep-Alive', 'X-Client-Data': 'CJK2yQEIo7bJAQjEtskBCPqcygEIqZ3KAQjSncoBCKijygE=',
-							'Range': 'bytes=0-'
-							}
+							'Range': 'bytes=0-'}
 			resp = client.request(url, headers=newheaders, redirect=False, output='extended', timeout='10')
 			loc = resp[2]['Location']
 			c = resp[2]['Set-Cookie'].split(';')[0]

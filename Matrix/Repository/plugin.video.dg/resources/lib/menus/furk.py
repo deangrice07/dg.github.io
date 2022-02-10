@@ -72,19 +72,16 @@ class Furk:
 		self.endDirectory()
 		return ''
 
-
 	def search(self):
 		from resources.lib.menus import navigator
 		navigator.Navigator().addDirectoryItem('New Search', 'furkSearchNew', 'search.png', 'DefaultAddonsSearch.png')
-		try:
-			from sqlite3 import dbapi2 as database
-		except:
-			from pysqlite2 import dbapi2 as database
+		try: from sqlite3 import dbapi2 as database
+		except: from pysqlite2 import dbapi2 as database
 		try:
 			dbcon = database.connect(control.searchFile)
 			dbcur = dbcon.cursor()
-			dbcur.executescript("CREATE TABLE IF NOT EXISTS furk (ID Integer PRIMARY KEY AUTOINCREMENT, term);")
-			dbcur.execute("SELECT * FROM furk ORDER BY ID DESC")
+			dbcur.executescript('''CREATE TABLE IF NOT EXISTS furk (ID Integer PRIMARY KEY AUTOINCREMENT, term);''')
+			dbcur.execute('''SELECT * FROM furk ORDER BY ID DESC''')
 			dbcur.connection.commit()
 			lst = []
 			delete_option = False
@@ -108,13 +105,13 @@ class Furk:
 			k = control.keyboard('', control.lang(32010))
 			k.doModal()
 			q = k.getText() if k.isConfirmed() else None
-			if not q: return
+			if not q: return control.closeAll()
 			try: from sqlite3 import dbapi2 as database
 			except: from pysqlite2 import dbapi2 as database
 			try:
 				dbcon = database.connect(control.searchFile)
 				dbcur = dbcon.cursor()
-				dbcur.execute("INSERT INTO furk VALUES (?,?)", (None, q))
+				dbcur.execute('''INSERT INTO furk VALUES (?,?)''', (None, q))
 				dbcur.connection.commit()
 			except:
 				from resources.lib.modules import log_utils

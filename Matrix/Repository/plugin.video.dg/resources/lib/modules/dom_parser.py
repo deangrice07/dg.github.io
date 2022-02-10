@@ -9,19 +9,17 @@ from collections import namedtuple
 DomMatch = namedtuple('DOMMatch', ['attrs', 'content'])
 re_type = type(re.compile(r''))
 
-		# ----- FUTURE -----
-# def parseDOM(html, name='', attrs=None, ret=False):
-	# try:
-		# if attrs:
-			# attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in iter(attrs.items()))
-		# results = parse_dom(html, name, attrs, ret)
-		# if ret: results = [result.attrs[ret.lower()] for result in results]
-		# else: results = [result.content for result in results]
-		# return results
-	# except:
-		# from resources.lib.modules import log_utils
-		# log_utils.error()
-
+def parseDOM(html, name='', attrs=None, ret=False):
+	try:
+		if attrs:
+			attrs = dict((key, re.compile(value + ('$' if value else ''))) for key, value in iter(attrs.items()))
+		results = parse_dom(html, name, attrs, ret)
+		if ret: results = [result.attrs[ret.lower()] for result in results]
+		else: results = [result.content for result in results]
+		return results
+	except:
+		from resources.lib.modules import log_utils
+		log_utils.error()
 
 def __get_dom_content(html, name, match):
 	try:
@@ -63,7 +61,6 @@ def __get_dom_elements(item, name, attrs):
 			for key, value in iter(attrs.items()):
 				value_is_regex = isinstance(value, re_type)
 				value_is_str = isinstance(value, str)
-
 				pattern = r'''(<{tag}[^>]*\s{key}=(?P<delim>['"])(.*?)(?P=delim)[^>]*>)'''.format(tag=name, key=key)
 				re_list = re.findall(pattern, item, re.M | re.S | re.I)
 				if value_is_regex:
@@ -111,8 +108,7 @@ def parse_dom(html, name='', attrs=None, req=False, exclude_comments=False):
 	try:
 		if attrs is None: attrs = {}
 		name = name.strip()
-		if isinstance(html, str) or isinstance(html, DomMatch):
-			html = [html]
+		if isinstance(html, str) or isinstance(html, DomMatch): html = [html]
 		elif not isinstance(html, list): return ''
 
 		if not name: return ''

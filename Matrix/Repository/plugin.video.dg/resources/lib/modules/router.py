@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from urllib.parse import quote_plus
@@ -25,12 +25,12 @@ def router(params):
 
 	if action is None:
 		from resources.lib.menus import navigator
-		isUpdate = control.homeWindow.getProperty('dg.updated')
+		isUpdate = control.homeWindow.getProperty('venom.updated')
 		if isUpdate == 'true':
-			control.execute('RunPlugin(plugin://plugin.video.dg/?action=tools_cleanSettings)')
-			control.homeWindow.clearProperty('dg.updated')
+			control.execute('RunPlugin(plugin://plugin.video.venom/?action=tools_cleanSettings)')
+			control.homeWindow.clearProperty('venom.updated')
 			from resources.lib.modules import changelog
-			changelog.get('DG')
+			changelog.get('Venom')
 		navigator.Navigator().root()
 
 	####################################################
@@ -142,26 +142,6 @@ def router(params):
 		elif action == 'collections':
 			from resources.lib.menus import collections
 			collections.Collections().get(url)
-
-	####################################################
-	#---Furk
-	####################################################
-	elif action and action.startswith('furk'):
-		if action == "furkNavigator":
-			from resources.lib.menus import navigator
-			navigator.Navigator().furk()
-		elif action == "furkUserFiles":
-			from resources.lib.menus import furk
-			furk.Furk().user_files()
-		elif action == "furkMetaSearch":
-			from resources.lib.menus import furk
-			furk.Furk().furk_meta_search(url)
-		elif action == "furkSearch":
-			from resources.lib.menus import furk
-			furk.Furk().search()
-		elif action == "furkSearchNew":
-			from resources.lib.menus import furk
-			furk.Furk().search_new()
 
 	####################################################
 	# TV Shows
@@ -327,6 +307,75 @@ def router(params):
 		from resources.lib.menus import navigator
 		navigator.Navigator().premium_services()
 
+	elif action and action.startswith('ad_'):
+		if action == 'ad_ServiceNavigator':
+			from resources.lib.menus import navigator
+			navigator.Navigator().alldebrid_service()
+		elif action == 'ad_AccountInfo':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().account_info_to_dialog()
+		# elif action == 'ad_Authorize':
+			# from resources.lib.debrid import alldebrid
+			# alldebrid.AllDebrid().auth()
+		elif action == 'ad_Transfers':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().user_transfers_to_listItem()
+		elif action == 'ad_CloudStorage':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().user_cloud_to_listItem()
+		elif action == 'ad_BrowseUserCloud':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().browse_user_cloud(source)
+		elif action == 'ad_DeleteTransfer':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().delete_transfer(id, name, silent=False)
+		elif action == 'ad_RestartTransfer':
+			from resources.lib.debrid import alldebrid
+			alldebrid.AllDebrid().restart_transfer(id, name, silent=False)
+
+	elif action and action.startswith('en_'):
+		if action == 'en_ServiceNavigator':
+			from resources.lib.menus import navigator
+			navigator.Navigator().easynews_service()
+		elif action == 'en_Search':
+			from resources.lib.debrid import easynews
+			easynews.EasyNews().search()
+		elif action == 'en_Searchnew':
+			from resources.lib.debrid import easynews
+			easynews.EasyNews().search_new()
+		elif action == 'en_searchResults':
+			from resources.lib.debrid import easynews
+			easynews.EasyNews().query_results_to_dialog(query)
+		elif action == 'en_resolve_forPlayback':
+			from resources.lib.debrid import easynews
+			easynews.EasyNews().resolve_forPlayback(url)
+		elif action == 'en_AccountInfo':
+			from resources.lib.debrid import easynews
+			easynews.EasyNews().account_info_to_dialog()
+
+	elif action and action.startswith('furk_'):
+		if action == "furk_ServiceNavigator":
+			from resources.lib.menus import navigator
+			navigator.Navigator().furk_service()
+		elif action == "furk_Search":
+			from resources.lib.debrid import furk
+			furk.Furk().search()
+		elif action == "furk_SearchNew":
+			from resources.lib.debrid import furk
+			furk.Furk().search_new()
+		elif action == "furk_searchResults":
+			from resources.lib.debrid import furk
+			furk.Furk().query_results_to_dialog(query)
+		elif action == 'furk_resolve_forPlayback':
+			from resources.lib.debrid import furk
+			furk.Furk().resolve_forPlayback(url)
+		elif action == 'furk_AccountInfo':
+			from resources.lib.debrid import furk
+			furk.Furk().account_info_to_dialog()
+		elif action == "furk_UserFiles":
+			from resources.lib.debrid import furk
+			furk.Furk().user_files()
+
 	elif action and action.startswith('pm_'):
 		if action == 'pm_ServiceNavigator':
 			from resources.lib.menus import navigator
@@ -382,32 +431,6 @@ def router(params):
 			from resources.lib.debrid import realdebrid
 			realdebrid.RealDebrid().delete_download(id, name)
 
-	elif action and action.startswith('ad_'):
-		if action == 'ad_ServiceNavigator':
-			from resources.lib.menus import navigator
-			navigator.Navigator().alldebrid_service()
-		elif action == 'ad_AccountInfo':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().account_info_to_dialog()
-		# elif action == 'ad_Authorize':
-			# from resources.lib.debrid import alldebrid
-			# alldebrid.AllDebrid().auth()
-		elif action == 'ad_Transfers':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().user_transfers_to_listItem()
-		elif action == 'ad_CloudStorage':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().user_cloud_to_listItem()
-		elif action == 'ad_BrowseUserCloud':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().browse_user_cloud(source)
-		elif action == 'ad_DeleteTransfer':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().delete_transfer(id, name, silent=False)
-		elif action == 'ad_RestartTransfer':
-			from resources.lib.debrid import alldebrid
-			alldebrid.AllDebrid().restart_transfer(id, name, silent=False)
-
 	####################################################
 	#---Anime
 	####################################################
@@ -453,6 +476,23 @@ def router(params):
 				except:
 					import traceback
 					traceback.print_exc()
+			if caller == 'alldebrid':
+				control.busy()
+				try:
+					from resources.lib.modules import downloader
+					from resources.lib.debrid import alldebrid
+					downloader.download(name, image, alldebrid.AllDebrid().unrestrict_link(url.replace(' ', '%20')))
+				except:
+					import traceback
+					traceback.print_exc()
+			if caller == 'easynews':
+				control.busy()
+				try:
+					from resources.lib.modules import downloader
+					downloader.download(name, image, url)
+				except:
+					import traceback
+					traceback.print_exc()
 			if caller == 'premiumize':
 				control.busy()
 				try:
@@ -474,15 +514,7 @@ def router(params):
 				except:
 					import traceback
 					traceback.print_exc()
-			if caller == 'alldebrid':
-				control.busy()
-				try:
-					from resources.lib.modules import downloader
-					from resources.lib.debrid import alldebrid
-					downloader.download(name, image, alldebrid.AllDebrid().unrestrict_link(url.replace(' ', '%20')))
-				except:
-					import traceback
-					traceback.print_exc()
+
 
 	####################################################
 	#---Tools
@@ -536,12 +568,12 @@ def router(params):
 			my_accounts.syncMyAccounts()
 			control.sleep(100)
 			if params.get('opensettings') == 'true':
-				control.openSettings(params.get('query2'), 'plugin.video.dg')
+				control.openSettings(params.get('query2'), 'plugin.video.venom')
 		elif action == 'tools_syncMyAccount':
 			from resources.lib.modules import my_accounts
 			my_accounts.syncMyAccounts()
 			if params.get('opensettings') == 'true':
-				control.openSettings(query, 'plugin.video.dg')
+				control.openSettings(query, 'plugin.video.venom')
 		elif action == 'tools_traktAcctMyAccounts':
 			control.execute('RunScript(script.module.myaccounts, action=traktAcct)')
 		elif action == 'tools_adAcctMyAccounts':
@@ -552,8 +584,8 @@ def router(params):
 			control.execute('RunScript(script.module.myaccounts, action=realdebridAcct)')
 		elif action == 'tools_openSettings':
 			control.openSettings(query)
-		elif action == 'tools_contextDGSettings':
-			control.openSettings('0.0', 'context.dg')
+		elif action == 'tools_contextVenomSettings':
+			control.openSettings('0.0', 'context.venom')
 			control.trigger_widget_refresh()
 		elif action == 'tools_fenomscrapersSettings':
 			control.openSettings('0.0', 'script.module.fenomscrapers')
@@ -575,8 +607,8 @@ def router(params):
 			from resources.lib.modules import log_utils
 			cleared = log_utils.clear_logFile()
 			if cleared == 'canceled': return
-			elif cleared: control.notification(message='DG Log File Successfully Cleared')
-			else: control.notification(message='Error clearing DG Log File, see kodi.log for more info')
+			elif cleared: control.notification(message='Venom Log File Successfully Cleared')
+			else: control.notification(message='Error clearing Venom Log File, see kodi.log for more info')
 		elif action == 'tools_viewLogFile':
 			from resources.lib.modules import log_utils
 			log_utils.view_LogFile(name)
@@ -608,6 +640,7 @@ def router(params):
 			meta = params.get('meta')
 			select = params.get('select')
 			rescrape = params.get('rescrape')
+			# custom_query = params.get('custom_query')
 			all_providers = params.get('all_providers')
 			sources.Sources(all_providers).play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select, rescrape)
 
@@ -655,7 +688,7 @@ def router(params):
 				systvshowtitle = quote_plus(tvshowtitle)
 				premiered = i['premiered']
 				sysmeta = quote_plus(jsdumps(i))
-				url = 'plugin://plugin.video.dg/?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&select=1' % (
+				url = 'plugin://plugin.video.venom/?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&select=1' % (
 										systitle, year, imdb, tmdb, tvdb, season, episode, systvshowtitle, premiered, sysmeta)
 				item = control.item(label=title, offscreen=True)
 				control.playlist.add(url=url, listitem=item)
@@ -672,21 +705,21 @@ def router(params):
 			if rtype == 'movie':
 				from resources.lib.menus import movies
 				rlist = movies.Movies().get(url, create_directory=False)
-				r = 'plugin://plugin.video.dg/?action=play_Item'
+				r = 'plugin://plugin.video.venom/?action=play_Item'
 			elif rtype == 'episode':
 				from resources.lib.menus import episodes
 				meta = params.get('meta')
 				rlist = episodes.Episodes().get(tvshowtitle, year, imdb, tmdb, tvdb, meta, season, create_directory=False)
-				r = 'plugin://plugin.video.dg/?action=play_Item'
+				r = 'plugin://plugin.video.venom/?action=play_Item'
 			elif rtype == 'season':
 				from resources.lib.menus import seasons
 				art = params.get('art')
 				rlist = seasons.Seasons().get(tvshowtitle, year, imdb, tmdb, tvdb, art, create_directory=False)
-				r = 'plugin://plugin.video.dg/?action=play_Random&rtype=episode'
+				r = 'plugin://plugin.video.venom/?action=play_Random&rtype=episode'
 			elif rtype == 'show':
 				from resources.lib.menus import tvshows
 				rlist = tvshows.TVshows().get(url, create_directory=False)
-				r = 'plugin://plugin.video.dg/?action=play_Random&rtype=season'
+				r = 'plugin://plugin.video.venom/?action=play_Random&rtype=season'
 			from random import randint
 			from json import dumps as jsdumps
 			try:
@@ -790,7 +823,8 @@ def router(params):
 		from resources.lib.modules import sources
 		premiered = params.get('premiered')
 		meta = params.get('meta')
-		items = [control.lang(32207), control.lang(32208), control.lang(32209), control.lang(32210)]
+		highlight_color = control.getHighlightColor()
+		items = [control.lang(32207), control.lang(32208), control.lang(32209) % highlight_color, control.lang(32210) % highlight_color, control.lang(32216) % highlight_color, control.lang(32217) % highlight_color]
 		select = control.selectDialog(items, heading=control.addonInfo('name') + ' - ' + 'Rescrape Options Menu')
 		if select == -1: return control.closeAll()
 		if select >= 0:
@@ -798,6 +832,8 @@ def router(params):
 			elif select == 1: sources.Sources().play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select='0', rescrape='true')
 			elif select == 2: sources.Sources(all_providers='true').play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select='1', rescrape='true')
 			elif select == 3: sources.Sources(all_providers='true').play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select='0', rescrape='true')
+			elif select == 4: sources.Sources(custom_query='true').play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select='0', rescrape='true')
+			elif select == 5: sources.Sources(all_providers='true', custom_query='true').play(title, year, imdb, tmdb, tvdb, season, episode, tvshowtitle, premiered, meta, select='0', rescrape='true')
 
 	####################################################
 	#---Library Actions
@@ -884,6 +920,6 @@ def router(params):
 		elif action == 'cache_clearBookmark':
 			from resources.lib.menus import navigator
 			navigator.Navigator().clearBookmark(name, year)
-		elif action == 'cache_clearKodiBookmark': # context.dg action call only
+		elif action == 'cache_clearKodiBookmark': # context.venom action call only
 			from resources.lib.database import cache
 			cache.clear_local_bookmark(url)

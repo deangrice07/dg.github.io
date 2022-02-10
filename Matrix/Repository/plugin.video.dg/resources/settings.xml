@@ -10,6 +10,8 @@
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="highlight.color" type="select" label="40039" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32666|32667|32668|32669|32670|32671|32598" default="2" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|English|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="English" />
+		<setting id="mpa.country" type="select" label="32391" values="Australia|Austria|Brazil|Bulgaria|Canada|China|Denmark|Estonia|Finland|France|Germany|Greece|Hungary|Hong Kong SAR China|India|Indonesia|Ireland|Italy|Japan|Kazakhstan|Latvia|Lithuania|Malaysia|Mexico|Netherlands|New Zealand|Norway|Philippines|Poland|Portugal|Romania|Russia|Saudi Arabia|Singapore|Slovakia|South Africa|South Korea|Spain|Sweden|Switzerland|Taiwan|Thailand|Turkey|Ukraine|United Arab Emirates|United Kingdom|United States|Vietnam" default="United States" />
+		<setting id="mpa.prefix" type="text" label="32392" subsetting="true" default="" />
 		<setting id="page.item.limit" type="slider" label="32011" default="20" range="10,60" option="int" />
 		<setting id="search.page.limit" type="slider" label="32167" default="20" range="10,100" option="int" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
@@ -18,7 +20,7 @@
 		<setting type="action" label="32620" subsetting="true" action="RunPlugin(plugin://plugin.video.dg/?action=cache_clearMetaAndCache)" visible="eq(-2,true)" />
 		<setting id="prefer.tmdbArt" type="bool" label="32079" subsetting="true" default="true" visible="eq(-3,true)" />
 		<setting id="hidecinema" type="bool" label="32571" default="false" />
-		<setting id="hidecinema.rollback" type="slider" label="40063" enable="eq(-1,true)" default="6" range="1,12" option="int" />
+		<setting id="hidecinema.rollback" type="slider" label="40063"  subsetting="true" default="6" range="1,12" option="int" visible="eq(-1,true)" />
 		<setting id="movie.unaired.identify" type="select" label="35526" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32666|32667|32668|32669|32670|32671|32598" default="8" />
 		<setting id="notification.sound" type="bool" label="35527" default="false" />
 		<setting id="general.checkAddonUpdates" type="bool" label="35524" default="true" />
@@ -39,9 +41,13 @@
 		<setting type="lsep" label="32005" />
 		<setting id="mylists.widget" type="bool" label="32329" default="true" />
 		<setting id="navi.anime" type="bool" label="40068" default="false" />
-		<setting id="navi.furk" type="bool" label="32129" default="true" />
 		<setting id="navi.youtube" type="bool" label="40061" default="true" />
 		<setting id="navi.prem.services" type="bool" label="40060" default="true" />
+		<setting id="navi.alldebrid" type="bool" label="32223" subsetting="true" default="true" visible="eq(-1,true)"/>
+		<setting id="navi.easynews" type="bool" label="32224" subsetting="true" default="true" visible="eq(-2,true)" />
+		<setting id="navi.furk" type="bool" label="32129" subsetting="true" default="true" visible="eq(-3,true)" />
+		<setting id="navi.premiumize" type="bool" label="32225" subsetting="true" default="true" visible="eq(-4,true)" />
+		<setting id="navi.realdebrid" type="bool" label="32226" subsetting="true" default="true" visible="eq(-5,true)" />
 		<setting id="navi.news" type="bool" label="32013" default="true" />
 		<setting id="navi.changelog" type="bool" label="32014" default="true" />
 		<setting type="lsep" label="32001" />
@@ -91,7 +97,7 @@
 		<setting id="navi.tv.tvmaze.networks" type="bool" label="32470" default="true" />
 		<setting id="navi.tv.imdb.languages" type="bool" label="32462" default="true" />
 		<setting id="navi.tv.imdb.certificates" type="bool" label="32464" default="true" />
-		<!-- <setting id="navi.tv.tmdb.certificates" type="bool" label="32487" default="true" /> -->
+		<!-- <setting id="navi.tv.tmdb.certificates" type="bool" label="32487" default="true" /> --> <!-- future for when TMDb adds to api per ticket request -->
 		<setting id="navi.tv.imdb.years" type="bool" label="32458" default="true" />
 		<setting id="navi.tv.tmdb.years" type="bool" label="32485" default="true" />
 		<setting id="navi.tv.tmdb.airingtoday" type="bool" label="32467" default="true" />
@@ -107,23 +113,20 @@
 
 	<!-- TV Shows - 2 -->
 	<category label="32002">
-		<setting id="flatten.tvshows" type="bool" label="32317" default="false" visible="true" /> <!-- invisible for now till I code to flatten new TMDb results -->
+		<setting id="flatten.tvshows" type="bool" label="32317" default="false" visible="true" />
 		<setting id="tv.specials" type="bool" label="32649" default="false" />
 		<setting id="showunaired" type="bool" label="32570" default="false" />
 		<setting id="unaired.identify" type="select" label="32608" lvalues="32589|32590|32591|32592|32593|32594|32595|32596|32597|32666|32667|32668|32669|32670|32671|32598" default="8" enable="eq(-1,true)" />
-		<setting id="tvshows.unwatched.enabled" type="bool" label="33891" default="false" />
-		<setting id="multi.unwatched.enabled" type="bool" subsetting="true" label="32163" default="false" visible="eq(-1,true)" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=multi.unwatched)" visible="eq(-2,true)" />
+		<setting id="multi.unwatched.enabled" type="bool" label="32163" default="false" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=multi.unwatched)" visible="eq(-1,true)" />
 		<setting id="tvshows.calendar.extended" type="bool" label="32023" default="false" />
-
 		<setting type="lsep" label="40027" />
-		<setting id="enable.playnext" type="bool" default="false" label="40028" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=playnext)" visible="eq(-1,true)" />
-		<setting id="playnext.time" type="slider" subsetting="true" visible="eq(-2,true)" default="60" label="40029" option="int" range="10,60" />
+		<setting id="enable.playnext" type="bool" label="40028" default="false" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=playnext)" />
+		<setting id="playnext.time" type="slider" label="40029" subsetting="true" visible="eq(-2,true)" default="60" option="int" range="10,120" />
 		<setting id="playnext.default.action" type="select" label="40065" subsetting="true" visible="eq(-3,true)" lvalues="32176|32177|32178" default="0" />
-		<setting id="stillwatching.count" type="slider" subsetting="true" visible="eq(-4,true)" default="3" label="40026" option="int" range="2,10" />
+		<setting id="stillwatching.count" type="slider" label="40026" subsetting="true" visible="eq(-4,true)" default="3" option="int" range="2,10" />
 		<setting id="stillwatching.default.action" type="select" label="40025" subsetting="true" visible="eq(-5,true)" lvalues="32176|32177|32178" default="2" />
-
 		<setting label="35056" type="lsep" />
 		<setting id="sort.imdbshows.type" type="select" label="35054" lvalues="33564|33039|35187|35188|35391|35392|35393" default="0" />
 		<setting id="sort.imdbshows.order" type="enum" label="33679" lvalues="33649|33650" default="0" subsetting="true" enable="!eq(-1,0)" />
@@ -167,9 +170,10 @@
 		<!-- Scraper Preperation -->
 		<setting type="lsep" label="32125" />
 		<setting id="play.mode" type="select" label="32331" lvalues="32333|32334" default="0" />
-		<setting id="rescrape.default" label="32205" type="bool" default="false" />
-		<setting id="rescrape.default2" label="32206" type="select" subsetting="true" lvalues="32207|32208|32209|32210" default="3" visible="eq(-1,true)" />
+		<setting id="rescrape.default" type="bool" label="32205" default="false" />
+		<setting id="rescrape.default2" type="select" label="32206" subsetting="true" lvalues="32207|32208|32209|32210" default="3" visible="eq(-1,true)" />
 		<setting id="scrapers.prioritize" type="bool" label="32211" default="false" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=scrapersPrioritize)" />
 		<setting id="cf.disable" type="bool" label="32364" default="false" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=disable_cloudflare)" />
 		<setting id="imdb.meta.check" type="bool" label="32017" default="true" />
@@ -190,18 +194,21 @@
 		<!-- Sources Filtering Options -->
 		<setting type="lsep" label="32338" />
 		<setting id="hosts.quality" type="enum" label="32339" values="4K|1080p|720p|480p(SD)" default="0" />
+		<setting id="source.checkReboots" type="bool" label="32227" default="false" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=checkReboots)" />
 		<setting id="source.prioritize.hdrdv" type="bool" label="32195" default="false" />
+		<setting id="source.prioritize.hevc" type="bool" label="32229" default="false" />
 		<setting id="source.enable.msizelimit" type="bool" label="32165" default="false" />
-		<setting id="source.min.moviesize" type="slider" subsetting="true" label="32155" option="float" range="0.0,0.1,10.0" default="0" visible="eq(-1,true)" />
-		<setting id="source.max.moviesize" type="slider" subsetting="true" label="32156" option="float" range="0.5,0.3,200" default="10" visible="eq(-2,true)" />
+		<setting id="source.min.moviesize" type="slider" label="32155" subsetting="true" option="float" range="0.0,0.1,10.0" default="0" visible="eq(-1,true)" />
+		<setting id="source.max.moviesize" type="slider" label="32156" subsetting="true" option="float" range="0.5,0.3,200" default="10" visible="eq(-2,true)" />
 		<setting id="source.enable.esizelimit" type="bool" label="32166" default="false" />
-		<setting id="source.min.epsize" type="slider" subsetting="true" label="32157" option="float" range="0.0,0.1,10.0" default="0" visible="eq(-1,true)" />
-		<setting id="source.max.epsize" type="slider" subsetting="true" label="32158" option="float" range="0.5,0.3,200" default="10" visible="eq(-2,true)" />
+		<setting id="source.min.epsize" type="slider" label="32157" subsetting="true" option="float" range="0.0,0.1,10.0" default="0" visible="eq(-1,true)" />
+		<setting id="source.max.epsize" type="slider" label="32158" subsetting="true" option="float" range="0.5,0.3,200" default="10" visible="eq(-2,true)" />
 		<setting id="remove.duplicates" type="bool" label="32035" default="true" />
-		<setting id="remove.duplicates.logging" type="bool" subsetting="true" label="32159" default="true" enable="eq(-1,true)" />
+		<setting id="remove.duplicates.logging" type="bool" label="32159" subsetting="true" default="true" visible="eq(-1,true)" />
 		<setting id="remove.dolby.vision" type="bool" label="32388" default="false" />
-		<setting id="remove.hevc" type="bool" label="32363" default="false" />
 		<setting id="remove.hdr" type="bool" label="32389" default="false" />
+		<setting id="remove.hevc" type="bool" label="32363" default="false" />
 		<setting id="remove.cam.sources" type="bool" label="32160" default="false" />
 		<setting id="remove.sd.sources" type="bool" label="32161" default="false" />
 		<setting id="remove.3D.sources" type="bool" label="32051" default="true" />
@@ -225,31 +232,34 @@
 		<setting type="action" label="32135" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=0.3&amp;opensettings=true&amp;query2=6.1)" />
 		<setting type="action" label="32136" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_syncMyAccount&amp;opensettings=true&amp;query=6.2)" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=myAccountsSync)" />
-		<setting id="trakt.username" type="text" default="" label="40062" enable="false" visible="true" />
+		<setting id="trakt.username" type="text" label="40062" default="" enable="false" visible="true" />
 		<setting type="action" label="32153" action="RunPlugin(plugin://plugin.video.dg/?action=tools_traktAcctMyAccounts)" visible="!eq(-1,)" />
-		<setting id="trakt.token" type="text" visible="false" label="" default="" />
-		<setting id="trakt.refresh" type="text" visible="false" label="" default="" />
-		<!-- <setting id="trakt.expires" type="text" visible="false" label="" default="" /> -->
-		<setting id="trakt.server.notifications" type="bool" label="33051" default="true" visible="!eq(-4,)" />
-		<setting id="trakt.general.notifications" type="bool" label="33052" default="true" visible="!eq(-5,)" />
-		<setting id="trakt.directProgress.scrape" type="bool" label="35492" default="false" visible="!eq(-6,)" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=directProgress)" visible="!eq(-7,)" />
-		<setting id="trakt.rating" type="enum" label="35187" lvalues="33564|35547" default="0" visible="!eq(-8,)" />
-		<setting id="trakt.scrobble" type="bool" label="32097" default="false" visible="!eq(-9,)" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=Trakt_Scrobble)" visible="eq(-1,true)" />
-		<setting id="trakt.scrobble.notify" type="bool" label="32099" subsetting="true" default="false" visible="!eq(-11,) + eq(-2,true)" />
-		<setting id="resume.source" type="enum" label="32095" lvalues="32314|32096" default="0" visible="!eq(-12,) + eq(-3,true)" />
+		<setting id="trakt.token" type="text" label="" visible="false" default="" />
+		<setting id="trakt.refresh" type="text" label="" visible="false" default="" />
+
+
+		<setting id="trakt.service.syncInterval" type="slider" label="Trakt service sync interval (in minutes)" default="15" range="5,60" option="int" visible="!eq(-4,)" />
+
+		<setting id="trakt.server.notifications" type="bool" label="33051" default="true" visible="!eq(-5,)" />
+		<setting id="trakt.general.notifications" type="bool" label="33052" default="true" visible="!eq(-6,)" />
+		<setting id="trakt.directProgress.scrape" type="bool" label="35492" default="false" visible="!eq(-7,)" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=directProgress)" visible="!eq(-8,)" />
+		<setting id="trakt.rating" type="enum" label="35187" lvalues="33564|35547" default="0" visible="!eq(-9,)" />
+		<setting id="trakt.scrobble" type="bool" label="32097" default="false" visible="!eq(-10,)" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=Trakt_Scrobble)" visible="!eq(-11,)" />
+		<setting id="trakt.scrobble.notify" type="bool" label="32099" subsetting="true" default="false" visible="!eq(-12,) + eq(-2,true)" />
 		<setting id="resume.source.alt" type="enum" label="32095" lvalues="32314" default="0" visible="!eq(-13,) + !eq(-3,true)" />
-		<setting id="trakt.progress.showunaired" type="bool" label="32572" default="false" visible="!eq(-14,)" />
-		<setting id="trakt.UpcomingProgress.prependDate" type="bool" label="32573" default="true" visible="!eq(-15,)" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=UpcomingProgressPrependDate)" visible="!eq(-16,)" />
-		<setting id="trakt.paginate.lists" type="bool" label="32188" default="true" visible="!eq(-17,)" />
+		<setting id="resume.source" type="enum" label="32095" lvalues="32314|32096" default="0" visible="!eq(-14,) + eq(-4,true)" />
+		<setting id="trakt.progress.showunaired" type="bool" label="32572" default="false" visible="!eq(-15,)" />
+		<setting id="trakt.UpcomingProgress.prependDate" type="bool" label="32573" default="true" visible="!eq(-16,)" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=UpcomingProgressPrependDate)" visible="!eq(-17,)" />
+		<setting id="trakt.paginate.lists" type="bool" label="32188" default="true" visible="!eq(-18,)" />
 		<setting type="lsep" label="35057" />
-		<setting id="trakt.HiddenManager.hideWatched" type="bool" label="32183" default="false" visible="!eq(-19,)" />
+		<setting id="trakt.HiddenManager.hideWatched" type="bool" label="32183" default="false" visible="!eq(-20,)" />
 		<setting type="lsep" label="32645" />
-		<setting id="autoTraktOnStart" type="bool" label="32646" default="False" enable="!eq(-21,)" />
+		<setting id="autoTraktOnStart" type="bool" label="32646" default="False" enable="!eq(-22,)" />
 		<setting id="schedTraktTime" type="slider" label="32647" default="0" range="0,24" option="int" enable="eq(-1,true)" />
-		<setting id="trakt.message2" type="text" label="32648" default="" enable="false" />
+		<setting id="trakt.message2" type="text" label="32648" default="" enable="false" /> <!-- for dummy settings write on addon update -->
 	</category>
 
 	<!-- Accounts - 7 -->
@@ -257,80 +267,102 @@
 		<setting type="action" label="32135" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.0&amp;opensettings=true&amp;query2=7.0)" />
 		<setting type="action" label="32136" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_syncMyAccount&amp;opensettings=true&amp;query=7.1)" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=myAccountsSync)" />
-		<setting type="lsep" label="32150" />
-		<setting id="seperator" type="bool" visible="false" /> <!-- trick to ensures that a separator is drawn. -->
 
 		<setting type="lsep" label="40059" />
 		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.5&amp;opensettings=true&amp;query2=7.4)" visible="eq(2,)" />
 		<setting id="alldebrid.enable" type="bool" label="32081" default="true" visible="!eq(1,)" />
-		<setting id="alldebrid.token" label="32152" type="text" default="" visible="false" />
-		<setting id="alldebrid.username" label="40006" type="text" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
+		<setting id="alldebrid.token" type="text" label="32152" default="" visible="false" />
+		<setting id="alldebrid.username" type="text" label="40006" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
 		<setting id="alldebrid.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" visible="!eq(-2,) + eq(-3,true)" />
 		<setting id="alldebrid.saveToCloud" type="bool" label="32684" default="false" visible="!eq(-3,) + eq(-4,true)" />
 		<setting id="ad_cloud.enabled" type="bool" label="32050" default="false" visible="!eq(-4,) + eq(-5,true)" />
-		<setting id="ad_cloud.ignore.m2ts" type="bool" subsetting="true" label="32052" default="true" visible="!eq(-5,) + eq(-6,true) + eq(-1,true)" />
+		<setting id="ad_cloud.ignore.m2ts" type="bool" label="32052" subsetting="true" default="true" visible="!eq(-5,) + eq(-6,true) + eq(-1,true)" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=ignoreM2ts)" visible="!eq(-6,) + eq(-7,true) + eq(-2,true)" />
 		<setting id="alldebrid.server.notifications" type="bool" label="33051" default="true" visible="!eq(-7,) + eq(-8,true)" />
 		<setting type="action" label="32153" action="RunPlugin(plugin://plugin.video.dg/?action=tools_adAcctMyAccounts)" visible="!eq(-8,) + eq(-9,true)" />
 
 		<setting type="lsep" label="40057" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.13&amp;opensettings=true&amp;query2=7.11)" visible="eq(2,)" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.13&amp;opensettings=true&amp;query2=7.16)" visible="eq(2,)" />
 		<setting id="premiumize.enable" type="bool" label="32081" default="true" visible="!eq(1,)" />
-		<setting id="premiumize.token" label="32154" type="text" default="" visible="false" />
-		<setting id="premiumize.username" label="40006" type="text" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
+		<setting id="premiumize.token" type="text" label="32154" default="" visible="false" />
+		<setting id="premiumize.username" type="text" label="40006" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
 		<setting id="premiumize.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" visible="!eq(-2,) + eq(-3,true)" />
 		<setting id="premiumize.saveToCloud" type="bool" label="32684" default="false" visible="!eq(-3,) + eq(-4,true)" />
 		<setting id="pm_cloud.enabled" type="bool" label="32050" default="false" visible="!eq(-4,) + eq(-5,true)" />
-		<setting id="pm_cloud.ignore.m2ts" type="bool" subsetting="true" label="32052" default="true" visible="!eq(-5,) + eq(-6,true) + eq(-1,true)" />
+		<setting id="pm_cloud.ignore.m2ts" type="bool" label="32052" subsetting="true" default="true" visible="!eq(-5,) + eq(-6,true) + eq(-1,true)" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=ignoreM2ts)" visible="!eq(-6,) + eq(-7,true) + eq(-2,true)" />
 		<setting id="premiumize.server.notifications" type="bool" label="33051" default="true" visible="!eq(-7,) + eq(-8,true)" />
 		<setting type="action" label="32153" action="RunPlugin(plugin://plugin.video.dg/?action=tools_pmAcctMyAccounts)" visible="!eq(-8,) + eq(-9,true)" />
 
 		<setting type="lsep" label="40058" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.21&amp;opensettings=true&amp;query2=7.26)" visible="eq(2,)" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=1.21&amp;opensettings=true&amp;query2=7.28)" visible="eq(2,)" />
 		<setting id="realdebrid.enable" type="bool" label="32081" default="true" visible="!eq(1,)" />
-		<setting id="realdebrid.token" label="realdebrid token" type="text" default="" visible="false" />
-		<setting id="realdebrid.username" label="40006" type="text" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
-		<setting id="realdebrid.client_id" label="realdebrid client_id" type="text" default="" visible="false" />
-		<setting id="realdebrid.refresh" label="realdebrid refresh" type = "text" default="" visible="false" />
-		<setting id="realdebrid.secret" label="realdebrid secret" type = "text" default="" visible="false" />
+		<setting id="realdebrid.token" type="text" label="realdebrid token" default="" visible="false" />
+		<setting id="realdebrid.username" type="text" label="40006" default="" enable="false" visible="!eq(-1,) + eq(-2,true)" />
+		<setting id="realdebrid.client_id" type="text" label="realdebrid client_id" default="" visible="false" />
+		<setting id="realdebrid.refresh" type = "text" label="realdebrid refresh" default="" visible="false" />
+		<setting id="realdebrid.secret" type = "text" label="realdebrid secret" default="" visible="false" />
 		<setting id="realdebrid.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" visible="!eq(-5,) + eq(-6,true)" />
 		<setting id="realdebrid.saveToCloud" type="bool" label="32684" default="false" visible="!eq(-6,) +eq(-7,true)" />
 		<setting id="rd_cloud.enabled" type="bool" label="32050" default="false" visible="!eq(-7,) + eq(-8,true)" />
-		<setting id="rd_cloud.ignore.m2ts" type="bool" subsetting="true" label="32052" default="true" visible="!eq(-8,) + eq(-9,true) + eq(-1,true)" />
+		<setting id="rd_cloud.ignore.m2ts" type="bool" label="32052" subsetting="true" default="true" visible="!eq(-8,) + eq(-9,true) + eq(-1,true)" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=ignoreM2ts)" visible="!eq(-9,) + eq(-10,true) + eq(-2,true)" />
 		<setting id="realdebrid.server.notifications" type="bool" label="33051" default="true" visible="!eq(-10,) + eq(-11,true)" />
 		<setting type="action" label="32153" action="RunPlugin(plugin://plugin.video.dg/?action=tools_rdAcctMyAccounts)" visible="!eq(-11,) + eq(-12,true)" />
+		<setting type="lsep" label="Easy News" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.2&amp;opensettings=true&amp;query2=7.43)" visible="eq(1,)" />
+		<setting id="easynews.username" type="text" label="40006" default="" enable="false" />
+		<setting id="easynews.password" type="text" label="32307" option="hidden" default="" enable="false" visible="!eq(-1,)" />
+		<setting id="easynews.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" enable="true" visible="!eq(-2,)" />
+
+		<setting type="lsep" label="Filepursuit" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.2&amp;opensettings=true&amp;query2=7.48)" visible="eq(1,)" />
+		<setting id="filepursuit.api" type="text" label="32309" default="" enable="false" />
+		<setting id="filepursuit.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" enable="true" visible="!eq(-1,)" />
+
+		<setting type="lsep" label="Furk.net" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.7&amp;opensettings=true&amp;query2=7.52)" visible="eq(1,)" />
+		<setting id="furk.username" type="text" label="32126" default="" enable="false" />
+		<setting id="furk.password" type="text" label="32127" option="hidden" default="" enable="false" visible="!eq(-1,)" />
+		<setting id="furk.api" type="text" label="32128" default="" enable="false" visible="!eq(-2,)" />
+		<setting id="furk.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" enable="true" visible="!eq(-3,)" />
+
+		<setting type="lsep" label="GDrive" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.11&amp;opensettings=true&amp;query2=7.58)" visible="eq(1,)" />
+		<setting id="gdrive.url" type="text" label="GDrive Worker URL" default="" enable="false" />
+		<setting id="gdrive.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" enable="true" visible="!eq(-1,)" />
+
+		<setting type="lsep" label="Ororo" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.11&amp;opensettings=true&amp;query2=7.62)" visible="eq(1,)" />
+		<setting id="ororo.username" type="text" label="40006" default="" enable="false" />
+		<setting id="ororo.password" type="text" label="32307" default="" enable="false" visible="!eq(-1,)" />
+		<setting id="ororo.priority" type="slider" label="40005" option="int" range="1,1,10" default="10" enable="true" visible="!eq(-2,)" />
+	</category>
+
+	<!-- Accounts(Meta) - 8 -->
+	<category label="32390">
+		<setting type="action" label="32135" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.0&amp;opensettings=true&amp;query2=8.0)" />
+		<setting type="action" label="32136" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_syncMyAccount&amp;opensettings=true&amp;query=8.1)" />
+		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=myAccountsSync)" />
 
 		<setting type="lsep" label="FANART.TV" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.1&amp;opensettings=true&amp;query2=7.38)" visible="eq(1,)" />
-		<setting id="fanart.tv.api.key" type="text" label="Fanart API" default="" enable="false" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.1&amp;opensettings=true&amp;query2=8.4)" visible="eq(1,)" />
+		<setting id="fanart_tv.api_key" type="text" label="Fanart API" default="" enable="false" />
 
 		<setting type="lsep" label="TMDb" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.4&amp;opensettings=true&amp;query2=7.42)" visible="eq(1,)" />
-		<setting id="tmdb.api.key" type="text" option="hidden" label="TMDb API" default="" enable="false" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.4&amp;opensettings=true&amp;query2=8.7)" visible="eq(1,)" />
+		<setting id="tmdb.api.key" type="text" label="TMDb API" option="hidden" default="" enable="false" />
 		<setting id="tmdb.username" type="text" label="TMDb username" default="" enable="false" />
 		<setting id="tmdb.password" type="text" label="TMDb password" default="" enable="false" />
 		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=tmdbUser)" />
 		<setting id="tmdb.session_id" type="text" default="" label="session_id" enable="false" />
 
-		<!-- <setting type="lsep" label="TVDb" visible="false" /> -->
-		<setting id="tvdb.api.key" type="text" option="hidden" label="TVDb API key (legacy)" default="" enable="false" visible="false" />
-		<setting type="action" label="32137" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=tvdbApiKey)" visible="false" />
-		<setting id="tvdb.jw" type="text" default="" visible="false" />
-
 		<setting type="lsep" label="IMDb" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.18&amp;opensettings=true&amp;query2=7.55)" visible="eq(1,)" />
+		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=2.18&amp;opensettings=true&amp;query2=8.14)" visible="eq(1,)" />
 		<setting id="imdb.user" type="text" label="32303" default="" enable="false" />
-
-		<setting type="lsep" label="Furk.net" />
-		<setting type="action" label="32151" option="close" action="RunPlugin(plugin://plugin.video.dg/?action=tools_openMyAccount&amp;query=3.4&amp;opensettings=true&amp;query2=7.58)" visible="eq(1,)" />
-		<setting id="furk.username" type="text" label="32126" default="" enable="false" />
-		<setting id="furk.password" type="text" label="32127" option="hidden" default="" enable="false" />
-		<setting id="furk.api" type="text" label="32128" default="" enable="false" />
 	</category>
 
-	<!-- Library - 8 -->
+	<!-- Library - 9-->
 	<category label="32541">
 		<setting id="library.movie" type="folder" label="32543" default="special://userdata/addon_data/plugin.video.dg/Movies" />
 		<setting id="library.tv" type="folder" label="32544" default="special://userdata/addon_data/plugin.video.dg/TVShows" />
@@ -350,54 +382,54 @@
 		<setting id="library.strm.use_tmdbhelper" type="bool" label="32149" default="false" />
 	</category>
 
-	<!-- Downloads - 9 -->
+	<!-- Downloads - 10 -->
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />
 		<setting type="sep" />
 		<setting id="movie.download.path" type="folder" label="32349" enable="eq(-2,true)" default="" />
 		<setting id="tv.download.path" type="folder" label="32350" enable="eq(-3,true)" default="" />
-		<setting id="downloads.file.format" type="select" subsetting="true" label="40022" lvalues="40023|40024" default="1" enable="eq(-4,true)" />
+		<setting id="downloads.file.format" type="select" label="40022" subsetting="true" lvalues="40023|40024" default="1" enable="eq(-4,true)" />
 		<setting type="sep" />
 		<setting id="downloads.message1" type="text" label="32351" enable="false" />
 		<setting id="downloads.message2" type="text" label="32352" default="" enable="false" />
 	</category>
 
-	<!-- Subtitles - 10 -->
+	<!-- Subtitles - 11 -->
 	<category label="32353">
 		<setting id="subtitles" type="bool" label="32354" default="false" />
 		<setting id="subtitles.notification" type="bool" label="32192" default="true" enable="eq(-1,true)" />
 		<setting type="sep" />
 		<setting id="subtitles.utf" type="bool" label="32355" default="false" enable="eq(-3,true)" />
 		<setting id="subtitles.lang.1" type="select" label="32356" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" default="English" enable="eq(-4,true)" />
-		<setting id="subtitles.lang.2" type="select" label="32357" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" default="English" enable="eq(-5,true)"/>
+		<setting id="subtitles.lang.2" type="select" label="32357" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" default="English" enable="eq(-5,true)" />
 		<setting type="sep" />
 		<setting id="subtitles.message1" type="text" label="32358" enable="false" />
 		<setting id="subtitles.message2" type="text" label="32359" enable="false" />
 	</category>
 
-	<!-- Debugging - 11 -->
+	<!-- Debugging - 12 -->
 	<category label="32616">
 		<setting id="debug.enabled" type="bool" label="32374" default="false" />
 		<setting id="debug.level" type="enum" label="35528" lvalues="35529|35530" default="0" visible="eq(-1,true)" />
 		<setting id="debug.location" type="enum" label="32617" lvalues="32618|32619" default="1" visible="eq(-2,true)" />
 		<setting id="debug.reversed" type="bool" label="32197" default="false" visible="eq(-3,true) + eq(-1,1)" />
 		<setting type="action" label="32189" action="RunPlugin(plugin://plugin.video.dg/?action=tools_clearLogFile)" visible="eq(-4,true) + eq(-2,1)" />
-		<setting type="action" label="32524" action="RunPlugin(plugin://plugin.video.dg/?action=tools_viewLogFile&amp;name=dg)" visible="eq(-5,true) + eq(-3,1)" />
+		<setting type="action" label="32524" action="RunPlugin(plugin://plugin.video.dg/?action=tools_viewLogFile&amp;name=DG)" visible="eq(-5,true) + eq(-3,1)" />
 		<setting type="action" label="32532" action="RunPlugin(plugin://plugin.video.dg/?action=tools_viewLogFile&amp;name=Kodi)" />
 		<setting type="sep" />
 		<setting id="dev.mode.enable" type="bool" label="32147" default="false" />
 		<setting type="action" label="32138" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=devMode)" />
-		<setting id="reuse.languageinvoker" type="action" option="close" default="true" label="32139" action="RunPlugin(plugin://plugin.video.dg/?action=tools_LanguageInvoker)" visible="eq(-2,true)" />
+		<setting id="reuse.languageinvoker" type="action" label="32139" option="close" default="true" action="RunPlugin(plugin://plugin.video.dg/?action=tools_LanguageInvoker)" visible="eq(-2,true)" />
 		<setting type="action" label="32140" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowHelp&amp;name=langinvoker)" visible="eq(-3,true)" />
-		<setting id="dev.disable.single" type="bool" label="32141" default="false" visible="eq(-4,true)" />
-		<setting id="dev.disable.single.filter" type="bool" subsetting="true" label="32142" default="false" visible="eq(-5,true)" enable="eq(-1,false)" />
+		<setting id="dev.disable.single" type="bool" label="32141" default="false" visible="eq(-4,true)" /> <!-- Not functional atm -->
+		<setting id="dev.disable.single.filter" type="bool" label="32142" subsetting="true" default="false" visible="eq(-5,true)" enable="eq(-1,false)" />
 		<setting id="dev.disable.season.packs" type="bool" label="32143" default="false" visible="eq(-6,true)" />
-		<setting id="dev.disable.season.filter" type="bool" subsetting="true" label="32144" default="false" visible="eq(-7,true)" enable="eq(-1,false)" />
+		<setting id="dev.disable.season.filter" type="bool" label="32144" subsetting="true" default="false" visible="eq(-7,true)" enable="eq(-1,false)" />
 		<setting id="dev.disable.show.packs" type="bool" label="32145" default="false" visible="eq(-8,true)" />
-		<setting id="dev.disable.show.filter" type="bool" subsetting="true" label="32146" default="false" visible="eq(-9,true)" enable="eq(-1,false)" />
+		<setting id="dev.disable.show.filter" type="bool" label="32146" subsetting="true" default="false" visible="eq(-9,true)" enable="eq(-1,false)" />
 	</category>
 
-	<!-- Short Cuts - 12 -->
+	<!-- Short Cuts - 13 -->
 	<category label="Shortcuts">
 		<setting type="action" label="35066" action="RunPlugin(plugin://plugin.video.dg/?action=tools_forceTraktSync)" />
 		<setting type="action" label="32610" action="RunPlugin(plugin://plugin.video.dg/?action=cache_clearAll)" />
@@ -406,6 +438,6 @@
 		<setting type="action" label="32613" action="RunPlugin(plugin://plugin.video.dg/?action=cache_clearCache)" />
 		<setting type="action" label="32614" action="RunPlugin(plugin://plugin.video.dg/?action=cache_clearSearch)" />
 		<setting type="action" label="32615" action="RunPlugin(plugin://plugin.video.dg/?action=cache_clearBookmarks)" />
-		<setting type="action" label="32101" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowChangelog&amp;name=dg)" />
+		<setting type="action" label="32101" action="RunPlugin(plugin://plugin.video.dg/?action=tools_ShowChangelog&amp;name=DG)" />
 	</category>
 </settings>

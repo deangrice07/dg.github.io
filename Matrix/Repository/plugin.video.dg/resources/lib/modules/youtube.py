@@ -104,12 +104,12 @@ class youtube(object):
 			u = [self.content_link % i + self.key_link for i in u]
 
 			threads = []
+			append = threads.append
 			for i in range(0, len(u)):
-				threads.append(Thread(target=self.thread, args=(u[i], i)))
+				append(Thread(target=self.thread, args=(u[i], i)))
 				self.data.append('')
 			[i.start() for i in threads]
 			[i.join() for i in threads]
-
 			items = []
 			for i in self.data: items += jsloads(i)['items']
 		except: pass

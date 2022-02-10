@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	Venom Add-on
+	DG Add-on
 """
 
 from datetime import datetime, timedelta
@@ -17,21 +17,23 @@ from resources.lib.modules.playcount import getMovieIndicators, getMovieOverlay
 from resources.lib.modules import trakt
 from resources.lib.modules import views
 
+getLS = control.lang
+getSetting = control.setting
+
 
 class Collections:
 	def __init__(self):
 		self.list = []
-		control.homeWindow.clearProperty('dg.preResolved_nextUrl') # helps solve issue where "onPlaybackStopped()" callback fails to happen
-		self.page_limit = control.setting('page.item.limit')
-		self.enable_fanarttv = control.setting('enable.fanarttv') == 'true'
-		self.prefer_tmdbArt = control.setting('prefer.tmdbArt') == 'true'
-		self.unairedcolor = control.getColor(control.setting('movie.unaired.identify'))
+		self.page_limit = getSetting('page.item.limit')
+		self.enable_fanarttv = getSetting('enable.fanarttv') == 'true'
+		self.prefer_tmdbArt = getSetting('prefer.tmdbArt') == 'true'
+		self.unairedcolor = control.getColor(getSetting('movie.unaired.identify'))
 		self.date_time = datetime.now()
 		self.today_date = (self.date_time).strftime('%Y-%m-%d')
 		self.lang = control.apiLanguage()['trakt']
 		self.traktCredentials = trakt.getTraktCredentialsInfo()
-		self.imdb_user = control.setting('imdb.user').replace('ur', '')
-		self.tmdb_key = control.setting('tmdb.api.key')
+		self.imdb_user = getSetting('imdb.user').replace('ur', '')
+		self.tmdb_key = getSetting('tmdb.api.key')
 		if self.tmdb_key == '' or self.tmdb_key is None:
 			self.tmdb_key = '3320855e65a9758297fec4f7c9717698'
 		# self.user = str(self.imdb_user) + str(self.tmdb_key)
@@ -342,10 +344,12 @@ class Collections:
 		self.batman_link = self.tmdb_link % '33129'
 		self.captainamerica_link =self.tmdb_link % '33130'
 		self.darkknight_link = self.tmdb_link % '33132'
+		self.deadpool_link = self.tmdb_link % '8176455'
+		# self.deadpool_link = self.tmdbCollection_link % '448150'
 		self.fantasticfour_link = self.tmdb_link % '33133'
 		self.hulk_link = self.tmdb_link % '33134'
 		self.ironman_link = self.tmdb_link % '33135'
-		self.spiderman_link = self.tmdb_link % '33126'
+		self.spiderman_link = self.tmdb_link % '8176456'
 		self.superman_link = self.tmdb_link % '33136'
 		self.thor_link = self.imdb_link % ('Thor', 'feature')
 		self.xmen_link = self.tmdb_link % '33137'
@@ -663,10 +667,11 @@ class Collections:
 		self.addDirectoryItem('Batman (1989-2016)', 'collections&url=batman', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Captain America (2011-2016)', 'collections&url=captainamerica', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Dark Knight Trilogy (2005-2013)', 'collections&url=darkknight', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
+		self.addDirectoryItem('Deadpool (2016-2023)', 'collections&url=deadpool', 'collectionboxset.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Fantastic Four (2005-2015)', 'collections&url=fantasticfour', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Hulk (2003-2008)', 'collections&url=hulk', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Iron Man (2008-2013)', 'collections&url=ironman', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
-		self.addDirectoryItem('Spider-Man (2002-2017)', 'collections&url=spiderman', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
+		self.addDirectoryItem('Spider-Man (2002-2021)', 'collections&url=spiderman', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Thor (2011-2017)', 'collections&url=thor', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('Superman (1978-2016)', 'collections&url=superman', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
 		self.addDirectoryItem('X-Men (2000-2016)', 'collections&url=xmen', 'collectionsuperhero.png', 'DefaultVideoPlaylists.png')
@@ -693,30 +698,30 @@ class Collections:
 			log_utils.error()
 
 	def imdb_sort(self):
-		sort = int(control.setting('sort.collections.type'))
+		sort = int(getSetting('sort.collections.type'))
 		imdb_sort = 'alpha'
 		if sort == 1: imdb_sort = 'alpha'
-		if sort == 2: imdb_sort = 'user_rating'
-		if sort == 3: imdb_sort = 'release_date'
-		imdb_sort_order = ',asc' if (int(control.setting('sort.collections.order')) == 0) else ',desc'
+		elif sort == 2: imdb_sort = 'user_rating'
+		elif sort == 3: imdb_sort = 'release_date'
+		imdb_sort_order = ',asc' if (int(getSetting('sort.collections.order')) == 0) else ',desc'
 		sort_string = imdb_sort + imdb_sort_order
 		return sort_string
 
 	def tmdb_sort(self):
-		sort = int(control.setting('sort.collections.type'))
+		sort = int(getSetting('sort.collections.type'))
 		tmdb_sort = 'title'
 		if sort == 1: tmdb_sort = 'title'
-		if sort == 2: tmdb_sort = 'vote_average'
-		if sort == 3: tmdb_sort = 'primary_release_date'
-		tmdb_sort_order = '.asc' if (int(control.setting('sort.collections.order')) == 0) else '.desc'
+		elif sort == 2: tmdb_sort = 'vote_average'
+		elif sort == 3: tmdb_sort = 'primary_release_date'
+		tmdb_sort_order = '.asc' if (int(getSetting('sort.collections.order')) == 0) else '.desc'
 		sort_string = tmdb_sort + tmdb_sort_order
 		return sort_string
 
 	def sort(self, type='collections'):
 		try:
 			if not self.list: return
-			attribute = int(control.setting('sort.%s.type' % type))
-			reverse = int(control.setting('sort.%s.order' % type)) == 1
+			attribute = int(getSetting('sort.%s.type' % type))
+			reverse = int(getSetting('sort.%s.order' % type)) == 1
 			if attribute == 0: reverse = False # Sorting Order is not enabled when sort method is "Default"
 			if attribute > 0:
 				if attribute == 1:
@@ -780,8 +785,9 @@ class Collections:
 			self.list = metacache.fetch(self.list, self.lang, self.user)
 			for r in range(0, total, 40):
 				threads = []
+				append = threads.append
 				for i in range(r, r + 40):
-					if i < total: threads.append(Thread(target=self.super_imdb_info, args=(i,)))
+					if i < total: append(Thread(target=self.super_imdb_info, args=(i,)))
 				[i.start() for i in threads]
 				[i.join() for i in threads]
 			if self.meta:
@@ -849,19 +855,19 @@ class Collections:
 			control.hide() ; control.notification(title=32000, message=33049)
 		from resources.lib.modules.player import Bookmarks
 		sysaddon, syshandle = argv[0], int(argv[1])
-		play_mode = control.setting('play.mode') 
+		play_mode = getSetting('play.mode') 
 		is_widget = 'plugin' not in control.infoLabel('Container.PluginName')
-		settingFanart = control.setting('fanart') == 'true'
+		settingFanart = getSetting('fanart') == 'true'
 		addonPoster, addonFanart, addonBanner = control.addonPoster(), control.addonFanart(), control.addonBanner()
-		indicators = getMovieIndicators()
-		if play_mode == '1': playbackMenu = control.lang(32063)
-		else: playbackMenu = control.lang(32064)
-		if trakt.getTraktIndicatorsInfo(): watchedMenu, unwatchedMenu = control.lang(32068), control.lang(32069)
-		else: watchedMenu, unwatchedMenu = control.lang(32066), control.lang(32067)
-		playlistManagerMenu, queueMenu = control.lang(35522), control.lang(32065)
-		traktManagerMenu, addToLibrary = control.lang(32070), control.lang(32551)
-		nextMenu, clearSourcesMenu = control.lang(32053), control.lang(32611)
-		rescrapeMenu, rescrapeAllMenu, findSimilarMenu = control.lang(32185), control.lang(32193), control.lang(32184)
+		indicators = getMovieIndicators() # refresh not needed now due to service sync
+		if play_mode == '1': playbackMenu = getLS(32063)
+		else: playbackMenu = getLS(32064)
+		if trakt.getTraktIndicatorsInfo(): watchedMenu, unwatchedMenu = getLS(32068), getLS(32069)
+		else: watchedMenu, unwatchedMenu = getLS(32066), getLS(32067)
+		playlistManagerMenu, queueMenu = getLS(35522), getLS(32065)
+		traktManagerMenu, addToLibrary = getLS(32070), getLS(32551)
+		nextMenu, clearSourcesMenu = getLS(32053), getLS(32611)
+		rescrapeMenu, rescrapeAllMenu, findSimilarMenu = getLS(32185), getLS(32193), getLS(32184)
 		for i in items:
 			try:
 				imdb, tmdb, title, year = i.get('imdb', ''), i.get('tmdb', ''), i['title'], i.get('year', '')
@@ -890,13 +896,16 @@ class Collections:
 				art = {}
 				art.update({'icon': icon, 'thumb': thumb, 'banner': banner, 'poster': poster, 'fanart': fanart, 'landscape': landscape, 'clearlogo': meta.get('clearlogo', ''),
 								'clearart': meta.get('clearart', ''), 'discart': meta.get('discart', ''), 'keyart': meta.get('keyart', '')})
-				for k in ('poster2', 'poster3', 'fanart2', 'fanart3', 'banner2', 'banner3', 'trailer'): meta.pop(k, None)
+				for k in ('metacache', 'poster2', 'poster3', 'fanart2', 'fanart3', 'banner2', 'banner3', 'trailer'): meta.pop(k, None)
 				meta.update({'poster': poster, 'fanart': fanart, 'banner': banner})
+				sysmeta, sysart = quote_plus(jsdumps(meta)), quote_plus(jsdumps(art))
+				url = '%s?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s' % (sysaddon, systitle, year, imdb, tmdb, sysmeta)
+				sysurl = quote_plus(url)
+
 ####-Context Menu and Overlays-####
 				cm = []
 				try:
-					overlay = int(getMovieOverlay(indicators, imdb))
-					watched = (overlay == 5)
+					watched = getMovieOverlay(indicators, imdb) == '5'
 					if self.traktCredentials:
 						cm.append((traktManagerMenu, 'RunPlugin(%s?action=tools_traktManager&name=%s&imdb=%s&watched=%s)' % (sysaddon, sysname, imdb, watched)))
 					if watched:
@@ -907,9 +916,6 @@ class Collections:
 						cm.append((watchedMenu, 'RunPlugin(%s?action=playcount_Movie&name=%s&imdb=%s&query=5)' % (sysaddon, sysname, imdb)))
 						meta.update({'playcount': 0, 'overlay': 4})
 				except: pass
-				sysmeta, sysart = quote_plus(jsdumps(meta)), quote_plus(jsdumps(art))
-				url = '%s?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s' % (sysaddon, systitle, year, imdb, tmdb, sysmeta)
-				sysurl = quote_plus(url)
 				cm.append((playlistManagerMenu, 'RunPlugin(%s?action=playlist_Manager&name=%s&url=%s&meta=%s&art=%s)' % (sysaddon, sysname, sysurl, sysmeta, sysart)))
 				cm.append((queueMenu, 'RunPlugin(%s?action=playlist_QueueItem&name=%s)' % (sysaddon, sysname)))
 				cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
@@ -918,7 +924,7 @@ class Collections:
 				cm.append((addToLibrary, 'RunPlugin(%s?action=library_movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
 				cm.append((findSimilarMenu, 'ActivateWindow(10025,%s?action=movies&url=https://api.trakt.tv/movies/%s/related,return)' % (sysaddon, imdb)))
 				cm.append((clearSourcesMenu, 'RunPlugin(%s?action=cache_clearSources)' % sysaddon))
-				cm.append(('[COLOR ghostwhite]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
+				cm.append(('[COLOR red]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
 ####################################
 				if trailer: meta.update({'trailer': trailer}) # removed temp so it's not passed to CM items, only infoLabels for skin
 				else: meta.update({'trailer': '%s?action=play_Trailer&type=%s&name=%s&year=%s&imdb=%s' % (sysaddon, 'movie', sysname, year, imdb)})
@@ -970,7 +976,7 @@ class Collections:
 	def addDirectoryItem(self, name, query, poster, icon, context=None, queue=False, isAction=True, isFolder=True):
 		try:
 			from sys import argv # some functions like ActivateWindow() throw invalid handle less this is imported here.
-			if isinstance(name, int): name = control.lang(name)
+			if isinstance(name, int): name = getLS(name)
 			sysaddon, syshandle = argv[0], int(argv[1])
 			artPath = control.artPath()
 			if not icon.startswith('Default'): icon = control.joinPath(artPath, icon)
@@ -979,8 +985,8 @@ class Collections:
 			url = '%s?action=%s' % (sysaddon, query) if isAction else query
 			cm = []
 			if queue: cm.append((queueMenu, 'RunPlugin(%s?action=playlist_QueueItem)' % sysaddon))
-			if context: cm.append((control.lang(context[0]), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
-			cm.append(('[COLOR ghostwhite]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
+			if context: cm.append((getLS(context[0]), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
+			cm.append(('[COLOR red]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
 			item = control.item(label=name, offscreen=True)
 			item.setProperty('IsPlayable', 'false')
 			item.setArt({'icon': icon, 'poster': poster, 'thumb': poster, 'fanart': control.addonFanart(), 'banner': poster})

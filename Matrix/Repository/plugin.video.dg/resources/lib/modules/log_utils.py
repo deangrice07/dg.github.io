@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	DG Add-on
 """
 
 from datetime import datetime
 import inspect
-import unicodedata
+from resources.lib.modules import string_tools
 from resources.lib.modules.control import transPath, setting as getSetting, lang, joinPath, existsPath
 
 LOGDEBUG = 0
-# ###--from here down methods print when dg logging set to "Normal".
 LOGINFO = 1
 LOGWARNING = 2
 LOGERROR = 3
@@ -17,7 +16,7 @@ LOGFATAL = 4
 LOGNONE = 5 # not used
 
 debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
-DEBUGPREFIX = '[COLOR ghostwhite][ DG: %s ][/COLOR]'
+DEBUGPREFIX = '[COLOR red][ DG: %s ][/COLOR]'
 LOGPATH = transPath('special://logpath/')
 
 
@@ -27,10 +26,11 @@ def log(msg, caller=None, level=LOGINFO):
 	debug_level = getSetting('debug.level')
 	if level == LOGDEBUG and debug_level != '1': return
 	debug_location = getSetting('debug.location')
+
 	if isinstance(msg, int): msg = lang(msg) # for strings.po translations
 	try:
 		if not msg.isprintable(): # ex. "\n" is not a printable character so returns False on those cases
-			msg = '%s (NORMALIZED by log_utils.log())' % normalize(msg)
+			msg = '%s (NORMALIZED by log_utils.log())' % string_tools.normalize(msg)
 		if isinstance(msg, bytes):
 			msg = '%s (ENCODED by log_utils.log())' % msg.decode('utf-8', errors='replace')
 
@@ -49,7 +49,7 @@ def log(msg, caller=None, level=LOGINFO):
 				f.close()
 			reverse_log = getSetting('debug.reversed') == 'true'
 			if not reverse_log:
-				with open(log_file, 'a', encoding='utf-8') as f:  # with auto cleans up and closes
+				with open(log_file, 'a', encoding='utf-8') as f:  # "with" auto cleans up and closes
 					line = '[%s %s] %s: %s' % (datetime.now().date(), str(datetime.now().time())[:8], DEBUGPREFIX % debug_list[level], msg)
 					f.write(line.rstrip('\r\n') + '\n')
 					# f.writelines([line1, line2]) ## maybe an option for the 2 lines without using "\n"
@@ -144,7 +144,6 @@ def upload_LogFile(name):
 		f.close()
 		UserAgent = 'DG %s' % addonVersion('plugin.video.dg')
 		response = requests.post(url + 'documents', data=text.encode('utf-8', errors='ignore'), headers={'User-Agent': UserAgent})
-		# log('log_response=%s' % response)
 		if 'key' in response.json():
 			result = url + response.json()['key']
 			log('%s log file uploaded to: %s' % (name, result))
@@ -166,11 +165,3 @@ def upload_LogFile(name):
 	except:
 		error('%s log upload failed' % name)
 		notification(message='pastebin post failed: See log for more info')
-
-def normalize(msg):
-	try:
-		msg = ''.join(c for c in unicodedata.normalize('NFKD', msg) if unicodedata.category(c) != 'Mn')
-		return str(msg)
-	except:
-		error()
-		return msg

@@ -41,9 +41,34 @@ def syncMyAccounts(silent=False):
 			setSetting('realdebrid.refresh', rd_acct.get('refresh'))
 			setSetting('realdebrid.secret', rd_acct.get('secret'))
 
+		fp_acct = all_acct.get('filepursuit')
+		if getSetting('filepursuit.api') != fp_acct.get('api_key'):
+			setSetting('filepursuit.api', fp_acct.get('api_key'))
+
+		fu_acct = all_acct.get('furk')
+		if getSetting('furk.username') != fu_acct.get('username'):
+			setSetting('furk.username', fu_acct.get('username'))
+			setSetting('furk.password', fu_acct.get('password'))
+		if getSetting('furk.api') != fu_acct.get('api_key'):
+			setSetting('furk.api', fu_acct.get('api_key'))
+
+		en_acct = all_acct.get('easyNews')
+		if getSetting('easynews.username') != en_acct.get('username'):
+			setSetting('easynews.username', en_acct.get('username'))
+			setSetting('easynews.password', en_acct.get('password'))
+
+		gdrive_acct = all_acct.get('gdrive')
+		if getSetting('gdrive.url') != gdrive_acct.get('url'):
+			setSetting('gdrive.url', gdrive_acct.get('url'))
+
+		or_acct = all_acct.get('ororo')
+		if getSetting('ororo.username') != or_acct.get('email'):
+			setSetting('ororo.username', or_acct.get('email'))
+			setSetting('ororo.password', or_acct.get('password'))
+
 		fanart_acct = all_acct.get('fanart_tv')
-		if getSetting('fanart.tv.api.key') != fanart_acct.get('api_key'):
-			setSetting('fanart.tv.api.key', fanart_acct.get('api_key'))
+		if getSetting('fanart_tv.api_key') != fanart_acct.get('api_key'):
+			setSetting('fanart_tv.api_key', fanart_acct.get('api_key'))
 
 		tmdb_acct = all_acct.get('tmdb')
 		if getSetting('tmdb.api.key') != tmdb_acct.get('api_key'):
@@ -55,20 +80,13 @@ def syncMyAccounts(silent=False):
 		if getSetting('tmdb.session_id') != tmdb_acct.get('session_id'):
 			setSetting('tmdb.session_id', tmdb_acct.get('session_id'))
 
-		tvdb_acct = all_acct.get('tvdb')
-		if getSetting('tvdb.api.key') != tvdb_acct.get('api_key'):
-			setSetting('tvdb.api.key', tvdb_acct.get('api_key'))
+		# tvdb_acct = all_acct.get('tvdb') # no longer used in Venom
+		# if getSetting('tvdb.api.key') != tvdb_acct.get('api_key'):
+			# setSetting('tvdb.api.key', tvdb_acct.get('api_key'))
 
 		imdb_acct = all_acct.get('imdb')
 		if getSetting('imdb.user') != imdb_acct.get('user'):
 			setSetting('imdb.user', imdb_acct.get('user'))
-
-		fu_acct = all_acct.get('furk')
-		if getSetting('furk.username') != fu_acct.get('username'):
-			setSetting('furk.username', fu_acct.get('username'))
-			setSetting('furk.password', fu_acct.get('password'))
-		if getSetting('furk.api') != fu_acct.get('api_key'):
-			setSetting('furk.api', fu_acct.get('api_key'))
 
 		if not silent: notification(message=32114)
 	except:

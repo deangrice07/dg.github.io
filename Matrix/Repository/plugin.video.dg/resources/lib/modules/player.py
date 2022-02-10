@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	dg Add-on
+	Venom Add-on
 """
 
 from hashlib import md5
@@ -11,11 +11,13 @@ except ImportError: from pysqlite2 import dbapi2 as database
 import xbmc
 from resources.lib.database import metacache
 from resources.lib.modules import control
-from resources.lib.modules import cleantitle
 from resources.lib.modules import log_utils
 from resources.lib.modules import playcount
 from resources.lib.modules import trakt
+
 LOGINFO = 1
+homeWindow = control.homeWindow
+playerWindow = control.playerWindow
 
 
 class Player(xbmc.Player):
@@ -23,8 +25,10 @@ class Player(xbmc.Player):
 		xbmc.Player.__init__(self)
 		self.play_next_triggered = False
 		self.preScrape_triggered = False
+		self.playbackStopped_triggered = False
 		self.playback_resumed = False
-		self.av_started = False
+		self.onPlayBackStarted_called = False
+		self.onPlayBackStopped_ran = False
 		self.media_type = None
 		self.DBID = None
 		self.offset = '0'
@@ -35,8 +39,9 @@ class Player(xbmc.Player):
 		self.playnext_time = int(control.setting('playnext.time')) or 60
 		self.traktCredentials = trakt.getTraktCredentialsInfo()
 
-	def play_source(self, title, year, season, episode, imdb, tmdb, tvdb, url, meta):
+	def play_source(self, title, year, season, episode, imdb, tmdb, tvdb, url, meta, debridPackCall=False):
 		try:
+			from sys import argv # some functions like ActivateWindow() throw invalid handle less this is imported here.
 			if not url: raise Exception
 			self.media_type = 'movie' if season is None or episode is None else 'episode'
 			self.title, self.year = title, str(year)
@@ -86,10 +91,11 @@ class Player(xbmc.Player):
 			if 'castandart' in meta: item.setCast(meta.get('castandart', ''))
 			item.setInfo(type='video', infoLabels=control.metadataClean(meta))
 			item.setProperty('IsPlayable', 'true')
-			control.resolve(int(argv[1]), True, item)
-			control.homeWindow.setProperty('script.trakt.ids', jsdumps(self.ids))
+			if debridPackCall: control.player.play(url, item) # seems this is only way browseDebrid pack files will play and have meta marked as watched
+			else: control.resolve(int(argv[1]), True, item)
+			homeWindow.setProperty('script.trakt.ids', jsdumps(self.ids))
 			self.keepAlive()
-			control.homeWindow.clearProperty('script.trakt.ids')
+			homeWindow.clearProperty('script.trakt.ids')
 		except:
 			log_utils.error()
 			return control.cancelPlayback()
@@ -128,7 +134,7 @@ class Player(xbmc.Player):
 			# do not add IMDBNUMBER as tmdb scraper puts their id in the key value
 			meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"filter":{"or": [{"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}]}, "properties" : ["title", "originaltitle", "uniqueid", "year", "premiered", "genre", "studio", "country", "runtime", "rating", "votes", "mpaa", "director", "writer", "cast", "plot", "plotoutline", "tagline", "thumbnail", "art", "file"]}, "id": 1}' % (self.year, str(int(self.year) + 1), str(int(self.year) - 1)))
 			meta = jsloads(meta)['result']['movies']
-			meta = [i for i in meta if i.get('uniqueid', []).get('imdb', '') == self.imdb]
+			meta = [i for i in meta if (i.get('uniqueid', []).get('imdb', '') == self.imdb) or (i.get('uniqueid', []).get('unknown', '') == self.imdb)] # scraper now using "unknown"
 			if meta: meta = meta[0]
 			else: raise Exception()
 			if 'mediatype' not in meta: meta.update({'mediatype': 'movie'})
@@ -153,7 +159,7 @@ class Player(xbmc.Player):
 			show_meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"filter":{"or": [{"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}]}, "properties" : ["title", "originaltitle", "uniqueid", "mpaa", "year", "genre", "runtime", "thumbnail", "file"]}, "id": 1}' % (self.year, str(int(self.year)+1), str(int(self.year)-1)))
 			show_meta = jsloads(show_meta)['result']['tvshows']
 			show_meta = [i for i in show_meta if i['uniqueid']['imdb'] == self.imdb]
-			show_meta = [i for i in show_meta if i.get('uniqueid', []).get('imdb', '') == self.imdb]
+			show_meta = [i for i in show_meta if (i.get('uniqueid', []).get('imdb', '') == self.imdb) or (i.get('uniqueid', []).get('unknown', '') == self.imdb)] # scraper now using "unknown"
 			if show_meta: show_meta = show_meta[0]
 			else: raise Exception()
 			tvshowid = show_meta['tvshowid']
@@ -214,17 +220,12 @@ class Player(xbmc.Player):
 
 	def keepAlive(self):
 		pname = '%s.player.overlay' % control.addonInfo('id')
-		control.homeWindow.clearProperty(pname)
-		if self.media_type == 'movie':
-			overlay = playcount.getMovieOverlay(playcount.getMovieIndicators(), self.imdb)
-		elif self.media_type == 'episode':
-			overlay = playcount.getEpisodeOverlay(playcount.getTVShowIndicators(), self.imdb, self.tvdb, self.season, self.episode)
-		else: overlay = '4'
-		for i in range(0, 240):
+		homeWindow.clearProperty(pname)
+		for i in range(0, 500):
 			if self.isPlayback():
 				control.closeAll()
 				break
-			xbmc.sleep(1000)
+			xbmc.sleep(200)
 		while self.isPlayingVideo():
 			try:
 				if control.monitor.abortRequested(): return sysexit()
@@ -232,28 +233,28 @@ class Player(xbmc.Player):
 					self.current_time = self.getTime()
 					self.media_length = self.getTotalTime()
 				except: pass
-				watcher = (self.getWatchedPercent() >= 80)
-				property = control.homeWindow.getProperty(pname)
+				watcher = (self.getWatchedPercent() >= 85)
+				property = homeWindow.getProperty(pname)
 				if self.media_type == 'movie':
 					try:
 						if watcher and property != '5':
-							control.homeWindow.setProperty(pname, '5')
+							homeWindow.setProperty(pname, '5')
 							playcount.markMovieDuringPlayback(self.imdb, '5')
 					except: pass
 					xbmc.sleep(2000)
 				elif self.media_type == 'episode':
 					try:
 						if watcher and property != '5':
-							control.homeWindow.setProperty(pname, '5')
+							homeWindow.setProperty(pname, '5')
 							playcount.markEpisodeDuringPlayback(self.imdb, self.tvdb, self.season, self.episode, '5')
 						if self.enable_playnext and not self.play_next_triggered:
 							if int(control.playlist.size()) > 1:
 								if self.preScrape_triggered == False:
-									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.dg/?action=play_preScrapeNext)')
+									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.venom/?action=play_preScrapeNext)')
 									self.preScrape_triggered = True
 								remaining_time = self.getRemainingTime()
 								if remaining_time < (self.playnext_time + 1) and remaining_time != 0:
-									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.dg/?action=play_nextWindowXML)')
+									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.venom/?action=play_nextWindowXML)')
 									self.play_next_triggered = True
 					except:
 						log_utils.error()
@@ -262,8 +263,11 @@ class Player(xbmc.Player):
 			except:
 				log_utils.error()
 				xbmc.sleep(1000)
-		control.homeWindow.clearProperty(pname)
-		# self.onPlayBackEnded() # check, seems kodi may at times not issue "onPlayBackEnded" callback
+		homeWindow.clearProperty(pname)
+		# self.onPlayBackEnded() # check, kodi may at times not issue "onPlayBackEnded" callback
+		if self.media_length - self.current_time > 60: # kodi may at times not issue "onPlayBackStopped" callback
+			self.playbackStopped_triggered = True
+			self.onPlayBackStopped()
 
 	def libForPlayback(self):
 		if self.DBID is None: return
@@ -284,65 +288,63 @@ class Player(xbmc.Player):
 		seekOffset /= 1000
 
 	def onAVStarted(self):
+		if self.onPlayBackStarted_called:
+			xbmc.log('[ plugin.video.venom ] onAVStarted callback, onPlayBackStarted already called', LOGINFO)
+			return log_utils.log('[ plugin.video.venom ] onAVStarted callback, onPlayBackStarted already called', level=log_utils.LOGDEBUG)
+		self.onPlayBackStarted()
+
+	def onPlayBackStarted(self): # gets called before onAVStarted()
+		self.onPlayBackStarted_called = True
 		for i in range(0, 500):
 			if self.isPlayback():
-				self.av_started = True
+				control.closeAll()
 				break
-			else: control.sleep(1000)
+			else: control.sleep(200)
 		if self.offset != '0' and self.playback_resumed is False:
+			control.sleep(200)
 			self.seekTime(float(self.offset))
 			self.playback_resumed = True
 		if control.setting('subtitles') == 'true':
 			Subtitles().get(self.name, self.imdb, self.season, self.episode)
-		xbmc.log('[ plugin.video.dg ] onAVStarted callback', LOGINFO)
-
-	def onPlayBackStarted(self):
-		control.sleep(5000)
-		if self.av_started: return xbmc.log('[ plugin.video.dg ] onPlayBackStarted callback', LOGINFO)
-		for i in range(0, 500):
-			if self.isPlayback(): break
-			else: control.sleep(1000)
-		if self.offset != '0' and self.playback_resumed is False:
-			self.seekTime(float(self.offset))
-			self.playback_resumed = True
-		if control.setting('subtitles') == 'true':
-			Subtitles().get(self.name, self.imdb, self.season, self.episode)
-		xbmc.log('[ plugin.video.dg ] onPlayBackStarted callback', LOGINFO)
+		xbmc.log('[ plugin.video.venom ] onPlayBackStarted callback', LOGINFO)
+		log_utils.log('[ plugin.video.venom ] onPlayBackStarted callback', level=log_utils.LOGDEBUG)
 
 	def onPlayBackStopped(self):
 		try:
-			control.homeWindow.clearProperty('dg.preResolved_nextUrl')
-			if self.media_length == 0: return xbmc.log('[ plugin.video.dg ] onPlayBackStopped callback', LOGINFO)
-			Bookmarks().reset(self.current_time, self.media_length, self.name, self.year)
-			if self.traktCredentials and (control.setting('trakt.scrobble') == 'true'):
-				Bookmarks().set_scrobble(self.current_time, self.media_length, self.media_type, self.imdb, self.tmdb, self.tvdb, self.season, self.episode)
-			if (self.current_time / self.media_length) > .85:
-				self.libForPlayback()
+			playerWindow.clearProperty('venom.preResolved_nextUrl')
+			if not self.onPlayBackStopped_ran or (self.playbackStopped_triggered and not self.onPlayBackStopped_ran): # Kodi callback unreliable and often not issued
+				self.onPlayBackStopped_ran = True
+				self.playbackStopped_triggered = False
+				Bookmarks().reset(self.current_time, self.media_length, self.name, self.year)
+				if self.traktCredentials and (control.setting('trakt.scrobble') == 'true'):
+					Bookmarks().set_scrobble(self.current_time, self.media_length, self.media_type, self.imdb, self.tmdb, self.tvdb, self.season, self.episode)
+				watcher = self.getWatchedPercent()
+				seekable = (int(self.current_time) > 180 and (watcher < 85))
+				if watcher >= 85: self.libForPlayback() # only write playcount to local lib
+				if control.setting('crefresh') == 'true' and seekable: control.refresh() #not all skins refresh after playback stopped
+				control.playlist.clear()
+				# control.trigger_widget_refresh() # skinshortcuts handles widget refresh
+				xbmc.log('[ plugin.video.venom ] onPlayBackStopped callback', LOGINFO)
+				log_utils.log('[ plugin.video.venom ] onPlayBackStopped callback', level=log_utils.LOGDEBUG)
 		except:
 			log_utils.error()
-		# if control.setting('crefresh') == 'true':
-			# control.refresh()
-			# control.sleep(500)
-		# control.playlist.clear()
-		# control.trigger_widget_refresh() # skinshortcuts handles widget refresh
-		xbmc.log('[ plugin.video.dg ] onPlayBackStopped callback', LOGINFO)
 
 	def onPlayBackEnded(self):
 		Bookmarks().reset(self.current_time, self.media_length, self.name, self.year)
 		if self.traktCredentials:
-			trakt.scrobbleReset(imdb=self.imdb, tvdb=self.tvdb, season=self.season, episode=self.episode, refresh=False)
+			trakt.scrobbleReset(imdb=self.imdb, tvdb=self.tvdb, season=self.season, episode=self.episode, refresh=False) # refresh issues container.refresh()
 		self.libForPlayback()
-		# if control.setting('crefresh') == 'true':
-			# control.refresh()
-			# control.sleep(500)
-		# control.trigger_widget_refresh() # skinshortcuts handles widget refresh
-		xbmc.log('[ plugin.video.dg ] onPlayBackEnded callback', LOGINFO)
+		if control.playlist.getposition() == control.playlist.size() or control.playlist.size() == 1:
+			control.playlist.clear()
+		xbmc.log('[ plugin.video.venom ] onPlayBackEnded callback', LOGINFO)
+		log_utils.log('[ plugin.video.venom ] onPlayBackEnded callback', level=log_utils.LOGDEBUG)
 
 	def onPlayBackError(self):
-		control.homeWindow.clearProperty('dg.preResolved_nextUrl')
+		playerWindow.clearProperty('venom.preResolved_nextUrl')
 		Bookmarks().reset(self.current_time, self.media_length, self.name, self.year)
 		log_utils.error()
-		xbmc.log('[ plugin.video.dg ] onPlayBackError callback', LOGINFO)
+		xbmc.log('[ plugin.video.venom ] onPlayBackError callback', LOGINFO)
+		log_utils.log('[ plugin.video.venom ] onPlayBackError callback', level=log_utils.LOGDEBUG)
 		sysexit(1)
 
 
@@ -429,12 +431,16 @@ class PlayNext(xbmc.Player):
 				tvshowtitle = next_meta.get('tvshowtitle')
 				premiered = next_meta.get('premiered')
 				next_sources = providerscache.get(sources.Sources().getSources, 48, title, year, imdb, tmdb, tvdb, str(season), str(episode), tvshowtitle, premiered, next_meta, True)
-				if not self.isPlayingVideo(): return control.homeWindow.clearProperty('dg.preResolved_nextUrl')
+				if not self.isPlayingVideo():
+					return playerWindow.clearProperty('venom.preResolved_nextUrl')
+
+
 				sources.Sources().preResolve(next_sources, next_meta)
-			else: control.homeWindow.clearProperty('dg.preResolved_nextUrl')
+			else:
+				playerWindow.clearProperty('venom.preResolved_nextUrl')
 		except:
 			log_utils.error()
-			control.homeWindow.clearProperty('dg.preResolved_nextUrl')
+			playerWindow.clearProperty('venom.preResolved_nextUrl')
 
 
 class Subtitles:
@@ -582,7 +588,7 @@ class Bookmarks:
 			cache.clear_local_bookmarks()
 			if control.setting('bookmarks') != 'true' or media_length == 0 or current_time == 0: return
 			timeInSeconds = str(current_time)
-			seekable = (int(current_time) > 180 and (current_time / media_length) <= .85)
+			seekable = (int(current_time) > 180 and (current_time / media_length) < .85)
 			idFile = md5()
 			try: [idFile.update(str(i)) for i in name]
 			except: [idFile.update(str(i).encode('utf-8')) for i in name]
@@ -610,11 +616,12 @@ class Bookmarks:
 
 	def set_scrobble(self, current_time, media_length, media_type, imdb='', tmdb='', tvdb='', season='', episode=''):
 		try:
+			if media_length == 0: return
 			percent = float((current_time / media_length)) * 100
-			seekable = (int(current_time) > 180 and (percent <= 85))
+			seekable = (int(current_time) > 180 and (percent < 85))
 			if seekable:
 				trakt.scrobbleMovie(imdb, tmdb, percent) if media_type == 'movie' else trakt.scrobbleEpisode(imdb, tmdb, tvdb, season, episode, percent)
-			if percent > 85:
+			if percent >= 85:
 				trakt.scrobbleReset(imdb, tvdb, season, episode, refresh=False)
 		except:
 			log_utils.error()
