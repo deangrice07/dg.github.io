@@ -1,41 +1,40 @@
 # -*- coding: utf-8 -*-
-# modified by Venom for Fenomscrapers (updated 11-05-2021)
+# modified by Venom for Fenomscrapers (updated 12-20-2021)
 """
 	Fenomscrapers Project
 """
 
 import re
-try: #Py2
-	from urllib import quote_plus, unquote_plus
-except ImportError: #Py3
-	from urllib.parse import quote_plus, unquote_plus
+from urllib.parse import quote_plus, unquote_plus
 from fenomscrapers.modules import client
 from fenomscrapers.modules import source_utils
 from fenomscrapers.modules import workers
 
 
 class source:
+	priority = 5
+	pack_capable = True
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 5
 		self.language = ['en', 'de', 'fr', 'ko', 'pl', 'pt', 'ru']
-		self.domains = ['zooqle.com', 'zooqle.unblocked.win', 'zooqle.unblocked.llc', 'zooqle.unblocked.krd']
-		self.base_link = 'https://zooqle.com'
+		self.base_link = "https://zooqle.com"
 		self.search_link = '/search?pg=1&q=%s'
 		self.min_seeders = 1
-		self.pack_capable = True
-		self.movie = True
-		self.tvshow = True
 
 	def sources(self, data, hostDict):
 		self.sources = []
 		if not data: return self.sources
+		self.sources_append = self.sources.append
 		try:
 			self.title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			self.title = self.title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			self.title = self.title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			self.aliases = data['aliases']
 			self.episode_title = data['title'] if 'tvshowtitle' in data else None
 			self.year = data['year']
 			self.hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else self.year
+			self.undesirables = source_utils.get_undesirables()
+			self.check_foreign_audio = source_utils.check_foreign_audio()
 
 			category = '+category%3ATV' if 'tvshowtitle' in data else '+category%3AMovies'
 			query = '%s %s' % (self.title, self.hdlr)
@@ -47,8 +46,9 @@ class source:
 			urls.append(url.replace('pg=1', 'pg=2'))
 			# log_utils.log('urls = %s' % urls)
 			threads = []
+			append = threads.append
 			for url in urls:
-				threads.append(workers.Thread(self.get_sources, url))
+				append(workers.Thread(self.get_sources, url))
 			[i.start() for i in threads]
 			[i.join() for i in threads]
 			return self.sources
@@ -60,7 +60,7 @@ class source:
 		try:
 			# For some reason Zooqle returns 404 even though the response has a body.
 			# This is probably a bug on Zooqle's server and the error should just be ignored.
-			html = client.request(url, ignoreErrors=404, timeout='5')
+			html = client.request(url, ignoreErrors=404, timeout=5)
 			if not html: return
 			html = html.replace('&nbsp;', ' ')
 			try: table = client.parseDOM(html, 'table', attrs={'class': 'table table-condensed table-torrents vmiddle'})[0]
@@ -75,9 +75,8 @@ class source:
 				try:
 					if 'magnet:' not in row: continue
 					url = re.search(r'href\s*=\s*["\'](magnet:[^"\']+)["\']', row, re.I).group(1)
-					url = unquote_plus(url).replace('&amp;', '&').replace(' ', '.').split('&tr')[0]
-					url = source_utils.strip_non_ascii_and_unprintable(url)
-					if url in str(self.sources): continue
+					url = unquote_plus(url).replace('&amp;', '&').split('&tr')[0].replace(' ', '.')
+					# url = source_utils.strip_non_ascii_and_unprintable(url)
 				except: continue
 				hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
 				try:
@@ -93,11 +92,14 @@ class source:
 
 				if not source_utils.check_title(self.title, self.aliases, name, self.hdlr, self.year): continue
 				name_info = source_utils.info_from_name(name, self.title, self.year, self.hdlr, self.episode_title)
-				if source_utils.remove_lang(name_info): continue
+				if source_utils.remove_lang(name_info, self.check_foreign_audio): continue
+				if self.undesirables and source_utils.remove_undesirables(name_info, self.undesirables): continue
 
 				if not self.episode_title: #filter for eps returned in movie query (rare but movie and show exists for Run in 2020)
 					ep_strings = [r'[.-]s\d{2}e\d{2}([.-]?)', r'[.-]s\d{2}([.-]?)', r'[.-]season[.-]?\d{1,2}[.-]?']
-					if any(re.search(item, name.lower()) for item in ep_strings): continue
+					name_lower = name.lower()
+					if any(re.search(item, name_lower) for item in ep_strings): continue
+
 				try:
 					seeders = int(re.search(r'["\']Seeders:\s*([0-9]+|[0-9]+,[0-9]+)\s*\|', row, re.I).group(1).replace(',', ''))
 					if self.min_seeders > seeders: continue
@@ -111,7 +113,7 @@ class source:
 				except: dsize = 0
 				info = ' | '.join(info)
 
-				self.sources.append({'provider': 'zooqle', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
+				self.sources_append({'provider': 'zooqle', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
 												'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('ZOOQLE')
@@ -119,17 +121,20 @@ class source:
 	def sources_packs(self, data, hostDict, search_series=False, total_seasons=None, bypass_filter=False):
 		self.sources = []
 		if not data: return self.sources
+		self.sources_append = self.sources.append
 		try:
 			self.search_series = search_series
 			self.total_seasons = total_seasons
 			self.bypass_filter = bypass_filter
 
-			self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			self.title = data['tvshowtitle'].replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			self.aliases = data['aliases']
 			self.imdb = data['imdb']
 			self.year = data['year']
 			self.season_x = data['season']
 			self.season_xx = self.season_x.zfill(2)
+			self.undesirables = source_utils.get_undesirables()
+			self.check_foreign_audio = source_utils.check_foreign_audio()
 			category = '+category%3ATV'
 
 			# query = re.sub(r'(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', '', self.title)
@@ -142,10 +147,10 @@ class source:
 						self.search_link % quote_plus(query + ' Season'),
 						self.search_link % quote_plus(query + ' Complete')]
 			threads = []
+			append = threads.append
 			for url in queries:
 				link = ('%s%s' % (self.base_link, url)) + str(category) + '&v=t&s=sz&sd=d'
-
-				threads.append(workers.Thread(self.get_sources_packs, link))
+				append(workers.Thread(self.get_sources_packs, link))
 			[i.start() for i in threads]
 			[i.join() for i in threads]
 			return self.sources
@@ -154,11 +159,10 @@ class source:
 			return self.sources
 
 	def get_sources_packs(self, link):
-		# log_utils.log('link = %s' % str(link))
 		try:
 			# For some reason Zooqle returns 404 even though the response has a body.
 			# This is probably a bug on Zooqle's server and the error should just be ignored.
-			html = client.request(link, ignoreErrors=404, timeout='5')
+			html = client.request(link, ignoreErrors=404, timeout=5)
 			if not html: return
 			html = html.replace('&nbsp;', ' ')
 			try: table = client.parseDOM(html, 'table', attrs={'class': 'table table-condensed table-torrents vmiddle'})[0]
@@ -173,13 +177,12 @@ class source:
 				try:
 					if 'magnet:' not in row: continue
 					url = re.search(r'href\s*=\s*["\'](magnet:[^"\']+)["\']', row, re.I).group(1)
-					url = unquote_plus(url).replace('&amp;', '&').replace(' ', '.').split('&tr')[0]
-					url = source_utils.strip_non_ascii_and_unprintable(url)
-					if url in str(self.sources): continue
+					url = unquote_plus(url).replace('&amp;', '&').split('&tr')[0].replace(' ', '.')
+					# url = source_utils.strip_non_ascii_and_unprintable(url)
 				except: continue
 				hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
 				try:
-					name = re.search(r'<a class\s*=\s*["\'].+?>(.+?)</a>', row, re.I).group(1)
+					name = re.search(r'<a\s*class\s*=\s*["\'].+?>(.+?)</a>', row, re.I).group(1)
 					name = source_utils.clean_name(unquote_plus(client.cleanHTML(name)))
 				except: continue
 
@@ -191,20 +194,19 @@ class source:
 
 				if not self.search_series:
 					if not self.bypass_filter:
-						if not source_utils.filter_season_pack(self.title, self.aliases, self.year, self.season_x, name):
-							continue
+						if not source_utils.filter_season_pack(self.title, self.aliases, self.year, self.season_x, name): continue
 					package = 'season'
 
 				elif self.search_series:
 					if not self.bypass_filter:
 						valid, last_season = source_utils.filter_show_pack(self.title, self.aliases, self.imdb, self.year, self.season_x, name, self.total_seasons)
 						if not valid: continue
-					else:
-						last_season = self.total_seasons
+					else: last_season = self.total_seasons
 					package = 'show'
 
 				name_info = source_utils.info_from_name(name, self.title, self.year, season=self.season_x, pack=package)
-				if source_utils.remove_lang(name_info): continue
+				if source_utils.remove_lang(name_info, self.check_foreign_audio): continue
+				if self.undesirables and source_utils.remove_undesirables(name_info, self.undesirables): continue
 				try:
 					seeders = int(re.search(r'["\']Seeders:\s*([0-9]+|[0-9]+,[0-9]+)\s*\|', row, re.I).group(1).replace(',', ''))
 					if self.min_seeders > seeders: continue
@@ -221,9 +223,6 @@ class source:
 				item = {'provider': 'zooqle', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info, 'quality': quality,
 							'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize, 'package': package}
 				if self.search_series: item.update({'last_season': last_season})
-				self.sources.append(item)
+				self.sources_append(item)
 			except:
 				source_utils.scraper_error('ZOOQLE')
-
-	def resolve(self, url):
-		return url

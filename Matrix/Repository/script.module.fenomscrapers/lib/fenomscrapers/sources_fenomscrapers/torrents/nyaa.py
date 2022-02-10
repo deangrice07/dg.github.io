@@ -1,37 +1,34 @@
 # -*- coding: utf-8 -*-
-# created by Venom for Fenomscrapers (updated 11-05-2021)
+# created by Venom for Fenomscrapers (updated 12-16-2021)
 """
 	Fenomscrapers Project
 """
 
 import re
-try: #Py2
-	from urllib import quote_plus, unquote_plus
-except ImportError: #Py3
-	from urllib.parse import quote_plus, unquote_plus
+from urllib.parse import quote_plus, unquote_plus
 from fenomscrapers.modules import cleantitle
 from fenomscrapers.modules import client
 from fenomscrapers.modules import source_utils
 
 
 class source:
+	priority = 5
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 5
 		self.language = ['en']
-		self.domains = ['nyaa.si']
-		self.base_link = 'https://nyaa.si'
+		self.base_link = "https://nyaa.si"
 		self.search_link = '/?f=0&c=0_0&q=%s'
 		self.min_seeders = 1
-		self.pack_capable = False
-		self.movie = True
-		self.tvshow = True
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			aliases = data['aliases']
 			year = data['year']
 			hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else year
@@ -49,18 +46,19 @@ class source:
 			url2 = self.search_link % quote_plus(query2)
 			url2 = '%s%s' % (self.base_link, url2)
 			urls.append(url2)
-			# log_utils.log('urls = %s' % urls, log_utils.LOGDEBUG)
+			# log_utils.log('urls = %s' % urls)
+			undesirables = source_utils.get_undesirables()
+			check_foreign_audio = source_utils.check_foreign_audio()
 		except:
 			source_utils.scraper_error('NYYAA')
 			return sources
 
 		for url in urls:
 			try:
-				r = client.request(url, timeout='5')
-				if not r or 'magnet' not in r: return sources
-				r = re.sub(r'\n', '', r)
-				r = re.sub(r'\t', '', r)
-				tbody = client.parseDOM(r, 'tbody')
+				results = client.request(url, timeout=5)
+				if not results or 'magnet:' not in results: return sources
+				results = re.sub(r'[\n\t]', '', results)
+				tbody = client.parseDOM(results, 'tbody')
 				rows = client.parseDOM(tbody, 'tr')
 
 				for row in rows:
@@ -69,14 +67,14 @@ class source:
 									re.findall(r'((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', row, re.DOTALL),
 									[re.findall(r'<td class\s*=\s*["\']text-center["\']>([0-9]+)</td>', row, re.DOTALL)])
 					for link in links:
-						url = unquote_plus(link[0]).replace('&amp;', '&').replace(' ', '.').split('&tr')[0]
+						url = unquote_plus(link[0]).replace('&amp;', '&').split('&tr')[0].replace(' ', '.')
 						url = source_utils.strip_non_ascii_and_unprintable(url)
 						hash = re.search(r'btih:(.*?)&', url, re.I).group(1)
-						name = url.split('&dn=')[1]
-						name = source_utils.clean_name(name)
+						name = source_utils.clean_name(url.split('&dn=')[1])
 
 						if hdlr not in name and hdlr2 not in name: continue
-						if source_utils.remove_lang(name): continue
+						if source_utils.remove_lang(name, check_foreign_audio): continue
+						# if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
 
 						if hdlr in name:
 							t = name.split(hdlr)[0].replace(year, '').replace('(', '').replace(')', '').replace('&', 'and').replace('.US.', '.').replace('.us.', '.')
@@ -96,12 +94,9 @@ class source:
 						except: dsize = 0
 						info = ' | '.join(info)
 
-						sources.append({'provider': 'nyaa', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'quality': quality,
-													'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+						append({'provider': 'nyaa', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'quality': quality,
+										'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('NYAA')
 				return sources
 		return sources
-
-	def resolve(self, url):
-		return url

@@ -6,7 +6,6 @@
 import requests
 import time
 from myaccounts.modules import control
-from myaccounts.modules import py_tools
 from myaccounts.modules import log_utils
 
 trakt_icon = control.joinPath(control.artPath(), 'trakt.png')
@@ -101,7 +100,7 @@ class Trakt():
 		try: code = str(response[1])
 		except: code = ''
 
-		if code.startswith('5') or (response and isinstance(response, py_tools.string_types) and '<html' in response) or not response: # covers Maintenance html responses ["Bad Gateway", "We're sorry, but something went wrong (500)"])
+		if code.startswith('5') or (response and isinstance(response, str) and '<html' in response) or not response: # covers Maintenance html responses ["Bad Gateway", "We're sorry, but something went wrong (500)"])
 			log_utils.log('Temporary Trakt Server Problems', level=log_utils.LOGNOTICE)
 			control.notification(title=32315, message=33676)
 			return False

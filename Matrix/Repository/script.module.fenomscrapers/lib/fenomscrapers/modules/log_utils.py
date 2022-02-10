@@ -5,53 +5,31 @@
 
 from datetime import datetime
 import inspect
-from fenomscrapers.modules.control import getKodiVersion, transPath, setting as getSetting, lang, joinPath, existsPath
-from fenomscrapers.modules import py_tools
+from fenomscrapers.modules.control import transPath, setting as getSetting, lang, joinPath, existsPath
 
-if py_tools.isPY2:
-	LOGDEBUG = 0
-	LOGINFO = 1
-	LOGNOTICE = 2 # (2 in 18, deprecated in 19 use LOGINFO(1))
-	LOGWARNING = 3 # (3 in 18, 2 in 19)
-	LOGERROR = 4 # (4 in 18, 3 in 19)
-	LOGSEVERE = 5 # (5 in 18, deprecated in 19 use LOGFATAL(4))
-	LOGFATAL = 6 # (6 in 18, 4 in 19)
-	LOGNONE = 7 # (7 in 18, 5 in 19)
-	debug_list = ['DEBUG', 'INFO', 'NOTICE', 'WARNING', 'ERROR', 'SEVERE', 'FATAL']
-	from io import open #py2 open() does not support encoding param
-else:
-	LOGDEBUG = 0
-	LOGINFO = 1
-	LOGNOTICE = 1
-	LOGWARNING = 2
-	LOGERROR = 3
-	LOGSEVERE = 4
-	LOGFATAL = 4
-	LOGNONE = 5
-	debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
+LOGDEBUG = 0
+LOGINFO = 1
+LOGWARNING = 2
+LOGERROR = 3
+LOGFATAL = 4
+LOGNONE = 5 # not used
 
+debug_list = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL']
 DEBUGPREFIX = '[COLOR red][ FENOMSCRAPERS %s ][/COLOR]'
 LOGPATH = transPath('special://logpath/')
 
 
-def log(msg, caller=None, level=LOGNOTICE):
+def log(msg, caller=None, level=LOGINFO):
 	debug_enabled = getSetting('debug.enabled') == 'true'
 	if not debug_enabled: return
 	debug_location = getSetting('debug.location')
 
 	if isinstance(msg, int): msg = lang(msg) # for strings.po translations
-
 	try:
-		if py_tools.isPY3:
-			if not msg.isprintable(): # ex. "\n" is not a printable character so returns False on those sort of cases
-				msg = '%s (NORMALIZED by log_utils.log())' % normalize(msg)
-			if isinstance(msg, py_tools.binary_type):
-				msg = '%s (ENCODED by log_utils.log())' % (py_tools.ensure_str(msg, errors='replace'))
-		else:
-			if not is_printable(msg): # if not all(c in printable for c in msg): # isprintable() not available in py2
-				msg = normalize(msg)
-			if isinstance(msg, py_tools.binary_type):
-				msg = '%s (ENCODED by log_utils.log())' % (py_tools.ensure_text(msg))
+		if not msg.isprintable(): # ex. "\n" is not a printable character so returns False on those sort of cases
+			msg = '%s (NORMALIZED by log_utils.log())' % normalize(msg)
+		if isinstance(msg, bytes):
+			msg = '%s (ENCODED by log_utils.log())' % msg.decode('utf-8', errors='replace')
 
 		if caller == 'scraper_error': pass
 		elif caller is not None and level != LOGERROR:
@@ -69,7 +47,7 @@ def log(msg, caller=None, level=LOGNOTICE):
 				f.close()
 			reverse_log = getSetting('debug.reversed') == 'true'
 			if not reverse_log:
-				with open(log_file, 'a', encoding='utf-8') as f: #with auto cleans up and closes
+				with open(log_file, 'a', encoding='utf-8') as f: # "with" auto cleans up and closes
 					line = '[%s %s] %s: %s' % (datetime.now().date(), str(datetime.now().time())[:8], DEBUGPREFIX % debug_list[level], msg)
 					f.write(line.rstrip('\r\n') + '\n')
 					# f.writelines([line1, line2]) ## maybe an option for the 2 lines without using "\n"
@@ -99,8 +77,7 @@ def error(message=None, exception=True):
 			name = traceback.tb_frame.f_code.co_name
 			linenumber = traceback.tb_lineno
 			errortype = type.__name__
-			if py_tools.isPY3: errormessage = value
-			else: errormessage = value.message or value # sometimes value.message is null while value is not
+			errormessage = value or value.message
 			if str(errormessage) == '': return
 			if message: message += ' -> '
 			else: message = ''
@@ -108,8 +85,8 @@ def error(message=None, exception=True):
 			caller = [filename, name, linenumber]
 		else:
 			caller = None
-		log(msg=message, caller=caller, level=LOGERROR)
 		del(type, value, traceback) # So we don't leave our local labels/objects dangling
+		log(msg=message, caller=caller, level=LOGERROR)
 	except Exception as e:
 		import xbmc
 		xbmc.log('[ script.module.fenomonscrapers ] log_utils.error() Logging Failure: %s' % (e), LOGERROR)
@@ -170,7 +147,7 @@ def upload_LogFile():
 			result = url + response.json()['key']
 			log('FenomScrapers log file uploaded to: %s' % result)
 			from sys import platform as sys_platform
-			supported_platform = any(value in sys_platform for value in ['win32', 'linux2'])
+			supported_platform = any(value in sys_platform for value in ('win32', 'linux2'))
 			highlight_color = 'gold'
 			list = [('[COLOR %s]url:[/COLOR]  %s' % (highlight_color, str(result)), str(result))]
 			if supported_platform: list += [('[COLOR %s]  -- Copy url To Clipboard[/COLOR]' % highlight_color, ' ')]
@@ -188,15 +165,11 @@ def upload_LogFile():
 		error('FenomScrapers log upload failed')
 		notification(message='pastebin post failed: See log for more info')
 
-def is_printable(s, codec='utf8'):
-	try: s.decode(codec)
-	except UnicodeDecodeError: return False
-	else: return True
-
-def normalize(title):
+def normalize(msg):
 	try:
 		import unicodedata
-		return ''.join(c for c in unicodedata.normalize('NFKD', py_tools.ensure_text(py_tools.ensure_str(title))) if unicodedata.category(c) != 'Mn')
+		msg = ''.join(c for c in unicodedata.normalize('NFKD', msg) if unicodedata.category(c) != 'Mn')
+		return str(msg)
 	except:
 		error()
-		return title
+		return msg

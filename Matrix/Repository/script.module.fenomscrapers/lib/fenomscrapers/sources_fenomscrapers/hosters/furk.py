@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# (updated 9-20-2021)
+# (updated 01-02-2022) increased timeout=20
 '''
 	Fenomscrapers Project
 '''
@@ -12,18 +12,19 @@ from fenomscrapers.modules import source_utils
 
 
 class source:
+	priority = 21
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 21
 		self.language = ['en']
-		self.domain = 'furk.net/'
-		self.base_link = 'https://www.furk.net'
+		self.domain = "furk.net"
+		self.base_link = "https://www.furk.net"
 		self.search_link = "/api/plugins/metasearch?api_key=%s&q=%s&cached=yes" \
 								"&match=%s&moderated=%s%s&sort=relevance&type=video&offset=0&limit=200"
 		self.tfile_link = "/api/file/get?api_key=%s&t_files=1&id=%s"
 		self.login_link = "/api/login/login?login=%s&pwd=%s"
 		self.files = []
-		self.movie = True
-		self.tvshow = True
 
 	def get_api(self):
 		try:
@@ -32,10 +33,8 @@ class source:
 			api_key = getSetting('furk.api')
 			if api_key == '':
 				if user_name == '' or user_pass == '': return
-				s = requests.Session()
 				link = (self.base_link + self.login_link % (user_name, user_pass))
-				p = s.post(link)
-				p = jsloads(p.text)
+				p = requests.post(link, timeout=20).json()
 				if p['status'] == 'ok':
 					api_key = p['api_key']
 					setSetting('furk.api', api_key)
@@ -47,11 +46,12 @@ class source:
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		api_key = self.get_api()
 		if not api_key: return sources
 		try:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			aliases = data['aliases'] # not used atm
 			episode_title = data['title'] if 'tvshowtitle' in data else None
 			year = data['year']
@@ -72,54 +72,56 @@ class source:
 				seasEpList = self._seas_ep_query_list(season, episode)
 				query = '@name+%s+@files+%s+|+%s+|+%s+|+%s+|+%s' % (title, seasEpList[0], seasEpList[1], seasEpList[2], seasEpList[3], seasEpList[4])
 
-			s = requests.Session()
 			link = self.base_link + self.search_link % (api_key, query, match, moderated, search_in)
-
-			p = s.get(link)
-			p = jsloads(p.text)
+			p = requests.get(link, timeout=20).json()
 			if p.get('status') != 'ok': return
-
 			files = p.get('files')
 			if not files: return sources
-			for i in files:
-				if i['is_ready'] == '1' and i['type'] == 'video':
-					try:
-						source = 'direct SINGLE'
-						if int(i['files_num_video']) > 3:
-							source = ' direct PACK (x%02d)' % int(i['files_num_video'])
-						file_name = i['name']
-						name = source_utils.clean_name(file_name)
-						name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
-
-						file_id = i['id']
-						file_dl = i['url_dl']
-
-						if content_type == 'episode':
-							url = jsdumps({'content': 'episode', 'file_id': file_id, 'season': season, 'episode': episode})
-						else:
-							url = jsdumps({'content': 'movie', 'file_id': file_id, 'title': title, 'year': year})
-
-						quality, info = source_utils.get_release_quality(name_info, file_dl)
-						try:
-							size = float(i['size'])
-							if 'PACK' in source:
-								size = float(size) / int(i['files_num_video'])
-							dsize, isize = source_utils.convert_size(size, to='GB')
-							if isize: info.insert(0, isize)
-						except:
-							source_utils.scraper_error('FURK')
-							dsize = 0
-						info = ' | '.join(info)
-
-						sources.append({'provider': 'furk', 'source': source, 'name': name, 'name_info': name_info, 'quality': quality, 'language': "en", 'url': url,
-													'info': info, 'direct': True, 'debridonly': False, 'size': dsize})
-					except:
-						source_utils.scraper_error('FURK')
-				else:
-					continue
-			return sources
 		except:
 			source_utils.scraper_error('FURK')
+			return sources
+
+		undesirables = source_utils.get_undesirables()
+		check_foreign_audio = source_utils.check_foreign_audio()
+		for i in files:
+			try:
+				if i['is_ready'] == '1' and i['type'] == 'video':
+					source = 'direct SINGLE'
+					if int(i['files_num_video']) > 3:
+						source = ' direct PACK (x%02d)' % int(i['files_num_video'])
+
+					name = source_utils.clean_name(i['name'])
+					name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
+					if source_utils.remove_lang(name_info, check_foreign_audio): continue
+					if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
+
+					file_id = i['id']
+					file_dl = i['url_dl']
+
+					if content_type == 'episode':
+						url = jsdumps({'content': 'episode', 'file_id': file_id, 'season': season, 'episode': episode})
+					else:
+						url = jsdumps({'content': 'movie', 'file_id': file_id, 'title': title, 'year': year})
+
+					quality, info = source_utils.get_release_quality(name_info, file_dl)
+					try:
+						size = float(i['size'])
+						if 'PACK' in source:
+							size = float(size) / int(i['files_num_video'])
+						dsize, isize = source_utils.convert_size(size, to='GB')
+						if isize: info.insert(0, isize)
+					except:
+						source_utils.scraper_error('FURK')
+						dsize = 0
+					info = ' | '.join(info)
+
+					append({'provider': 'furk', 'source': source, 'name': name, 'name_info': name_info, 'quality': quality, 'language': "en", 'url': url,
+									'info': info, 'direct': True, 'debridonly': False, 'size': dsize})
+				else:
+					continue
+			except:
+				source_utils.scraper_error('FURK')
+		return sources
 
 	def resolve(self, url):
 		try:
@@ -132,9 +134,7 @@ class source:
 			if self.content_type == 'episode': self.filtering_list = self._seas_ep_resolve_list(url.get('season'), url.get('episode'))
 
 			link = (self.base_link + self.tfile_link % (api_key, file_id))
-			s = requests.Session()
-			p = s.get(link)
-			p = jsloads(p.text)
+			p = requests.get(link, timeout=20).json()
 			if p['status'] != 'ok' or p['found_files'] != '1': return
 
 			files = p['files'][0]

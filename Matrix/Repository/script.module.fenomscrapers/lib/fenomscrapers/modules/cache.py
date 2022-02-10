@@ -109,3 +109,60 @@ def _generate_md5(*args):
 	try: [md5_hash.update(str(arg)) for arg in args]
 	except: [md5_hash.update(str(arg).encode('utf-8')) for arg in args]
 	return str(md5_hash.hexdigest())
+
+import xbmc
+from fenomscrapers.modules.control import joinPath, transPath, addonInfo, existsPath, makeFile
+try: dataPath = transPath(addonInfo('profile')).decode('utf-8')
+except: dataPath = transPath(addonInfo('profile'))
+undesirablescacheFile = joinPath(dataPath, 'undesirables.db')
+
+class Undesirables():
+	def __init__(self):
+		self.make_database_objects()
+
+	def get_enabled(self):
+		results = self.dbcur.execute('SELECT keyword FROM undesirables WHERE enabled = ?', (True,))
+		return self.process_keywords(results)
+
+	def get_default(self):
+		results = self.dbcur.execute('SELECT keyword FROM undesirables WHERE user_defined = ?', (False,))
+		return self.process_keywords(results)
+
+	def get_user_defined(self):
+		results = self.dbcur.execute('SELECT keyword FROM undesirables WHERE user_defined = ?', (True,))
+		return self.process_keywords(results)
+
+	def get_all(self):
+		results = self.dbcur.execute('SELECT keyword FROM undesirables')
+		return self.process_keywords(results)
+
+	def set_many(self, undesirables):
+		self.dbcur.executemany('INSERT OR REPLACE INTO undesirables VALUES (?, ?, ?)', undesirables)
+		self.dbcon.commit()
+
+	def make_connection(self):
+		self.dbcon = db.connect(undesirablescacheFile, timeout=60)
+
+	def make_cursor(self):
+		self.dbcur = self.dbcon.cursor()
+		self.dbcur.execute('''PRAGMA synchronous = OFF''')
+		self.dbcur.execute('''PRAGMA journal_mode = OFF''')
+
+	def make_database_objects(self):
+		if not existsPath(dataPath): makeFile(dataPath)
+		self.make_connection()
+		self.make_cursor()
+		self.dbcur.execute('CREATE TABLE IF NOT EXISTS undesirables (keyword TEXT NOT NULL, user_defined BOOL NOT NULL, enabled BOOL NOT NULL, UNIQUE(keyword))')
+
+	def set_defaults(self, keywords):
+		self.set_many([(i, False, True) for i in keywords])
+
+	def process_keywords(self, results):
+		keywords = [i[0] for i in results.fetchall()]
+		if not keywords:
+			from fenomscrapers.modules.source_utils import UNDESIRABLES
+			keywords = UNDESIRABLES
+			self.set_defaults(keywords)
+		return keywords
+
+undesirables_cache = Undesirables()

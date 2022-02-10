@@ -1,36 +1,32 @@
 # -*- coding: utf-8 -*-
-# modified by Venom for Fenomscrapers (updated 11-05-2021)
+# modified by Venom for Fenomscrapers (updated 01-02-2022)
 '''
 	Fenomscrapers Project
 '''
 
 import re
-try: #Py2
-	from urllib import quote_plus
-except ImportError: #Py3
-	from urllib.parse import quote_plus
+from urllib.parse import quote_plus
 from fenomscrapers.modules import client
-from fenomscrapers.modules import py_tools
 from fenomscrapers.modules import source_utils
 
 
 class source:
+	priority = 22
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 22
 		self.language = ['en']
-		self.domains = ['new.myvideolinks.net']
-		self.base_link = 'http://new.myvideolinks.net'
-		self.search_link = '/?s=%s'
-		# http://new.myvideolinks.net/search/%s/feed/rss2/
-		self.movie = True
-		self.tvshow = True
+		self.base_link = "http://get.myvideolinks.net"
+		self.search_link = "/?s=%s"
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			aliases = data['aliases']
 			episode_title = data['title'] if 'tvshowtitle' in data else None
 			year = data['year']
@@ -39,7 +35,7 @@ class source:
 			query = re.sub(r'(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', '', query)
 			url = '%s%s' % (self.base_link, self.search_link % quote_plus(query))
 			# log_utils.log('url = %s' % url, __name__, log_utils.LOGDEBUG)
-			r = client.request(url, timeout='5')
+			r = client.request(url, timeout=5)
 			if not r or 'Error 404' in r: return sources
 			r = client.parseDOM(r, 'div', attrs={'id': 'content'})
 			r1= client.parseDOM(r, 'h2')
@@ -47,7 +43,7 @@ class source:
 		except:
 			source_utils.scraper_error('MYVIDEOLINK')
 			return sources
-		items = []
+		links = []
 		for post in posts:
 			try:
 				name = source_utils.strip_non_ascii_and_unprintable(post[1])
@@ -65,15 +61,14 @@ class source:
 				name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
 
 				link = post[0]
-				results = client.request(link, timeout='5')
+				results = client.request(link, timeout=5)
 				results = client.parseDOM(results, 'div', attrs={'class': 'entry-content cf'})[0]
 
 				if 'tvshowtitle' in data:
 					isSeasonList = False
 					if 'Season' in name or 'S%02d' % int(data['season']) in name:
 						isSeasonList = True
-					results = re.sub(r'\n', '', results)
-					results = re.sub(r'\t', '', results).replace('> <', '><')
+					results = re.sub(r'[\n\t]', '', results).replace('> <', '><')
 					test = re.findall(r'<p><b>(.*?)</ul>', results, re.DOTALL) # parsing this site for episodes is a bitch, fuck it this is close as I'm doing
 					for x in test:
 						test2 = re.search(r'(.*?)</b>', x).group(1)
@@ -99,8 +94,7 @@ class source:
 
 				for link in links:
 					try:
-						url = py_tools.ensure_text(client.replaceHTMLCodes(str(link)), errors='replace')
-						if url.endswith(('.rar', '.zip', '.iso', '.part', '.png', '.jpg', '.bmp', '.gif')): continue
+						url = client.replaceHTMLCodes(str(link))
 						if url in str(sources): continue
 
 						valid, host = source_utils.is_host_valid(url, hostDict)
@@ -111,17 +105,13 @@ class source:
 							size = re.search(r'((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', results).group(0)
 							dsize, isize = source_utils._size(size)
 							info.insert(0, isize)
-						except:
-							dsize = 0
+						except: dsize = 0
 						info = ' | '.join(info)
 
-						sources.append({'provider': 'myvideolink', 'source': host, 'name': name, 'name_info': name_info, 'quality': quality, 'language': 'en', 'url': url,
-													'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+						append({'provider': 'myvideolink', 'source': host, 'name': name, 'name_info': name_info, 'quality': quality, 'language': 'en', 'url': url,
+										'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 					except:
 						source_utils.scraper_error('MYVIDEOLINK')
 			except:
 				source_utils.scraper_error('MYVIDEOLINK')
 		return sources
-
-	def resolve(self, url):
-		return url

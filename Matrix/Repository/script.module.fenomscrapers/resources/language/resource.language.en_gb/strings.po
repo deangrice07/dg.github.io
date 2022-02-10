@@ -200,7 +200,7 @@ msgid "Define Extra Undesirables (Comma Separated)"
 msgstr ""
 
 msgctxt "#32049"
-msgid ""
+msgid "Remove Extra Undesirables"
 msgstr ""
 
 msgctxt "#32050"
@@ -340,19 +340,19 @@ msgid "-- Title Check Results"
 msgstr ""
 
 msgctxt "#32084"
-msgid ""
+msgid "No User Undesirables Set"
 msgstr ""
 
 msgctxt "#32085"
-msgid ""
+msgid "Select to Enable/Disable"
 msgstr ""
 
 msgctxt "#32086"
-msgid ""
+msgid "Select to Remove From List"
 msgstr ""
 
 msgctxt "#32087"
-msgid ""
+msgid "Success"
 msgstr ""
 
 msgctxt "#32088"
@@ -556,13 +556,17 @@ msgid "BITCQ (Pack capable)"
 msgstr ""
 
 msgctxt "#32138"
-msgid ""
+msgid "BITSEARCH (Pack capable)"
 msgstr ""
 
 msgctxt "#32139"
-msgid ""
+msgid "TORRENTIO (Pack capable)"
 msgstr ""
 
 msgctxt "#32140"
+msgid "Clear ALL Extra Undesirables"
+msgstr ""
+
+msgctxt "#32141"
 msgid ""
 msgstr ""

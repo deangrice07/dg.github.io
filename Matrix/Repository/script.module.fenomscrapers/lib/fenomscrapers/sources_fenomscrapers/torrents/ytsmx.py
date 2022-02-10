@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# created by Venom for Fenomscrapers (11-05-2021)
+# created by Venom for Fenomscrapers (updated 12-16-2021)
 """
 	Fenomscrapers Project
 """
@@ -11,38 +11,40 @@ from fenomscrapers.modules import source_utils
 
 
 class source:
+	priority = 2
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = False
 	def __init__(self):
-		self.priority = 2
 		self.language = ['en']
-		self.domains = ['yts.mx']
-		self.base_link = 'https://yts.mx'
+		self.base_link = "https://yts.mx"
 		self.search_link = '/api/v2/list_movies.json?query_term=%s' #accepts imdb_id as query_term
 		self.min_seeders = 0
-		self.pack_capable = False
-		self.movie = True
-		self.tvshow = False
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
-			title = data['title'].replace('&', 'and')
+			title = data['title'].replace('&', 'and').replace('/', ' ')
 			aliases = data['aliases']
 			hdlr = data['year']
 			year = data['year']
 			imdb = data['imdb']
 			url = '%s%s' % (self.base_link, self.search_link % imdb)
-			# log_utils.log('url = %s' % url, log_utils.LOGDEBUG)
-			rjson = client.request(url, timeout='5')
+			# log_utils.log('url = %s' % url)
+			rjson = client.request(url, timeout=5)
 			if not rjson: return sources
 			files = jsloads(rjson)
-			if files.get('status') == 'error' or files.get('data').get('movie_count') == 0:
-				return sources
+			if files.get('status') == 'error' or files.get('data').get('movie_count') == 0: return sources
 			title_long = files.get('data').get('movies')[0].get('title_long').replace(' ', '.')
 			torrents = files.get('data').get('movies')[0].get('torrents')
+			undesirables = source_utils.get_undesirables()
+			check_foreign_audio = source_utils.check_foreign_audio()
 		except:
 			source_utils.scraper_error('YTSMX')
 			return sources
+
 		for torrent in torrents:
 			try:
 				quality = torrent.get('quality')
@@ -50,9 +52,12 @@ class source:
 				hash = torrent.get('hash')
 				name = '%s.[%s].[%s].[YTS.MX]' % (title_long, quality, type)
 				url = 'magnet:?xt=urn:btih:%s&dn=%s' % (hash, name)
+
 				if not source_utils.check_title(title, aliases, name, hdlr, year): continue
 				name_info = source_utils.info_from_name(name, title, year, hdlr)
-				if source_utils.remove_lang(name_info): continue
+				if source_utils.remove_lang(name_info, check_foreign_audio): continue
+				if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
+
 				try:
 					seeders = torrent.get('seeds')
 					if self.min_seeders > seeders: continue
@@ -66,11 +71,8 @@ class source:
 				except: dsize = 0
 				info = ' | '.join(info)
 
-				sources.append({'provider': 'ytsmx', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
-											'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+				append({'provider': 'ytsmx', 'source': 'torrent', 'seeders': seeders, 'hash': hash, 'name': name, 'name_info': name_info,
+							'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('YTSMX')
 		return sources
-
-	def resolve(self, url):
-		return url

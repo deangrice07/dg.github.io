@@ -5,7 +5,6 @@
 
 import json
 import requests
-
 from myaccounts.modules import control
 from myaccounts.modules import log_utils
 
@@ -17,6 +16,8 @@ credentials_url = 'device/credentials?%s'
 rd_icon = control.joinPath(control.artPath(), 'realdebrid.png')
 
 class RealDebrid:
+	name = "Real-Debrid"
+
 	def __init__(self):
 		self.token = control.setting('realdebrid.token')
 		self.client_ID = control.setting('realdebrid.client_id')

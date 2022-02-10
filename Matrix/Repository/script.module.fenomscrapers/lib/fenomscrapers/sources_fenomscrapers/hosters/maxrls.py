@@ -1,38 +1,35 @@
 # -*- coding: UTF-8 -*-
-# modified by Venom for Fenomscrapers (updated 11-05-2021)
+# modified by Venom for Fenomscrapers (updated 01-02-2022)
 '''
 	Fenomscrapers Project
 '''
 
 import re
-try: #Py2
-	from urllib import quote_plus
-except ImportError: #Py3
-	from urllib.parse import quote_plus
+from urllib.parse import quote_plus
 from fenomscrapers.modules import cfscrape
 from fenomscrapers.modules import client
-from fenomscrapers.modules import py_tools
 from fenomscrapers.modules import source_utils
 from fenomscrapers.modules import workers
 
 
 class source:
+	priority = 21
+	pack_capable = False
+	hasMovies = True
+	hasEpisodes = True
 	def __init__(self):
-		self.priority = 21
 		self.language = ['en']
-		self.domains = ['max-rls.com']
-		self.base_link = 'http://max-rls.com'
-		self.search_link = '/?s=%s&submit=Find'
-		self.movie = True
-		self.tvshow = True
+		self.base_link = "http://max-rls.com"
+		self.search_link = "/?s=%s&submit=Find"
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
+		append = sources.append
 		try:
-			scraper = cfscrape.create_scraper(delay=5)
+			scraper = cfscrape.create_scraper()
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU')
+			title = title.replace('&', 'and').replace('Special Victims Unit', 'SVU').replace('/', ' ')
 			aliases = data['aliases']
 			episode_title = data['title'] if 'tvshowtitle' in data else None
 			year = data['year']
@@ -41,17 +38,18 @@ class source:
 			query = '%s %s' % (title, hdlr)
 			query = re.sub(r'[^A-Za-z0-9\s\.-]+', '', query)
 			url = ('%s%s' % (self.base_link, self.search_link % quote_plus(query))).replace('%3A+', '+')
-			# log_utils.log('url = %s' % url, log_utils.LOGDEBUG)
-			# result = scraper.get(url).content
-			result = py_tools.ensure_str(scraper.get(url).content, errors='replace')
+			# log_utils.log('url = %s' % url)
+			result = scraper.get(url, timeout=5).text
 
-			if not result or "Sorry, but you are looking for something that isn't here" in str(result):
-				return sources
+			if not result or "Sorry, but you are looking for something that isn't here" in str(result): return sources
 			posts = client.parseDOM(result, "div", attrs={"class": "post"})
 			if not posts: return sources
 		except:
 			source_utils.scraper_error('MAXRLS')
 			return sources
+
+		undesirables = source_utils.get_undesirables()
+		check_foreign_audio = source_utils.check_foreign_audio()
 		for post in posts:
 			try:
 				post_title = client.parseDOM(post, "h2", attrs={"class": "postTitle"})
@@ -67,13 +65,13 @@ class source:
 					name = re.sub(r'(<span.*?>)', '', name).replace('</span>', '')
 					if title not in name: continue # IMDB and Links: can be in name so check for title match
 					name_info = source_utils.info_from_name(name, title, year, hdlr, episode_title)
-					if source_utils.remove_lang(name_info): continue
+					if source_utils.remove_lang(name_info, check_foreign_audio): continue
+					if undesirables and source_utils.remove_undesirables(name_info, undesirables): continue
 
 					links = client.parseDOM(i, "a", ret="href")
 					size = re.search(r'((?:\d+\,\d+\.\d+|\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|Gb|MB|MiB|Mb))', i).group(0)
 
-					for link in links:
-						url = link
+					for url in links:
 						if url in str(sources): continue
 						valid, host = source_utils.is_host_valid(url, hostDict)
 						if not valid: continue
@@ -82,15 +80,11 @@ class source:
 						try:
 							dsize, isize = source_utils._size(size)
 							info.insert(0, isize)
-						except:
-							dsize = 0
+						except: dsize = 0
 						info = ' | '.join(info)
 
-						sources.append({'provider': 'maxrls', 'source': host, 'name': name, 'name_info': name_info, 'quality': quality, 'language': 'en',
-															'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
+						append({'provider': 'maxrls', 'source': host, 'name': name, 'name_info': name_info, 'quality': quality, 'language': 'en',
+										'url': url, 'info': info, 'direct': False, 'debridonly': True, 'size': dsize})
 			except:
 				source_utils.scraper_error('MAXRLS')
 		return sources
-
-	def resolve(self, url):
-		return url

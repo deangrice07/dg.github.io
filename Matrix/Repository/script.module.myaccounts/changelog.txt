@@ -1,4 +1,9 @@
 
+[B][COLOR red]Update - v2.0.0 - Nov. 23, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] First official py3 only version for Kodi Matrix.[/I]
+[COLOR yellow]--[/COLOR][I] Fixed issue with "check for updates" using old github url.[/I]
+
+
 [B][COLOR red]Update - v1.1.4 - Nov. 02, 2021[/COLOR][/B]
 [COLOR yellow]--[/COLOR][I] Fixed issue with settings function for [B]"Trakt - Account Info"[/B] fails to display if the user stats for watched minutes was less than 1 day.[/I]
 
