@@ -4,7 +4,10 @@
 """
 
 from sys import argv
-from urllib.parse import parse_qsl
+try: #Py2
+	from urlparse import parse_qsl
+except ImportError: #Py3
+	from urllib.parse import parse_qsl
 from fenomscrapers import sources_fenomscrapers
 from fenomscrapers.modules import control
 
@@ -15,6 +18,7 @@ query = params.get('query')
 name = params.get('name')
 
 if action is None:
+	xbmc.log('Hello from FenomScrapers', 2)
 	control.openSettings('0.0', 'script.module.fenomscrapers')
 
 if action == "FenomScrapersSettings":
@@ -91,20 +95,8 @@ elif action == 'cleanSettings':
 	control.clean_settings()
 
 elif action == 'undesirablesSelect':
-	from fenomscrapers.modules.undesirables import undesirablesSelect
-	undesirablesSelect()
-
-elif action == 'undesirablesInput':
-	from fenomscrapers.modules.undesirables import undesirablesInput
-	undesirablesInput()
-
-elif action == 'undesirablesUserRemove':
-	from fenomscrapers.modules.undesirables import undesirablesUserRemove
-	undesirablesUserRemove()
-
-elif action == 'undesirablesUserRemoveAll':
-	from fenomscrapers.modules.undesirables import undesirablesUserRemoveAll
-	undesirablesUserRemoveAll()
+	from fenomscrapers.modules import source_utils
+	source_utils.undesirablesSelect()
 
 elif action == 'tools_clearLogFile':
 	from fenomscrapers.modules import log_utils

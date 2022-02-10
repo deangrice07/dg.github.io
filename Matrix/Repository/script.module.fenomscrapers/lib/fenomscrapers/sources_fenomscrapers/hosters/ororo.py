@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# (updated 01-02-2022)
+# (updated 9-20-2021)
 '''
 	Fenomscrapers Project
 '''
@@ -7,41 +7,47 @@
 from base64 import b64encode
 from json import loads as jsloads
 import re
-from urllib.parse import urljoin
+try: #Py2
+	from urlparse import urljoin
+except ImportError: #Py3
+	from urllib.parse import urljoin
 from fenomscrapers.modules import cache
 from fenomscrapers.modules import client
 from fenomscrapers.modules.control import setting as getSetting
 from fenomscrapers.modules import source_utils
 
 class source:
-	priority = 25
-	pack_capable = False
-	hasMovies = False
-	hasEpisodes = True
 	def __init__(self):
+		self.priority = 25
 		self.language = ['en']
-		self.base_link = "https://ororo.tv"
-		self.moviesearch_link = "/api/v2/movies"
-		self.tvsearch_link = "/api/v2/shows"
-		self.movie_link = "/api/v2/movies/%s"
-		self.show_link = "/api/v2/shows/%s"
-		self.episode_link = "/api/v2/episodes/%s"
+		self.domains = ['ororo.tv']
+		self.base_link = 'https://ororo.tv'
+		self.moviesearch_link = '/api/v2/movies'
+		self.tvsearch_link = '/api/v2/shows'
+		self.movie_link = '/api/v2/movies/%s'
+		self.show_link = '/api/v2/shows/%s'
+		self.episode_link = '/api/v2/episodes/%s'
 		self.user = getSetting('ororo.user')
 		self.password = getSetting('ororo.pass')
 		self.headers = {
 			'Authorization': self._get_auth(),
 			'User-Agent': 'Placenta for Kodi'}
+		self.movie = False
+		self.tvshow = True
 
 	def _get_auth(self):
-		user_info = '%s:%s' % (self.user, self.password)
-		user_info = user_info.encode('utf-8')
-		auth = 'Basic ' + b64encode(user_info).decode('utf-8')
+		try: # Python 2
+			user_info = '%s:%s' % (self.user, self.password)
+			auth = 'Basic ' + b64encode(user_info)
+		except: # Python 3
+			user_info = '%s:%s' % (self.user, self.password)
+			user_info = user_info.encode('utf-8')
+			auth = 'Basic ' + b64encode(user_info).decode('utf-8')
 		return auth
 
 	def sources(self, data, hostDict):
 		sources = []
 		if not data: return sources
-		append = sources.append
 		try:
 			if (self.user == '' or self.password == ''): return sources
 
@@ -64,14 +70,14 @@ class source:
 			url = client.request(url, headers=self.headers)
 			if not url: return sources
 			url = jsloads(url)['url']
-			# log_utils.log('url = %s' % url)
+			# log_utils.log('url = %s' % url, __name__)
 
 			name = re.sub(r'(.*?)\/video/file/(.*?)/', '', url).split('.smil')[0].split('-')[0]
 			quality, info = source_utils.get_release_quality(name)
 			info = ' | '.join(info)
 
-			append({'provider': 'ororo', 'source': 'direct', 'name': name, 'quality': quality, 'language': 'en', 'url': url,
-							'info': info, 'direct': True, 'debridonly': False, 'size': 0}) # Ororo does not return a file size
+			sources.append({'provider': 'ororo', 'source': 'direct', 'name': name, 'quality': quality, 'language': 'en', 'url': url,
+									'info': info, 'direct': True, 'debridonly': False, 'size': 0}) # Ororo does not return a file size
 			return sources
 		except:
 			source_utils.scraper_error('ORORO')
@@ -88,3 +94,6 @@ class source:
 		except:
 			source_utils.scraper_error('ORORO')
 			return
+
+	def resolve(self, url):
+		return url

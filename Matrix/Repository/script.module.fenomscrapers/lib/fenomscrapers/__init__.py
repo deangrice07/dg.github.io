@@ -9,7 +9,6 @@ debug = getSetting('debug.enabled') == 'true'
 def sources(specified_folders=None, ret_all=False):
 	try:
 		sourceDict = []
-		append = sourceDict.append
 		sourceFolder = getScraperFolder()
 		sourceFolderLocation = os.path.join(os.path.dirname(__file__), sourceFolder)
 		sourceSubFolders = [x[1] for x in os.walk(sourceFolderLocation)][0]
@@ -22,7 +21,7 @@ def sources(specified_folders=None, ret_all=False):
 				if ret_all or enabledCheck(module_name):
 					try:
 						module = loader.find_module(module_name).load_module(module_name)
-						append((module_name, module.source))
+						sourceDict.append((module_name, module.source()))
 					except Exception as e:
 						if debug:
 							from fenomscrapers.modules import log_utils
@@ -52,10 +51,9 @@ def enabledCheck(module_name):
 		return True
 
 def pack_sources():
-	return ('7torrents', 'bitcq', 'bitlord', 'bitsearch', 'bt4g', 'btscene', 'glodls', 'idope', 'kickass2', 'limetorrents', 'magnetdl', 'piratebay', 'solidtorrents',
-				'torrentapi', 'torrentdownload', 'torrentfunk', 'torrentgalaxy', 'torrentparadise', 'torrentproject2', 'torrentz2', 'yourbittorrent', 'zooqle')
+	return ['7torrents', 'bitcq', 'bitlord', 'bt4g', 'btscene', 'extratorrent', 'glodls', 'idope', 'kickass2', 'limetorrents', 'magnetdl', 'piratebay', 'solidtorrents',
+				'torrentapi', 'torrentdownload', 'torrentfunk', 'torrentgalaxy', 'torrentparadise', 'torrentproject2', 'torrentz2', 'yourbittorrent', 'zooqle']
 # btdb removed 7-3-21
 # glodls added 7-3-21
-# extratorrent new proxy 11-4-21, v2 challenge removed 11-12-21
+# extratorrent new proxy 11-4-21
 # bitcq added 11-2-21
-# bitsearch added 11-19-21

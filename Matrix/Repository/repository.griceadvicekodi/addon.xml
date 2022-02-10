@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.26" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.25" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
@@ -39,16 +39,6 @@
 			<info compressed="false">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/mr-kodi/repository.fenomscrapers/master/zips/</datadir>
-		</dir>
-		<dir minversion="18.9.0">
-			<info compressed="false">https://raw.githubusercontent.com/123Venom/repository.venom/main/matrix/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/123Venom/repository.venom/main/matrix/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/123Venom/repository.venom/main/matrix/zips/</datadir>
-		</dir>
-		<dir minversion="18.9.0">
-			<info compressed="false">https://raw.githubusercontent.com/123Venom/repository.metahandler/main/matrix/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/123Venom/repository.metahandler/main/matrix/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/123Venom/repository.metahandler/main/matrix/zips/</datadir>
 		</dir>
            </extension>
         <extension point="xbmc.addon.metadata">

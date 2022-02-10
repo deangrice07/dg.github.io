@@ -1,8 +1,7 @@
-<addon id="script.module.fenomscrapers" name="FenomScrapers Module" version="2.1.2" provider-name="Mr-Kodi">
+<addon id="script.module.fenomscrapers" name="FenomScrapers Module" version="1.5.9" provider-name="Mr-Kodi">
 	<requires>
-		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" />
-		<import addon="script.module.myaccounts" version="2.0.0" />
+		<import addon="script.module.myaccounts" version="1.0.0" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="lib/default.py">
 		<provides>executable</provides>
@@ -25,8 +24,8 @@
 			<screenshot></screenshot>
 		</assets>
 		<news>
-[B][COLOR red]Update - v2.1.2 - Jan. 10, 2022[/COLOR][/B]
-[COLOR yellow]--[/COLOR][I] TORRENTPARADISE site is back up so the scraper has returned.[/I]
+[B][COLOR red]Update - v1.5.9 - Nov. 09, 2021[/COLOR][/B]
+[COLOR yellow]--[/COLOR][I] Fixed release_title issue for TV Show "4400".[/I]
 		</news>
 	</extension>
 </addon>
