@@ -319,7 +319,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLOR ghostwhite]DG[/COLOR]" provider-name="Grizzard" version="1.0.6">
+<addon id="plugin.video.dg" name="[COLOR ghostwhite]DG[/COLOR]" provider-name="Grizzard" version="1.0.7">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="context.dg" />
