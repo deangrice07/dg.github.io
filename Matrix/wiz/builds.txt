@@ -31,5 +31,13 @@
             <fanart>https://i.postimg.cc/qRg4jC7j/Screen-Shot-2021-07-31-at-7-50-07-pm.png</fanart>
             <description>Grizzard Galaxy Build</description>
         </build>
+	
+	<build name = "Grizzard TMNT">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadvicetmnt/griceadvicetmnt.zip</url>
+            <icon>https://i.postimg.cc/nLkVCDYm/TMNT-Birthday-Invitation4.jpg</icon>
+            <fanart>https://i.postimg.cc/MH4VN4nz/TMNT-Birthday-Invitation1.jpg</fanart>
+            <description>Grizzard TMNT Build</description>
+        </build>
 
 </builds>
