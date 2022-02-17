@@ -9,7 +9,7 @@ from resources.lib.modules import control
 
 def set_reuselanguageinvoker():
 	try:
-		addon_xml = control.joinPath(control.addonPath('plugin.video.venom'), 'addon.xml')
+		addon_xml = control.joinPath(control.addonPath('plugin.video.dg'), 'addon.xml')
 		tree = ET.parse(addon_xml)
 		root = tree.getroot()
 		for item in root.iter('reuselanguageinvoker'):

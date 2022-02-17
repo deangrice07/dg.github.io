@@ -218,7 +218,7 @@ class libmovies:
 		try:
 			control.makeFile(self.library_folder)
 			source_content = "('%s','movies','metadata.themoviedb.org','',2147483647,1,'<settings version=\"2\"><setting id=\"certprefix\" default=\"true\">Rated </setting><setting id=\"fanart\">true</setting><setting id=\"imdbanyway\">true</setting><setting id=\"keeporiginaltitle\" default=\"true\">false</setting><setting id=\"language\" default=\"true\">en</setting><setting id=\"RatingS\" default=\"true\">TMDb</setting><setting id=\"tmdbcertcountry\" default=\"true\">us</setting><setting id=\"trailer\">true</setting></settings>',0,0,NULL,NULL)" % self.library_folder
-			library_sources.add_source('Venom Movies', self.library_folder, source_content, 'DefaultMovies.png')
+			library_sources.add_source('DG Movies', self.library_folder, source_content, 'DefaultMovies.png')
 		except:
 			log_utils.error()
 
@@ -425,7 +425,7 @@ class libtvshows:
 		try:
 			control.makeFile(self.library_folder)
 			# icon = control.joinPath(control.artPath(), 'libtv.png')
-			source_name = 'Venom TV Shows'
+			source_name = 'DG TV Shows'
 			# TVDb scraper
 			source_content = "('%s','tvshows','metadata.tvdb.com','',0,0,'<settings version=\"2\"><setting id=\"absolutenumber\" default=\"true\">false</setting><setting id=\"alsoimdb\">true</setting><setting id=\"dvdorder\" default=\"true\">false</setting><setting id=\"fallback\">true</setting><setting id=\"fallbacklanguage\">es</setting><setting id=\"fanart\">true</setting><setting id=\"language\" default=\"true\">en</setting><setting id=\"RatingS\" default=\"true\">TheTVDB</setting><setting id=\"usefallbacklanguage1\">true</setting></settings>',0,0,NULL,NULL)" % self.library_folder
 			# TMDb scraper

@@ -38,7 +38,7 @@ class Navigator:
 		if downloads: self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 		if getMenuEnabled('navi.prem.services'): self.addDirectoryItem('Premium Services', 'premiumNavigator', 'premium.png', 'DefaultFolder.png')
 		if getMenuEnabled('navi.news'): self.addDirectoryItem(32013, 'tools_ShowNews', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
-		if getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog&name=Venom', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
+		if getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog&name=DG', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
 		self.endDirectory()
 
 	def movies(self, lite=False):
@@ -219,15 +219,15 @@ class Navigator:
 		url = 'https://api.trakt.tv/search/list?limit=%s&page=1&query=' % page_limit + quote_plus(q)
 		control.closeAll()
 		if media_type == 'movies':
-			control.execute('ActivateWindow(Videos,plugin://plugin.video.venom/?action=movies_PublicLists&url=%s,return)' % (quote_plus(url)))
+			control.execute('ActivateWindow(Videos,plugin://plugin.video.dg/?action=movies_PublicLists&url=%s,return)' % (quote_plus(url)))
 		else:
-			control.execute('ActivateWindow(Videos,plugin://plugin.video.venom/?action=tv_PublicLists&url=%s,return)' % (quote_plus(url)))
+			control.execute('ActivateWindow(Videos,plugin://plugin.video.dg/?action=tv_PublicLists&url=%s,return)' % (quote_plus(url)))
 
 	def tools(self):
 		if self.traktCredentials: self.addDirectoryItem(35057, 'tools_traktToolsNavigator', 'tools.png', 'DefaultAddonService.png', isFolder=True)
 		self.addDirectoryItem(32510, 'cache_Navigator', 'tools.png', 'DefaultAddonService.png', isFolder=True)
 		self.addDirectoryItem(32609, 'tools_openMyAccount', 'MyAccounts.png', 'DefaultAddonService.png', isFolder=False)
-		self.addDirectoryItem(32506, 'tools_contextVenomSettings', 'icon.png', 'DefaultAddonProgram.png', isFolder=False)
+		self.addDirectoryItem(32506, 'tools_contextDGSettings', 'icon.png', 'DefaultAddonProgram.png', isFolder=False)
 		#-- Providers - 4
 		self.addDirectoryItem(32651, 'tools_fenomscrapersSettings', 'fenomscrapers.png', 'DefaultAddonService.png', isFolder=False)
 		self.addDirectoryItem(32523, 'tools_loggingNavigator', 'tools.png', 'DefaultAddonService.png')
@@ -262,10 +262,10 @@ class Navigator:
 		self.endDirectory()
 
 	def loggingNavigator(self):
-		self.addDirectoryItem(32524, 'tools_viewLogFile&name=Venom', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
+		self.addDirectoryItem(32524, 'tools_viewLogFile&name=DG', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
 		self.addDirectoryItem(32525, 'tools_clearLogFile', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
-		self.addDirectoryItem(32526, 'tools_ShowChangelog&name=Venom', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
-		self.addDirectoryItem(32527, 'tools_uploadLogFile&name=Venom', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
+		self.addDirectoryItem(32526, 'tools_ShowChangelog&name=DG', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
+		self.addDirectoryItem(32527, 'tools_uploadLogFile&name=DG', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
 		self.addDirectoryItem(32528, 'tools_viewLogFile&name=MyAccounts', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
 		self.addDirectoryItem(32529, 'tools_ShowChangelog&name=MyAccounts', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
 		self.addDirectoryItem(32530, 'tools_viewLogFile&name=FenomScrapers', 'tools.png', 'DefaultAddonProgram.png', isFolder=False)
@@ -538,7 +538,7 @@ class Navigator:
 			if queue: cm.append((queueMenu, 'RunPlugin(%s?action=playlist_QueueItem)' % sysaddon))
 			if context: cm.append((getLS(context[0]), 'RunPlugin(%s?action=%s)' % (sysaddon, context[1])))
 			if isSearch: cm.append(('Clear Search Phrase', 'RunPlugin(%s?action=cache_clearSearchPhrase&source=%s&name=%s)' % (sysaddon, table, quote_plus(name))))
-			cm.append(('[COLOR red]Venom Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
+			cm.append(('[COLOR red]DG Settings[/COLOR]', 'RunPlugin(%s?action=tools_openSettings)' % sysaddon))
 			item = control.item(label=name, offscreen=True)
 			item.addContextMenuItems(cm)
 			if isPlayable: item.setProperty('IsPlayable', 'true')

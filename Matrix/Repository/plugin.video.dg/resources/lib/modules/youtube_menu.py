@@ -12,7 +12,7 @@ from xbmcplugin import addDirectoryItem
 
 class youtube_menu(object):
 	def __init__(self):
-		self.agent = 'VenomAddonAgent'
+		self.agent = 'DGAddonAgent'
 		self.key_id = 'AIzaSyA56rHBAyK0Cl0P4uDM_12sNOwUmAaas8E'
 
 	def openMenuFile(self, menuFile):

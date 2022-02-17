@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	Venom Add-on
+	dg Add-on
 """
 
 from hashlib import md5
@@ -250,11 +250,11 @@ class Player(xbmc.Player):
 						if self.enable_playnext and not self.play_next_triggered:
 							if int(control.playlist.size()) > 1:
 								if self.preScrape_triggered == False:
-									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.venom/?action=play_preScrapeNext)')
+									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.dg/?action=play_preScrapeNext)')
 									self.preScrape_triggered = True
 								remaining_time = self.getRemainingTime()
 								if remaining_time < (self.playnext_time + 1) and remaining_time != 0:
-									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.venom/?action=play_nextWindowXML)')
+									xbmc.executebuiltin('RunPlugin(plugin://plugin.video.dg/?action=play_nextWindowXML)')
 									self.play_next_triggered = True
 					except:
 						log_utils.error()
@@ -289,8 +289,8 @@ class Player(xbmc.Player):
 
 	def onAVStarted(self):
 		if self.onPlayBackStarted_called:
-			xbmc.log('[ plugin.video.venom ] onAVStarted callback, onPlayBackStarted already called', LOGINFO)
-			return log_utils.log('[ plugin.video.venom ] onAVStarted callback, onPlayBackStarted already called', level=log_utils.LOGDEBUG)
+			xbmc.log('[ plugin.video.dg ] onAVStarted callback, onPlayBackStarted already called', LOGINFO)
+			return log_utils.log('[ plugin.video.dg ] onAVStarted callback, onPlayBackStarted already called', level=log_utils.LOGDEBUG)
 		self.onPlayBackStarted()
 
 	def onPlayBackStarted(self): # gets called before onAVStarted()
@@ -306,12 +306,12 @@ class Player(xbmc.Player):
 			self.playback_resumed = True
 		if control.setting('subtitles') == 'true':
 			Subtitles().get(self.name, self.imdb, self.season, self.episode)
-		xbmc.log('[ plugin.video.venom ] onPlayBackStarted callback', LOGINFO)
-		log_utils.log('[ plugin.video.venom ] onPlayBackStarted callback', level=log_utils.LOGDEBUG)
+		xbmc.log('[ plugin.video.dg ] onPlayBackStarted callback', LOGINFO)
+		log_utils.log('[ plugin.video.dg ] onPlayBackStarted callback', level=log_utils.LOGDEBUG)
 
 	def onPlayBackStopped(self):
 		try:
-			playerWindow.clearProperty('venom.preResolved_nextUrl')
+			playerWindow.clearProperty('dg.preResolved_nextUrl')
 			if not self.onPlayBackStopped_ran or (self.playbackStopped_triggered and not self.onPlayBackStopped_ran): # Kodi callback unreliable and often not issued
 				self.onPlayBackStopped_ran = True
 				self.playbackStopped_triggered = False
@@ -324,8 +324,8 @@ class Player(xbmc.Player):
 				if control.setting('crefresh') == 'true' and seekable: control.refresh() #not all skins refresh after playback stopped
 				control.playlist.clear()
 				# control.trigger_widget_refresh() # skinshortcuts handles widget refresh
-				xbmc.log('[ plugin.video.venom ] onPlayBackStopped callback', LOGINFO)
-				log_utils.log('[ plugin.video.venom ] onPlayBackStopped callback', level=log_utils.LOGDEBUG)
+				xbmc.log('[ plugin.video.dg ] onPlayBackStopped callback', LOGINFO)
+				log_utils.log('[ plugin.video.dg ] onPlayBackStopped callback', level=log_utils.LOGDEBUG)
 		except:
 			log_utils.error()
 
@@ -336,15 +336,15 @@ class Player(xbmc.Player):
 		self.libForPlayback()
 		if control.playlist.getposition() == control.playlist.size() or control.playlist.size() == 1:
 			control.playlist.clear()
-		xbmc.log('[ plugin.video.venom ] onPlayBackEnded callback', LOGINFO)
-		log_utils.log('[ plugin.video.venom ] onPlayBackEnded callback', level=log_utils.LOGDEBUG)
+		xbmc.log('[ plugin.video.dg ] onPlayBackEnded callback', LOGINFO)
+		log_utils.log('[ plugin.video.dg ] onPlayBackEnded callback', level=log_utils.LOGDEBUG)
 
 	def onPlayBackError(self):
-		playerWindow.clearProperty('venom.preResolved_nextUrl')
+		playerWindow.clearProperty('dg.preResolved_nextUrl')
 		Bookmarks().reset(self.current_time, self.media_length, self.name, self.year)
 		log_utils.error()
-		xbmc.log('[ plugin.video.venom ] onPlayBackError callback', LOGINFO)
-		log_utils.log('[ plugin.video.venom ] onPlayBackError callback', level=log_utils.LOGDEBUG)
+		xbmc.log('[ plugin.video.dg ] onPlayBackError callback', LOGINFO)
+		log_utils.log('[ plugin.video.dg ] onPlayBackError callback', level=log_utils.LOGDEBUG)
 		sysexit(1)
 
 
@@ -432,15 +432,15 @@ class PlayNext(xbmc.Player):
 				premiered = next_meta.get('premiered')
 				next_sources = providerscache.get(sources.Sources().getSources, 48, title, year, imdb, tmdb, tvdb, str(season), str(episode), tvshowtitle, premiered, next_meta, True)
 				if not self.isPlayingVideo():
-					return playerWindow.clearProperty('venom.preResolved_nextUrl')
+					return playerWindow.clearProperty('dg.preResolved_nextUrl')
 
 
 				sources.Sources().preResolve(next_sources, next_meta)
 			else:
-				playerWindow.clearProperty('venom.preResolved_nextUrl')
+				playerWindow.clearProperty('dg.preResolved_nextUrl')
 		except:
 			log_utils.error()
-			playerWindow.clearProperty('venom.preResolved_nextUrl')
+			playerWindow.clearProperty('dg.preResolved_nextUrl')
 
 
 class Subtitles:

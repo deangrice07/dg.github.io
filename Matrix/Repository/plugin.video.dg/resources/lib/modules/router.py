@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-	Venom Add-on
+	dg Add-on
 """
 
 from urllib.parse import quote_plus
@@ -25,12 +25,12 @@ def router(params):
 
 	if action is None:
 		from resources.lib.menus import navigator
-		isUpdate = control.homeWindow.getProperty('venom.updated')
+		isUpdate = control.homeWindow.getProperty('dg.updated')
 		if isUpdate == 'true':
-			control.execute('RunPlugin(plugin://plugin.video.venom/?action=tools_cleanSettings)')
-			control.homeWindow.clearProperty('venom.updated')
+			control.execute('RunPlugin(plugin://plugin.video.dg/?action=tools_cleanSettings)')
+			control.homeWindow.clearProperty('dg.updated')
 			from resources.lib.modules import changelog
-			changelog.get('Venom')
+			changelog.get('DG')
 		navigator.Navigator().root()
 
 	####################################################
@@ -568,12 +568,12 @@ def router(params):
 			my_accounts.syncMyAccounts()
 			control.sleep(100)
 			if params.get('opensettings') == 'true':
-				control.openSettings(params.get('query2'), 'plugin.video.venom')
+				control.openSettings(params.get('query2'), 'plugin.video.dg')
 		elif action == 'tools_syncMyAccount':
 			from resources.lib.modules import my_accounts
 			my_accounts.syncMyAccounts()
 			if params.get('opensettings') == 'true':
-				control.openSettings(query, 'plugin.video.venom')
+				control.openSettings(query, 'plugin.video.dg')
 		elif action == 'tools_traktAcctMyAccounts':
 			control.execute('RunScript(script.module.myaccounts, action=traktAcct)')
 		elif action == 'tools_adAcctMyAccounts':
@@ -584,8 +584,8 @@ def router(params):
 			control.execute('RunScript(script.module.myaccounts, action=realdebridAcct)')
 		elif action == 'tools_openSettings':
 			control.openSettings(query)
-		elif action == 'tools_contextVenomSettings':
-			control.openSettings('0.0', 'context.venom')
+		elif action == 'tools_contextDGSettings':
+			control.openSettings('0.0', 'context.dg')
 			control.trigger_widget_refresh()
 		elif action == 'tools_fenomscrapersSettings':
 			control.openSettings('0.0', 'script.module.fenomscrapers')
@@ -607,8 +607,8 @@ def router(params):
 			from resources.lib.modules import log_utils
 			cleared = log_utils.clear_logFile()
 			if cleared == 'canceled': return
-			elif cleared: control.notification(message='Venom Log File Successfully Cleared')
-			else: control.notification(message='Error clearing Venom Log File, see kodi.log for more info')
+			elif cleared: control.notification(message='DG Log File Successfully Cleared')
+			else: control.notification(message='Error clearing DG Log File, see kodi.log for more info')
 		elif action == 'tools_viewLogFile':
 			from resources.lib.modules import log_utils
 			log_utils.view_LogFile(name)
@@ -688,7 +688,7 @@ def router(params):
 				systvshowtitle = quote_plus(tvshowtitle)
 				premiered = i['premiered']
 				sysmeta = quote_plus(jsdumps(i))
-				url = 'plugin://plugin.video.venom/?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&select=1' % (
+				url = 'plugin://plugin.video.dg/?action=play_Item&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s&select=1' % (
 										systitle, year, imdb, tmdb, tvdb, season, episode, systvshowtitle, premiered, sysmeta)
 				item = control.item(label=title, offscreen=True)
 				control.playlist.add(url=url, listitem=item)
@@ -705,21 +705,21 @@ def router(params):
 			if rtype == 'movie':
 				from resources.lib.menus import movies
 				rlist = movies.Movies().get(url, create_directory=False)
-				r = 'plugin://plugin.video.venom/?action=play_Item'
+				r = 'plugin://plugin.video.dg/?action=play_Item'
 			elif rtype == 'episode':
 				from resources.lib.menus import episodes
 				meta = params.get('meta')
 				rlist = episodes.Episodes().get(tvshowtitle, year, imdb, tmdb, tvdb, meta, season, create_directory=False)
-				r = 'plugin://plugin.video.venom/?action=play_Item'
+				r = 'plugin://plugin.video.dg/?action=play_Item'
 			elif rtype == 'season':
 				from resources.lib.menus import seasons
 				art = params.get('art')
 				rlist = seasons.Seasons().get(tvshowtitle, year, imdb, tmdb, tvdb, art, create_directory=False)
-				r = 'plugin://plugin.video.venom/?action=play_Random&rtype=episode'
+				r = 'plugin://plugin.video.dg/?action=play_Random&rtype=episode'
 			elif rtype == 'show':
 				from resources.lib.menus import tvshows
 				rlist = tvshows.TVshows().get(url, create_directory=False)
-				r = 'plugin://plugin.video.venom/?action=play_Random&rtype=season'
+				r = 'plugin://plugin.video.dg/?action=play_Random&rtype=season'
 			from random import randint
 			from json import dumps as jsdumps
 			try:
@@ -920,6 +920,6 @@ def router(params):
 		elif action == 'cache_clearBookmark':
 			from resources.lib.menus import navigator
 			navigator.Navigator().clearBookmark(name, year)
-		elif action == 'cache_clearKodiBookmark': # context.venom action call only
+		elif action == 'cache_clearKodiBookmark': # context.dg action call only
 			from resources.lib.database import cache
 			cache.clear_local_bookmark(url)
