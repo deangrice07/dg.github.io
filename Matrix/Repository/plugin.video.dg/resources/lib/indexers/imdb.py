@@ -27,7 +27,7 @@ class Movies:
 		self.imdb_user = control.setting('imdb.user').replace('ur', '')
 		self.tmdb_key = control.setting('tmdb.api.key')
 		if not self.tmdb_key:
-			self.tmdb_key = '3320855e65a9758297fec4f7c9717698'
+			self.tmdb_key = '042f4c700739cc022049ebfa770d7189'
 		self.user = str(self.imdb_user) + str(self.tmdb_key)
 
 		self.tmdb_poster = 'https://image.tmdb.org/t/p/w342'

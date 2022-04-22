@@ -14,7 +14,7 @@ from resources.lib.indexers import fanarttv
 from resources.lib.modules.control import setting as getSetting, notification, sleep, apiLanguage, trailer as control_trailer, yesnoDialog
 
 API_key = getSetting('tmdb.api.key')
-if not API_key: API_key = '3320855e65a9758297fec4f7c9717698'
+if not API_key: API_key = '042f4c700739cc022049ebfa770d7189'
 base_link = 'https://api.themoviedb.org/3/'
 tmdb_networks = base_link + 'discover/tv?api_key=%s&sort_by=popularity.desc&with_networks=%s&page=1' % (API_key, '%s')
 poster_path = 'https://image.tmdb.org/t/p/w342'

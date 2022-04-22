@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" provider-name="Grice Advice" version="1.0.28">
+<addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" provider-name="Grice Advice" version="1.0.29">
 	<extension point="xbmc.addon.repository" name="Grice Advice Kodi Repo" >
-			<dir minversion="16.0.0" maxversion="18.9.9">
-			<info compressed="false">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/_zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/_zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/_zips</datadir>
+			<dir>
+			<info compressed="false">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips</datadir>
 			</dir>
 			<dir>
 			<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
@@ -15,11 +15,6 @@
 			<info compressed="false">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml.md5</checksum>
 			<datadir zip="true">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/</datadir>
-			</dir>
-			<dir>
-			<info compressed="false">https://raw.githubusercontent.com/dobbelina/repository.dobbelina/master/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/dobbelina/repository.dobbelina/master/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/dobbelina/repository.dobbelina/master/</datadir>
 			</dir>
 			<dir>
 			<info compressed="false">https://raw.githubusercontent.com/a4k-openproject/repository.openscrapers/master/zips/addons.xml</info>
