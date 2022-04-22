@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
- <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.27" provider-name="Grice Advice">
+ <addon id="repository.griceadvicekodi" name="Grice Advice Kodi Repo" version="1.0.28" provider-name="Grice Advice">
     <requires>
         <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
 	 <extension point="xbmc.addon.repository" name="Grice Advice Kodi Repo">
             <dir>
-            <info compressed="false">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml</info>
-            <checksum>https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://deangrice07.github.io/dg.github.io/Matrix/Repository/zips/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/deangrice07/dg.github.io/master/Matrix/Repository/zips</datadir>
             </dir>
             <dir>
 		    <info compressed="false">https://raw.githubusercontent.com/teamuniversal/scrapers/master/_modules4all/zips/addons.xml</info>
