@@ -37,8 +37,8 @@ class Navigator:
 		downloads = True if getSetting('downloads') == 'true' and (len(control.listDir(getSetting('movie.download.path'))[0]) > 0 or len(control.listDir(getSetting('tv.download.path'))[0]) > 0) else False
 		if downloads: self.addDirectoryItem(32009, 'downloadNavigator', 'downloads.png', 'DefaultFolder.png')
 		if getMenuEnabled('navi.prem.services'): self.addDirectoryItem('Premium Services', 'premiumNavigator', 'premium.png', 'DefaultFolder.png')
-		if getMenuEnabled('navi.news'): self.addDirectoryItem(32013, 'tools_ShowNews', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
-		if getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog&name=DG', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
+		# if getMenuEnabled('navi.news'): self.addDirectoryItem(32013, 'tools_ShowNews', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
+# 		if getMenuEnabled('navi.changelog'): self.addDirectoryItem(32014, 'tools_ShowChangelog&name=DG', 'icon.png', 'DefaultAddonHelper.png', isFolder=False)
 		self.endDirectory()
 
 	def movies(self, lite=False):

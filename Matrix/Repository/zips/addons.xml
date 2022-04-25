@@ -311,7 +311,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.dg" name="[COLOR ghostwhite]DG[/COLOR]" provider-name="Grizzard" version="1.0.9">
+<addon id="plugin.video.dg" name="[COLOR ghostwhite]DG[/COLOR]" provider-name="Grizzard" version="1.0.10">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="context.dg" />
@@ -342,13 +342,6 @@
 			<screenshot>resources/screenshots/screenshot002.jpg</screenshot>
 			<screenshot>resources/screenshots/screenshot003.jpg</screenshot>
 		</assets>
-		<news>
-[B][COLOR red]Update - v6.3.4 - Nov. 09, 2021[/COLOR][/B]
-[COLOR yellow]--[/COLOR][I] Fix airtime "Daylight Savings Time" issue with [B]My TV Shows-Upcoming Progress, Upcoming Episodes,[/B] and [B]Season Premieres[/B].[/I]
-[COLOR yellow]--[/COLOR][I] Added setting to sort uncached torrents by seeder count, see [B]Source Options[/B] under heading [B]Sources Select[/B].  Results are still sorted by quality as primary but this new setting will change the secondary sort to seeders vs. file size.[/I]
-[COLOR yellow]--[/COLOR][I] Changed "Discover Movies" - [B]Upcoming (IMDb)[/B] to [B]Coming Soon (IMDb)[/B] to match the IMDb url and previous changelog notation of it's addition.[/I]
-[COLOR yellow]--[/COLOR][I] Fixed issue where sync process with MA would disable AD, PM, or RD if account changes took place.  This caused any new auth to have the debrid provider remaining disabled and user would not notice and the scrape process would then fail.  This has been changed to always remain enabled, unless user disables it.  The debrid service will not function unless both a token and service is enabled so leaving in an always enabled state is preferred.[/I]
-		</news>
 	</extension>
 </addon>
 
