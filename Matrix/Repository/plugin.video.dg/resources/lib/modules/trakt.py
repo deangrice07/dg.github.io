@@ -24,8 +24,8 @@ BASE_URL = 'https://api.trakt.tv'
 # V2_API_KEY = 'c622fa66e6cdd783b23f2fc1a1abedc1f1e6ea739d8755248487d1dcfeda66e5'
 # CLIENT_SECRET = '3430dbd20bd3eb55c0f4e3dc05c7cbbadaf1fd4b8e2a572f4200e482a2041bd8'
 # My Accounts trakt app
-V2_API_KEY = '1ff09b52d009f286be2d9bdfc0314c688319cbf931040d5f8847e7694a01de42'
-CLIENT_SECRET = '0c5134e5d15b57653fefed29d813bfbd58d73d51fb9bcd6442b5065f30c4d4dc'
+V2_API_KEY = '5d76a87c1b9c927d8844fc475e141ce6c209514e42a561f73ce2f9b82464ed37'
+CLIENT_SECRET = 'f7912c02c894db680d8d977d872c7ba9f8bb62f35aa9859a285b206e0225878b'
 headers = {'Content-Type': 'application/json', 'trakt-api-key': V2_API_KEY, 'trakt-api-version': '2'}
 REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
