@@ -39,5 +39,13 @@
             <fanart>https://i.postimg.cc/MH4VN4nz/TMNT-Birthday-Invitation1.jpg</fanart>
             <description>Grizzard TMNT Build</description>
         </build>
+        
+    <build name = "Grizzard Ships">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadviceships/griceadviceships.zip</url>
+            <icon>https://i.postimg.cc/FFMG6sH2/icon.png</icon>
+            <fanart>https://i.postimg.cc/1tTMsycV/fanart.jpg</fanart>
+            <description>Grizzard Ships Build</description>
+        </build>
 
 </builds>
