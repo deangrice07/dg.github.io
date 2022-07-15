@@ -47,5 +47,13 @@
             <fanart>https://i.postimg.cc/1tTMsycV/fanart.jpg</fanart>
             <description>Grizzard Ships Build</description>
         </build>
+        
+    <build name = "Grizzard Simple">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadviceships/griceadvicesimple.zip</url>
+            <icon>https://i.postimg.cc/vBqX3MXz/Screen-Shot-2022-07-15-at-6-31-13-pm.png</icon>
+            <fanart>https://i.postimg.cc/wTTg1ksY/Screen-Shot-2022-07-15-at-6-31-13-pm.png</fanart>
+            <description>Grizzard Simple Build</description>
+        </build>
 
 </builds>
