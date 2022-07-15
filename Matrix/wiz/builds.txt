@@ -55,5 +55,13 @@
             <fanart>https://i.postimg.cc/wTTg1ksY/Screen-Shot-2022-07-15-at-6-31-13-pm.png</fanart>
             <description>Grizzard Simple Build</description>
         </build>
+        
+    <build name = "Grizzard Colussus">
+            <version>1.0</version>
+            <url>https://archive.org/download/griceadvicecolussus_202207/griceadvicecolussus.zip</url>
+            <icon>https://i.postimg.cc/gjFdPg7f/Screen-Shot-2022-07-15-at-10-45-47-pm.png</icon>
+            <fanart>https://i.postimg.cc/v8zSyPCf/Screen-Shot-2022-07-15-at-10-46-08-pm.png</fanart>
+            <description>Grizzard Colussus Build</description>
+        </build>
 
 </builds>
